@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cannon-knn"
+version = "0.1.0"
+description = "CANNON: Covariance-Adaptive Nearest-Neighbor Optimization Network"
+authors = [{ name = "Eraldo Pereira Marinho", email = "pereira.marinho@unesp.br" }]
+license = "MIT"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "scikit-learn>=1.3",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "pytest-cov", "ruff"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
