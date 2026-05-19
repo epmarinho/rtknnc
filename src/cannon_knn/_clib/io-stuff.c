@@ -1,4 +1,5 @@
 /***@<io-stuff.c>::**/
+#include "main.h"
 
 /***********************************
  * AUTHOR: Eraldo Pereira Marinho *
@@ -296,6 +297,7 @@ size_t getdata(FILE * input)
     /*** if the user has not sent the command line message --dim <dimension>, or if it was intentionally passed as a
          non-positive value, then it must be redimensioned ***/
     dimension = nzmin(dimension, ncol);
+    grade = 1 << dimension;  // ← aqui, uma vez só, com o valor final de dimension  
 
     /*** similarly to the expected number of data points, maybe entered by --n <n> ***/
     n = nzmin(n, N);

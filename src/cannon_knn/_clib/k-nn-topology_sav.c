@@ -89,7 +89,7 @@
  * KNN until exhaustion -- see function roundtrip_KNN_find below.
  **************************************************************************************/
 
-#include <k-nn-topology.h>
+#include "k-nn-topology.h"
 
 /*** clcount reports the number of identified clusters for the
      currently selected number of nearest neighbors, K ***/

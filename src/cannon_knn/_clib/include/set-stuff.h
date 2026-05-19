@@ -11,9 +11,9 @@
 #include <stddef.h>
 #include <string.h>
 #include <strings.h>
-#include <common-types.h>
-#include <macros.h>
-#include <k-nn.h>
+#include "common-types.h"
+#include "macros.h"
+#include "k-nn.h"
 
 /*===============================================================
              SET OPERATIONS HAVE TO BE DECLARED HERE
@@ -32,3 +32,4 @@ size_t          set__insert(index_t id, SET * t);
 void            set__destroy(SET * t);
 extern ID_t    *unclustered;
 extern size_t   n_unclustered;
+void set__list(SET *set);

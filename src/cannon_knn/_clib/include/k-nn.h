@@ -15,9 +15,9 @@
 #include <string.h>
 #include <ctype.h>
 /** project-specific headers: **/
-#include <hyperquadtree.h>
-#include <macros.h>
-#include <common-types.h>
+#include "hyperquadtree.h"
+#include "macros.h"
+#include "common-types.h"
 
 /*****************************************************************************************
  * Subjective first person description:

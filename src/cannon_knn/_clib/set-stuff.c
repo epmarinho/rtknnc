@@ -5,8 +5,8 @@
  * 1st VERSION DATE: 23 Aug, 2018 *
  \********************************/
 
-#include <set-stuff.h>
-// #include <k-nn-topology.h>
+#include "set-stuff.h"
+#include "k-nn-topology.h"
 
  /*==============================================================\
  |            SET OPERATIONS HAVE TO BE IMPLEMENTED HERE         |
@@ -178,4 +178,23 @@ void set__destroy(SET * t)
     /** release the current node **/
     node_destroy(t);
     /** current node released **/
+}
+
+void set__list(SET * set)
+{
+    int j;
+
+    if (set->left != NULL) {
+        set__list(set->left);
+    }
+
+    fprintf(output, "%i: %i\t", already_inserted[set->id - 1], set->id);
+    for (j = 0; j < dimension - 1; j++) {
+        fprintf(output, "%lg\t", x[set->id - 1][j]);
+    }
+    fprintf(output, "%lg\n", x[set->id - 1][j]);
+
+    if (set->right != NULL) {
+        set__list(set->right);
+    }
 }

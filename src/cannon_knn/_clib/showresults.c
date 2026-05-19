@@ -1,4 +1,6 @@
 /**@<showresults.c>::**/
+#include "main.h"
+#include "k-nn-topology.h"
 
 char           *outputformat = "%s_K%dCs%d.layer";
 char           *outputerrmsg = "%s: cannot open output file %s... exiting\n";

@@ -6,9 +6,9 @@
 #pragma once
 #include <stddef.h>
 #include <io-stuff.h>
-#include <show-KNN-graph.h>
-#include <set-stuff.h>
-#include <k-nn.h>
+#include "show-KNN-graph.h"
+#include "set-stuff.h"
+#include "k-nn.h"
 
 extern flag_t  *already_inserted;
 
@@ -27,3 +27,7 @@ void            roundtrip_KNN_cluster_partition(size_t n);
 void            showresults(void);
 
 flag_t          tallyho(index_t, index_t, distance_t);
+
+extern size_t   clcount;
+
+extern SET    **cluster;

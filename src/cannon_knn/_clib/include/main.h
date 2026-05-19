@@ -11,5 +11,5 @@
 #include <ctype.h>
 /** project-specific header files: **/
 #include <io-stuff.h>
-#include <show-KNN-graph.h>
-#include <k-nn-topology.h>
+#include "show-KNN-graph.h"
+#include "k-nn-topology.h"

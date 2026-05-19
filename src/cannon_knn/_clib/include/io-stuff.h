@@ -13,10 +13,10 @@
 char           *strdup(const char *s);
 
 /** project headers: **/
-#include <macros.h>
-#include <common-types.h>
-#include <hyperquadtree.h>
-#include <k-nn.h>
+#include "macros.h"
+#include "common-types.h"
+#include "hyperquadtree.h"
+#include "k-nn.h"
 #include <errormsgs.h>
 #ifdef _K_NN_GRAPH_
 #    undef _SHOW_LEADERSHIP_GRAPH_

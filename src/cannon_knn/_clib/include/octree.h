@@ -9,7 +9,7 @@
 #pragma once
 
 #include <strings.h>
-#include <constants.h>
+#include "constants.h"
 
 typedef struct __QDTREE__ {
     /* particle identifier is a positive integer */

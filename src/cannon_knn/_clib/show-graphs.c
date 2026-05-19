@@ -1,4 +1,5 @@
 /**@<show-graphs.c>::**/
+#include "main.h"
 
 #ifdef __GRAPHVIZ_OUTPUT_SYNTAX__
 

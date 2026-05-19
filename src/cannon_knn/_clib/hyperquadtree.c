@@ -2,7 +2,7 @@
 /**********************************
  * AUTHOR: Eraldo Pereira Marinho *
  **********************************/
-#include <hyperquadtree.h>
+#include "hyperquadtree.h"
 
 HQDTREE        *hyperquadtree;
 

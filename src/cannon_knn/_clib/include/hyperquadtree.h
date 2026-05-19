@@ -10,8 +10,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <strings.h>
-#include <macros.h>
-#include <common-types.h>
+#include "macros.h"
+#include "common-types.h"
 #include <io-stuff.h>
 
 #define ROOT  0

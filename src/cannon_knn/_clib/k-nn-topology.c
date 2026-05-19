@@ -71,7 +71,7 @@
  * KNN until exhaustion -- see function round_trip_KNN_explore below.
  *************************************************************************************/
 
-#include <k-nn-topology.h>
+#include "k-nn-topology.h"
 
 /** clcount reports the number of identified clusters for the
      currently selected number of nearest neighbors, K **/
@@ -506,54 +506,54 @@ void roundtrip_KNN_cluster_partition(size_t n)
  *  Show Results *
  ****************/
 
-char           *outputformat = "%s_K%dCs%d.layer";
-char           *outputerrmsg = "%s: cannot open output file %s... exiting\n";
+// char           *outputformat = "%s_K%dCs%d.layer";
+// char           *outputerrmsg = "%s: cannot open output file %s... exiting\n";
 
-void showresults(void)
-{
-    char           *outputfname = calloc(strlen(outputprefix) + strlen(outputformat) + 10, 1);
-    int             cluster_number = clcount;
+// void showresults(void)
+// {
+//     char           *outputfname = calloc(strlen(outputprefix) + strlen(outputformat) + 10, 1);
+//     int             cluster_number = clcount;
 
-    fprintf(stdout, "showresultas: output prefix = %s\n", outputprefix);
+//     fprintf(stdout, "showresultas: output prefix = %s\n", outputprefix);
 
-    sprintf(outputfname, outputformat, outputprefix, K, clcount);
+//     sprintf(outputfname, outputformat, outputprefix, K, clcount);
 
-    output = fopen(outputfname, "w");
+//     output = fopen(outputfname, "w");
 
-    if (output == NULL) {
-        fprintf(stderr, outputerrmsg, cmdname, outputfname);
-        exit(-666);
-    }
-    fprintf(stdout, "output file: %s @ handler %zu\n", outputfname, (size_t) output);
-    fprintf(stdout, "roundtrip_KNN_cluster_partition: performing the recursive roundtrip k-NN cluster discovery for K=%zu", K);
-    fprintf(stdout, " => %zd cluster", clcount);
-    if (clcount > 1)
-        fprintf(stdout, "s");
-    fprintf(stdout, " disclosed\n");
+//     if (output == NULL) {
+//         fprintf(stderr, outputerrmsg, cmdname, outputfname);
+//         exit(-666);
+//     }
+//     fprintf(stdout, "output file: %s @ handler %zu\n", outputfname, (size_t) output);
+//     fprintf(stdout, "roundtrip_KNN_cluster_partition: performing the recursive roundtrip k-NN cluster discovery for K=%zu", K);
+//     fprintf(stdout, " => %zd cluster", clcount);
+//     if (clcount > 1)
+//         fprintf(stdout, "s");
+//     fprintf(stdout, " disclosed\n");
 
-#ifdef __VERBOSE_CLUSTER_ANALYSIS_OUTCOME__
-    fprintf(output, "K = %d\n", K);
-    for (clcount = 0; clcount < cluster_number; clcount++) {
-        if (cluster[clcount]->n > 0) {
-            fprintf(output, "cluster %i with %d data instances ", clcount + 1, cluster[clcount]->n);
-            fprintf(output, "with expectation vector\n");
-            for (index_t j = 0; j < dimension; j++) {
-                fprintf(output, "\t%lg", cluster[clcount]->center_of_mass[j]);
-            }
-            fprintf(output, "\n");
-            cluster_list(cluster[clcount]);
-            fprintf(output, "\n");
-        }
-    }
-#else
-    for (clcount = 0; clcount < cluster_number; clcount++) {
-        if (cluster[clcount]->n > 0) {
-            cluster_list(cluster[clcount]);
-            fprintf(output, "\n");
-        }
-    }
-#endif
+// #ifdef __VERBOSE_CLUSTER_ANALYSIS_OUTCOME__
+//     fprintf(output, "K = %d\n", K);
+//     for (clcount = 0; clcount < cluster_number; clcount++) {
+//         if (cluster[clcount]->n > 0) {
+//             fprintf(output, "cluster %i with %d data instances ", clcount + 1, cluster[clcount]->n);
+//             fprintf(output, "with expectation vector\n");
+//             for (index_t j = 0; j < dimension; j++) {
+//                 fprintf(output, "\t%lg", cluster[clcount]->center_of_mass[j]);
+//             }
+//             fprintf(output, "\n");
+//             cluster_list(cluster[clcount]);
+//             fprintf(output, "\n");
+//         }
+//     }
+// #else
+//     for (clcount = 0; clcount < cluster_number; clcount++) {
+//         if (cluster[clcount]->n > 0) {
+//             cluster_list(cluster[clcount]);
+//             fprintf(output, "\n");
+//         }
+//     }
+// #endif
 
-    free(outputfname);
-    fclose(output);
-}
+//     free(outputfname);
+//     fclose(output);
+// }

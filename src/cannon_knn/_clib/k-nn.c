@@ -13,7 +13,7 @@
  *
  */
 
-#include <k-nn.h>
+#include "k-nn.h"
 
 distance_t     *q2nd;
 flag_t         *disallow;
