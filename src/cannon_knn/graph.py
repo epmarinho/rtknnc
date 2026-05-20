@@ -6,6 +6,8 @@ Mirrors k-nn.c / k-nn.h:
   - Directed adjacency stored as scipy CSR sparse matrix.
   - Round-trip (mutual) edges: both i→j and j→i present.
 """
+from __future__ import annotations
+
 import numpy as np
 from scipy.sparse import csr_matrix
 from sklearn.neighbors import NearestNeighbors

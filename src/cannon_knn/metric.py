@@ -13,6 +13,8 @@ Reference:
   Marinho, E.P. — Anisotropic k-nearest neighbor search using a
   covariance quadtree (arXiv, 2011).
 """
+from __future__ import annotations
+
 import numpy as np
 from scipy.sparse import lil_matrix, csr_matrix
 from sklearn.neighbors import NearestNeighbors
@@ -25,15 +27,22 @@ def _mahalanobis_knn(
     query: np.ndarray,
     M: np.ndarray,
     k: int,
+    exclude_index: int | None = None,
 ) -> tuple[np.ndarray, np.ndarray]:
     """K-NN of query in X under metric M = Σ⁻¹.
 
     d_M(x,q)² = (x−q)ᵀ M (x−q)
     """
+    max_neighbors = len(X) - (1 if exclude_index is not None else 0)
+    if not 1 <= k <= max_neighbors:
+        raise ValueError(f"k must be between 1 and {max_neighbors}, got {k}")
+
     diff  = X - query
     d2    = np.einsum("ij,ij->i", diff @ M, diff)
     d2    = np.maximum(d2, 0.0)
-    idx   = np.argpartition(d2, k)[:k]
+    if exclude_index is not None:
+        d2[exclude_index] = np.inf
+    idx   = np.argpartition(d2, k - 1)[:k]
     idx   = idx[np.argsort(d2[idx])]
     return idx, np.sqrt(d2[idx])
 
@@ -71,12 +80,20 @@ class LocalMahalanobis:
     def fit(self, X: np.ndarray) -> "LocalMahalanobis":
         """Store dataset and pre-build Euclidean index for warm start."""
         self._X = check_array(X)
+        if not 1 <= self.k < self._X.shape[0]:
+            raise ValueError(
+                f"k must be between 1 and n_samples - 1, got {self.k}"
+            )
         self._nn_init = NearestNeighbors(
             n_neighbors=self.k + 1, algorithm="auto"
         ).fit(self._X)
         return self
 
-    def fit_query(self, query: np.ndarray) -> dict:
+    def fit_query(
+        self,
+        query: np.ndarray,
+        exclude_index: int | None = None,
+    ) -> dict:
         """Run CANNON fixed-point iteration for a single query point.
 
         Returns
@@ -91,7 +108,10 @@ class LocalMahalanobis:
         D = X.shape[1]
 
         _, init_idx = self._nn_init.kneighbors(q.reshape(1, -1))
-        idx = init_idx[0, 1:]
+        idx = init_idx[0]
+        if exclude_index is not None:
+            idx = idx[idx != exclude_index]
+        idx = idx[:self.k]
 
         M       = np.eye(D)
         cov_old = np.eye(D)
@@ -107,7 +127,9 @@ class LocalMahalanobis:
                 M = np.linalg.inv(cov)
             except np.linalg.LinAlgError:
                 M = np.linalg.pinv(cov)
-            idx, dists = _mahalanobis_knn(X, q, M, self.k)
+            idx, dists = _mahalanobis_knn(
+                X, q, M, self.k, exclude_index=exclude_index
+            )
 
         return {"indices": idx, "distances": dists,
                 "cov": cov, "metric": M, "n_iter": n_iter}
@@ -116,7 +138,12 @@ class LocalMahalanobis:
         """Run fit_query for every row in X."""
         if self._X is None:
             raise RuntimeError("Call fit(X) first.")
-        data = check_array(X) if X is not None else self._X
+        if X is None:
+            return [
+                self.fit_query(row, exclude_index=i)
+                for i, row in enumerate(self._X)
+            ]
+        data = check_array(X)
         return [self.fit_query(row) for row in data]
 
     def anisotropic_knn_graph(self, X: np.ndarray | None = None) -> csr_matrix:
@@ -124,12 +151,11 @@ class LocalMahalanobis:
         if self._X is None:
             raise RuntimeError("Call fit(X) first.")
         data = check_array(X) if X is not None else self._X
-        N = data.shape[0]
-        A = lil_matrix((N, N), dtype=np.float32)
+        A = lil_matrix((data.shape[0], self._X.shape[0]), dtype=np.float32)
         for i, xi in enumerate(data):
-            for j in self.fit_query(xi)["indices"]:
-                if j != i:
-                    A[i, j] = 1.0
+            exclude_index = i if X is None else None
+            for j in self.fit_query(xi, exclude_index=exclude_index)["indices"]:
+                A[i, j] = 1.0
         return A.tocsr()
 
     def ellipsoid_axes(self, query: np.ndarray) -> dict:

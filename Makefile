@@ -36,13 +36,6 @@ C_SRCS := $(CLIB_DIR)/hyperquadtree.c \
           $(CLIB_DIR)/showresults.c \
           $(CLIB_DIR)/show-graphs.c
 
-# ── Executável standalone ─────────────────────────────────────────────────────
-EXE        := cannon-knn
-CFLAGS_EXE := -O2 -Wall -I$(INC_DIR) $(DIRECTIVES) -L$(CLIB_DIR) -lcannon -Wl,-rpath,$(CLIB_DIR) -lm
-
-EXE_SRCS   := $(CLIB_DIR)/main.c \
-              $(CLIB_DIR)/io-stuff.c \
-
 .PHONY: all install test coverage lib cannon-knn clean lint format clib-deps help
 
 # ── targets ───────────────────────────────────────────────────────────────────
@@ -65,9 +58,9 @@ $(LIB): $(C_SRCS)
 	$(CC) $(CFLAGS) -o $@ $^
 	@echo "✓ Built $(LIB)"
 
-# Compila o executável linkado à lib recém criada
+# ── Executável standalone ─────────────────────────────────────────────────────
 EXE        := cannon-knn
-CFLAGS_EXE := -O2 -Wall -I$(INC_DIR)
+CFLAGS_EXE := -O2 -Wall -I$(INC_DIR) $(DIRECTIVES)
 
 EXE_SRCS   := $(CLIB_DIR)/main.c \
               $(CLIB_DIR)/io-stuff.c \
@@ -78,14 +71,10 @@ cannon-knn: $(LIB) $(EXE_SRCS)
 	$(CC) $(CFLAGS_EXE) -o $(EXE) $(EXE_SRCS) \
 	    -L$(CLIB_DIR) -lcannon -Wl,-rpath,$(CLIB_DIR) -lm
 	@echo "✓ Built $(EXE)"
-cannon-knn: $(LIB) $(EXE_SRCS)
-	$(CC) $(CFLAGS_EXE) -o $(EXE) $(EXE_SRCS) \
-	    -L$(CLIB_DIR) -lcannon -Wl,-rpath,$(CLIB_DIR) -lm
-	@echo "✓ Built $(EXE)"
 
 clib-deps:
 	@mkdir -p $(CLIB_DEPS_OUT)
-	$(PYTHON) tools/clib_deps.py --clib $(CLIB_DIR) --out $(CLIB_DEPS_OUT) --format all
+	$(PYTHON) scripts/clib_deps.py --root $(CLIB_DIR) --out $(CLIB_DEPS_OUT)
 	@echo "✓ Dependências em $(CLIB_DEPS_OUT)/"
 
 clean:
@@ -120,4 +109,3 @@ help:
 	@echo "  make format       formata código com ruff"
 	@echo "  make all          install + lib + cannon-knn + test"
 	@echo ""
-

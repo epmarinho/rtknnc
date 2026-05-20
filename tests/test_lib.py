@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-import ctypes, os, sys, subprocess, pytest
+import ctypes
+import os
+import subprocess
+import sys
+
+import pytest
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LIB_PATH    = os.path.join(PROJECT_DIR, "src", "cannon_knn", "_clib", "libcannon.so")
@@ -25,10 +30,11 @@ def _standalone():
     parser = argparse.ArgumentParser()
     parser.add_argument("--input", required=True)
     parser.add_argument("--K",  type=int, default=16)
-    parser.add_argument("--K0", type=int, default=4)
+    parser.add_argument("--K0", type=int, default=None)
     parser.add_argument("--standalone", action="store_true")
     args = parser.parse_args()
-
+    if args.K0 is None:
+        args.K0 = args.K
     lib = ctypes.CDLL(LIB_PATH)
     lib.cmdline_parser.restype  = ctypes.c_void_p
     lib.cmdline_parser.argtypes = [ctypes.c_int, ctypes.POINTER(ctypes.c_char_p)]

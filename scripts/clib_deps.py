@@ -52,6 +52,7 @@ class FileNode:
     rel: str  # relative to root, posix-style
     direct: list[str] = field(default_factory=list)  # rel paths, in source order
     raw_includes: list[str] = field(default_factory=list)  # original strings
+    resolved_includes: list[tuple[str, str | None]] = field(default_factory=list)
     unresolved: list[str] = field(default_factory=list)
     is_clusterer: bool = False
     clusterer_reason: str = ""
@@ -90,12 +91,13 @@ def detect_clusterer(path: Path, text_no_comments: str) -> tuple[bool, str]:
 
 def resolve_include(spec: str, including_file: Path, root: Path) -> Path | None:
     """Resolve an `#include "spec"` against the including file's directory,
-    falling back to the project root. Returns an absolute, resolved Path that
-    exists, or None.
+    falling back to the project root and its conventional include directory.
+    Returns an absolute, resolved Path that exists, or None.
     """
     candidates = [
         including_file.parent / spec,
         root / spec,
+        root / "include" / spec,
     ]
     for c in candidates:
         try:
@@ -130,6 +132,7 @@ def parse_file(path: Path, root: Path) -> FileNode:
         spec = m.group(1).strip()
         node.raw_includes.append(spec)
         resolved = resolve_include(spec, path, root)
+        node.resolved_includes.append((spec, str(resolved) if resolved else None))
         if resolved is None:
             node.unresolved.append(spec)
             continue
@@ -261,13 +264,8 @@ def find_redundant_includes(
 
         # Different spec strings that normalize to the same target.
         normalized: dict[str, list[str]] = defaultdict(list)
-        for spec in node.raw_includes:
-            r = resolve_include(spec, node.path, node.path.parents[0])
-            # Re-resolve relative to graph root via stored direct entry when possible.
-            # The above call uses the file's own dir as root; that's fine for
-            # detecting equivalence — same spec resolving to same path is what
-            # we care about.
-            key = str(r) if r else spec
+        for spec, resolved in node.resolved_includes:
+            key = resolved if resolved else spec
             normalized[key].append(spec)
         for key, specs in normalized.items():
             unique_specs = sorted(set(specs))

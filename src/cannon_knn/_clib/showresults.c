@@ -2,15 +2,26 @@
 #include "main.h"
 #include "k-nn-topology.h"
 
-char           *outputformat = "%s_K%dCs%d.layer";
+char           *outputformat = "%s_K%zuCs%zu.layer";
 char           *outputerrmsg = "%s: cannot open output file %s... exiting\n";
 
 void showresults(void)
 {
-    char           *outputfname = calloc(strlen(outputprefix) + strlen(outputformat) + 10, 1);
-    int             cluster_number = clcount;
+    int             fnamelen = snprintf(NULL, 0, outputformat, outputprefix, K, clcount);
+    if (fnamelen < 0) {
+        fprintf(stderr, "%s: cannot format output file name... exiting\n", cmdname);
+        exit(-666);
+    }
 
-    sprintf(outputfname, outputformat, outputprefix, K, clcount);
+    char           *outputfname = calloc((size_t)fnamelen + 1, 1);
+    if (outputfname == NULL) {
+        fprintf(stderr, "%s: cannot allocate output file name... exiting\n", cmdname);
+        exit(-666);
+    }
+
+    snprintf(outputfname, (size_t)fnamelen + 1, outputformat, outputprefix, K, clcount);
+
+    size_t          cluster_number = clcount;
 
     output = fopen(outputfname, "w");
 

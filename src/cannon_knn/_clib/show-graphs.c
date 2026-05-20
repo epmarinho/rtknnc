@@ -8,7 +8,7 @@
 #    include <k-nn.h>
 #    include <show-KNN-graph.h>
 
-char           *outputformatgv = "%s_K%d.gv";
+char           *outputformatgv = "%s_K%zu.gv";
 char           *outputerrmsggv = "%s: cannot open output file %s... exiting\n";
 
 double         *received;
@@ -18,9 +18,19 @@ double         *received;
 
 void show_KNN_graph(int n)
 {
-    char           *outputfname = calloc(strlen(outputprefix) + strlen(outputformatgv) + 10, 1);
+    int             fnamelen = snprintf(NULL, 0, outputformatgv, outputprefix, K);
+    if (fnamelen < 0) {
+        fprintf(stderr, "%s: cannot format output file name... exiting\n", cmdname);
+        exit(-666);
+    }
 
-    sprintf(outputfname, outputformatgv, outputprefix, K);
+    char           *outputfname = calloc((size_t)fnamelen + 1, 1);
+    if (outputfname == NULL) {
+        fprintf(stderr, "%s: cannot allocate output file name... exiting\n", cmdname);
+        exit(-666);
+    }
+
+    snprintf(outputfname, (size_t)fnamelen + 1, outputformatgv, outputprefix, K);
 
     output = fopen(outputfname, "w");
 
@@ -69,5 +79,9 @@ void show_KNN_graph(int n)
         }
     }
     fprintf(output, "}\n");
+    free(received);
+    received = NULL;
+    free(outputfname);
+    fclose(output);
 }
 #endif
