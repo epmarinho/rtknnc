@@ -29,3 +29,7 @@ def test_pipeline_keys(graph):
     result = popularity_pipeline(graph.adjacency_)
     for key in ("raw_popularity", "scores", "leadership", "clusters"):
         assert key in result
+
+if __name__ == "__main__":
+    import pytest
+    pytest.main([__file__, "-v"])

@@ -45,3 +45,7 @@ def test_anisotropic_graph_external_query_shape(data):
     A = LocalMahalanobis(k=5, max_iter=5).fit(data).anisotropic_knn_graph(queries)
     assert A.shape == (len(queries), len(data))
     assert np.all(np.asarray(A.sum(axis=1)).ravel() == 5)
+
+if __name__ == "__main__":
+    import pytest
+    pytest.main([__file__, "-v"])

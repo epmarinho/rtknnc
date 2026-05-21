@@ -22,3 +22,7 @@ def test_roundtrip_edges_symmetric(blob):
 def test_roundtrip_adjacency_symmetric(blob):
     A = KNNGraph(k=5).fit(blob).roundtrip_adjacency()
     assert np.allclose((A - A.T).data, 0) if len((A - A.T).data) else True
+
+if __name__ == "__main__":
+    import pytest
+    pytest.main([__file__, "-v"])

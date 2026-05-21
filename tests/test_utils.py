@@ -13,3 +13,7 @@ def test_roundtrip():
     X = np.random.default_rng(3).standard_normal((30, 5))
     X_norm, mean, std = z_normalize(X)
     assert np.allclose(z_denormalize(X_norm, mean, std), X, atol=1e-10)
+
+if __name__ == "__main__":
+    import pytest
+    pytest.main([__file__, "-v"])

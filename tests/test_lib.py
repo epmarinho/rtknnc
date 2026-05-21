@@ -107,3 +107,7 @@ def test_grade_equals_2_pow_dimension():
     dim   = ctypes.c_size_t.in_dll(lib, "dimension").value
     grade = ctypes.c_size_t.in_dll(lib, "grade").value
     assert grade == (1 << dim), f"grade={grade} mas 2^dim={1<<dim}"
+
+if __name__ == "__main__":
+    import pytest
+    pytest.main([__file__, "-v"])
