@@ -12,31 +12,26 @@ import sys
 
 import plotly.graph_objects as go
 
+from rtknnc.layer_io import read_layer_file
+
+
 def parse_layer(path):
     points = []
-    with open(path) as f:
-        for line in f:
-            line = line.strip()
-            if not line:
-                continue
-            parts = line.replace(":", " ").split()
-            if len(parts) < 4:
-                continue
-            try:
-                cluster = int(parts[0])
-                x = float(parts[2])
-                y = float(parts[3])
-                points.append((cluster, x, y))
-            except ValueError:
-                continue
+    for row in read_layer_file(path):
+        if len(row.coords) < 2:
+            raise ValueError(f"{path}: expected at least 2 coordinates")
+        points.append((row.cluster_id, row.coords[0], row.coords[1]))
     return points
+
 
 def layer_label(path):
     return os.path.splitext(os.path.basename(path))[0]
 
+
 def extract_k(path):
     m = re.search(r'_K(\d+)', os.path.basename(path))
     return int(m.group(1)) if m else 0
+
 
 if len(sys.argv) < 2:
     sys.exit("Uso: python view_layers.py <arquivo1.layer> [arquivo2.layer ...]")

@@ -1,30 +1,32 @@
-# ── cannon-knn Makefile ───────────────────────────────────────────────────────
+# ── rtknnc Makefile ───────────────────────────────────────────────────────
 # Targets:
 #   make install      instala o pacote em modo editável
 #   make test         roda os testes com pytest
 #   make coverage     testa com relatório de cobertura
-#   make lib          compila a biblioteca C compartilhada (libcannon.so)
-#   make cannon-knn   compila o executável standalone linkado à lib
+#   make lib          compila a biblioteca C compartilhada (librtknnc.so)
+#   make rtknnc       compila o executável standalone linkado à lib
 #   make clean        remove artefatos de build e compilação
 #   make lint         verifica o código Python com ruff
 #   make format       formata o código Python com ruff
 #   make clib-deps    gera grafo/relatórios de dependências dos headers C
-#   make all          install + lib + cannon-knn + test
+#   make all          install + lib + rtknnc + test
 
 PYTHON     := python
-PIP        := pip
-PYTEST     := pytest
+PIP := $(PYTHON) -m pip
+# PIP        := pip
+PYTEST  := $(PYTHON) -m pytest
+# PYTEST     := pytest
 RUFF       := ruff
 
 # Diretórios
-SRC_DIR    := src/cannon_knn
+SRC_DIR    := src/rtknnc
 CLIB_DIR   := $(SRC_DIR)/_clib
 INC_DIR    := $(CLIB_DIR)/include
 TEST_DIR   := tests
 CLIB_DEPS_OUT := build/clib-deps
 
 # ── Biblioteca C compartilhada ────────────────────────────────────────────────
-LIB        := $(CLIB_DIR)/libcannon.so
+LIB        := $(CLIB_DIR)/librtknnc.so
 # CC         := gcc
 CFLAGS     := -O2 -Wall -fPIC -shared -I$(INC_DIR) $(DIRECTIVES)
 C_SRCS := $(CLIB_DIR)/hyperquadtree.c \
@@ -36,11 +38,11 @@ C_SRCS := $(CLIB_DIR)/hyperquadtree.c \
           $(CLIB_DIR)/showresults.c \
           $(CLIB_DIR)/show-graphs.c
 
-.PHONY: all install test coverage lib cannon-knn clean lint format clib-deps help
+.PHONY: all install test coverage lib rtknnc clean lint format clib-deps help
 
 # ── targets ───────────────────────────────────────────────────────────────────
 
-all: install lib cannon-knn test
+all: install lib rtknnc test
 
 install:
 	$(PIP) install -e ".[dev]"
@@ -51,7 +53,7 @@ test:
 coverage:
 	$(PYTEST) $(TEST_DIR) -v --cov=$(SRC_DIR) --cov-report=term-missing
 
-# Compila libcannon.so a partir dos módulos C (sem main)
+# Compila librtknnc.so a partir dos módulos C (sem main)
 lib: $(LIB)
 
 $(LIB): $(C_SRCS)
@@ -59,7 +61,7 @@ $(LIB): $(C_SRCS)
 	@echo "✓ Built $(LIB)"
 
 # ── Executável standalone ─────────────────────────────────────────────────────
-EXE        := cannon-knn
+EXE        := rtknnc
 CFLAGS_EXE := -O2 -Wall -I$(INC_DIR) $(DIRECTIVES)
 
 EXE_SRCS   := $(CLIB_DIR)/main.c \
@@ -67,7 +69,7 @@ EXE_SRCS   := $(CLIB_DIR)/main.c \
               $(CLIB_DIR)/showresults.c \
               $(CLIB_DIR)/show-graphs.c
 
-cannon-knn: $(LIB) $(EXE_SRCS)
+rtknnc: $(LIB) $(EXE_SRCS)
 	$(CC) $(CFLAGS_EXE) -o $(EXE) $(EXE_SRCS) \
 	    -L$(CLIB_DIR) -lcannon -Wl,-rpath,$(CLIB_DIR) -lm
 	@echo "✓ Built $(EXE)"
@@ -97,15 +99,15 @@ format:
 
 help:
 	@echo ""
-	@echo "cannon-knn — available targets:"
+	@echo "rtknnc — available targets:"
 	@echo "  make install      instala o pacote em modo editável (pip install -e)"
 	@echo "  make test         roda todos os testes com pytest"
 	@echo "  make coverage     testes + relatório de cobertura"
-	@echo "  make lib          compila libcannon.so a partir dos fontes C"
-	@echo "  make cannon-knn   compila o executável linkado à libcannon.so"
+	@echo "  make lib          compila librtknnc.so a partir dos fontes C"
+	@echo "  make rtknnc       compila o executável linkado à librtknnc.so"
 	@echo "  make clean        remove artefatos de build e .pyc"
 	@echo "  make clib-deps    gera grafo de dependências dos headers C"
 	@echo "  make lint         verifica estilo com ruff"
 	@echo "  make format       formata código com ruff"
-	@echo "  make all          install + lib + cannon-knn + test"
+	@echo "  make all          install + lib + rtknnc + test"
 	@echo ""

@@ -1,6 +1,6 @@
 import numpy as np
 import pytest
-from cannon_knn import KNNGraph
+from rtknnc import KNNGraph
 
 @pytest.fixture
 def blob():

@@ -1,6 +1,6 @@
-# cannon-knn
+# rtknnc
 
-CANNON: Covariance-Adaptive Nearest-Neighbor Optimization Network.
+RTKNNC: Round-Trip KNN Clustering
 
 This repository contains a small Python package and a native C backend for
 experiments with k-nearest-neighbor graphs, round-trip neighborhoods, local
@@ -8,10 +8,10 @@ Mahalanobis metrics, and hierarchical cluster discovery.
 
 The codebase has two main layers:
 
-- `cannon_knn`: a Python API for k-NN graph construction, mutual-edge analysis,
+- `rtknnc`: a Python API for k-NN graph construction, mutual-edge analysis,
   popularity propagation, and local Mahalanobis neighborhoods.
-- `src/cannon_knn/_clib`: a C implementation used to build the shared library
-  `libcannon.so` and the standalone `cannon-knn` executable.
+- `src/rtknnc/_clib`: a C implementation used to build the shared library
+  `libcannon.so` and the standalone `rtknnc` executable.
 
 ## Features
 
@@ -26,8 +26,8 @@ The codebase has two main layers:
 ## Repository Layout
 
 ```text
-src/cannon_knn/          Python package
-src/cannon_knn/_clib/    Native C implementation
+src/rtknnc/          Python package
+src/rtknnc/_clib/    Native C implementation
 tests/                   Pytest test suite
 csv/                     Small sample datasets and layer outputs
 tools/                   Visualization scripts for .layer files
@@ -53,7 +53,7 @@ python -m pip install -e ".[dev]"
 If you are using Conda, activate the environment first:
 
 ```bash
-conda activate cannon-knn
+conda activate rtknnc
 python -m pip install -e ".[dev]"
 ```
 
@@ -68,7 +68,7 @@ make lib
 Build the standalone executable:
 
 ```bash
-make cannon-knn
+make rtknnc
 ```
 
 Build everything and run the tests:
@@ -82,7 +82,7 @@ make all
 ```python
 import numpy as np
 
-from cannon_knn import (
+from rtknnc import (
     KNNGraph,
     LocalMahalanobis,
     popularity_pipeline,
@@ -143,13 +143,13 @@ Normalization helpers:
 After building the executable:
 
 ```bash
-./cannon-knn --input csv/synthetic/moons.csv --dim 2 --K 16 --K0 4
+./rtknnc --input csv/synthetic/moons.csv --dim 2 --K 16 --K0 4
 ```
 
 Usage:
 
 ```text
-./cannon-knn --input <datafile> --dim <dimension> [--n <points>] [--K <neighbors>] [--K0 <neighbors>]
+./rtknnc --input <datafile> --dim <dimension> [--n <points>] [--K <neighbors>] [--K0 <neighbors>]
 ```
 
 Options:
@@ -255,7 +255,7 @@ python -m pip install pytest-cov
 make help        # show available Make targets
 make install     # install the package in editable mode with dev dependencies
 make lib         # build libcannon.so
-make cannon-knn  # build the standalone executable
+make rtknnc      # build the standalone executable
 make test        # run pytest
 make coverage    # run pytest with coverage
 make lint        # run ruff checks
@@ -266,7 +266,7 @@ make clean       # remove build and test artifacts
 
 ## Notes
 
-- Python coverage reports only the Python package under `src/cannon_knn`; it
+- Python coverage reports only the Python package under `src/rtknnc`; it
   does not measure C code coverage.
 - The native backend is research-oriented and assumes numeric input data with
   no header row.

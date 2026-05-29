@@ -1,11 +1,11 @@
 [build-system]
-requires = ["setuptools>=68", "setuptools-scm"]
+requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "cannon-knn"
+name = "rtknnc"
 version = "0.1.0"
-description = "CANNON: Covariance-Adaptive Nearest-Neighbor Optimization Network"
+description = "RTKNNC: Round-trip k-NN cluster"
 authors = [{ name = "Eraldo Pereira Marinho", email = "pereira.marinho@unesp.br" }]
 license = "MIT"
 readme = "README.md"

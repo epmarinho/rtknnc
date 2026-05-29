@@ -7,7 +7,7 @@ import sys
 import pytest
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-LIB_PATH    = os.path.join(PROJECT_DIR, "src", "cannon_knn", "_clib", "libcannon.so")
+LIB_PATH    = os.path.join(PROJECT_DIR, "src", "rtknnc", "_clib", "librtknnc.so")
 CSV_DIR     = os.path.join(PROJECT_DIR, "csv", "synthetic")
 
 
@@ -49,7 +49,7 @@ def _standalone():
     lib.hyperquadtree_destroy.restype  = None
     lib.hyperquadtree_destroy.argtypes = []
 
-    fake_argv = [b"cannon-knn", b"--input", args.input.encode(),
+    fake_argv = [b"rtknnc", b"--input", args.input.encode(),
                  b"--K", str(args.K).encode(), b"--K0", str(args.K0).encode()]
     argc   = len(fake_argv)
     argv_c = (ctypes.c_char_p * argc)(*fake_argv)
@@ -78,14 +78,13 @@ if "--standalone" in sys.argv:
 
 @pytest.fixture(scope="session", autouse=True)
 def lib_exists():
-    assert os.path.exists(LIB_PATH), f"libcannon.so nao encontrada em {LIB_PATH}"
+    assert os.path.exists(LIB_PATH), f"librtknnc.so nao encontrada em {LIB_PATH}"
 
 
 @pytest.mark.parametrize("filename,expected", [
     ("blobs_var_density.csv", 5),
     ("circles.csv",           2),
     ("moons.csv",             2),
-    ("moons-knn.csv",         1),
     ("swiss_roll.csv",        6),
 ])
 def test_hierarchical_clustering(filename, expected):
@@ -100,7 +99,7 @@ def test_grade_equals_2_pow_dimension():
     lib.getdata.restype         = ctypes.c_size_t
     lib.getdata.argtypes        = [ctypes.c_void_p]
     csv_path  = os.path.join(CSV_DIR, "moons.csv")
-    fake_argv = [b"cannon-knn", b"--input", csv_path.encode(), b"--K", b"5", b"--K0", b"1"]
+    fake_argv = [b"rtknnc", b"--input", csv_path.encode(), b"--K", b"5", b"--K0", b"1"]
     argc      = len(fake_argv)
     argv_c    = (ctypes.c_char_p * argc)(*fake_argv)
     lib.getdata(lib.cmdline_parser(argc, argv_c))

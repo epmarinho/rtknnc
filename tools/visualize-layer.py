@@ -7,33 +7,12 @@ from matplotlib.colors import BoundaryNorm
 import matplotlib.pyplot as plt
 import numpy as np
 
+from rtknnc.layer_io import read_layer_file
+
 
 def parse_layer_file(path: Path):
-    rows = []
-    with path.open("r", encoding="utf-8") as handle:
-        for lineno, raw_line in enumerate(handle, start=1):
-            line = raw_line.strip()
-            if not line:
-                continue
-
-            parts = line.split()
-            if len(parts) < 4:
-                raise ValueError(
-                    f"{path}:{lineno}: expected at least 4 columns, got {len(parts)}"
-                )
-
-            # cluster_id = int(parts[0])
-            cluster_id = int(parts[0].rstrip(":"))
-            point_id = int(parts[1])
-            coords = [float(value) for value in parts[2:-1]]
-            label = float(parts[-1])
-
-            rows.append((cluster_id, point_id, coords, label))
-
-    if not rows:
-        raise ValueError(f"{path}: no data rows found")
-
-    dimension = len(rows[0][2])
+    rows = read_layer_file(path)
+    dimension = len(rows[0].coords)
     if dimension not in (2, 3):
         raise ValueError(
             f"{path}: this visualizer currently expects 2D or 3D layer data, got dimension={dimension}"
@@ -43,10 +22,13 @@ def parse_layer_file(path: Path):
 
 
 def build_arrays(rows):
-    cluster_ids = np.array([row[0] for row in rows], dtype=int)
-    point_ids = np.array([row[1] for row in rows], dtype=int)
-    coords = np.array([row[2] for row in rows], dtype=float)
-    labels = np.array([row[3] for row in rows], dtype=float)
+    cluster_ids = np.array([row.cluster_id for row in rows], dtype=int)
+    point_ids = np.array([row.point_id for row in rows], dtype=int)
+    coords = np.array([row.coords for row in rows], dtype=float)
+    labels = np.array(
+        [np.nan if row.label is None else row.label for row in rows],
+        dtype=float,
+    )
     return cluster_ids, point_ids, coords, labels
 
 
@@ -102,6 +84,8 @@ def main():
         norm = BoundaryNorm(np.arange(len(unique_clusters) + 1) - 0.5, cmap.N)
         colorbar_label = "cluster id"
     else:
+        if np.isnan(labels).all():
+            raise ValueError(f"{layer_path}: no label column found")
         color_values = labels
         cmap = "coolwarm"
         norm = None

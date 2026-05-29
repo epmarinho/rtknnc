@@ -1,7 +1,7 @@
 import numpy as np
 import pytest
-from cannon_knn import LocalMahalanobis
-from cannon_knn.metric import _local_covariance, _mahalanobis_knn
+from rtknnc import LocalMahalanobis
+from rtknnc.metric import _local_covariance, _mahalanobis_knn
 
 @pytest.fixture
 def data():

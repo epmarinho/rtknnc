@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Analyze C/C++ include dependencies under src/cannon_knn/_clib.
+"""Analyze C/C++ include dependencies under src/rtknnc/_clib.
 
 Parses local `#include "..."` directives, builds a dependency graph, finds
 files that depend (directly or transitively) on clusterer-related headers,
@@ -555,7 +555,7 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument(
         "--root",
-        default="src/cannon_knn/_clib",
+        default="src/rtknnc/_clib",
         help="Directory to scan (default: %(default)s)",
     )
     parser.add_argument(

@@ -1,6 +1,6 @@
 import numpy as np
 import pytest
-from cannon_knn import (KNNGraph, node_popularity, vote_propagation,
+from rtknnc import (KNNGraph, node_popularity, vote_propagation,
                         leadership_graph, cluster_seeds, popularity_pipeline)
 
 @pytest.fixture

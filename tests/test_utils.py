@@ -1,5 +1,5 @@
 import numpy as np
-from cannon_knn import z_normalize, z_denormalize
+from rtknnc import z_normalize, z_denormalize
 
 def test_zero_mean():
     X_norm, *_ = z_normalize(np.random.default_rng(1).standard_normal((50, 4)))
