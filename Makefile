@@ -71,7 +71,7 @@ EXE_SRCS   := $(CLIB_DIR)/main.c \
 
 rtknnc: $(LIB) $(EXE_SRCS)
 	$(CC) $(CFLAGS_EXE) -o $(EXE) $(EXE_SRCS) \
-	    -L$(CLIB_DIR) -lcannon -Wl,-rpath,$(CLIB_DIR) -lm
+	    -L$(CLIB_DIR) -lrtknnc -Wl,-rpath,$(CLIB_DIR) -lm
 	@echo "✓ Built $(EXE)"
 
 clib-deps:
