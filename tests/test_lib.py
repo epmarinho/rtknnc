@@ -11,7 +11,7 @@ LIB_PATH    = os.path.join(PROJECT_DIR, "src", "rtknnc", "_clib", "librtknnc.so"
 CSV_DIR     = os.path.join(PROJECT_DIR, "csv", "synthetic")
 
 
-def run_pipeline(csv_path, K=16, K0=4):
+def run_pipeline(csv_path, K=16, K0=2):
     result = subprocess.run(
         [sys.executable, __file__, "--standalone",
          "--input", csv_path, "--K", str(K), "--K0", str(K0)],
@@ -86,6 +86,7 @@ def lib_exists():
     ("circles.csv",           2),
     ("moons.csv",             2),
     ("swiss_roll.csv",        6),
+    ("bridge.csv",            3),
 ])
 def test_hierarchical_clustering(filename, expected):
     clusters = run_pipeline(os.path.join(CSV_DIR, filename))
