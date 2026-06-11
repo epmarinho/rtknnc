@@ -47,7 +47,7 @@ all: install lib rtknnc test
 install:
 	$(PIP) install -e ".[dev]"
 
-test:
+test: lib
 	$(PYTEST) $(TEST_DIR) -v
 
 coverage:
