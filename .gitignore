@@ -218,3 +218,39 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+before_restore_codex_mess.patch
+	diff-blobs_overlap.diff
+	disc_16k-8192-cov_layer_viz.html
+	disc_16k-8192-cov_layers_combined.csv
+	doc/Round_trip_kNN_graph_clustering.zip
+	doc/round_trip_knn_nca_sn_draft_final_discussed.aux
+	doc/round_trip_knn_nca_sn_draft_final_discussed.bbl
+	doc/round_trip_knn_nca_sn_draft_final_discussed.blg
+	doc/round_trip_knn_nca_sn_draft_final_discussed.out
+	doc/round_trip_knn_nca_sn_draft_final_discussed.pdf
+	pcibuserror.txt
+	tests.diff
+
+# Temporary patches and diffs
+before_restore_codex_mess.patch
+diff-blobs_overlap.diff
+tests.diff
+
+# Generated layer visualization artifacts
+*_layer_viz.html
+*_layers_combined.csv
+layer_viz.html
+layers_combined.csv
+*_overlap_best.csv
+
+# Generated manuscript build artifacts
+doc/*.aux
+doc/*.bbl
+doc/*.blg
+doc/*.out
+doc/*.synctex.gz
+doc/Round_trip_kNN_graph_clustering.zip
+doc/round_trip_knn_nca_sn_draft_final_discussed.pdf
+
+# Local notes / logs
+pcibuserror.txt
