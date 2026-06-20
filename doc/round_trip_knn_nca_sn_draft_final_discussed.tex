@@ -19,6 +19,7 @@
 \usepackage{algpseudocode}
 \usepackage{listings}
 \usepackage{bm}
+
 % \jyear{2026}
 
 % \theoremstyle{thmstyleone}
@@ -46,7 +47,7 @@
 
 \begin{document}
 
-\title[Round-trip KNN graph clustering]{Round-trip closure on directed k-nearest-neighbor graphs for multiscale clustering}
+\title[Round-trip KNN graph clustering]{Round-trip closure on directed k-nearest-neighbour graphs for multiscale clustering}
 
 \author*[1]{\fnm{Eraldo P.} \sur{Marinho}}\email{pereira.marinho@unesp.br}
 \author[1]{\fnm{Caetano Mazzoni} \sur{Ranieri}}\email{cm.ranieri@unesp.br}
@@ -57,49 +58,57 @@
 \orgaddress{\street{Av. 24-A, 1515}, \city{Rio Claro}, \state{S\~ao Paulo}, \country{Brazil}}}
 
 \abstract{
-We introduce a graph-based clustering formulation based on recursive round-trip closure on directed $k$-nearest-neighbor graphs. The method is motivated by an earlier relational model in which an asymmetric relation $T\subseteq A\times B$ induces a reflective operator $R_T=T^{-1}\circ T$, and by a subsequent KNN-based model in which each nearest neighbor can reveal its reverse-neighbor set. In the present formulation, a data point first reaches one or more of its $K$ nearest neighbors, and each selected neighbor returns the set of data points that also selected it as one of their $K$ nearest neighbors. This forward-backward operation induces local popularity, leadership, and recursive expansion until saturation. Repeating the process across increasing values of $K$ produces a multiscale sequence of cluster layers, allowing cluster persistence, absorption, and merging to be analyzed through overlap transitions. The method is positioned as a nearest-neighbor graph clustering variant combining directed KNN topology, reverse-neighbor popularity, round-trip closure, saturation depth, and $K$-layer analysis. Preliminary synthetic results indicate that the generated layers are valid partitions, with no internal overlap among cluster memberships for each analyzed value of $K$.
+We introduce a graph-based clustering formulation based on recursive round-trip closure on directed $k$-nearest-neighbour graphs. The method is motivated by an earlier relational model in which an asymmetric relation $T\subseteq A\times B$ induces a reflective operator $R_T=T^{-1}\circ T$, and by a subsequent KNN-based model in which each nearest neighbour can reveal its reverse-neighbour set. In the present formulation, a data point first reaches one or more of its $K$ nearest neighbours, and each selected neighbour returns the set of data points that also selected it as one of their $K$ nearest neighbours. This forward-backward operation induces local popularity, leadership, and recursive expansion until saturation. Repeating the process across increasing values of $K$ produces a multiscale sequence of cluster layers, allowing cluster persistence, absorption, and merging to be analyzed through overlap transitions. The method is positioned as a nearest-neighbour graph clustering variant combining directed KNN topology, reverse-neighbour popularity, round-trip closure, saturation depth, and $K$-layer analysis. Preliminary synthetic results indicate that the generated layers are valid partitions, with no internal overlap among cluster memberships for each analyzed value of $K$.
 }
 
-\keywords{k-nearest-neighbor graph, graph-based clustering, reverse nearest neighbors, shared nearest neighbors, round-trip closure, multiscale clustering, saturation, cluster hierarchy}
+\keywords{k-nearest-neighbour graph, graph-based clustering, reverse nearest neighbours, shared nearest neighbours, round-trip closure, multiscale clustering, saturation, cluster hierarchy}
 
 \maketitle
 
 \section{Introduction}\label{sec:introduction}
 
-Nearest-neighbor relations are among the most fundamental structures used to represent finite datasets embedded in metric spaces. They occur naturally in pattern classification, nonparametric density estimation, graph construction, manifold learning, outlier detection, and clustering \citep{CoverHart1967,LoftsgaardenQuesenberry1965,Bentley1975,FriedmanBentleyFinkel1977,VonLuxburg2007}. In clustering, k-nearest-neighbor (KNN) relations have been explored through shared nearest neighbors, reciprocal nearest neighbors, mutual KNN graphs, reverse nearest-neighbor statistics, and density-based graph connectivity \citep{JarvisPatrick1973,ErtozSteinbachKumar2003,BritoChavezQuirozYukich1997,GowdaKrishna1978,ChowdhuryAmorim2018,XieLeeWangChenZhou2019}.
+Nearest-neighbour relations are among the most fundamental structures used to represent finite datasets embedded in metric spaces. They occur naturally in pattern classification, nonparametric density estimation, graph construction, manifold learning, outlier detection, and clustering \citep{CoverHart1967,LoftsgaardenQuesenberry1965,Bentley1975,FriedmanBentleyFinkel1977,VonLuxburg2007}. In clustering, k-nearest-neighbour (KNN) relations have been explored through shared nearest neighbours, reciprocal nearest neighbours, mutual KNN graphs, reverse nearest-neighbour statistics, and density-based graph connectivity \citep{JarvisPatrick1973,ErtozSteinbachKumar2003,BritoChavezQuirozYukich1997,GowdaKrishna1978,ChowdhuryAmorim2018,XieLeeWangChenZhou2019}.
 
-This paper develops a clustering formulation based on a recursive \emph{round-trip} operation in directed KNN graphs. Given a data point $x_i$, the forward step reaches one of its $K$ nearest neighbors, say $x_j\in\calN_K^+(x_i)$. The backward step then retrieves all data points that also selected $x_j$ as one of their $K$ nearest neighbors:
+This paper develops a clustering formulation based on a recursive \emph{round-trip} operation in directed KNN graphs. Given a data point $x_i$, the forward step reaches one of its $K$ nearest neighbours, say $x_j\in\calN_K^+(x_i)$. The backward step then retrieves all data points that also selected $x_j$ as one of their $K$ nearest neighbours:
 \begin{equation}
 \calN_K^-(x_j)=\{x_\ell\in X: x_j\in\calN_K^+(x_\ell)\}.
 \end{equation}
-Thus, a neighbor is not used merely as a point in Euclidean space, but as an index to a reverse-neighborhood set. This operation can be recursively applied until no additional points are reached, producing a saturated closure.
+Thus, a neighbour is not used merely as a point in Euclidean space, but as an index to a reverse-neighbourhood set. This operation can be recursively applied until no additional points are reached, producing a saturated closure.
 
-The method has two historical sources. The first is a relational model of redundancy-based information transport, in which an asymmetric relation $T\subseteq A\times B$ induces a reflective composition $T^{-1}\circ T$. The second is a KNN-based clustering model, where a data point elects a locally popular neighbor by inspecting reverse-neighbor cardinalities. The present contribution is not the isolated use of KNN graphs, reverse nearest neighbors, or shared-neighbor similarity. Rather, it is the organization of these elements into a recursive closure process whose evolution across $K$ values defines a multiscale cluster-layer structure.
+The method has two historical sources. The first is a relational model of redundancy-based information transport, in which an asymmetric relation $T\subseteq A\times B$ induces a reflective composition $T^{-1}\circ T$. The second is a KNN-based clustering model, where a data point elects a locally popular neighbour by inspecting reverse-neighbour cardinalities. The present contribution is not the isolated use of KNN graphs, reverse nearest neighbours, or shared-neighbour similarity. Rather, it is the organization of these elements into a recursive closure process whose evolution across $K$ values defines a multiscale cluster-layer structure.
 
-The main contributions are as follows:
+\subsection{Novelty and positioning}
+
+The novelty of the proposed method is not the isolated use of KNN graphs, reverse-neighbour counts, or shared-neighbour evidence. These components are well established in the nearest-neighbour clustering literature. The contribution lies in their organization into a recursive round-trip closure operator on directed KNN graphs, whose saturated outputs induce scale-indexed partition layers. The resulting $K$-layer sequence provides a multiscale description of cluster formation, absorption, and merging without relying on a classical linkage criterion or on the minimization of an explicit objective function.
+
+In this sense, the method is best understood as an algorithmic and topological construction. It does not reduce to a weighted voting rule, nor to the particular choice of a distance-based weight such as an inverse-square law. The central object is the dynamics induced on the directed KNN graph: forward-neighbour selection, reverse-neighbour retrieval, popularity, visibility, recursive expansion, and saturation.
+
+\subsection{Main contributions}
+
+The main contributions of this paper are as follows:
 \begin{enumerate}
-    \item a formal round-trip operator on directed KNN graphs based on forward nearest-neighbor selection and backward reverse-neighbor retrieval;
-    \item a popularity-based local leadership mechanism using reverse-neighbor cardinality;
-    \item a recursive closure process with an explicit saturation criterion;
-    \item a $K$-layer representation for multiscale cluster evolution;
-    \item an overlap-based diagnostic for verifying whether layers are proper partitions and for studying cluster absorption and merging across $K$.
+\item a formal round-trip operator on directed KNN graphs based on forward nearest-neighbour selection and backward reverse-neighbour retrieval;
+\item a popularity-based local leadership mechanism using reverse-neighbour cardinality;
+\item a recursive closure process with an explicit saturation criterion;
+\item a $K$-layer representation for multiscale cluster evolution;
+\item an overlap-based diagnostic for verifying whether layers are proper partitions and for studying cluster absorption and merging across $K$.
 \end{enumerate}
 
- 
+
 
 \section{Related work}\label{sec:related}
 
-\subsection{Shared-neighbor and Jarvis--Patrick clustering}
+\subsection{Shared-neighbour and Jarvis--Patrick clustering}
 
-Jarvis and Patrick introduced a clustering criterion based on shared near neighbors \citep{JarvisPatrick1973}. Later shared-nearest-neighbor (SNN) clustering methods used common neighbor counts to improve robustness to clusters of different shapes, sizes, and densities \citep{ErtozSteinbachKumar2003}. The present method is related to this family because reverse-neighborhood intersections imply shared-neighbor evidence. However, shared-neighbor information is not used only as a static similarity score; it is embedded in a recursive graph-closure process.
+Jarvis and Patrick introduced a clustering criterion based on shared near neighbours \citep{JarvisPatrick1973}. Later shared-nearest-neighbour (SNN) clustering methods used common neighbour counts to improve robustness to clusters of different shapes, sizes, and densities \citep{ErtozSteinbachKumar2003}. The present method is related to this family because reverse-neighbourhood intersections imply shared-neighbour evidence. However, shared-neighbour information is not used only as a static similarity score; it is embedded in a recursive graph-closure process.
 
-\subsection{Mutual, reciprocal, and reverse nearest-neighbor methods}
+\subsection{Mutual, reciprocal, and reverse nearest-neighbour methods}
 
-Mutual KNN and reciprocal nearest-neighbor graphs have been used for clustering and outlier detection \citep{BritoChavezQuirozYukich1997,GowdaKrishna1978,SardanaBhatnagar2014}. Reverse nearest-neighbor methods use the number of incoming KNN links as a density or representativeness signal \citep{ChowdhuryAmorim2018}. In the present formulation, the reverse degree acts as a local popularity measure and can determine leadership within a point's KNN list.
+Mutual KNN and reciprocal nearest-neighbour graphs have been used for clustering and outlier detection \citep{BritoChavezQuirozYukich1997,GowdaKrishna1978,SardanaBhatnagar2014}. Reverse nearest-neighbour methods use the number of incoming KNN links as a density or representativeness signal \citep{ChowdhuryAmorim2018}. In the present formulation, the reverse degree acts as a local popularity measure and can determine leadership within a point's KNN list.
 
 \subsection{Density-based and spectral graph clustering}
 
-DBSCAN, OPTICS, and HDBSCAN define clusters through density connectivity and hierarchical density estimates \citep{EsterKriegelSanderXu1996,AnkerstBreunigKriegelSander1999,CampelloMoulaviSander2013,CampelloMoulaviZimekSander2015}. Spectral clustering constructs a graph and uses eigenvectors of graph Laplacians to reveal cluster structure \citep{NgJordanWeiss2002,VonLuxburg2007}. The method proposed here is graph-based, but it is combinatorial and closure-driven: it does not require eigendecomposition and it exposes a sequence of partitions as the neighborhood size $K$ varies.
+DBSCAN, OPTICS, and HDBSCAN define clusters through density connectivity and hierarchical density estimates \citep{EsterKriegelSanderXu1996,AnkerstBreunigKriegelSander1999,CampelloMoulaviSander2013,CampelloMoulaviZimekSander2015}. Spectral clustering constructs a graph and uses eigenvectors of graph Laplacians to reveal cluster structure \citep{NgJordanWeiss2002,VonLuxburg2007}. The method proposed here is graph-based, but it is combinatorial and closure-driven: it does not require eigendecomposition and it exposes a sequence of partitions as the neighbourhood size $K$ varies.
 
 \section{Relational origin of the round-trip operator}\label{sec:relational_origin}
 
@@ -115,7 +124,7 @@ be an asymmetric relation. The reflective composition induced by $T$ is
 \begin{equation}
 R_T=T^{-1}\circ T\subseteq A\times A.
 \end{equation}
-For $a\in A$, the reflective neighborhood is
+For $a\in A$, the reflective neighbourhood is
 \begin{equation}
 R_T(a)=T^{-1}(T(a)).
 \label{eq:relational_reflection}
@@ -142,7 +151,7 @@ for the first time. The integer $s$ is the saturation depth of $S$ under $R_T$.
 
 This relational view is not the algorithmic core of the present paper, but it provides the mathematical origin of the forward-backward idea. The algorithmic core is obtained by instantiating the relation on a directed KNN graph.
 
-\section{Directed KNN graphs and reverse neighborhoods}\label{sec:KNN_graph}
+\section{Directed KNN graphs and reverse neighbourhoods}\label{sec:KNN_graph}
 
 Let
 \begin{equation}
@@ -152,7 +161,7 @@ be a finite dataset with a metric $\delta:X\times X\to\R_{\geq 0}$. For each poi
 \begin{equation}
 \calN_K^+(x_i)=\KNN_K(x_i)
 \end{equation}
-denote the set of its $K$ nearest proper neighbors. The directed KNN graph is
+denote the set of its $K$ nearest proper neighbours. The directed KNN graph is
 \begin{equation}
 \calG_K=(X,E_K),
 \end{equation}
@@ -160,7 +169,7 @@ where
 \begin{equation}
 (x_i,x_j)\in E_K \quad\Longleftrightarrow\quad x_j\in\calN_K^+(x_i).
 \end{equation}
-The reverse-neighbor set of $x_j$ is
+The reverse-neighbour set of $x_j$ is
 \begin{equation}
 \calN_K^-(x_j)=\RNN_K(x_j)=\{x_i\in X:x_j\in\calN_K^+(x_i)\}.
 \label{eq:rnn}
@@ -173,26 +182,26 @@ The reverse degree, or popularity, is
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.88\linewidth]{figure1_roundtrip_reverse_neighbor.pdf}
-\caption{Operational round-trip step on a directed KNN graph. A point $x_i$ selects $x_j$ as one of its $K$ nearest neighbors. The selected neighbor $x_j$ then reveals its reverse-neighbor set, i.e., all points that also selected $x_j$ as one of their $K$ nearest neighbors.}
-\label{fig:roundtrip_reverse_neighbor}
+\includegraphics[width=0.88\linewidth]{figure1_roundtrip_reverse_neighbour.pdf}
+\caption{Operational round-trip step on a directed KNN graph. A point $x_i$ selects $x_j$ as one of its $K$ nearest neighbours. The selected neighbour $x_j$ then reveals its reverse-neighbour set, i.e., all points that also selected $x_j$ as one of their $K$ nearest neighbours.}
+\label{fig:roundtrip_reverse_neighbour}
 \end{figure}
 
-Figure~\ref{fig:roundtrip_reverse_neighbor} illustrates the elementary operation. The forward step is a standard KNN edge. The backward step is not a Euclidean displacement; it is a query to the reverse-neighbor set of the selected point. This is the local mechanism that links the 2018 KNN model to the older reflective composition $T^{-1}\circ T$.
+Figure~\ref{fig:roundtrip_reverse_neighbour} illustrates the elementary operation. The forward step is a standard KNN edge. The backward step is not a Euclidean displacement; it is a query to the reverse-neighbour set of the selected point. This is the local mechanism that links the 2018 KNN model to the older reflective composition $T^{-1}\circ T$.
 
-\begin{definition}[Round-trip neighborhood]
-Given $x_i\in X$, its one-step round-trip neighborhood is
+\begin{definition}[Round-trip neighbourhood]
+Given $x_i\in X$, its one-step round-trip neighbourhood is
 \begin{equation}
 \calR_K(x_i)=\bigcup_{x_j\in\calN_K^+(x_i)}\calN_K^-(x_j).
 \label{eq:one_step_rt}
 \end{equation}
 \end{definition}
 
-Equation~\eqref{eq:one_step_rt} can be restricted by selecting only one neighbor, for example the most popular neighbor in $\calN_K^+(x_i)$, or expanded by allowing all forward neighbors to contribute.
+Equation~\eqref{eq:one_step_rt} can be restricted by selecting only one neighbour, for example the most popular neighbour in $\calN_K^+(x_i)$, or expanded by allowing all forward neighbours to contribute.
 
 \section{Popularity-based leadership}\label{sec:leadership}
 
-The 2018 formulation emphasized that a neighbor should be evaluated not only by its distance to the query point, but also by how many other points selected it as a nearest neighbor. This leads to a local leadership mechanism.
+The 2018 formulation emphasized that a neighbour should be evaluated not only by its distance to the query point, but also by how many other points selected it as a nearest neighbour. This leads to a local leadership mechanism.
 
 \begin{definition}[Local leader]
 The popularity leader of $x_i$ at scale $K$ is
@@ -202,19 +211,19 @@ The popularity leader of $x_i$ at scale $K$ is
 \end{equation}
 \end{definition}
 
-The leader $\ell_K(x_i)$ is one of the $K$ nearest neighbors of $x_i$, but it is chosen by reverse-neighbor popularity. Ties can be resolved by distance, by index order, or by retaining multiple leaders.
+The leader $\ell_K(x_i)$ is one of the $K$ nearest neighbours of $x_i$, but it is chosen by reverse-neighbour popularity. Ties can be resolved by distance, by index order, or by retaining multiple leaders.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.78\linewidth]{fig_2018_KNN_graph.pdf}
-\caption{Example of a directed KNN graph from the 2018 prototype. Edges represent nearest-neighbor choices. The same graph supports reverse-neighbor counting and local leadership.}
+\caption{Example of a directed KNN graph from the 2018 prototype. Edges represent nearest-neighbour choices. The same graph supports reverse-neighbour counting and local leadership.}
 \label{fig:KNN_graph_2018}
 \end{figure}
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.78\linewidth]{fig_2018_leadership_graph.pdf}
-\caption{Popularity-based leadership graph from the 2018 prototype. Each point points to a locally selected leader among its nearest neighbors according to reverse-neighbor popularity.}
+\caption{Popularity-based leadership graph from the 2018 prototype. Each point points to a locally selected leader among its nearest neighbours according to reverse-neighbour popularity.}
 \label{fig:leadership_2018}
 \end{figure}
 
@@ -222,14 +231,14 @@ The leadership graph is a compressed directed structure obtained from the origin
 
 \section{Recursive round-trip closure and saturation}\label{sec:closure}
 
-The simplest closure version uses all forward neighbors:
+The simplest closure version uses all forward neighbours:
 \begin{equation}
 C_K^0(x_i)=\{x_i\},
 \end{equation}
 \begin{equation}
 C_K^{t+1}(x_i)=C_K^t(x_i)\cup
 \bigcup_{x_q\in C_K^t(x_i)}\calR_K(x_q).
-\label{eq:closure_all_neighbors}
+\label{eq:closure_all_neighbours}
 \end{equation}
 The process saturates when
 \begin{equation}
@@ -247,7 +256,7 @@ C_K^{t+1}(x_i)=C_K^t(x_i)\cup
 \bigcup_{x_q\in C_K^t(x_i)}\calN_K^-(\ell_K(x_q)).
 \label{eq:closure_leadership}
 \end{equation}
-This version follows the reverse-neighbor set of the most popular local leader of each currently reached point.
+This version follows the reverse-neighbour set of the most popular local leader of each currently reached point.
 
 \begin{algorithm}[t]
 \caption{Leadership-driven round-trip closure for one point}
@@ -282,7 +291,7 @@ while keeping the basal parameter $K_0$ fixed, one obtains a multiscale sequence
 \begin{equation}
 \calP_{K_{\min}},\calP_{K_{\min}+1},\ldots,\calP_{K_{\max}}.
 \end{equation}
-In this notation, $K_0$ denotes the basal neighborhood scale from which the multiscale process is initiated, whereas $K$ denotes the current layer scale. Thus, the layer sequence should be interpreted as a controlled sweep over $K$ with $K_0$ kept fixed. This distinction is important in sparse-connectivity benchmarks, where an excessively large basal scale may prematurely merge regions connected by low-density bridges, while a smaller $K_0$ preserves the local structure long enough for bridge-like components to appear as separate clusters.
+In this notation, $K_0$ denotes the basal neighbourhood scale from which the multiscale process is initiated, whereas $K$ denotes the current layer scale. Thus, the layer sequence should be interpreted as a controlled sweep over $K$ with $K_0$ kept fixed. This distinction is important in sparse-connectivity benchmarks, where an excessively large basal scale may prematurely merge regions connected by low-density bridges, while a smaller $K_0$ preserves the local structure long enough for bridge-like components to appear as separate clusters.
 Increasing $K$ tends to increase graph connectivity. Therefore, small clusters from lower-$K$ layers are expected to be absorbed into larger clusters at higher $K$ values, although the exact behavior depends on the dataset and on the visibility or leadership rules.
 
 The overlap between clusters in consecutive layers is
@@ -358,7 +367,7 @@ This diagnostic is different from inter-layer overlap. Inter-layer overlap is ex
 
 The older relational notes contained an interpretation in terms of transmissivity and confidence. In the present graph setting, this can be reinterpreted as a scale-selection heuristic. Small $K$ values preserve local selectivity but may fragment the graph. Large $K$ values increase propagation but can dilute local evidence and eventually merge distinct structures.
 
-Let $m$ denote the average number of forward links and $n$ the average reverse-neighbor count. The old balance condition can be written abstractly as
+Let $m$ denote the average number of forward links and $n$ the average reverse-neighbour count. The old balance condition can be written abstractly as
 \begin{equation}
 \tau\approx \frac{mn}{MN},\qquad \gamma\approx\frac{1}{mn},
 \end{equation}
@@ -403,9 +412,9 @@ For each dataset and each $K$, the following quantities should be reported:
 
 \section{Discussion}\label{sec:discussion}
 
-The method should be positioned carefully. It is not a first use of KNN graphs for clustering, nor a replacement for all density-based methods. Its distinctive aspect is the recursive use of forward KNN selection followed by reverse-neighbor retrieval, with popularity-based leadership and saturation. This places the method between shared-neighbor clustering, reverse-neighbor density reasoning, and graph-closure approaches.
+The method should be positioned carefully. It is not a first use of KNN graphs for clustering, nor a replacement for all density-based methods. Its distinctive aspect is the recursive use of forward KNN selection followed by reverse-neighbour retrieval, with popularity-based leadership and saturation. This places the method between shared-neighbour clustering, reverse-neighbour density reasoning, and graph-closure approaches.
 
-The method is intentionally presented here as an algorithmic and topological construction, rather than as the minimization of an explicit objective function. Its definition does not reduce to a weighted voting rule, nor to the particular choice of a distance-based weight such as an inverse-square law. The central object is the dynamics induced on the directed KNN graph: forward-neighbor selection, reverse-neighbor retrieval, popularity, visibility, recursive expansion, and saturation. Whether this process admits an equivalent variational, probabilistic, or energy-based interpretation remains an interesting question for future work, but the absence of such a formulation is not a limitation of the graph operator itself.
+The method is intentionally presented here as an algorithmic and topological construction, rather than as the minimization of an explicit objective function. Its definition does not reduce to a weighted voting rule, nor to the particular choice of a distance-based weight such as an inverse-square law. The central object is the dynamics induced on the directed KNN graph: forward-neighbour selection, reverse-neighbour retrieval, popularity, visibility, recursive expansion, and saturation. Whether this process admits an equivalent variational, probabilistic, or energy-based interpretation remains an interesting question for future work, but the absence of such a formulation is not a limitation of the graph operator itself.
 
 Several points remain to be specified rigorously before a final submission:
 \begin{enumerate}
@@ -420,13 +429,13 @@ Several points remain to be specified rigorously before a final submission:
 
 \section{Conclusion}\label{sec:conclusion}
 
-We presented a draft formulation of a clustering method based on round-trip closure in directed KNN graphs. The method combines a relational forward-backward idea, reverse-neighbor popularity, local leadership, recursive expansion, saturation, and multiscale $K$-layer analysis. The 2013 relational model provides the mathematical origin of the reflection operator, while the 2018 KNN prototype provides the algorithmic core based on reverse-neighbor discovery and popularity leadership. The modern formulation casts these ideas as a graph-based clustering variant suitable for systematic validation against established nearest-neighbor and density-based clustering methods.
+We presented a draft formulation of a clustering method based on round-trip closure in directed KNN graphs. The method combines a relational forward-backward idea, reverse-neighbour popularity, local leadership, recursive expansion, saturation, and multiscale $K$-layer analysis. The 2013 relational model provides the mathematical origin of the reflection operator, while the 2018 KNN prototype provides the algorithmic core based on reverse-neighbour discovery and popularity leadership. The modern formulation casts these ideas as a graph-based clustering variant suitable for systematic validation against established nearest-neighbour and density-based clustering methods.
 
 \backmatter
 
 \bmhead{Acknowledgements}
 
-The authors thank collaborators who assisted in recovering and revising earlier implementations and manuscripts related to the round-trip KNN clustering approach.
+% The authors thank the collaborators who assisted in recovering and revising previous implementations and manuscripts related to the round-trip KNN clustering approach.
 
 \section*{Declarations}
 
