@@ -1,0 +1,476 @@
+%% Draft manuscript for Springer Nature / Neural Computing and Applications style.
+%% Compile on Overleaf or locally with the official Springer Nature template files:
+%% sn-jnl.cls, sn-mathphys-num.bst, and related files.
+%% Suggested class option for NCA-like math/engineering manuscript:
+\documentclass[pdflatex,sn-mathphys-num]{sn-jnl}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage[title]{appendix}
+\usepackage{xcolor}
+\usepackage{textcomp}
+\usepackage{manyfoot}
+\usepackage{booktabs}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage{listings}
+\usepackage{bm}
+
+% \jyear{2026}
+
+% \theoremstyle{thmstyleone}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+% \theoremstyle{thmstyletwo}
+\newtheorem{example}{Example}
+\newtheorem{remark}{Remark}
+% \theoremstyle{thmstylethree}
+\newtheorem{definition}{Definition}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\calG}{\mathcal{G}}
+\newcommand{\calN}{\mathcal{N}}
+\newcommand{\calP}{\mathcal{P}}
+\newcommand{\calR}{\mathcal{R}}
+\newcommand{\calT}{\mathcal{T}}
+\newcommand{\KNN}{\operatorname{KNN}}
+\newcommand{\RNN}{\operatorname{RNN}}
+\newcommand{\rdeg}{\operatorname{rdeg}}
+\newcommand{\argmax}{\operatorname*{arg\,max}}
+
+\graphicspath{{./}{figures/}{figures/2018/}{figures/generated/}}
+
+\begin{document}
+
+\title[Round-trip KNN graph clustering]{Round-trip closure on directed k-nearest-neighbour graphs for multiscale clustering}
+
+\author*[1]{\fnm{Eraldo P.} \sur{Marinho}}\email{pereira.marinho@unesp.br}
+\author[1]{\fnm{Caetano Mazzoni} \sur{Ranieri}}\email{cm.ranieri@unesp.br}
+\author[1]{\fnm{Fabricio A.} \sur{Breve}}
+
+\affil*[1]{\orgdiv{Department of Statistics, Applied Mathematics and Computing},
+\orgname{S\~ao Paulo State University (UNESP), Institute of Geosciences and Exact Sciences},
+\orgaddress{\street{Av. 24-A, 1515}, \city{Rio Claro}, \state{S\~ao Paulo}, \country{Brazil}}}
+
+\abstract{
+We introduce a graph-based clustering formulation based on recursive, visibility-filtered round-trip closure on directed $k$-nearest-neighbour graphs. In the proposed formulation, each data point explores both its forward KNN neighbours and its reverse-neighbour set. A local visibility radius is emulated for each point using the root-mean-square distance to its $K$ nearest neighbours, and recursive forward--backward expansion is accepted only through visible KNN relations. Singleton closures are rejected as clusters, preventing isolated points from being reported as meaningful agglomerations. Repeating the process across increasing values of $K$ yields a multiscale sequence of cluster layers, enabling the analysis of cluster persistence, absorption, merging, and saturation-driven scale selection. Preliminary synthetic results indicate that the generated accepted layers are valid partitions, with no internal overlap among cluster memberships for each analysed value of $K$.
+}
+
+\keywords{k-nearest-neighbour graph, graph-based clustering, reverse nearest neighbours, round-trip closure, visibility emulation, RMS visibility, singleton rejection, multiscale clustering, saturation}
+
+\maketitle
+
+
+\section{Introduction}\label{sec:introduction}
+
+Nearest-neighbour relations are among the most fundamental structures for representing finite datasets embedded in metric spaces. They occur naturally in pattern classification, nonparametric density estimation, graph construction, manifold learning, outlier detection, and clustering \citep{CoverHart1967,LoftsgaardenQuesenberry1965,Bentley1975,FriedmanBentleyFinkel1977,VonLuxburg2007}. In clustering, k-nearest-neighbour (KNN) relations have been explored through shared nearest neighbours, reciprocal nearest neighbours, mutual KNN graphs, reverse nearest-neighbour statistics, and density-based graph connectivity \citep{JarvisPatrick1973,ErtozSteinbachKumar2003,BritoChavezQuirozYukich1997,GowdaKrishna1978,ChowdhuryAmorim2018,XieLeeWangChenZhou2019}.
+
+This paper develops a clustering formulation based on a recursive \emph{round-trip} operation in directed KNN graphs. Given a data point $x_i$, the forward step reaches one of its $K$ nearest neighbours, say $x_j\in\calN_K^+(x_i)$. The backward step then retrieves all data points that also selected $x_j$ as one of their $K$ nearest neighbours:
+\begin{equation}
+\calN_K^-(x_j)=\{x_\ell\in X: x_j\in\calN_K^+(x_\ell)\}.
+\end{equation}
+Thus, a neighbour is not used merely as a point in Euclidean space, but as an index to a reverse-neighbourhood set. This operation can be recursively applied until no additional points are reached, producing a saturated closure.
+
+The present contribution is not the isolated use of KNN graphs, reverse nearest neighbours, or shared-neighbour similarity. Rather, it is the organisation of these elements into a visibility-filtered round-trip closure process whose evolution across $K$ values defines a multiscale cluster-layer structure. The resulting method is presented here as a formal graph-based clustering approach built from directed KNN topology, reverse-neighbour retrieval, RMS-based visibility emulation, singleton rejection, recursive expansion, and saturation.
+
+\subsection{Novelty and positioning}
+
+The novelty of the proposed method is not the isolated use of KNN graphs, reverse-neighbour sets, or shared-neighbour evidence. These components are well established in the nearest-neighbour clustering literature. The contribution lies in their organisation into a recursive round-trip closure operator on directed KNN graphs, constrained by an explicit visibility rule and followed by singleton rejection. The resulting $K$-layer sequence provides a multiscale description of cluster formation, absorption, and merging without relying on a classical linkage criterion or on the minimisation of an explicit objective function.
+
+In this sense, the method is best understood as an algorithmic and topological construction. It does not reduce to a weighted voting rule, nor to a particular choice of distance-based weight, such as an inverse-square law. The central object is the dynamics induced on the directed KNN graph: forward-neighbour selection, reverse-neighbour retrieval, RMS-based visibility filtering, recursive expansion, singleton rejection, and saturation.
+
+\subsection{Main contributions}
+
+The main contributions of this paper are as follows:
+\begin{enumerate}
+\item a formal round-trip operator on directed KNN graphs based on forward nearest-neighbour selection and backward reverse-neighbour retrieval;
+\item an RMS-based visibility mechanism for filtering admissible forward and backward KNN transitions;
+\item a singleton-rejection rule for preventing isolated points from being reported as clusters;
+\item a recursive closure process with an explicit saturation criterion;
+\item a $K$-layer representation for multiscale cluster evolution and an overlap-based diagnostic for studying cluster absorption and merging across $K$.
+\end{enumerate}
+
+\section{Related work}\label{sec:related}
+
+\subsection{Shared-neighbour and Jarvis--Patrick clustering}
+
+Jarvis and Patrick introduced a clustering criterion based on shared near neighbours \citep{JarvisPatrick1973}. Later shared-nearest-neighbour (SNN) clustering methods used common neighbour counts to improve robustness to clusters of different shapes, sizes, and densities \citep{ErtozSteinbachKumar2003}. The present method is related to this family because reverse-neighbourhood intersections imply shared-neighbour evidence. However, shared-neighbour information is not used only as a static similarity score; it is embedded in a recursive graph-closure process.
+
+\subsection{Mutual, reciprocal, and reverse nearest-neighbour methods}
+
+Mutual KNN and reciprocal nearest-neighbour graphs have been used for clustering and outlier detection \citep{BritoChavezQuirozYukich1997,GowdaKrishna1978,SardanaBhatnagar2014}. Reverse nearest-neighbour methods use incoming KNN links as density or representativeness signals \citep{ChowdhuryAmorim2018}. In the present formulation, reverse-neighbour sets are used as backward adjacency relations in a round-trip closure process, rather than only as static density scores.
+
+\subsection{Density-based and spectral graph clustering}
+
+DBSCAN, OPTICS, and HDBSCAN define clusters through density connectivity and hierarchical density estimates \citep{EsterKriegelSanderXu1996,AnkerstBreunigKriegelSander1999,CampelloMoulaviSander2013,CampelloMoulaviZimekSander2015}. Spectral clustering constructs a similarity graph and uses eigenvectors of the associated graph Laplacian to reveal cluster structure \citep{NgJordanWeiss2002,VonLuxburg2007}. The method proposed here is graph-based, but it is combinatorial and closure-driven: it does not require eigenvalue decomposition and it exposes a sequence of partitions as the neighbourhood size $K$ varies.
+
+\subsection{Clustering methods for astronomical synthetic data}
+
+The evaluation of clustering methods on structured scientific datasets is closely related to the present work. In astronomical applications, clustering may be applied not only to spatial point clouds, but also to synthetic orbital data, extracted features, and reduced-dimensional representations. Marinho et al.~\citep{PereiraMarinho2026ClusteringAO} investigated clustering methods for astronomical orbital synthetic data under feature extraction and dimensionality reduction pipelines. That work provides a complementary application context for the present paper. While the previous study emphasised the empirical behaviour of clustering methods on orbital synthetic data, the current work focuses on the graph-topological mechanism of round-trip KNN closure and on its induced multiscale partition sequence.
+
+\section{Relational basis of the round-trip operator}\label{sec:relational_origin}
+
+The primitive idea can be stated for an arbitrary directed relation. Let
+\begin{equation}
+A=\{a_1,\ldots,a_N\},\qquad B=\{b_1,\ldots,b_M\}
+\end{equation}
+be finite sets and let
+\begin{equation}
+T\subseteq A\times B
+\end{equation}
+be an asymmetric relation. The reflective composition induced by $T$ is
+\begin{equation}
+R_T=T^{-1}\circ T\subseteq A\times A.
+\end{equation}
+For $a\in A$, the reflective neighbourhood is
+\begin{equation}
+R_T(a)=T^{-1}(T(a)).
+\label{eq:relational_reflection}
+\end{equation}
+Equation~\eqref{eq:relational_reflection} means that one first moves from $a$ to the objects related to it in $B$ and then returns to all objects in $A$ that share those objects in $B$.
+
+For a subset $S\subseteq A$, define
+\begin{equation}
+R_T(S)=\bigcup_{a\in S}R_T(a).
+\end{equation}
+The recursive reflection is
+\begin{equation}
+R_T^0(S)=S,
+\end{equation}
+\begin{equation}
+R_T^{t+1}(S)=R_T(R_T^t(S)),\qquad t\geq 0.
+\label{eq:relational_iteration}
+\end{equation}
+The process saturates when
+\begin{equation}
+R_T^{s+1}(S)=R_T^s(S)
+\end{equation}
+for the first time. The integer $s$ is the saturation depth of $S$ under $R_T$.
+
+This relational view provides an abstract basis for the forward--backward mechanism used by the proposed graph operator. The algorithmic construction is obtained by instantiating the relation on a directed KNN graph.
+
+\section{Directed KNN graphs and reverse neighbourhoods}\label{sec:knn_graph}
+
+Let
+\begin{equation}
+X=\{x_1,\ldots,x_N\}\subset\R^d
+\end{equation}
+be a finite dataset with a metric $\delta:X\times X\to\R_{\geq 0}$. For each point $x_i$, let
+\begin{equation}
+\calN_K^+(x_i)=\KNN_K(x_i)
+\end{equation}
+denote the set of its $K$ nearest proper neighbours. The directed KNN graph is
+\begin{equation}
+\calG_K=(X,E_K),
+\end{equation}
+where
+\begin{equation}
+(x_i,x_j)\in E_K \quad\Longleftrightarrow\quad x_j\in\calN_K^+(x_i).
+\end{equation}
+The reverse-neighbour set of $x_j$ is
+\begin{equation}
+\calN_K^-(x_j)=\RNN_K(x_j)=\{x_i\in X:x_j\in\calN_K^+(x_i)\}.
+\label{eq:rnn}
+\end{equation}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.88\linewidth]{figure1_roundtrip_reverse_neighbor.pdf}
+\caption{Operational round-trip step on a directed KNN graph. A point $x_i$ selects $x_j$ as one of its $K$ nearest neighbours. The selected neighbour $x_j$ then reveals its reverse-neighbour set, i.e., all points that also selected $x_j$ as one of their $K$ nearest neighbours.}
+\label{fig:roundtrip_reverse_neighbour}
+\end{figure}
+
+Figure~\ref{fig:roundtrip_reverse_neighbour} illustrates the elementary operation. The forward step is a standard KNN edge. The backward step is not a Euclidean displacement; it is a query to the reverse-neighbour set of the selected point. This operation is the basic mechanism underlying the method presented in this paper, and provides a graph-theoretic realisation of the reflective composition $T^{-1}\circ T$.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.78\linewidth]{fig_2018_KNN_graph.pdf}
+\caption{Example of a directed KNN graph used to illustrate the proposed mechanism. Edges represent nearest-neighbour choices. The same graph supports reverse-neighbour retrieval and visibility-filtered round-trip expansion.}
+\label{fig:KNN_graph_2018}
+\end{figure}
+
+\section{Visibility-emulated round-trip closure}\label{sec:visibility_closure}
+
+The reference formulation used in this paper adopts a visibility-emulated round-trip expansion. The idea is that a point should not necessarily propagate through all of its $K$ nearest-neighbour links. Instead, each point is assigned a local visibility radius, and only neighbours that fall within this radius are used as admissible expansion steps.
+
+\subsection{RMS visibility radius}
+
+For each point $x_i$, the visibility radius is defined from the root-mean-square distance to its $K$ nearest neighbours:
+\begin{equation}
+V_K(x_i)=
+\left(
+\frac{1}{K}
+\sum_{x_j\in\calN_K^+(x_i)}
+\delta(x_i,x_j)^2
+\right)^{1/2}.
+\label{eq:rms_visibility}
+\end{equation}
+This RMS visibility rule provides a local scale estimate for each point. Dense regions tend to have smaller visibility radii, while sparse regions tend to have larger ones. Thus, visibility is not a global distance threshold; it is a pointwise admissibility criterion derived from the local KNN geometry.
+
+\subsection{Visible forward and backward steps}
+
+The visible forward neighbourhood of $x_i$ is
+\begin{equation}
+\calV_K^+(x_i)=
+\{x_j\in\calN_K^+(x_i):\delta(x_i,x_j)\leq V_K(x_i)\}.
+\label{eq:visible_forward}
+\end{equation}
+The visible backward neighbourhood of $x_i$ is
+\begin{equation}
+\calV_K^-(x_i)=
+\{x_\ell\in\calN_K^-(x_i):\delta(x_\ell,x_i)\leq V_K(x_\ell)\}.
+\label{eq:visible_backward}
+\end{equation}
+The backward condition is evaluated from the viewpoint of the reverse neighbour $x_\ell$: a reverse-neighbour step is accepted only if $x_i$ lies within the visibility radius of $x_\ell$. The one-step visibility-filtered round-trip neighbourhood is therefore
+\begin{equation}
+\calR_K^{\mathrm{vis}}(x_i)=\calV_K^+(x_i)\cup\calV_K^-(x_i).
+\label{eq:visible_roundtrip}
+\end{equation}
+
+\subsection{Recursive closure and singleton rejection}
+
+Starting from a seed point $x_i$, the recursive closure is
+\begin{equation}
+C_K^0(x_i)=\{x_i\},
+\end{equation}
+\begin{equation}
+C_K^{t+1}(x_i)=C_K^t(x_i)\cup
+\bigcup_{x_q\in C_K^t(x_i)}\calR_K^{\mathrm{vis}}(x_q).
+\label{eq:visibility_closure}
+\end{equation}
+The process saturates when
+\begin{equation}
+C_K^{t+1}(x_i)=C_K^t(x_i).
+\end{equation}
+The saturated closure is denoted
+\begin{equation}
+C_K^\infty(x_i)=C_K^s(x_i),
+\end{equation}
+where $s$ is the first saturation time.
+
+A saturated closure is accepted as a cluster only when it contains more than one point:
+\begin{equation}
+|C_K^\infty(x_i)|>1.
+\label{eq:singleton_rejection}
+\end{equation}
+This singleton-rejection rule prevents isolated points or failed expansions from being reported as meaningful clusters. In the reported synthetic experiments, the accepted layers are subsequently checked to verify whether they cover the full dataset and therefore form proper partitions.
+
+\begin{algorithm}[t]
+\caption{Visibility-filtered round-trip closure for one point}
+\label{alg:visibility_closure}
+\begin{algorithmic}[1]
+\Require directed KNN graph $\calG_K$, visibility radii $V_K$, point $x_i$
+\State $C \gets \{x_i\}$
+\Repeat
+    \State $C_{old}\gets C$
+    \ForAll{$x_q\in C_{old}$}
+        \State $C\gets C\cup\calV_K^+(x_q)$
+        \State $C\gets C\cup\calV_K^-(x_q)$
+    \EndFor
+\Until{$C=C_{old}$}
+\If{$|C|>1$}
+    \State \Return $C$
+\Else
+    \State \Return rejected singleton closure
+\EndIf
+\end{algorithmic}
+\end{algorithm}
+
+\section{Cluster layers and multiscale evolution}\label{sec:layers}
+
+For a fixed $K$, the accepted saturated closures define a cluster layer
+\begin{equation}
+\calP_K=\{C_1^{(K)},\ldots,C_{m_K}^{(K)}\}.
+\end{equation}
+By varying $K$ over a prescribed set of scales
+\begin{equation}
+K\in\{K_{\min},K_{\min}+1,\ldots,K_{\max}\},
+\end{equation}
+while keeping the basal parameter $K_0$ fixed, one obtains a multiscale sequence
+\begin{equation}
+\calP_{K_{\min}},\calP_{K_{\min}+1},\ldots,\calP_{K_{\max}}.
+\end{equation}
+In this notation, $K_0$ denotes the basal neighbourhood scale from which the multiscale process is initiated, whereas $K$ denotes the current layer scale. Thus, the layer sequence should be interpreted as a controlled sweep over $K$ with $K_0$ kept fixed. This distinction is important in sparse-connectivity benchmarks, where an excessively large basal scale may prematurely merge regions connected by low-density bridges, while a smaller $K_0$ preserves the local structure long enough for bridge-like components to appear as separate clusters.
+
+Increasing $K$ tends to increase graph connectivity. Therefore, small clusters from lower-$K$ layers are expected to be absorbed into larger clusters at higher $K$ values, although the exact behaviour depends on the dataset and on the visibility rule.
+
+\subsection{Inter-layer overlap}
+
+The overlap between clusters in consecutive layers is
+\begin{equation}
+W_{ab}^{(K,K')}=|C_a^{(K)}\cap C_b^{(K')}|.
+\label{eq:overlap_count}
+\end{equation}
+Useful normalisations include
+\begin{equation}
+F_{ab}^{(K,K')}=\frac{|C_a^{(K)}\cap C_b^{(K')}|}{|C_a^{(K)}|},
+\label{eq:frac_from}
+\end{equation}
+and the Jaccard index
+\begin{equation}
+J_{ab}^{(K,K')}=\frac{|C_a^{(K)}\cap C_b^{(K')}|}{|C_a^{(K)}\cup C_b^{(K')}|}.
+\label{eq:jaccard}
+\end{equation}
+
+Inter-layer overlap is expected and informative: it describes how clusters from one scale are preserved, absorbed, or merged at another scale. This is distinct from intra-layer overlap, which would indicate that a given layer is not a proper partition.
+
+\subsection{Saturation scale}
+
+A beneficial side effect of the $K$-layer construction is that the neighbourhood scale can be selected from the saturation behaviour of the induced cluster-layer sequence. We denote by $K_{\mathrm{sat}}$ the first value of $K$ for which the accepted layer becomes stable under further increases of the neighbourhood size, up to relabelling of cluster indices. Lower values of $K$ often expose local fluctuations, microfragmentation, or noise-like components, whereas the saturated layer represents the dominant macro-scale aggregation structure.
+
+Operationally, saturation can be detected by monitoring the overlap between consecutive layers. If each cluster in $\calP_K$ maps entirely to a unique cluster in $\calP_{K+1}$, and vice versa, the two layers are equivalent. More robustly, one may require the same equivalence to persist over a short stability window,
+\begin{equation}
+\calP_K \equiv \calP_{K+1}\equiv\cdots\equiv\calP_{K+h},
+\label{eq:partition_stability_window}
+\end{equation}
+where $h$ is a prescribed persistence parameter. The saturation scale can then be defined as
+\begin{equation}
+K_{\mathrm{sat}}=
+\min\left\{
+K:\calP_K \equiv \calP_{K+1}\equiv\cdots\equiv\calP_{K+h}
+\right\}.
+\label{eq:ksat}
+\end{equation}
+Here, $\equiv$ denotes equality of cluster layers up to relabelling of cluster indices.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.75\linewidth]{fig_2018_cluster_tree.pdf}
+\caption{Cluster-transition representation illustrating the proposed $K$-layer mechanism. In this representation, clusters at smaller values of $K$ are progressively absorbed by larger-scale structures as the neighbourhood scale increases.}
+\label{fig:cluster_tree_2018}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.75\linewidth]{fig_k_layer_cluster_count.pdf}
+\caption{Preliminary $K$-layer evolution for a variable-density blobs dataset with $N=2000$ points. The number of clusters decreases as $K$ increases, indicating progressive absorption of microclusters into larger structures.}
+\label{fig:k_layer_count}
+\end{figure}
+
+\section{Preliminary partition diagnostic}\label{sec:partition_diagnostic}
+
+An important consistency check is whether each accepted layer $\calP_K$ is a true partition of the dataset. For each $K$, this can be verified by comparing the sum of accepted cluster cardinalities with the cardinality of the union of all accepted cluster members:
+\begin{equation}
+\sum_{a=1}^{m_K}|C_a^{(K)}|=\left|\bigcup_{a=1}^{m_K}C_a^{(K)}\right|.
+\label{eq:partition_check}
+\end{equation}
+When the equality in Eq.~\eqref{eq:partition_check} holds and the union contains all $N$ data points, the accepted layer is not merely a cover of the dataset, but a proper partition:
+\begin{equation}
+\bigcup_{a=1}^{m_K} C_a^{(K)}=X,
+\qquad
+C_a^{(K)}\cap C_b^{(K)}=\varnothing
+\quad\text{for }a\neq b.
+\end{equation}
+This property is important because the multiscale object produced by the algorithm is then a sequence of valid partitions, rather than a sequence of overlapping covers. Inter-layer overlap is still expected and informative, but intra-layer overlap would indicate an invalid layer representation. If singleton closures are rejected, the diagnostic also verifies whether any points were left outside the accepted layer.
+
+If the left-hand side of Eq.~\eqref{eq:partition_check} is larger than the right-hand side, at least one point belongs to more than one cluster in the same layer.
+
+For the preliminary variable-density blobs example, the diagnostic gave the results in Table~\ref{tab:partition_diagnostic}. Since all duplicate counts are zero and all $N=2000$ points are represented, no internal overlap or rejected singleton residue was detected within any analysed layer.
+
+\begin{table}[t]
+\caption{Preliminary internal-overlap diagnostic for the variable-density blobs dataset. The equality between summed cluster sizes and number of unique points indicates that each accepted layer is a valid partition.}\label{tab:partition_diagnostic}
+\centering
+\begin{tabular}{rrrrr}
+\toprule
+$K$ & number of clusters & summed size & unique points & duplicates\\
+\midrule
+2 & 577 & 2000 & 2000 & 0\\
+3 & 265 & 2000 & 2000 & 0\\
+4 & 89  & 2000 & 2000 & 0\\
+5 & 15  & 2000 & 2000 & 0\\
+6 & 6   & 2000 & 2000 & 0\\
+8 & 5   & 2000 & 2000 & 0\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This diagnostic is different from inter-layer overlap. Inter-layer overlap is expected and informative; it describes how clusters from one scale are preserved, split, or absorbed at another scale.
+
+\section{Scale, visibility, and saturation}\label{sec:scale}
+
+The relational formulation suggests an interpretation in terms of propagation and selectivity. In the present graph setting, this balance is implemented through the neighbourhood scale $K$ and through the local visibility radius $V_K(x_i)$. Small values of $K$ preserve local selectivity but may fragment the graph. Larger values of $K$ increase propagation, but the RMS visibility rule prevents all KNN links from being treated as equally admissible.
+
+The visibility radius in Eq.~\eqref{eq:rms_visibility} acts as a pointwise scale estimate. In dense regions, the RMS radius is small and the expansion remains selective. In sparse regions, the RMS radius increases and allows wider propagation. This makes the closure process adaptive to local density without imposing a global distance threshold.
+
+The singleton-rejection rule in Eq.~\eqref{eq:singleton_rejection} adds a second selectivity mechanism. A seed that cannot produce a nontrivial saturated closure is not reported as a cluster. Thus, the reported layer is determined not only by reachability in the directed KNN graph, but also by visibility-filtered propagation and nontrivial closure size.
+
+As $K$ increases, the induced layers may pass from microfragmented local structures to stable macro-scale agglomerations. The saturation scale $K_{\mathrm{sat}}$ provides an empirical way to select the neighbourhood scale from the layer sequence itself, rather than fixing $K$ solely as an external hyperparameter.
+
+\section{Experimental protocol}\label{sec:experimental_protocol}
+
+The method should be evaluated on datasets that test distinct clustering difficulties:
+\begin{itemize}
+    \item Gaussian blobs with equal density;
+    \item blobs with variable density;
+    \item two moons;
+    \item concentric circles;
+    \item anisotropic clusters;
+    \item uniform or Poisson-like point clouds;
+    \item clusters connected by sparse bridges;
+    \item orbital or astronomical time-series embeddings.
+\end{itemize}
+
+The bridge benchmark plays a complementary role to moons and circles. While moons and concentric circles test nonconvex separation, the bridge dataset tests robustness under sparse connecting structures. It evaluates whether the method collapses two dense regions into a single component merely because they are connected by a low-density chain of points, or whether the bridge is preserved as a meaningful intermediate structure. This benchmark is therefore useful for studying premature saturation, scale sensitivity, and the effect of the basal parameter $K_0$.
+
+When labels are available, external validation should include the adjusted Rand index and normalised mutual information \citep{HubertArabie1985,VinhEppsBailey2010}. Internal criteria such as Davies--Bouldin, Calinski--Harabasz, and silhouette coefficients may also be reported \citep{DaviesBouldin1979,CalinskiHarabasz1974,Rousseeuw1987}, but should be interpreted carefully for nonconvex clusters. Baselines should include k-means, DBSCAN, HDBSCAN, SNN clustering, and mutual-KNN graph methods when available.
+
+For each dataset and each $K$, the following quantities should be reported:
+\begin{itemize}
+    \item number of clusters $m_K$;
+    \item cluster size distribution;
+    \item saturation depth statistics;
+    \item visibility-radius statistics;
+    \item number of rejected singleton closures;
+    \item saturation scale $K_{\mathrm{sat}}$;
+    \item ARI and NMI when labels are known;
+    \item internal validity indices;
+    \item layer-transition overlaps $W_{ab}^{(K,K')}$ and normalised quantities $F_{ab}^{(K,K')}$ and $J_{ab}^{(K,K')}$.
+\end{itemize}
+
+\section{Discussion}\label{sec:discussion}
+
+The method should be positioned carefully. It is not a first use of KNN graphs for clustering, nor a replacement for all density-based methods. Its distinctive aspect is the recursive use of forward KNN selection and reverse-neighbour retrieval under an RMS-based visibility filter, followed by singleton rejection and saturation analysis. This places the method between shared-neighbour clustering, reverse-neighbour graph reasoning, and closure-based graph clustering.
+
+The method is intentionally presented here as an algorithmic and topological construction, rather than as the minimisation of an explicit objective function. Its definition does not reduce to a weighted voting rule, nor to a particular choice of distance-based weight, such as an inverse-square law. The central object is the dynamics induced on the directed KNN graph: forward-neighbour selection, reverse-neighbour retrieval, visibility-filtered recursive expansion, singleton rejection, and saturation. Whether this process admits an equivalent variational, probabilistic, or energy-based interpretation remains an interesting question for future work, but the absence of such a formulation is not a limitation of the graph operator itself.
+
+Several points remain to be specified rigorously before a final submission:
+\begin{enumerate}
+    \item the exact computational complexity of the visibility-filtered closure process;
+    \item the effect of the RMS visibility rule on clusters of different densities;
+    \item the treatment and reporting of rejected singleton closures;
+    \item robustness to noise and outliers;
+    \item behaviour on homogeneous data, where saturation may correctly produce a single large component;
+    \item systematic comparison with alternative KNN graph variants and density-based baselines.
+\end{enumerate}
+
+\section{Conclusion}\label{sec:conclusion}
+
+We presented a formal clustering method based on visibility-filtered round-trip closure in directed KNN graphs. The method combines directed KNN topology, forward--backward neighbourhood retrieval, RMS-based visibility emulation, recursive expansion, singleton rejection, saturation, and multiscale $K$-layer analysis. The formulation defines clusters through a graph-topological closure process rather than through a classical linkage rule or an explicit objective function. The resulting sequence of $K$-indexed accepted layers allows cluster absorption, merging, and saturation-driven scale selection to be analysed systematically. This positions the method as a nearest-neighbour graph clustering approach suitable for validation against established graph-based, shared-neighbour, and density-based clustering methods.
+
+\backmatter
+
+\bmhead{Acknowledgements}
+
+The authors thank collaborators who contributed discussions and feedback during the development of the round-trip KNN clustering approach.
+
+\section*{Declarations}
+
+\begin{itemize}
+\item Funding: To be completed.
+\item Conflict of interest/Competing interests: The authors declare that they have no competing interests. To be confirmed.
+\item Ethics approval and consent to participate: Not applicable.
+\item Consent for publication: Not applicable.
+\item Data availability: Synthetic datasets and scripts will be made available in a public repository upon publication. To be completed.
+\item Materials availability: Not applicable.
+\item Code availability: The implementation will be made available in a public repository upon publication. To be completed.
+\item Author contribution: To be completed.
+\end{itemize}
+
+\bibliography{round_trip_KNN_refs}
+
+\end{document}
