@@ -1,5 +1,5 @@
 # format: cannon-knn layer
-# columns: cluster_id: point_id x0 x1 input_col2
+# columns: cluster_id: point_id x0 x1 x2
 1: 1	1.53014	-0.209113	1
 1: 132	1.55507	-0.201626	1
 1: 582	1.49964	-0.193104	1

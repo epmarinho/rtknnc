@@ -1,0 +1,67 @@
+{
+  "method": "native C round-trip baseline followed by structural pruning",
+  "vote_model": "historical inverse-square",
+  "labels_used_for_pruning": false,
+  "coordinate_dimension_passed_to_C": 2,
+  "execution_protocol": "isolated K with K0=K",
+  "primary_cases": [
+    {
+      "dataset": "blobs_var_density",
+      "K": 8
+    },
+    {
+      "dataset": "bridge",
+      "K": 6
+    },
+    {
+      "dataset": "bridge",
+      "K": 10
+    },
+    {
+      "dataset": "circles",
+      "K": 7
+    },
+    {
+      "dataset": "moons",
+      "K": 10
+    },
+    {
+      "dataset": "anisotropic",
+      "K": 8
+    }
+  ],
+  "pruning_vote_kernel_comparison": {
+    "kernels": [
+      "inv_r",
+      "inv_r2",
+      "sigmoid"
+    ],
+    "sigmoid_alpha": 8.0,
+    "cases": [
+      {
+        "dataset": "blobs_var_density",
+        "K": 8
+      },
+      {
+        "dataset": "bridge",
+        "K": 6
+      }
+    ],
+    "native_python_baseline_regression_required": true,
+    "pairwise_partition_audit": "native_pruning_vote_kernel_pairwise.csv"
+  },
+  "parameters": {
+    "mixture_components": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "covariance": "diagonal",
+    "em_restarts": 5,
+    "minimum_parent": "max(50, ceil(0.15*N))",
+    "minimum_child": "max(20, ceil(0.05*parent_size))",
+    "minimum_BIC_gain": 10.0,
+    "four_component_optimum": "veto"
+  }
+}

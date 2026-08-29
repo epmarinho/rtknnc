@@ -53,19 +53,26 @@ void            usage(FILE *output, const char *cmdname)
      * semicolons, or colons. The parser needs at least the input path and
      * the data dimensionality to interpret the file correctly.
      */
-    fprintf(output, "usage: %s --input <datafile> --dim <dimension> [--n <points>] [--K <neighbors>] [--K0 <neighbors>]\n", cmdname);
+    fprintf(output, "usage: %s --input <datafile> --dim <dimension> [--n <points>] [--K <neighbors>] [--K0 <neighbors>] [--vote-kernel uniform|inv_r|inv_r2|sigmoid] [--sigmoid-alpha <value>] [--structural-pruning]\n", cmdname);
     fprintf(output, "\n");
     fprintf(output, "  --input  input data file\n");
     fprintf(output, "  --dim    data-space dimension\n");
     fprintf(output, "  --n      number of points to read; defaults to the full dataset\n");
     fprintf(output, "  --K      maximum number of nearest neighbors; default is 1\n");
     fprintf(output, "  --K0     minimum neighborhood level for the clustering roundtrip; default is 1\n");
+    fprintf(output, "  --vote-kernel  uniform, inv_r, inv_r2 (default), or sigmoid\n");
+    fprintf(output, "  --sigmoid-alpha  positive sigmoid slope; default is 8\n");
+    fprintf(output, "  --structural-pruning  split strongly multimodal closures and prune their crossing visible edges\n");
 }
 
 FILE           *cmdline_parser(int argc, const char *argv[])
 {
     FILE           *input = stdin;
     int             arg_index;
+
+    structural_pruning = 0;
+    vote_kernel = VOTE_KERNEL_INV_R2;
+    vote_sigmoid_alpha = 8.;
 
     if (argc < 2) {
         usage(stderr, argv[0]);
@@ -120,6 +127,53 @@ FILE           *cmdline_parser(int argc, const char *argv[])
             }
             dimension = atoi(argv[arg_index]);
 //             fprintf(stdout, "io-stuff.c: dimension = %d\n", dimension);
+            ++arg_index;
+            just_entered_flag++;
+
+        } else if (strcmp(argv[arg_index], "--structural-pruning") == 0) {
+
+            structural_pruning = 1;
+            ++arg_index;
+            just_entered_flag++;
+
+        } else if (strcmp(argv[arg_index], "--vote-kernel") == 0) {
+
+            ++arg_index;
+            if (arg_index >= argc) {
+                usage(stderr, cmdname);
+                return NULL;
+            }
+            if (strcmp(argv[arg_index], "uniform") == 0)
+                vote_kernel = VOTE_KERNEL_UNIFORM;
+            else if (strcmp(argv[arg_index], "inv_r") == 0)
+                vote_kernel = VOTE_KERNEL_INV_R;
+            else if (strcmp(argv[arg_index], "inv_r2") == 0)
+                vote_kernel = VOTE_KERNEL_INV_R2;
+            else if (strcmp(argv[arg_index], "sigmoid") == 0)
+                vote_kernel = VOTE_KERNEL_SIGMOID;
+            else {
+                fprintf(stderr,
+                        "%s: unknown vote kernel '%s'; expected uniform, inv_r, inv_r2, or sigmoid\n",
+                        cmdname, argv[arg_index]);
+                return NULL;
+            }
+            ++arg_index;
+            just_entered_flag++;
+
+        } else if (strcmp(argv[arg_index], "--sigmoid-alpha") == 0) {
+
+            ++arg_index;
+            if (arg_index >= argc) {
+                usage(stderr, cmdname);
+                return NULL;
+            }
+            vote_sigmoid_alpha = strtod(argv[arg_index], NULL);
+            if (!isfinite(vote_sigmoid_alpha) || vote_sigmoid_alpha <= 0.) {
+                fprintf(stderr,
+                        "%s: --sigmoid-alpha must be a positive finite number\n",
+                        cmdname);
+                return NULL;
+            }
             ++arg_index;
             just_entered_flag++;
 

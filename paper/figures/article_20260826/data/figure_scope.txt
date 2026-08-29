@@ -1,0 +1,5 @@
+Compared vote models (4): uniform inv_r inv_r2 sigmoid
+Four-kernel unpruned benchmark; manuscript comparison figure: moons.
+Unpruned single-kernel supporting artifacts (inv_r2): Swiss roll and bridge-fraction transition; neither is a manuscript figure.
+Native pruning mosaics: inv_r, inv_r2, and sigmoid on blobs K8 C5 and bridge K6 C3.
+Archived conceptual PDFs are copied; the monochrome leadership graph and corrected forest are rendered from Graphviz sources.

@@ -30,4 +30,18 @@ flag_t          tallyho(index_t, index_t, distance_t);
 
 extern size_t   clcount;
 
+/** Vote kernel used to accumulate reverse-neighbour popularity. **/
+typedef enum {
+    VOTE_KERNEL_UNIFORM = 0,
+    VOTE_KERNEL_INV_R,
+    VOTE_KERNEL_INV_R2,
+    VOTE_KERNEL_SIGMOID
+} vote_kernel_t;
+
+extern vote_kernel_t vote_kernel;
+extern double        vote_sigmoid_alpha;
+
+/** Native post-closure bridge/overlap pruning; disabled unless requested. **/
+extern flag_t   structural_pruning;
+
 extern SET    **cluster;

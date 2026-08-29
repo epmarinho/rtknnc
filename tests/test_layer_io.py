@@ -60,6 +60,32 @@ def test_read_layer_file_keeps_legacy_unlabeled_2d_layers(tmp_path):
     ]
 
 
+def test_read_layer_file_uses_header_to_keep_unlabeled_3d_coordinates(tmp_path):
+    layer_path = tmp_path / "three-dimensional.layer"
+    layer_path.write_text(
+        "# columns: cluster_id: point_id x0 x1 x2\n"
+        "1: 1 0.0 1.0 2.0\n",
+        encoding="utf-8",
+    )
+
+    assert read_layer_file(layer_path) == [
+        LayerRow(cluster_id=1, point_id=1, coords=[0.0, 1.0, 2.0], label=None)
+    ]
+
+
+def test_read_layer_file_uses_header_to_identify_original_label(tmp_path):
+    layer_path = tmp_path / "labeled.layer"
+    layer_path.write_text(
+        "# columns: cluster_id: point_id x0 x1 original_label\n"
+        "1: 1 0.0 1.0 2\n",
+        encoding="utf-8",
+    )
+
+    assert read_layer_file(layer_path) == [
+        LayerRow(cluster_id=1, point_id=1, coords=[0.0, 1.0], label=2.0)
+    ]
+
+
 def test_read_layer_file_reports_path_and_line(tmp_path):
     layer_path = tmp_path / "broken.layer"
     layer_path.write_text("1:\n", encoding="utf-8")

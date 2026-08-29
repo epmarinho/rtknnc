@@ -146,10 +146,25 @@ After building the executable:
 ./rtknnc --input csv/synthetic/moons.csv --dim 2 --K 16 --K0 4
 ```
 
+Enable the native, post-closure structural pruning stage with:
+
+```bash
+./rtknnc --input csv/synthetic/bridge.csv --dim 2 \
+  --K 10 --K0 6 --structural-pruning
+```
+
+Select a reverse-neighbour vote kernel explicitly with:
+
+```bash
+./rtknnc --input csv/synthetic/bridge.csv --dim 2 \
+  --K 6 --K0 6 --vote-kernel sigmoid --sigmoid-alpha 8 \
+  --structural-pruning
+```
+
 Usage:
 
 ```text
-./rtknnc --input <datafile> --dim <dimension> [--n <points>] [--K <neighbors>] [--K0 <neighbors>]
+./rtknnc --input <datafile> --dim <dimension> [--n <points>] [--K <neighbors>] [--K0 <neighbors>] [--vote-kernel uniform|inv_r|inv_r2|sigmoid] [--sigmoid-alpha <value>] [--structural-pruning]
 ```
 
 Options:
@@ -160,6 +175,26 @@ Options:
 - `--K`: maximum number of nearest neighbors; default is `1`.
 - `--K0`: minimum neighborhood level for the clustering roundtrip; default is
   `1`.
+- `--vote-kernel`: reverse-neighbour vote kernel: `uniform`, `inv_r`,
+  `inv_r2`, or `sigmoid`. The historical `inv_r2` rule is the default.
+- `--sigmoid-alpha`: positive slope of the local sigmoid kernel; default is
+  `8`.
+- `--structural-pruning`: after the selected round-trip closure, fit native
+  leadership-seeded diagonal mixtures to sufficiently large components and
+  remove visible edges crossing an accepted two- or three-population split.
+  The option is disabled by default to preserve the historical C–Python
+  regression.
+
+The pruning decision is label-free. Models with one through four components
+are compared by BIC; a two- or three-component result is accepted only with
+strong evidence, minimum child sizes, and connected children in the visible
+KNN graph. A four-component optimum acts as a veto against splitting curved or
+homogeneous structures. Accepted decisions print their BIC values, child
+sizes, and number of removed visible edges.
+
+When a CSV also contains a reference `label` column, pass the coordinate count
+explicitly with `--dim`; otherwise the numerical label can be interpreted as
+an additional feature.
 
 The native parser expects a numeric table. Values may be separated by
 whitespace, commas, semicolons, or colons. Blank lines are ignored.

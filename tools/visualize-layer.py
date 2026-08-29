@@ -10,6 +10,13 @@ import numpy as np
 from rtknnc.layer_io import read_layer_file
 
 
+LEGACY_CLUSTER_COLORS = (
+    "#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd",
+    "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf",
+    "#aec7e8", "#ffbb78", "#98df8a", "#ff9896", "#c5b0d5",
+)
+
+
 def parse_layer_file(path: Path):
     rows = read_layer_file(path)
     dimension = len(rows[0].coords)
@@ -44,6 +51,15 @@ def main():
         help="Choose whether point colors represent cluster ids or original labels",
     )
     parser.add_argument(
+        "--cluster-palette",
+        choices=("tab20", "legacy"),
+        default="tab20",
+        help=(
+            "Cluster palette. 'legacy' reproduces the cluster-id colours used "
+            "by tools/view_layers.py"
+        ),
+    )
+    parser.add_argument(
         "--point-size",
         type=float,
         default=18.0,
@@ -59,6 +75,15 @@ def main():
         "--annotate-clusters",
         action="store_true",
         help="Write the cluster id at the cluster centroid",
+    )
+    parser.add_argument(
+        "--hide-colorbar",
+        action="store_true",
+        help="Hide the cluster/label colorbar (useful for layers with many clusters)",
+    )
+    parser.add_argument(
+        "--title",
+        help="Override the automatically generated plot title",
     )
     parser.add_argument(
         "--save",
@@ -79,9 +104,17 @@ def main():
 
     if args.color_by == "cluster":
         cluster_to_index = {cluster_id: idx for idx, cluster_id in enumerate(unique_clusters)}
-        color_values = np.array([cluster_to_index[cluster_id] for cluster_id in cluster_ids])
-        cmap = plt.get_cmap("tab20", max(len(unique_clusters), 1))
-        norm = BoundaryNorm(np.arange(len(unique_clusters) + 1) - 0.5, cmap.N)
+        if args.cluster_palette == "legacy":
+            color_values = [
+                LEGACY_CLUSTER_COLORS[(int(cluster_id) - 1) % len(LEGACY_CLUSTER_COLORS)]
+                for cluster_id in cluster_ids
+            ]
+            cmap = None
+            norm = None
+        else:
+            color_values = np.array([cluster_to_index[cluster_id] for cluster_id in cluster_ids])
+            cmap = plt.get_cmap("tab20", max(len(unique_clusters), 1))
+            norm = BoundaryNorm(np.arange(len(unique_clusters) + 1) - 0.5, cmap.N)
         colorbar_label = "cluster id"
     else:
         if np.isnan(labels).all():
@@ -116,7 +149,8 @@ def main():
         )
 
     ax.set_title(
-        f"{layer_path.name}: K-layer with {len(unique_clusters)} clusters and {len(point_ids)} points"
+        args.title
+        or f"{layer_path.name}: K-layer with {len(unique_clusters)} clusters and {len(point_ids)} points"
     )
     ax.set_xlabel("x0")
     ax.set_ylabel("x1")
@@ -125,11 +159,14 @@ def main():
     else:
         ax.set_aspect("equal", adjustable="box")
 
-    colorbar = fig.colorbar(scatter, ax=ax)
-    colorbar.set_label(colorbar_label)
-    if args.color_by == "cluster":
-        colorbar.set_ticks(np.arange(len(unique_clusters)))
-        colorbar.set_ticklabels([str(cluster_id) for cluster_id in unique_clusters])
+    if not args.hide_colorbar and not (
+        args.color_by == "cluster" and args.cluster_palette == "legacy"
+    ):
+        colorbar = fig.colorbar(scatter, ax=ax)
+        colorbar.set_label(colorbar_label)
+        if args.color_by == "cluster":
+            colorbar.set_ticks(np.arange(len(unique_clusters)))
+            colorbar.set_ticklabels([str(cluster_id) for cluster_id in unique_clusters])
 
     if args.annotate_clusters:
         for cluster_id in unique_clusters:

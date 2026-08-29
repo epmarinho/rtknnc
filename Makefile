@@ -11,12 +11,14 @@
 #   make clib-deps    gera grafo/relatórios de dependências dos headers C
 #   make all          install + lib + rtknnc + test
 
-PYTHON     := python
+DEFAULT_PYTHON := $(if $(wildcard .venv/bin/python),.venv/bin/python,python)
+PYTHON     ?= $(DEFAULT_PYTHON)
 PIP := $(PYTHON) -m pip
 # PIP        := pip
 PYTEST  := $(PYTHON) -m pytest
 # PYTEST     := pytest
 RUFF       := ruff
+TEST_PYTHONPATH := $(CURDIR)/src$(if $(PYTHONPATH),:$(PYTHONPATH))
 
 # Diretórios
 SRC_DIR    := src/rtknnc
@@ -48,10 +50,10 @@ install:
 	$(PIP) install -e ".[dev]"
 
 test: lib
-	$(PYTEST) $(TEST_DIR) -v
+	PYTHONPATH="$(TEST_PYTHONPATH)" $(PYTEST) $(TEST_DIR) -v
 
 coverage:
-	$(PYTEST) $(TEST_DIR) -v --cov=$(SRC_DIR) --cov-report=term-missing
+	PYTHONPATH="$(TEST_PYTHONPATH)" $(PYTEST) $(TEST_DIR) -v --cov=$(SRC_DIR) --cov-report=term-missing
 
 # Compila librtknnc.so a partir dos módulos C (sem main)
 lib: $(LIB)

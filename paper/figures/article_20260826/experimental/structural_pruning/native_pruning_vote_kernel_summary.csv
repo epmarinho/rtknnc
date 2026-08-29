@@ -1,0 +1,7 @@
+dataset,dataset_id,K,vote_kernel,sigmoid_alpha,baseline_clusters,pruned_clusters,pruned_ari,pruned_nmi,accepted_splits,removed_edges,baseline_mean_visible_neighbors,native_python_baseline_exact
+Variable-density blobs,blobs_var_density,8,inv_r,,4,5,0.9626510240665552,0.9614092928848869,1,12,4.5715,True
+Variable-density blobs,blobs_var_density,8,inv_r2,,4,5,0.9626510240665552,0.9614092928848869,1,12,4.6825,True
+Variable-density blobs,blobs_var_density,8,sigmoid,8.0,4,5,0.9626510240665552,0.9614092928848869,1,12,4.571,True
+Sparse bridge,bridge,6,inv_r,,2,3,0.9853169841701576,0.9624366627089731,1,6,3.378,True
+Sparse bridge,bridge,6,inv_r2,,2,3,0.9853488796948793,0.9621156216904598,1,10,3.464,True
+Sparse bridge,bridge,6,sigmoid,8.0,2,3,0.9853169841701576,0.9624366627089731,1,6,3.376,True

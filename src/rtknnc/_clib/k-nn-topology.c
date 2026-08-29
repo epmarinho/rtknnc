@@ -73,6 +73,38 @@
 
 #include "k-nn-topology.h"
 
+#include <float.h>
+
+/*
+ * Optional, native structural pruning.
+ *
+ * The historical forward/backward closure remains the default so that the
+ * validated C/Python regression is still available unchanged.  Passing
+ * --structural-pruning asks the C core to inspect each sufficiently large
+ * closure before it is written.  A split is accepted only when a diagonal
+ * Gaussian-mixture search strongly prefers exactly two or three populations;
+ * four components act as a veto against cutting curved or homogeneous data.
+ * Every proposed child must also be coherent in the visible KNN graph.  The
+ * first EM initialisation starts at the most popular
+ * point in the component, retaining the leadership idea as the deterministic
+ * seed rather than treating every weak connection as equally authoritative.
+ */
+#define PRUNING_MAX_MODELS 4
+#define PRUNING_RESTARTS 5
+#define PRUNING_KMEANS_ITERATIONS 24
+#define PRUNING_EM_ITERATIONS 200
+#define PRUNING_MIN_COMPONENT_SIZE 50
+#define PRUNING_MIN_COMPONENT_FRACTION 0.15
+#define PRUNING_MIN_CHILD_SIZE 20
+#define PRUNING_MIN_CHILD_FRACTION 0.05
+#define PRUNING_MIN_BIC_GAIN 10.0
+#define PRUNING_REG_COVAR 1.e-6
+#define PRUNING_LOG_2PI 1.83787706640934548356
+
+flag_t          structural_pruning = 0;
+vote_kernel_t   vote_kernel = VOTE_KERNEL_INV_R2;
+double          vote_sigmoid_alpha = 8.;
+
 /** clcount reports the number of identified clusters for the
      currently selected number of nearest neighbors, K **/
 size_t          clcount = 0;
@@ -144,6 +176,56 @@ int cluster_insert(index_t clcount, ID_t queryID)
 
 }   // end cluster_insert
 
+static double reverse_neighbour_vote(index_t source, index_t rank)
+{
+    double          distance_d2 = KNN[source].d[rank];
+
+    switch (vote_kernel) {
+    case VOTE_KERNEL_UNIFORM:
+        return 1.;
+
+    case VOTE_KERNEL_INV_R:
+        if (distance_d2 <= 0.) {
+            fprintf(stderr,
+                    "%s: inv_r requires positive neighbour distances\n",
+                    cmdname);
+            exit(EXIT_FAILURE);
+        }
+        return 1. / sqrt(distance_d2);
+
+    case VOTE_KERNEL_INV_R2:
+        if (distance_d2 <= 0.) {
+            fprintf(stderr,
+                    "%s: inv_r2 requires positive neighbour distances\n",
+                    cmdname);
+            exit(EXIT_FAILURE);
+        }
+        return 1. / distance_d2;
+
+    case VOTE_KERNEL_SIGMOID: {
+        double          radius_d2 = KNN[source].radius;
+
+        if (radius_d2 <= 0.) {
+            fprintf(stderr,
+                    "%s: sigmoid requires a positive local KNN radius\n",
+                    cmdname);
+            exit(EXIT_FAILURE);
+        }
+        double          z = vote_sigmoid_alpha
+            * (sqrt(distance_d2 / radius_d2) - 1.);
+
+        if (z >= 700.)
+            return 0.;
+        if (z <= -700.)
+            return 1.;
+        return 1. / (1. + exp(z));
+    }
+    }
+
+    fprintf(stderr, "%s: invalid internal vote-kernel selector\n", cmdname);
+    exit(EXIT_FAILURE);
+}
+
 void do_backward_connection(size_t n)
 {
     /** It is better to clean up any possible garbage before computing the k-NN's symmetric closure **/
@@ -160,14 +242,9 @@ void do_backward_connection(size_t n)
             KNN[r].hits++;
 
 #ifdef __COMPUTE_NEIGHBORHOOD_POPULARITY__
-            /** A qualitative simulation of the degree of popularity that a particle has in
-                the k-NN network is made. The measure of popularity is proposed here as the sum
-                of votes that a particle receives from each one that considers it one of the
-                k nearest neighbors - say, a fan. The vote is quantified as the inverse of the
-                square of the Euclidean distance (not the distance between the vertices of a graph).
-                NOTE: The distances were computed as the square of the Euclidean distance.
-            **/
-            KNN[r].popularity += 1.0 / KNN[q].d[j];
+            /** Accumulate the selected distance-weighted incoming vote.  The
+                default remains the historical inverse-square rule. **/
+            KNN[r].popularity += reverse_neighbour_vote(q, j);
 #endif
 
         }
@@ -233,6 +310,802 @@ void do_backward_connection(size_t n)
 #endif
 
 }   // end do_backward_connection(size_t n)
+
+typedef struct {
+    double          log_likelihood;
+    double          bic;
+    index_t        *labels;
+} diagonal_gmm_fit;
+
+typedef struct {
+    flag_t          accepted;
+    index_t        *side;
+    int             child_count;
+    double          bic[PRUNING_MAX_MODELS];
+    double          bic_gain;
+    size_t          child_size[PRUNING_MAX_MODELS];
+    size_t          removed_edges;
+} pruning_decision;
+
+static void *pruning_calloc(size_t count, size_t size)
+{
+    void           *memory = calloc(count, size);
+
+    if (memory == NULL) {
+        fprintf(stderr, "%s: structural pruning could not allocate %zu bytes\n",
+                cmdname, count * size);
+        exit(EXIT_FAILURE);
+    }
+    return memory;
+}
+
+static double squared_row_distance(const double *a, const double *b, dim_t dim)
+{
+    double          value = 0;
+
+    for (dim_t j = 0; j < dim; j++) {
+        double          delta = a[j] - b[j];
+
+        value += delta * delta;
+    }
+    return value;
+}
+
+static void collect_set_ids(const SET *set, index_t *ids, size_t *cursor)
+{
+    if (set->left != NULL)
+        collect_set_ids(set->left, ids, cursor);
+
+    ids[(*cursor)++] = set->id - 1;
+
+    if (set->right != NULL)
+        collect_set_ids(set->right, ids, cursor);
+}
+
+static double *standardize_component(const index_t *ids, size_t count)
+{
+    double         *mean = pruning_calloc(dimension, sizeof(*mean));
+    double         *scale = pruning_calloc(dimension, sizeof(*scale));
+    double         *standardized = pruning_calloc(count * dimension, sizeof(*standardized));
+
+    for (size_t i = 0; i < count; i++) {
+        for (dim_t j = 0; j < dimension; j++)
+            mean[j] += x[ids[i]][j];
+    }
+    for (dim_t j = 0; j < dimension; j++)
+        mean[j] /= count;
+
+    for (size_t i = 0; i < count; i++) {
+        for (dim_t j = 0; j < dimension; j++) {
+            double          centered = x[ids[i]][j] - mean[j];
+
+            scale[j] += centered * centered;
+        }
+    }
+    for (dim_t j = 0; j < dimension; j++) {
+        scale[j] = sqrt(scale[j] / count);
+        if (scale[j] <= DBL_EPSILON)
+            scale[j] = 1;
+    }
+
+    for (size_t i = 0; i < count; i++) {
+        for (dim_t j = 0; j < dimension; j++)
+            standardized[i * dimension + j] = (x[ids[i]][j] - mean[j]) / scale[j];
+    }
+
+    free(scale);
+    free(mean);
+    return standardized;
+}
+
+static size_t most_popular_component_point(const index_t *ids, size_t count)
+{
+    size_t          best = 0;
+
+    for (size_t i = 1; i < count; i++) {
+        double          candidate = KNN[ids[i]].popularity;
+        double          incumbent = KNN[ids[best]].popularity;
+
+        if (candidate > incumbent || (candidate == incumbent && ids[i] < ids[best]))
+            best = i;
+    }
+    return best;
+}
+
+static size_t deterministic_seed(size_t count, int model, int restart)
+{
+    unsigned long   value = (unsigned long) (restart + 1) * 104729UL;
+
+    value += (unsigned long) model * 15485863UL;
+    return value % count;
+}
+
+static void initialize_diagonal_gmm(const double *data,
+                                    const index_t *ids,
+                                    size_t count,
+                                    int model,
+                                    int restart,
+                                    double *weight,
+                                    double *mean,
+                                    double *variance)
+{
+    index_t        *assignment = pruning_calloc(count, sizeof(*assignment));
+    size_t         *population = pruning_calloc(model, sizeof(*population));
+    flag_t         *chosen = pruning_calloc(count, sizeof(*chosen));
+    size_t          first = restart == 0
+        ? most_popular_component_point(ids, count)
+        : deterministic_seed(count, model, restart);
+
+    memcpy(mean, data + first * dimension, dimension * sizeof(*mean));
+    chosen[first] = 1;
+
+    for (int component = 1; component < model; component++) {
+        size_t          farthest = 0;
+        double          farthest_distance = -1;
+
+        for (size_t i = 0; i < count; i++) {
+            double          nearest = INFINITY;
+
+            if (chosen[i])
+                continue;
+            for (int other = 0; other < component; other++) {
+                double          candidate = squared_row_distance(
+                    data + i * dimension,
+                    mean + other * dimension,
+                    dimension
+                );
+
+                if (candidate < nearest)
+                    nearest = candidate;
+            }
+            if (nearest > farthest_distance) {
+                farthest_distance = nearest;
+                farthest = i;
+            }
+        }
+        memcpy(mean + component * dimension,
+               data + farthest * dimension,
+               dimension * sizeof(*mean));
+        chosen[farthest] = 1;
+    }
+
+    for (int iteration = 0; iteration < PRUNING_KMEANS_ITERATIONS; iteration++) {
+        flag_t          changed = 0;
+
+        bzero(population, model * sizeof(*population));
+        for (size_t i = 0; i < count; i++) {
+            int             best = 0;
+            double          best_distance = squared_row_distance(
+                data + i * dimension, mean, dimension
+            );
+
+            for (int component = 1; component < model; component++) {
+                double          candidate = squared_row_distance(
+                    data + i * dimension,
+                    mean + component * dimension,
+                    dimension
+                );
+
+                if (candidate < best_distance) {
+                    best = component;
+                    best_distance = candidate;
+                }
+            }
+            if (iteration > 0 && assignment[i] != best)
+                changed = 1;
+            assignment[i] = best;
+            population[best]++;
+        }
+
+        double         *updated = pruning_calloc(model * dimension, sizeof(*updated));
+
+        for (size_t i = 0; i < count; i++) {
+            for (dim_t j = 0; j < dimension; j++)
+                updated[assignment[i] * dimension + j] += data[i * dimension + j];
+        }
+        for (int component = 0; component < model; component++) {
+            if (population[component] == 0) {
+                size_t          replacement = deterministic_seed(
+                    count, model + component, restart + iteration + 1
+                );
+
+                memcpy(updated + component * dimension,
+                       data + replacement * dimension,
+                       dimension * sizeof(*updated));
+                population[component] = 1;
+                changed = 1;
+            } else {
+                for (dim_t j = 0; j < dimension; j++)
+                    updated[component * dimension + j] /= population[component];
+            }
+        }
+        memcpy(mean, updated, model * dimension * sizeof(*mean));
+        free(updated);
+
+        if (iteration > 0 && !changed)
+            break;
+    }
+
+    bzero(population, model * sizeof(*population));
+    for (size_t i = 0; i < count; i++)
+        population[assignment[i]]++;
+
+    for (int component = 0; component < model; component++) {
+        weight[component] = (double) population[component] / count;
+        for (dim_t j = 0; j < dimension; j++)
+            variance[component * dimension + j] = PRUNING_REG_COVAR;
+    }
+    for (size_t i = 0; i < count; i++) {
+        int             component = assignment[i];
+
+        for (dim_t j = 0; j < dimension; j++) {
+            double          delta = data[i * dimension + j] - mean[component * dimension + j];
+
+            variance[component * dimension + j] += delta * delta;
+        }
+    }
+    for (int component = 0; component < model; component++) {
+        double          denominator = population[component] > 0 ? population[component] : 1;
+
+        for (dim_t j = 0; j < dimension; j++)
+            variance[component * dimension + j] /= denominator;
+    }
+
+    free(chosen);
+    free(population);
+    free(assignment);
+}
+
+static double gmm_expectation(const double *data,
+                              size_t count,
+                              int model,
+                              const double *weight,
+                              const double *mean,
+                              const double *variance,
+                              double *responsibility)
+{
+    double          log_likelihood = 0;
+    double         *log_probability = pruning_calloc(model, sizeof(*log_probability));
+
+    for (size_t i = 0; i < count; i++) {
+        double          maximum = -INFINITY;
+
+        for (int component = 0; component < model; component++) {
+            double          quadratic = 0;
+            double          log_determinant = 0;
+
+            for (dim_t j = 0; j < dimension; j++) {
+                double          var = max(variance[component * dimension + j], PRUNING_REG_COVAR);
+                double          delta = data[i * dimension + j] - mean[component * dimension + j];
+
+                quadratic += delta * delta / var;
+                log_determinant += log(var);
+            }
+            log_probability[component] = log(max(weight[component], DBL_MIN))
+                - .5 * (dimension * PRUNING_LOG_2PI + log_determinant + quadratic);
+            maximum = max(maximum, log_probability[component]);
+        }
+
+        double          normalizer = 0;
+
+        for (int component = 0; component < model; component++)
+            normalizer += exp(log_probability[component] - maximum);
+        normalizer = maximum + log(normalizer);
+        log_likelihood += normalizer;
+
+        for (int component = 0; component < model; component++)
+            responsibility[i * model + component] = exp(log_probability[component] - normalizer);
+    }
+
+    free(log_probability);
+    return log_likelihood;
+}
+
+static void gmm_maximization(const double *data,
+                             size_t count,
+                             int model,
+                             const double *responsibility,
+                             double *weight,
+                             double *mean,
+                             double *variance)
+{
+    double         *effective = pruning_calloc(model, sizeof(*effective));
+
+    bzero(mean, model * dimension * sizeof(*mean));
+    bzero(variance, model * dimension * sizeof(*variance));
+
+    for (size_t i = 0; i < count; i++) {
+        for (int component = 0; component < model; component++) {
+            double          value = responsibility[i * model + component];
+
+            effective[component] += value;
+            for (dim_t j = 0; j < dimension; j++)
+                mean[component * dimension + j] += value * data[i * dimension + j];
+        }
+    }
+
+    for (int component = 0; component < model; component++) {
+        double          denominator = max(effective[component], DBL_MIN);
+
+        weight[component] = denominator / count;
+        for (dim_t j = 0; j < dimension; j++)
+            mean[component * dimension + j] /= denominator;
+    }
+
+    for (size_t i = 0; i < count; i++) {
+        for (int component = 0; component < model; component++) {
+            double          value = responsibility[i * model + component];
+
+            for (dim_t j = 0; j < dimension; j++) {
+                double          delta = data[i * dimension + j] - mean[component * dimension + j];
+
+                variance[component * dimension + j] += value * delta * delta;
+            }
+        }
+    }
+    for (int component = 0; component < model; component++) {
+        double          denominator = max(effective[component], DBL_MIN);
+
+        for (dim_t j = 0; j < dimension; j++)
+            variance[component * dimension + j] =
+                variance[component * dimension + j] / denominator + PRUNING_REG_COVAR;
+    }
+
+    free(effective);
+}
+
+static diagonal_gmm_fit fit_diagonal_gmm(const double *data,
+                                         const index_t *ids,
+                                         size_t count,
+                                         int model)
+{
+    diagonal_gmm_fit fit = {
+        .log_likelihood = -INFINITY,
+        .bic = INFINITY,
+        .labels = pruning_calloc(count, sizeof(*fit.labels))
+    };
+    int             restarts = model == 1 ? 1 : PRUNING_RESTARTS;
+
+    for (int restart = 0; restart < restarts; restart++) {
+        double         *weight = pruning_calloc(model, sizeof(*weight));
+        double         *mean = pruning_calloc(model * dimension, sizeof(*mean));
+        double         *variance = pruning_calloc(model * dimension, sizeof(*variance));
+        double         *responsibility = pruning_calloc(count * model, sizeof(*responsibility));
+        double          previous = -INFINITY;
+        double          likelihood = -INFINITY;
+
+        initialize_diagonal_gmm(data, ids, count, model, restart,
+                                weight, mean, variance);
+
+        for (int iteration = 0; iteration < PRUNING_EM_ITERATIONS; iteration++) {
+            likelihood = gmm_expectation(data, count, model,
+                                         weight, mean, variance, responsibility);
+            if (iteration > 0
+                && fabs(likelihood - previous) <= 1.e-6 * (1 + fabs(likelihood)))
+                break;
+            previous = likelihood;
+            gmm_maximization(data, count, model, responsibility,
+                             weight, mean, variance);
+        }
+        likelihood = gmm_expectation(data, count, model,
+                                     weight, mean, variance, responsibility);
+
+        if (likelihood > fit.log_likelihood) {
+            fit.log_likelihood = likelihood;
+            for (size_t i = 0; i < count; i++) {
+                int             best = 0;
+
+                for (int component = 1; component < model; component++) {
+                    if (responsibility[i * model + component]
+                        > responsibility[i * model + best])
+                        best = component;
+                }
+                fit.labels[i] = best;
+            }
+        }
+
+        free(responsibility);
+        free(variance);
+        free(mean);
+        free(weight);
+    }
+
+    double          parameters = model * (2. * dimension + 1.) - 1.;
+
+    fit.bic = -2. * fit.log_likelihood + parameters * log((double) count);
+    return fit;
+}
+
+static flag_t directed_visible_edge(index_t source, index_t target)
+{
+    ID_t            targetID = target + 1;
+
+    for (size_t j = 0; j < K; j++) {
+        if (KNN[source].list[j] == targetID)
+            return KNN[source].d[j] <= KNN[source].visibility;
+    }
+    return 0;
+}
+
+static void enqueue_same_side_neighbours(index_t global,
+                                         const index_t *local_index,
+                                         const index_t *side,
+                                         index_t wanted_side,
+                                         index_t component_number,
+                                         index_t *component,
+                                         index_t *queue,
+                                         size_t *queue_end)
+{
+    for (size_t j = 0; j < K; j++) {
+        index_t         neighbour = KNN[global].list[j] - 1;
+        index_t         local = local_index[neighbour];
+
+        if (local >= 0 && side[local] == wanted_side && component[local] < 0
+            && KNN[global].d[j] <= KNN[global].visibility) {
+            component[local] = component_number;
+            queue[(*queue_end)++] = neighbour;
+        }
+    }
+
+    for (size_t j = 0; j < KNN[global].hits; j++) {
+        index_t         neighbour = KNN[global].backward[j] - 1;
+        index_t         local = local_index[neighbour];
+
+        if (local >= 0 && side[local] == wanted_side && component[local] < 0
+            && directed_visible_edge(neighbour, global)) {
+            component[local] = component_number;
+            queue[(*queue_end)++] = neighbour;
+        }
+    }
+}
+
+static index_t fragment_replacement_side(const index_t *ids,
+                                         size_t count,
+                                         const index_t *local_index,
+                                         const index_t *component,
+                                         index_t fragment,
+                                         const index_t *side,
+                                         index_t old_side,
+                                         int side_count)
+{
+    size_t         *support = pruning_calloc(side_count, sizeof(*support));
+    size_t         *population = pruning_calloc(side_count, sizeof(*population));
+
+    for (size_t i = 0; i < count; i++)
+        population[side[i]]++;
+
+    for (size_t i = 0; i < count; i++) {
+        if (component[i] != fragment)
+            continue;
+
+        index_t         global = ids[i];
+
+        for (size_t j = 0; j < K; j++) {
+            index_t         neighbour = KNN[global].list[j] - 1;
+            index_t         local = local_index[neighbour];
+
+            if (local >= 0 && side[local] != old_side
+                && KNN[global].d[j] <= KNN[global].visibility)
+                support[side[local]]++;
+        }
+        for (size_t j = 0; j < KNN[global].hits; j++) {
+            index_t         neighbour = KNN[global].backward[j] - 1;
+            index_t         local = local_index[neighbour];
+
+            if (local >= 0 && side[local] != old_side
+                && directed_visible_edge(neighbour, global))
+                support[side[local]]++;
+        }
+    }
+
+    index_t         replacement = -1;
+
+    for (index_t candidate = 0; candidate < side_count; candidate++) {
+        if (candidate == old_side)
+            continue;
+        if (replacement < 0 || support[candidate] > support[replacement]
+            || (support[candidate] == support[replacement]
+                && population[candidate] > population[replacement]))
+            replacement = candidate;
+    }
+
+    free(population);
+    free(support);
+    return replacement;
+}
+
+static flag_t regularize_partition(const index_t *ids,
+                                    size_t count,
+                                    index_t *side,
+                                    int side_count,
+                                    size_t required_child,
+                                    size_t point_count)
+{
+    index_t        *local_index = pruning_calloc(point_count, sizeof(*local_index));
+    index_t        *component = pruning_calloc(count, sizeof(*component));
+    index_t        *queue = pruning_calloc(count, sizeof(*queue));
+    size_t         *component_size = pruning_calloc(count, sizeof(*component_size));
+    flag_t          coherent = 0;
+
+    for (size_t i = 0; i < point_count; i++)
+        local_index[i] = -1;
+    for (size_t i = 0; i < count; i++)
+        local_index[ids[i]] = i;
+
+    for (int pass = 0; pass < 4; pass++) {
+        flag_t          changed = 0;
+
+        for (index_t wanted_side = 0; wanted_side < side_count; wanted_side++) {
+            for (size_t i = 0; i < count; i++)
+                component[i] = -1;
+            bzero(component_size, count * sizeof(*component_size));
+
+            index_t         component_count = 0;
+
+            for (size_t seed = 0; seed < count; seed++) {
+                if (side[seed] != wanted_side || component[seed] >= 0)
+                    continue;
+
+                size_t          queue_begin = 0;
+                size_t          queue_end = 0;
+
+                component[seed] = component_count;
+                queue[queue_end++] = ids[seed];
+
+                while (queue_begin < queue_end) {
+                    index_t         global = queue[queue_begin++];
+                    index_t         local = local_index[global];
+
+                    component_size[component_count]++;
+                    enqueue_same_side_neighbours(
+                        global, local_index, side, wanted_side,
+                        component_count, component, queue, &queue_end
+                    );
+                    (void) local;
+                }
+                component_count++;
+            }
+
+            if (component_count == 0)
+                goto cleanup;
+
+            index_t         principal = 0;
+
+            for (index_t part = 1; part < component_count; part++) {
+                if (component_size[part] > component_size[principal])
+                    principal = part;
+            }
+            for (index_t part = 0; part < component_count; part++) {
+                if (part == principal)
+                    continue;
+                if (component_size[part] >= required_child)
+                    goto cleanup;
+                index_t         replacement = fragment_replacement_side(
+                    ids, count, local_index, component, part,
+                    side, wanted_side, side_count
+                );
+
+                if (replacement < 0)
+                    goto cleanup;
+                for (size_t i = 0; i < count; i++) {
+                    if (component[i] == part) {
+                        side[i] = replacement;
+                        changed = 1;
+                    }
+                }
+            }
+        }
+
+        if (!changed) {
+            coherent = 1;
+            break;
+        }
+    }
+
+cleanup:
+    free(component_size);
+    free(queue);
+    free(component);
+    free(local_index);
+    return coherent;
+}
+
+static size_t count_crossing_visible_edges(const index_t *ids,
+                                            size_t count,
+                                            const index_t *side,
+                                            size_t point_count)
+{
+    index_t        *local_index = pruning_calloc(point_count, sizeof(*local_index));
+    size_t          removed = 0;
+
+    for (size_t i = 0; i < point_count; i++)
+        local_index[i] = -1;
+    for (size_t i = 0; i < count; i++)
+        local_index[ids[i]] = i;
+
+    for (size_t i = 0; i < count; i++) {
+        index_t         source = ids[i];
+
+        for (size_t j = 0; j < K; j++) {
+            index_t         target = KNN[source].list[j] - 1;
+            index_t         target_local = local_index[target];
+
+            if (target_local < 0 || side[i] == side[target_local]
+                || KNN[source].d[j] > KNN[source].visibility)
+                continue;
+            if (source < target || !directed_visible_edge(target, source))
+                removed++;
+        }
+    }
+
+    free(local_index);
+    return removed;
+}
+
+static pruning_decision propose_component_pruning(const index_t *ids,
+                                                   size_t count,
+                                                   size_t point_count)
+{
+    pruning_decision decision = { 0 };
+    double         *standardized = standardize_component(ids, count);
+    diagonal_gmm_fit fits[PRUNING_MAX_MODELS];
+    int             best_model = 0;
+
+    for (int model = 1; model <= PRUNING_MAX_MODELS; model++) {
+        fits[model - 1] = fit_diagonal_gmm(standardized, ids, count, model);
+        decision.bic[model - 1] = fits[model - 1].bic;
+        if (fits[model - 1].bic < fits[best_model].bic)
+            best_model = model - 1;
+    }
+    decision.child_count = best_model + 1;
+    decision.bic_gain = decision.bic[0] - decision.bic[best_model];
+
+    if ((decision.child_count == 2 || decision.child_count == 3)
+        && decision.bic_gain >= PRUNING_MIN_BIC_GAIN) {
+        size_t          required_child = max(
+            PRUNING_MIN_CHILD_SIZE,
+            (size_t) ceil(PRUNING_MIN_CHILD_FRACTION * count)
+        );
+
+        decision.side = pruning_calloc(count, sizeof(*decision.side));
+        memcpy(decision.side, fits[best_model].labels, count * sizeof(*decision.side));
+
+        for (size_t i = 0; i < count; i++) {
+            if (decision.side[i] >= 0 && decision.side[i] < decision.child_count)
+                decision.child_size[decision.side[i]]++;
+        }
+
+        flag_t          children_large_enough = 1;
+
+        for (int child = 0; child < decision.child_count; child++)
+            children_large_enough &= decision.child_size[child] >= required_child;
+
+        if (children_large_enough
+            && regularize_partition(ids, count, decision.side,
+                                    decision.child_count, required_child,
+                                    point_count)) {
+            bzero(decision.child_size, sizeof(decision.child_size));
+            for (size_t i = 0; i < count; i++)
+                decision.child_size[decision.side[i]]++;
+
+            children_large_enough = 1;
+            for (int child = 0; child < decision.child_count; child++)
+                children_large_enough &= decision.child_size[child] >= required_child;
+
+            if (children_large_enough) {
+                decision.removed_edges = count_crossing_visible_edges(
+                    ids, count, decision.side, point_count
+                );
+                decision.accepted = decision.removed_edges > 0;
+            }
+        }
+    }
+
+    if (!decision.accepted) {
+        free(decision.side);
+        decision.side = NULL;
+    }
+    for (int model = 0; model < PRUNING_MAX_MODELS; model++)
+        free(fits[model].labels);
+    free(standardized);
+    return decision;
+}
+
+static size_t structurally_prune_clusters(size_t point_count)
+{
+    size_t          original_count = clcount;
+    size_t          minimum_component = max(
+        PRUNING_MIN_COMPONENT_SIZE,
+        (size_t) ceil(PRUNING_MIN_COMPONENT_FRACTION * point_count)
+    );
+    index_t        *final_label = pruning_calloc(point_count, sizeof(*final_label));
+    size_t          final_count = 0;
+    size_t          accepted_splits = 0;
+
+    for (size_t i = 0; i < point_count; i++)
+        final_label[i] = -1;
+
+    for (size_t cl = 0; cl < original_count; cl++) {
+        size_t          count = cluster[cl]->n;
+        index_t        *ids = pruning_calloc(count, sizeof(*ids));
+        size_t          cursor = 0;
+        pruning_decision decision = { 0 };
+
+        collect_set_ids(cluster[cl], ids, &cursor);
+        if (count >= minimum_component)
+            decision = propose_component_pruning(ids, count, point_count);
+
+        if (decision.accepted) {
+            for (size_t i = 0; i < count; i++)
+                final_label[ids[i]] = final_count + decision.side[i];
+
+            fprintf(stdout,
+                    "structural pruning: cluster %zu (%zu points) -> %d children [",
+                    cl + 1, count, decision.child_count);
+            for (int child = 0; child < decision.child_count; child++)
+                fprintf(stdout, "%s%zu", child == 0 ? "" : ", ",
+                        decision.child_size[child]);
+            fprintf(stdout,
+                    "]; BIC=[%.3f, %.3f, %.3f, %.3f], gain=%.3f, removed edges=%zu\n",
+                    decision.bic[0], decision.bic[1],
+                    decision.bic[2], decision.bic[3],
+                    decision.bic_gain, decision.removed_edges);
+            final_count += decision.child_count;
+            accepted_splits++;
+        } else {
+            for (size_t i = 0; i < count; i++)
+                final_label[ids[i]] = final_count;
+            final_count++;
+        }
+
+        free(decision.side);
+        free(ids);
+    }
+
+    for (size_t cl = 0; cl < original_count; cl++) {
+        set__destroy(cluster[cl]);
+        cluster[cl] = NULL;
+    }
+    bzero(already_inserted, point_count * sizeof(*already_inserted));
+    bzero(unclustered, point_count * sizeof(*unclustered));
+    n_unclustered = 0;
+
+    for (size_t point = 0; point < point_count; point++) {
+        if (final_label[point] >= 0)
+            cluster_insert(final_label[point], point + 1);
+    }
+    clcount = final_count;
+
+    free(final_label);
+    return accepted_splits;
+}
+
+static void canonical_partition(index_t *canonical, size_t point_count)
+{
+    if (clcount == 0) {
+        bzero(canonical, point_count * sizeof(*canonical));
+        return;
+    }
+
+    size_t         *minimum_member = pruning_calloc(clcount, sizeof(*minimum_member));
+
+    for (size_t cl = 0; cl < clcount; cl++)
+        minimum_member[cl] = point_count + 1;
+
+    for (size_t point = 0; point < point_count; point++) {
+        index_t         label = already_inserted[point];
+
+        if (label > 0 && point + 1 < minimum_member[label - 1])
+            minimum_member[label - 1] = point + 1;
+    }
+    for (size_t point = 0; point < point_count; point++) {
+        index_t         label = already_inserted[point];
+
+        canonical[point] = label > 0 ? (index_t) minimum_member[label - 1] : 0;
+    }
+
+    free(minimum_member);
+}
 
 /** @KNN_backward_trip:: Exhaustively visits the backward neighbors of p if p != q */
 void KNN_backward_trip(index_t q)
@@ -400,9 +1273,13 @@ void roundtrip_KNN_cluster_partition(size_t n)
 
     size_t          cl_population;
 
-    size_t          clcount_old = -1;
-
     size_t          last_K = 1;
+
+    flag_t          have_previous_partition = 0;
+
+    index_t        *previous_partition = pruning_calloc(n, sizeof(*previous_partition));
+
+    index_t        *current_partition = pruning_calloc(n, sizeof(*current_partition));
 
     already_inserted = calloc(n, sizeof(*already_inserted));
 
@@ -473,14 +1350,25 @@ void roundtrip_KNN_cluster_partition(size_t n)
         }
 #endif
 
-        if (clcount == clcount_old) {
+        if (structural_pruning && clcount > 0)
+            structurally_prune_clusters(n);
+
+        fprintf(stdout, "K = %zu => %zu cluster%s\n", K, clcount,
+                clcount == 1 ? "" : "s");
+
+        canonical_partition(current_partition, n);
+        if (have_previous_partition
+            && memcmp(previous_partition, current_partition,
+                      n * sizeof(*current_partition)) == 0) {
             verbose = 0;
             fprintf(stdout, "ignoring K = %zu since KNN topology is the same of K = %zu\n", K, last_K);
             continue;
         }
 
         last_K = K;
-        clcount_old = clcount;
+        memcpy(previous_partition, current_partition,
+               n * sizeof(*previous_partition));
+        have_previous_partition = 1;
         verbose = 1;
 
         showresults();
@@ -499,6 +1387,9 @@ void roundtrip_KNN_cluster_partition(size_t n)
         fprintf(stdout, "nothing more after K = %zu\n", last_K);
     }
     fprintf(stdout, "done!\n");
+
+    free(current_partition);
+    free(previous_partition);
 
 }
 

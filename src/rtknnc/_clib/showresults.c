@@ -11,11 +11,7 @@ static void write_layer_header(void)
     fprintf(output, "# format: cannon-knn layer\n");
     fprintf(output, "# columns: cluster_id: point_id");
     for (dim_t j = 0; j < dimension; j++) {
-        if (j < 2) {
-            fprintf(output, " x%d", j);
-        } else {
-            fprintf(output, " input_col%d", j);
-        }
+        fprintf(output, " x%d", j);
     }
     fprintf(output, "\n");
 }
