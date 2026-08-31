@@ -60,7 +60,8 @@ void            usage(FILE *output, const char *cmdname)
     fprintf(output, "  --n      number of points to read; defaults to the full dataset\n");
     fprintf(output, "  --K      maximum number of nearest neighbors; default is 1\n");
     fprintf(output, "  --K0     minimum neighborhood level for the clustering roundtrip; default is 1\n");
-    fprintf(output, "  --vote-kernel  uniform, inv_r, inv_r2 (default), or sigmoid\n");
+    fprintf(output, "  --vote-kernel  source-budget-matched shape: uniform, inv_r, inv_r2 (default), or sigmoid\n");
+    fprintf(output, "                 every source redistributes B_i=sum_j 1/r_ij^2; inv_r2 remains historical exactly\n");
     fprintf(output, "  --sigmoid-alpha  positive sigmoid slope; default is 8\n");
     fprintf(output, "  --structural-pruning  split strongly multimodal closures and prune their crossing visible edges\n");
 }

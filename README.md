@@ -175,8 +175,12 @@ Options:
 - `--K`: maximum number of nearest neighbors; default is `1`.
 - `--K0`: minimum neighborhood level for the clustering roundtrip; default is
   `1`.
-- `--vote-kernel`: reverse-neighbour vote kernel: `uniform`, `inv_r`,
-  `inv_r2`, or `sigmoid`. The historical `inv_r2` rule is the default.
+- `--vote-kernel`: source-budget-matched reverse-neighbour allocation shape:
+  `uniform`, `inv_r`, `inv_r2`, or `sigmoid`. For source (i), the executable
+  computes the historical budget `B_i = sum_j 1/r_ij^2` and redistributes it
+  according to the selected shape evaluated at `u_ij = r_ij/R_i`. Thus only
+  the within-source allocation changes; `inv_r2` remains exactly the
+  historical `1/r_ij^2` rule and is the default.
 - `--sigmoid-alpha`: positive slope of the local sigmoid kernel; default is
   `8`.
 - `--structural-pruning`: after the selected round-trip closure, fit native
@@ -203,6 +207,37 @@ The clustering pipeline writes files next to the input prefix, including:
 
 - `<input>_K<K>Cs<C>.layer`: point assignments for a K level and cluster count.
 - `<input>_K<K>.gv`: Graphviz representation of the k-NN graph.
+
+## Paper Baseline Comparison
+
+Reproduce the six-dataset comparison of structurally pruned RTKNNC, DBSCAN,
+and KNN spectral clustering with:
+
+```bash
+python -m rtknnc.baseline_benchmark --force
+```
+
+Use `python -m rtknnc.baseline_benchmark --help` to change the datasets,
+neighbour range, DBSCAN grid, random seed, executable, or output directory.
+The default run writes the complete sweep, selected rows, a parameter and
+software manifest, and manuscript-ready LaTeX rows under:
+
+```text
+paper/figures/article_20260826/experimental/baselines/
+```
+
+The reported result is deliberately an oracle envelope: reference labels
+select the highest-ARI candidate within every declared grid. Spectral
+clustering also receives the reference cluster count; RTKNNC and DBSCAN do
+not. This protocol compares representational capacity and is not an
+unsupervised deployment rule.
+
+Regenerate the full paper package, including figures, kernel regressions,
+native pruning evidence, and the baseline table, with:
+
+```bash
+bash tools/generate-article-figures.sh
+```
 
 ## Test Helper CLI
 

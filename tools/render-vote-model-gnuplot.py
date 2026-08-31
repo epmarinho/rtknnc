@@ -28,10 +28,10 @@ DATASETS = (
 )
 MODELS = ("uniform", "inv_r", "inv_r2", "sigmoid")
 MODEL_NAMES = {
-    "uniform": "uniform  g(r)=1",
-    "inv_r": "inverse  g(r)=1/r",
-    "inv_r2": "inverse-square  g(r)=1/r^2",
-    "sigmoid": "sigmoid  S_{alpha,R}(r), alpha=8",
+    "uniform": "budget-matched uniform  h(u)=1",
+    "inv_r": "budget-matched inverse  h(u)=1/u",
+    "inv_r2": "historical inverse-square  g(r)=1/r^2",
+    "sigmoid": "budget-matched sigmoid  h(u)=S_alpha(u), alpha=8",
 }
 
 

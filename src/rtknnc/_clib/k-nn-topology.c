@@ -176,7 +176,20 @@ int cluster_insert(index_t clcount, ID_t queryID)
 
 }   // end cluster_insert
 
-static double reverse_neighbour_vote(index_t source, index_t rank)
+/**
+ * Return the shape assigned to one outgoing edge before source-budget
+ * normalisation.  Every experimental kernel redistributes the historical
+ * inverse-square budget
+ *
+ *     B_i = sum_j 1 / r_ij^2
+ *
+ * across source i's K outgoing edges.  Consequently all kernels have the
+ * same total vote mass and the same inverse-square physical scale; only the
+ * relative allocation amongst neighbours changes.  For inv_r2 the
+ * normalisation cancels algebraically and the historical 1/r^2 vote is kept
+ * bit-for-bit by a special case in do_backward_connection().
+ */
+static double reverse_neighbour_vote_shape(index_t source, index_t rank)
 {
     double          distance_d2 = KNN[source].d[rank];
 
@@ -234,6 +247,30 @@ void do_backward_connection(size_t n)
     }
 
     for (index_t q = 0; q < n; q++) {
+#ifdef __COMPUTE_NEIGHBORHOOD_POPULARITY__
+        double          historical_budget = 0.;
+        double          shape_sum = 0.;
+
+        for (index_t j = 0; j < K; j++) {
+            double          distance_d2 = KNN[q].d[j];
+
+            if (distance_d2 <= 0.) {
+                fprintf(stderr,
+                        "%s: vote kernels require positive neighbour distances\n",
+                        cmdname);
+                exit(EXIT_FAILURE);
+            }
+            historical_budget += 1. / distance_d2;
+            if (vote_kernel != VOTE_KERNEL_INV_R2)
+                shape_sum += reverse_neighbour_vote_shape(q, j);
+        }
+        if (vote_kernel != VOTE_KERNEL_INV_R2 && shape_sum <= 0.) {
+            fprintf(stderr, "%s: vote-kernel shape has zero source mass\n",
+                    cmdname);
+            exit(EXIT_FAILURE);
+        }
+#endif
+
         for (index_t j = 0; j < K; j++) {
             index_t         r = KNN[q].list[j] - 1;
 
@@ -242,9 +279,13 @@ void do_backward_connection(size_t n)
             KNN[r].hits++;
 
 #ifdef __COMPUTE_NEIGHBORHOOD_POPULARITY__
-            /** Accumulate the selected distance-weighted incoming vote.  The
-                default remains the historical inverse-square rule. **/
-            KNN[r].popularity += reverse_neighbour_vote(q, j);
+            /** Accumulate a source-budget-matched incoming vote.  The
+                historical inverse-square rule remains exactly unchanged. **/
+            if (vote_kernel == VOTE_KERNEL_INV_R2)
+                KNN[r].popularity += 1. / KNN[q].d[j];
+            else
+                KNN[r].popularity += historical_budget
+                    * reverse_neighbour_vote_shape(q, j) / shape_sum;
 #endif
 
         }

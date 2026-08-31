@@ -36,10 +36,10 @@ from rtknnc.vote_model_runner import (
 )
 
 MODEL_LABELS = {
-    "uniform": r"uniform $g(r)=1$",
-    "inv_r": r"inverse $g(r)=1/r$",
-    "inv_r2": r"inverse-square $g(r)=1/r^2$",
-    "sigmoid": r"sigmoid $S_{\alpha,R}(r)$, $\alpha=8$",
+    "uniform": r"budget-matched uniform $h(u)=1$",
+    "inv_r": r"budget-matched inverse $h(u)=1/u$",
+    "inv_r2": r"historical inverse-square $g(r)=1/r^2$",
+    "sigmoid": r"budget-matched sigmoid $h(u)=S_\alpha(u)$, $\alpha=8$",
 }
 
 
@@ -220,6 +220,30 @@ def _write_layer(
             stream.write(f"{cluster_id}: {point_id}\t{values}\t{truth:.12g}\n")
 
 
+def _write_unique_layer(
+    layer_dir: Path,
+    dataset: str,
+    model: str,
+    k: int,
+    X: np.ndarray,
+    y: np.ndarray,
+    result: RTKNNResult,
+) -> Path:
+    """Replace the derived layer for one dataset/model/K configuration.
+
+    The cluster count is encoded in the filename.  After an algorithm change,
+    retaining the old count would make the downstream GNUplot lookup
+    ambiguous.  Only generated files for this exact configuration are
+    removed.
+    """
+    layer_dir.mkdir(parents=True, exist_ok=True)
+    for stale in layer_dir.glob(f"{dataset}_{model}_K{k}Cs*.layer"):
+        stale.unlink()
+    path = layer_dir / f"{dataset}_{model}_K{k}Cs{len(result.clusters)}.layer"
+    _write_layer(path, X, y, result)
+    return path
+
+
 def _comparison_figure(
     dataset: str,
     X: np.ndarray,
@@ -260,18 +284,19 @@ def _comparison_figure(
             result.labels,
             title=f"{MODEL_LABELS[model]}\n{metrics}",
         )
-        layer_name = f"{dataset}_{model}_K{k}Cs{len(result.clusters)}.layer"
-        _write_layer(output_dir / "layers" / layer_name, X, y, result)
+        _write_unique_layer(
+            output_dir / "layers", dataset, model, k, X, y, result
+        )
 
     note_ax = fig.add_subplot(2, 3, 6)
     note_ax.axis("off")
     note_ax.text(
         0.03,
         0.93,
-        "Four kernels: uniform, inverse, inverse-square, and local sigmoid.\n"
+        "Four source-budget-matched shapes; inverse-square remains historical.\n"
         "Colours identify predicted clusters independently in each panel.\n"
         "Grey denotes an unclustered point.\n"
-        "The same directed KNN graph is reused by every vote model.",
+        "The same KNN graph and outgoing vote budget are reused by every model.",
         va="top",
         fontsize=11,
         linespacing=1.5,
@@ -297,8 +322,15 @@ def _k_evolution_figure(
             result.labels,
             title=f"K={k}: {len(result.clusters)} clusters",
         )
-        layer_name = f"blobs_var_density_inv_r2_K{k}Cs{len(result.clusters)}.layer"
-        _write_layer(output_dir / "layers" / layer_name, X, y, result)
+        _write_unique_layer(
+            output_dir / "layers",
+            "blobs_var_density",
+            "inv_r2",
+            k,
+            X,
+            y,
+            result,
+        )
     fig.suptitle(
         "Variable-density blobs: inverse-square K-layer evolution",
         fontsize=15,

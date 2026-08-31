@@ -12,10 +12,14 @@ Regenerate the complete figure and benchmark package used by
 paper/round_trip_knn_nca_sn_vote_models.tex.
 
 Controlled vote-kernel comparison:
-  uniform   g(r) = 1
-  inv_r     g(r) = 1/r
-  inv_r2    g(r) = 1/r^2  (historical model)
-  sigmoid   S_{alpha,R}(r), alpha = 8
+  uniform   h(u) = 1
+  inv_r     h(u) = 1/u
+  inv_r2    h(u) = 1/u^2  (exactly the historical g(r)=1/r^2 model)
+  sigmoid   h(u) = 1/(1+exp(alpha*(u-1))), alpha = 8
+
+Here u=r/R_i.  Every source redistributes its historical vote budget
+B_i=sum_j 1/r_ij^2 according to h(u_ij)/sum_k h(u_ik).  This holds vote
+amplitude and inverse-square units fixed while comparing allocation shapes.
 
 The broader benchmark contains all four kernels without pruning.  The moons
 figure shows that comparison.  Swiss-roll renderings and the bridge-fraction
@@ -23,7 +27,8 @@ experiment remain supporting artifacts generated with the unpruned historical
 inv_r2 kernel, but are not manuscript figures.  The two critical native-pruning
 figures are separate three-panel mosaics: inv_r, inv_r2, and sigmoid on the
 variable-density blobs at K=8 and sparse bridge at K=6.
-Archived conceptual PDFs are copied, while the monochrome leadership graph and
+Archived conceptual PDFs are copied.  The directed KNN illustration is
+converted deterministically to monochrome, while the leadership graph and
 corrected rooted forest are rendered from their included Graphviz sources.
 
 The pipeline:
@@ -32,13 +37,16 @@ The pipeline:
   3. regenerates and validates the 840-row four-kernel benchmark;
   4. writes Matplotlib and GNUplot PNG/PDF figures and layer files;
   5. runs native baseline/pruned and three-kernel pruning comparisons;
-  6. packages the archived figures and renders the two Graphviz reconstructions.
+  6. compares pruned RTKNNC with DBSCAN and spectral clustering;
+  7. packages the archived figures, derives the monochrome KNN illustration,
+     and renders the two Graphviz reconstructions.
 
 Requirements:
   - run from anywhere inside the repository checkout;
   - an executable ./rtknnc built at the repository root;
   - Python dependencies available in the active environment;
-  - GNUplot, Graphviz (dot and neato), and pdftoppm available on PATH.
+  - GNUplot, Graphviz (dot and neato), pdftoppm, and ImageMagick convert
+    available on PATH.
 
 Recommended invocation from the repository root:
   conda run -n aniso-gnn bash tools/generate-article-figures.sh
@@ -159,11 +167,13 @@ scope_manifest="$output_dir/data/figure_scope.txt"
 {
     printf 'Compared vote models (%d): %s\n' \
         "${#vote_models[@]}" "${vote_models[*]}"
+    printf 'Vote protocol: per-source historical budget B_i=sum_j 1/r_ij^2 redistributed by normalised h(r_ij/R_i); inv_r2 is exactly historical.\n'
     printf 'Four-kernel unpruned benchmark; manuscript comparison figure: moons.\n'
     printf 'Unpruned single-kernel supporting artifacts (%s): Swiss roll and bridge-fraction transition; neither is a manuscript figure.\n' \
         "$historical_vote_model"
-    printf 'Native pruning mosaics: inv_r, inv_r2, and sigmoid on blobs K8 C5 and bridge K6 C3.\n'
-    printf 'Archived conceptual PDFs are copied; the monochrome leadership graph and corrected forest are rendered from Graphviz sources.\n'
+    printf 'Native pruning mosaics: budget-matched inv_r, historical inv_r2, and budget-matched sigmoid on blobs K8 C5 and bridge K6 C3.\n'
+    printf 'Oracle-envelope table: pruned inv_r2 RTKNNC, DBSCAN, and KNN spectral clustering on six labelled datasets.\n'
+    printf 'Archived conceptual PDFs are copied; the KNN graph is converted to monochrome and the leadership graph and corrected forest are rendered from Graphviz sources.\n'
 } > "$scope_manifest"
 
 python "$workspace/tools/plot-vote-model-clusters.py" \
@@ -186,6 +196,14 @@ python "$workspace/tools/generate-native-structural-pruning-figures.py" \
     --output-dir "$output_dir/experimental/structural_pruning" \
     --dpi 240
 
+python -m rtknnc.baseline_benchmark \
+    --workspace "$workspace" \
+    --dataset-dir "$input_stage" \
+    --fallback-dataset-dir "$input_stage" \
+    --executable "$workspace/rtknnc" \
+    --output-dir "$output_dir/experimental/baselines" \
+    --force
+
 mkdir -p "$output_dir/historical"
 for historical_pdf in \
     figure1_roundtrip_reverse_neighbor \
@@ -200,6 +218,15 @@ do
         "$output_dir/historical/$historical_pdf.pdf" \
         "$output_dir/historical/$historical_pdf"
 done
+
+# The archived KNN rendering contains red and blue edges whose historical
+# meaning is undocumented.  Taking the minimum RGB channel maps pure red,
+# pure blue, and black to black while preserving white and the antialiased
+# boundaries.  The original colour PDF and PNG remain in the archive package.
+convert \
+    "$output_dir/historical/fig_2018_knn_graph.png" \
+    -channel RGB -fx 'min(r,min(g,b))' \
+    "$output_dir/historical/fig_2018_knn_graph_black.png"
 
 # Reconstruct the rooted forest from the archived Graphviz leadership graph.
 # The new source restores vertex 6, which was present in the leadership graph
@@ -221,4 +248,5 @@ pdftoppm -png -r 180 -singlefile \
 printf 'Vote models compared: %s\n' "${vote_models[*]}"
 printf 'Single-model diagnostics use: %s\n' "$historical_vote_model"
 echo 'Native baseline/pruned evidence: experimental/structural_pruning/'
+echo 'RTKNNC/DBSCAN/spectral comparison: experimental/baselines/'
 echo "Article figures written to: $output_dir"

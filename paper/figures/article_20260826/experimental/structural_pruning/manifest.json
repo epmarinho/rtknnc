@@ -36,6 +36,9 @@
       "inv_r2",
       "sigmoid"
     ],
+    "source_vote_budget": "B_i=sum_j 1/r_ij^2",
+    "allocation": "B_i h(u_ij)/sum_k h(u_ik), u_ij=r_ij/R_i",
+    "historical_inv_r2_exact": true,
     "sigmoid_alpha": 8.0,
     "cases": [
       {

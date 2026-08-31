@@ -16,6 +16,7 @@ import csv
 import json
 import os
 import re
+import shlex
 import shutil
 import subprocess
 import tempfile
@@ -67,9 +68,9 @@ KERNEL_COMPARISON_CASES = (
 )
 
 KERNEL_LABELS = {
-    "inv_r": r"inverse-distance $g(r)=1/r$",
-    "inv_r2": r"inverse-square $g(r)=1/r^2$",
-    "sigmoid": r"local sigmoid $S_{\alpha,R}(r)$, $\alpha=8$",
+    "inv_r": r"budget-matched inverse $h(u)=1/u$",
+    "inv_r2": r"historical inverse-square $g(r)=1/r^2$",
+    "sigmoid": r"budget-matched sigmoid $h(u)=S_\alpha(u)$, $\alpha=8$",
 }
 
 
@@ -82,6 +83,8 @@ class NativeRun:
     accepted_splits: int
     removed_edges: int
     mean_visible_neighbors: float
+    vote_kernel: str
+    command: tuple[str, ...]
 
 
 def parse_arguments() -> argparse.Namespace:
@@ -219,10 +222,12 @@ def run_native(
         labels=labels,
         cluster_sizes=sizes,
         layer=layers[0],
-        log=completed.stdout,
+        log=f"$ {shlex.join(command)}\n{completed.stdout}",
         accepted_splits=len(decision_lines),
         removed_edges=removed_edges,
         mean_visible_neighbors=float(visibility_match.group(1)),
+        vote_kernel=vote_kernel,
+        command=tuple(command),
     )
 
 
@@ -329,6 +334,12 @@ def vote_kernel_comparison_figure(
     for axis, kernel in zip(axes, PRUNING_VOTE_KERNELS):
         result = results[kernel]
         baseline = baselines[kernel]
+        if result.vote_kernel != kernel or baseline.vote_kernel != kernel:
+            raise RuntimeError(
+                f"panel provenance mismatch for {dataset}, K={k}: "
+                f"dictionary key={kernel}, baseline={baseline.vote_kernel}, "
+                f"pruned={result.vote_kernel}"
+            )
         ari, nmi = metrics(reference, result.labels)
         visible_edges = round(
             baseline.mean_visible_neighbors * len(coordinates)
@@ -338,14 +349,14 @@ def vote_kernel_comparison_figure(
             coordinates,
             align_for_colours(result.labels, reference),
             (
-                f"{KERNEL_LABELS[kernel]}\n"
+                f"{KERNEL_LABELS[kernel]} [--vote-kernel {kernel}]\n"
                 f"C={len(result.cluster_sizes)}, ARI={ari:.5f}, NMI={nmi:.5f}\n"
                 rf"baseline $|E^{{vis}}|$={visible_edges:,}; "
                 f"cuts={result.removed_edges}"
             ),
         )
     figure.suptitle(
-        f"{DISPLAY_NAMES[dataset]} at K={k}: native pruning under three weighted kernels",
+        f"{DISPLAY_NAMES[dataset]} at K={k}: native pruning under three vote-allocation shapes",
         fontsize=14,
     )
     output_base = (
@@ -525,6 +536,8 @@ def main() -> int:
                         "removed_edges": pruned.removed_edges,
                         "baseline_mean_visible_neighbors": baseline.mean_visible_neighbors,
                         "native_python_baseline_exact": exact_regression,
+                        "baseline_command": shlex.join(baseline.command),
+                        "pruned_command": shlex.join(pruned.command),
                     }
                 )
 
@@ -582,19 +595,25 @@ def main() -> int:
 
     summary_path = output_dir / "native_structural_pruning_summary.csv"
     with summary_path.open("w", newline="", encoding="utf-8") as stream:
-        writer = csv.DictWriter(stream, fieldnames=list(summary_rows[0]))
+        writer = csv.DictWriter(
+            stream, fieldnames=list(summary_rows[0]), lineterminator="\n"
+        )
         writer.writeheader()
         writer.writerows(summary_rows)
 
     kernel_summary_path = output_dir / "native_pruning_vote_kernel_summary.csv"
     with kernel_summary_path.open("w", newline="", encoding="utf-8") as stream:
-        writer = csv.DictWriter(stream, fieldnames=list(kernel_rows[0]))
+        writer = csv.DictWriter(
+            stream, fieldnames=list(kernel_rows[0]), lineterminator="\n"
+        )
         writer.writeheader()
         writer.writerows(kernel_rows)
 
     pairwise_path = output_dir / "native_pruning_vote_kernel_pairwise.csv"
     with pairwise_path.open("w", newline="", encoding="utf-8") as stream:
-        writer = csv.DictWriter(stream, fieldnames=list(pairwise_rows[0]))
+        writer = csv.DictWriter(
+            stream, fieldnames=list(pairwise_rows[0]), lineterminator="\n"
+        )
         writer.writeheader()
         writer.writerows(pairwise_rows)
 
@@ -616,6 +635,9 @@ def main() -> int:
         ],
         "pruning_vote_kernel_comparison": {
             "kernels": list(PRUNING_VOTE_KERNELS),
+            "source_vote_budget": "B_i=sum_j 1/r_ij^2",
+            "allocation": "B_i h(u_ij)/sum_k h(u_ik), u_ij=r_ij/R_i",
+            "historical_inv_r2_exact": True,
             "sigmoid_alpha": 8.0,
             "cases": [
                 {"dataset": dataset, "K": k}

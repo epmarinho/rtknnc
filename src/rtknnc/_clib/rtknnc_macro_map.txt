@@ -1,0 +1,34 @@
+include/io-stuff.h:21:#ifdef _K_NN_GRAPH_
+include/io-stuff.h:22:#    undef _SHOW_LEADERSHIP_GRAPH_
+include/io-stuff.h:25:#endif
+include/io-stuff.h:26:#ifdef _SHOW_LEADERSHIP_GRAPH_
+include/io-stuff.h:27:#    undef _K_NN_GRAPH_
+include/io-stuff.h:30:#endif
+include/io-stuff.h:31:#ifdef _SHOW_TREE_
+include/io-stuff.h:32:#    undef _SHOW_LEADERSHIP_GRAPH_
+include/io-stuff.h:33:#    undef _K_NN_GRAPH_
+include/io-stuff.h:35:#endif
+include/io-stuff.h:36:#ifdef _WRITE_LABELED_DATASET_
+include/io-stuff.h:38:#    undef _SHOW_LEADERSHIP_GRAPH_
+include/io-stuff.h:39:#    undef _K_NN_GRAPH_
+include/io-stuff.h:40:#endif
+include/k-nn-topology.h:19://#define __ORIGINAL_ROUNDTRIP_CLUSTER_RECOGNITION__
+include/show-KNN-graph.h:5:#ifdef __GRAPHVIZ_OUTPUT_SYNTAX__
+include/show-KNN-graph.h:20:#endif                          //__GRAPHVIZ_OUTPUT_SYNTAX__
+include/macros.h:7:#define not !
+include/macros.h:8:#define max(x,y)            ( (x) > (y) ? (x) : (y) )
+include/macros.h:9:#define min(x,y)            ( (x) < (y) ? (x) : (y) )
+include/macros.h:10:#define nzmin(x,y)          ( (x) > 0 ? ( (x) < (y) ? (x) : (y) ) : (y) )
+include/constants.h:19:#define ROOT            0
+include/constants.h:24:#define INDEX 0
+include/constants.h:25:#define EHASH 1
+include/constants.h:26:#define IHASH 2
+include/constants.h:27:#define LEAF  3
+include/k-nn.h:44:#ifdef __GRAPHVIZ_OUTPUT_SYNTAX__
+include/k-nn.h:49:#endif
+include/hyperquadtree.h:17:#define ROOT  0
+include/hyperquadtree.h:18:#define HASHTBCOLS  4
+include/hyperquadtree.h:19:#define INDEX 0
+include/hyperquadtree.h:20:#define EHASH 1
+include/hyperquadtree.h:21:#define IHASH 2
+include/hyperquadtree.h:22:#define LEAF  3

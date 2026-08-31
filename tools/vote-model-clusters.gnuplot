@@ -123,13 +123,13 @@ do for [render_index=1:2] {
     set size noratio
     set xrange [0:1]
     set yrange [0:1]
-    set label 1 "Four kernels: uniform, inverse, inverse-square, and local sigmoid." \
+    set label 1 "Four budget-matched shapes; inverse-square remains historical." \
         at graph 0.04,0.78 left font ",13" textcolor rgb "#30343B"
     set label 2 "Colours identify clusters independently in each panel." \
         at graph 0.04,0.61 left font ",13" textcolor rgb "#30343B"
     set label 3 "Grey denotes an unclustered point." \
         at graph 0.04,0.44 left font ",13" textcolor rgb "#30343B"
-    set label 4 "The same directed KNN graph is used by every vote model." \
+    set label 4 "Every model uses the same KNN graph and source vote budget." \
         at graph 0.04,0.27 left font ",13" textcolor rgb "#30343B"
     plot NaN notitle
     unset label 1
