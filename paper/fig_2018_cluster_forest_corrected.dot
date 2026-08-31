@@ -1,0 +1,73 @@
+// Corrected Graphviz reconstruction of the rooted forest associated with
+// k=2-NN=16-leadership.eps.  The archived 2018 forest omitted vertex 6 even
+// though the leadership graph contains the edge 6 -> 9.  This reconstruction
+// restores that vertex.  All nodes and edges are intentionally monochrome
+// because the meaning of the archived red/blue convention is undocumented.
+graph leadership_forest {
+    graph [
+        rankdir=TB,
+        bgcolor="transparent",
+        margin=0.02,
+        pad=0.03,
+        nodesep=0.28,
+        ranksep=0.50,
+        outputorder=edgesfirst,
+        splines=line
+    ];
+
+    node [
+        label="\N",
+        fontname="Times-Roman",
+        fontsize=18,
+        fixedsize=true,
+        width=0.48,
+        height=0.48,
+        penwidth=1.6
+    ];
+    edge [penwidth=1.5];
+
+    // Roots are the more popular vertices of the reciprocal pairs 1 <-> 4
+    // and 8 <-> 9.  Double borders distinguish them from internal leaders.
+    B4 [label="4", color="#000000", shape=doublecircle];
+    R9 [label="9", color="#000000", shape=doublecircle];
+
+    B1  [label="1",  color="#000000", shape=circle];
+    R10 [label="10", color="#000000", shape=circle];
+    R11 [label="11", color="#000000", shape=circle];
+
+    B2  [label="2",  color="#000000", shape=box];
+    B3  [label="3",  color="#000000", shape=box];
+    B5  [label="5",  color="#000000", shape=box];
+    B6  [label="6",  color="#000000", shape=box];
+    B7  [label="7",  color="#000000", shape=box];
+    B8  [label="8",  color="#000000", shape=box];
+    R12 [label="12", color="#000000", shape=box];
+    R13 [label="13", color="#000000", shape=box];
+    R14 [label="14", color="#000000", shape=box];
+    R15 [label="15", color="#000000", shape=box];
+    R16 [label="16", color="#000000", shape=box];
+
+    { rank=same; B4; R9; }
+    { rank=same; B1; B2; B3; R10; R11; B5; B6; B8; R12; R13; R16; }
+    { rank=same; B7; R15; R14; }
+
+    B4 -- B1 [color="#000000"];
+    B4 -- B2 [color="#000000"];
+    B4 -- B3 [color="#000000"];
+    B1 -- B7 [color="#000000"];
+
+    R9 -- R10 [color="#000000"];
+    R9 -- R11 [color="#000000"];
+    R9 -- B5  [color="#000000"];
+    R9 -- B6  [color="#000000"];
+    R9 -- B8  [color="#000000"];
+    R9 -- R12 [color="#000000"];
+    R9 -- R13 [color="#000000"];
+    R9 -- R16 [color="#000000"];
+    R10 -- R15 [color="#000000"];
+    R11 -- R14 [color="#000000"];
+
+    // Invisible constraints keep both disconnected trees visually separate.
+    B4 -- R9  [style=invis, weight=20];
+    B3 -- R10 [style=invis, weight=20];
+}

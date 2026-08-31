@@ -1,0 +1,62 @@
+// Monochrome reconstruction of k=2-NN=16-leadership.eps.  Fixed positions
+// preserve the archived Graphviz layout while deliberately discarding its
+// undocumented red/blue colour convention.
+digraph leadership_graph {
+    graph [
+        layout=neato,
+        bgcolor="transparent",
+        margin=0.02,
+        pad=0.03,
+        outputorder=edgesfirst,
+        splines=true,
+        overlap=true
+    ];
+    node [
+        label="\N",
+        fontname="Times-Roman",
+        fontsize=18,
+        shape=circle,
+        fixedsize=true,
+        width=0.48,
+        height=0.48,
+        color="#000000",
+        penwidth=1.6,
+        pin=true
+    ];
+    edge [color="#000000", penwidth=1.5, arrowsize=0.75];
+
+    1  [pos="170,45!"];
+    2  [pos="20,72!"];
+    3  [pos="20,18!"];
+    4  [pos="96,45!"];
+    5  [pos="96,491!"];
+    6  [pos="96,437!"];
+    7  [pos="96,99!"];
+    8  [pos="242,325!"];
+    9  [pos="170,325!"];
+    10 [pos="96,268!"];
+    11 [pos="96,382!"];
+    12 [pos="96,325!"];
+    13 [pos="96,211!"];
+    14 [pos="20,382!"];
+    15 [pos="20,268!"];
+    16 [pos="96,154!"];
+
+    4 -> 1;
+    1 -> 4;
+    7 -> 1;
+    2 -> 4;
+    3 -> 4;
+
+    9 -> 8;
+    8 -> 9;
+    5 -> 9;
+    6 -> 9;
+    11 -> 9;
+    12 -> 9;
+    10 -> 9;
+    13 -> 9;
+    16 -> 9;
+    15 -> 10;
+    14 -> 11;
+}
