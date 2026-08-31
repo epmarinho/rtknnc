@@ -49,13 +49,16 @@
 /** Apply pseudo k-means to regroup unclustered (low connectivity refused) particles: **/
 #        define __RECLUSTER_BY_PSEUDO_KMEANS__
 #        ifdef __RECLUSTER_BY_PSEUDO_KMEANS__
+
 /** choose only one, or none, of the weighted distance method: **/
 // #            define __WEIGHTED_INV_SQRT_N_DISTANCE__
 // #            define __WEIGHTED_INV_N_DISTANCE__
+//           avoid conflicting definitions of the weighted distance methods:
 #            if defined(__WEIGHTED_INV_N_DISTANCE__) && defined(__WEIGHTED_INV_SQRT_N_DISTANCE__)
 #                undef __WEIGHTED_INV_N_DISTANCE__
 #                undef __WEIGHTED_INV_SQRT_N_DISTANCE__
 #            endif
+
 #        endif
 #    else
 #        undef __RECLUSTER_BY_PSEUDO_KMEANS__
