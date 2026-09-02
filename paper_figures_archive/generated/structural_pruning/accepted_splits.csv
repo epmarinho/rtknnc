@@ -1,0 +1,3 @@
+dataset,K,split,base_cluster_id,component_size,child_0,child_1,bic_1,bic_2,bic_3,bic_4,bic_gain_1_to_2,removed_edges
+blobs_var_density,8,1,0,799,424,375,4368.308337,3763.455231,3801.112895,3834.258920,604.853106,12
+bridge,6,1,0,1106,900,206,6312.355489,4808.419148,4853.594879,4899.751257,1503.936342,13

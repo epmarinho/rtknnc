@@ -1,0 +1,8 @@
+Compared vote models (4): uniform inv_r inv_r2 sigmoid
+Vote protocol: per-source historical budget B_i=sum_j 1/r_ij^2 redistributed by normalised h(r_ij/R_i); inv_r2 is exactly historical.
+Four-kernel unpruned benchmark; manuscript comparison figure: moons.
+Unpruned single-kernel supporting artifacts (inv_r2): Swiss roll and bridge-fraction transition; neither is a manuscript figure.
+Native pruning mosaics: budget-matched inv_r, historical inv_r2, and budget-matched sigmoid on blobs K8 C5 and bridge K6 C3.
+Multiscale figure: independent inv_r2 K=2..16 layers, with an exact-nesting gate for the K=5..8 transition forest.
+Oracle-envelope table: pruned inv_r2 RTKNNC, DBSCAN, and KNN spectral clustering on six labelled datasets.
+Archived conceptual PDFs are copied; the KNN graph is converted to monochrome and the leadership graph and corrected forest are rendered from Graphviz sources.

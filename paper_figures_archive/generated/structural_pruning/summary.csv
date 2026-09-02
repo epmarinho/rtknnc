@@ -1,0 +1,9 @@
+dataset,input,n_points,dimension,K,reference_clusters,base_clusters,base_noise,base_ari,base_nmi,pruned_clusters,pruned_noise,pruned_ari,pruned_nmi,accepted_splits,removed_edges
+anisotropic,/home/emarinho/workspace/programs/rtknnc/csv/synthetic/anisotropic.csv,2000,2,8,3,3,0,1.000000000,1.000000000,3,0,1.000000000,1.000000000,0,0
+blobs,/home/emarinho/workspace/programs/rtknnc/csv/benchmarks/blobs.csv,2000,2,7,4,4,0,1.000000000,1.000000000,4,0,1.000000000,1.000000000,0,0
+blobs_var_density,/home/emarinho/workspace/programs/rtknnc/csv/synthetic/blobs_var_density.csv,2000,2,8,5,4,0,0.781653529,0.903498620,5,0,0.962651024,0.961409293,1,12
+bridge,/home/emarinho/workspace/programs/rtknnc/csv/synthetic/bridge.csv,2000,2,6,3,2,0,0.808291242,0.818238571,3,0,0.984222004,0.959601588,1,13
+circles,/home/emarinho/workspace/programs/rtknnc/csv/synthetic/circles.csv,2000,2,7,2,2,0,1.000000000,1.000000000,2,0,1.000000000,1.000000000,0,0
+moons,/home/emarinho/workspace/programs/rtknnc/csv/synthetic/moons.csv,2000,2,10,2,2,0,1.000000000,1.000000000,2,0,1.000000000,1.000000000,0,0
+swiss_roll,/home/emarinho/workspace/programs/rtknnc/csv/synthetic/swiss_roll.csv,3000,3,4,6,156,0,0.152793998,0.513053068,156,0,0.152793998,0.513053068,0,0
+uniform,/home/emarinho/workspace/programs/rtknnc/csv/synthetic/uniform.csv,2000,2,7,0,1,0,,,1,0,,,0,0
