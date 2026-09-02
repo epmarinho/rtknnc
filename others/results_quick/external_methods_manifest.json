@@ -1,0 +1,183 @@
+{
+  "inputs": {
+    "anisotropic": {
+      "dimension": 2,
+      "feature_columns_only_during_fit": true,
+      "path": "csv/synthetic/anisotropic.csv",
+      "points": 2000,
+      "reference_classes": 3,
+      "sha256": "35a36a3c9352b4eb7eb246f9f09fd6a628621a53f03a4606ebe72d69aa238d86"
+    },
+    "blobs": {
+      "dimension": 2,
+      "feature_columns_only_during_fit": true,
+      "path": "csv/benchmarks/blobs.csv",
+      "points": 2000,
+      "reference_classes": 4,
+      "sha256": "77d79dba86401fb0f421825095d8dc457fafb22c2b4afd02d4536b25b05a8e6a"
+    },
+    "blobs_var_density": {
+      "dimension": 2,
+      "feature_columns_only_during_fit": true,
+      "path": "csv/synthetic/blobs_var_density.csv",
+      "points": 2000,
+      "reference_classes": 5,
+      "sha256": "65fa8cb515de5080e27698c1d1ddbc6b89c40bd8dc3975b77ce23149cd2a7deb"
+    },
+    "bridge": {
+      "dimension": 2,
+      "feature_columns_only_during_fit": true,
+      "path": "csv/synthetic/bridge.csv",
+      "points": 2000,
+      "reference_classes": 3,
+      "sha256": "8c8a68983d711b978acafe967421367fa6f72050873278ff52b80551b3dc32e5"
+    },
+    "circles": {
+      "dimension": 2,
+      "feature_columns_only_during_fit": true,
+      "path": "csv/synthetic/circles.csv",
+      "points": 2000,
+      "reference_classes": 2,
+      "sha256": "a3a4b9425ce9912e674372d35ea8177ee78f3ac04943465ebe84ed82e7ab5e3c"
+    },
+    "moons": {
+      "dimension": 2,
+      "feature_columns_only_during_fit": true,
+      "path": "csv/synthetic/moons.csv",
+      "points": 2000,
+      "reference_classes": 2,
+      "sha256": "1804ffacdad0ac82bcc545a604de218764e3cc93aadf2ec2146ebb9f382d76db"
+    }
+  },
+  "isolation": {
+    "executes_native_rtknnc": false,
+    "imports_rtknnc": false,
+    "output_namespace": "others/results_quick"
+  },
+  "methods": {
+    "agglomerative": {
+      "display_name": "Agglomerative",
+      "family": "hierarchical",
+      "uses_reference_class_count": true
+    },
+    "dbscan": {
+      "display_name": "DBSCAN",
+      "family": "density",
+      "uses_reference_class_count": false
+    },
+    "gaussian_mixture": {
+      "display_name": "Gaussian mixture",
+      "family": "mixture model",
+      "uses_reference_class_count": true
+    },
+    "hdbscan": {
+      "display_name": "HDBSCAN",
+      "family": "hierarchical density",
+      "uses_reference_class_count": false
+    },
+    "kmeans": {
+      "display_name": "K-means",
+      "family": "centroid",
+      "uses_reference_class_count": true
+    },
+    "optics": {
+      "display_name": "OPTICS",
+      "family": "density",
+      "uses_reference_class_count": false
+    },
+    "spectral": {
+      "display_name": "Spectral",
+      "family": "graph/spectral",
+      "uses_reference_class_count": true
+    }
+  },
+  "outputs": {
+    "complete_sweep": "external_methods_sweep.csv",
+    "complete_sweep_rows": 426,
+    "latex_rows": "external_methods_table_rows.tex",
+    "selected_labels": "external_methods_selected_labels.npz",
+    "selected_rows": "external_methods_best.csv",
+    "selected_rows_count": 42
+  },
+  "protocol": {
+    "configuration": {
+      "agglomerative_neighbors": [
+        null,
+        10
+      ],
+      "dbscan_min_samples": [
+        5,
+        10
+      ],
+      "dbscan_quantiles": [
+        0.02,
+        0.06260869565217392,
+        0.10521739130434783,
+        0.14782608695652175,
+        0.19043478260869565,
+        0.23304347826086955,
+        0.27565217391304353,
+        0.31826086956521743,
+        0.36086956521739133,
+        0.40347826086956523,
+        0.44608695652173913,
+        0.4886956521739131,
+        0.531304347826087,
+        0.5739130434782609,
+        0.6165217391304348,
+        0.6591304347826087,
+        0.7017391304347826,
+        0.7443478260869566,
+        0.7869565217391304,
+        0.8295652173913044,
+        0.8721739130434782,
+        0.9147826086956522,
+        0.9573913043478262,
+        1.0
+      ],
+      "hdbscan_min_cluster_size": [
+        10,
+        50
+      ],
+      "hdbscan_min_samples": [
+        null,
+        10
+      ],
+      "hdbscan_selection_method": [
+        "eom"
+      ],
+      "optics_min_cluster_size": [
+        0.025
+      ],
+      "optics_min_samples": [
+        5,
+        10
+      ],
+      "optics_xi": [
+        0.025,
+        0.05
+      ],
+      "spectral_neighbors": [
+        5,
+        10
+      ]
+    },
+    "noise_scoring": "label -1 is retained as a cluster for ARI/NMI",
+    "preprocessing": "none; every estimator receives the raw feature columns",
+    "profile": "quick",
+    "reference_labels_passed_to_fit": false,
+    "reference_labels_used_for_grid_selection": true,
+    "reference_labels_used_for_scoring": true,
+    "runtime_scope": "candidate fit/prediction; DBSCAN k-distance grid construction is excluded; OPTICS reports reachability fit plus Xi extraction for each candidate although the fit is reused during the sweep",
+    "selection_order": "maximum ARI, maximum NMI, fewer noise points, then first candidate in the declared grid"
+  },
+  "purpose": "external-method labelled oracle envelope; not an unsupervised deployment selector and not an RTKNNC execution",
+  "schema_version": 1,
+  "software": {
+    "benchmark_script_sha256": "c125f13c0eac5c18d025e0bf905878cc3d6cd35b4ddc966bae77af7431f7d235",
+    "numpy": "2.5.2",
+    "python": "3.12.13",
+    "scikit_learn": "1.9.0",
+    "scipy": "1.18.0"
+  }
+}

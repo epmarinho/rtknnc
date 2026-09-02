@@ -1,7 +1,0 @@
-dataset,dataset_id,K,n_points,dimension,reference_clusters,baseline_clusters,baseline_sizes,baseline_ari,baseline_nmi,pruned_clusters,pruned_sizes,pruned_ari,pruned_nmi,accepted_splits,removed_edges,mean_visible_neighbors
-Variable-density blobs,blobs_var_density,8,2000,2,5,4,"[400, 400, 401, 799]",0.7816535287477687,0.9034986201736713,5,"[375, 400, 400, 401, 424]",0.9626510240665552,0.9614092928848869,1,12,4.6825
-Sparse bridge,bridge,6,2000,2,3,2,"[894, 1106]",0.8082912417504108,0.8182385712164525,3,"[205, 894, 901]",0.9853488796948793,0.9621156216904598,1,10,3.464
-Sparse bridge,bridge,10,2000,2,3,1,[2000],0.0,0.0,3,"[206, 894, 900]",0.9864618605832002,0.9646378786582904,1,32,5.917
-Circles,circles,7,2000,2,2,2,"[1000, 1000]",1.0,1.0,2,"[1000, 1000]",1.0,1.0,0,0,4.0735
-Two moons,moons,10,2000,2,2,2,"[1000, 1000]",1.0,1.0,2,"[1000, 1000]",1.0,1.0,0,0,5.8735
-Anisotropic blobs,anisotropic,8,2000,2,3,3,"[666, 667, 667]",1.0,0.9999999999999998,3,"[666, 667, 667]",1.0,0.9999999999999998,0,0,4.6895

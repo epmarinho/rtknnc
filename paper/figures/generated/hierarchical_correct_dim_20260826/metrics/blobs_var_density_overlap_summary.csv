@@ -1,6 +1,0 @@
-src_k,dst_k,src_clusters,dst_clusters,best_links,mean_src_coverage,min_src_coverage,perfect_src_coverage,perfect_src_percent,mean_dst_coverage,mean_jaccard,split_sources,merge_destinations,total_overlap,total_src_points
-2,3,577,261,577,1,1,577,100,0.45233969,0.45233969,0,142,2000,2000
-3,4,261,88,261,1,1,261,100,0.33716475,0.33716475,0,37,2000,2000
-4,5,88,13,88,1,1,88,100,0.14772727,0.14772727,0,7,2000,2000
-5,6,13,5,13,1,1,13,100,0.38461538,0.38461538,0,3,2000,2000
-6,8,5,4,5,1,1,5,100,0.8,0.8,0,1,2000,2000

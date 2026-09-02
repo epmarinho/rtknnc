@@ -1,0 +1,57 @@
+{
+  "input_compatibility": {
+    "all_equal": true,
+    "datasets": [
+      "anisotropic",
+      "blobs",
+      "blobs_var_density",
+      "bridge",
+      "circles",
+      "moons"
+    ],
+    "verified_fields": [
+      "sha256",
+      "points",
+      "dimension",
+      "reference_classes"
+    ]
+  },
+  "method_order": [
+    "rtknnc",
+    "agglomerative",
+    "kmeans",
+    "gaussian_mixture",
+    "dbscan",
+    "optics",
+    "spectral",
+    "hdbscan"
+  ],
+  "outputs": {
+    "best_csv": "all_methods_best.csv",
+    "long_latex_rows": "all_methods_long_table_rows.tex",
+    "manuscript_table": "paper/figures/article_20260826/experimental/baselines/all_methods_table.tex",
+    "wide_latex_table": "all_methods_table.tex"
+  },
+  "purpose": "provenance-checked RTKNNC plus external-method comparison",
+  "rows": 48,
+  "schema_version": 1,
+  "sources": {
+    "RTKNNC+pruning": {
+      "best_csv": "paper/figures/article_20260826/experimental/baselines/clustering_baseline_best.csv",
+      "best_csv_sha256": "c1e827ac0a9b551412f909dce077e4a46ff8fc01cde083c1fcf1236604101af7",
+      "kind": "proposed method; native C result package",
+      "manifest": "paper/figures/article_20260826/experimental/baselines/clustering_baseline_manifest.json",
+      "manifest_sha256": "ea96d2d2322a736560c76a757be72691ef5eb4df1be330c245de467ddb7d546f",
+      "reference_labels_used_for_grid_selection": true,
+      "uses_reference_class_count": false
+    },
+    "external_methods": {
+      "best_csv": "others/results/external_methods_best.csv",
+      "best_csv_sha256": "48267758a15cc45e6a8e15e34b7544f6a8692cb1f455832f28faa66d4fba453d",
+      "kind": "scikit-learn estimators; no RTKNNC execution",
+      "manifest": "others/results/external_methods_manifest.json",
+      "manifest_sha256": "45e9498f42760332f8cff5d079135de4e7576011ce6194742c89e63a3aa4dbfd",
+      "profile": "paper"
+    }
+  }
+}

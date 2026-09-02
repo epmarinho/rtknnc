@@ -27,18 +27,24 @@ experiment remain supporting artifacts generated with the unpruned historical
 inv_r2 kernel, but are not manuscript figures.  The two critical native-pruning
 figures are separate three-panel mosaics: inv_r, inv_r2, and sigmoid on the
 variable-density blobs at K=8 and sparse bridge at K=6.
-Archived conceptual PDFs are copied.  The directed KNN illustration is
-converted deterministically to monochrome, while the leadership graph and
-corrected rooted forest are rendered from their included Graphviz sources.
+The multiscale manuscript figure recomputes the independent inverse-square
+layers for K=2,...,16, validates them against the benchmark, and renders the
+merge-only K=5,...,8 transition forest after checking exact nesting.
+The recursive round-trip diagram is regenerated from its Matplotlib source.
+Archived directed-KNN, leadership, and tree PDFs are copied; the directed KNN
+illustration is converted deterministically to monochrome, while the
+leadership graph and corrected rooted forest are rendered from their included
+Graphviz sources.
 
 The pipeline:
   1. records SHA-256 hashes for the eight input datasets;
   2. runs the mandatory 8-dataset x 15-K C--Python inv_r2 regression;
   3. regenerates and validates the 840-row four-kernel benchmark;
   4. writes Matplotlib and GNUplot PNG/PDF figures and layer files;
-  5. runs native baseline/pruned and three-kernel pruning comparisons;
-  6. compares pruned RTKNNC with DBSCAN and spectral clustering;
-  7. packages the archived figures, derives the monochrome KNN illustration,
+  5. validates and renders the independent-K multiscale transition forest;
+  6. runs native baseline/pruned and three-kernel pruning comparisons;
+  7. compares pruned RTKNNC with DBSCAN and spectral clustering;
+  8. packages the archived figures, derives the monochrome KNN illustration,
      and renders the two Graphviz reconstructions.
 
 Requirements:
@@ -172,8 +178,9 @@ scope_manifest="$output_dir/data/figure_scope.txt"
     printf 'Unpruned single-kernel supporting artifacts (%s): Swiss roll and bridge-fraction transition; neither is a manuscript figure.\n' \
         "$historical_vote_model"
     printf 'Native pruning mosaics: budget-matched inv_r, historical inv_r2, and budget-matched sigmoid on blobs K8 C5 and bridge K6 C3.\n'
+    printf 'Multiscale figure: independent inv_r2 K=2..16 layers, with an exact-nesting gate for the K=5..8 transition forest.\n'
     printf 'Oracle-envelope table: pruned inv_r2 RTKNNC, DBSCAN, and KNN spectral clustering on six labelled datasets.\n'
-    printf 'Archived conceptual PDFs are copied; the KNN graph is converted to monochrome and the leadership graph and corrected forest are rendered from Graphviz sources.\n'
+    printf 'The recursive round-trip diagram is regenerated; archived graph figures are copied, with the KNN graph converted to monochrome and the leadership graph and corrected forest rendered from Graphviz sources.\n'
 } > "$scope_manifest"
 
 python "$workspace/tools/plot-vote-model-clusters.py" \
@@ -181,6 +188,12 @@ python "$workspace/tools/plot-vote-model-clusters.py" \
     --dataset-dir "$input_stage" \
     --benchmark-csv "$benchmark_csv" \
     --output-dir "$output_dir/experimental" \
+    --dpi 240
+
+python "$workspace/tools/generate-multiscale-figure.py" \
+    --dataset-csv "$input_stage/blobs_var_density.csv" \
+    --benchmark-csv "$benchmark_csv" \
+    --output-dir "$output_dir/experimental/multiscale" \
     --dpi 240
 
 python "$workspace/tools/render-vote-model-gnuplot.py" \
@@ -205,8 +218,12 @@ python -m rtknnc.baseline_benchmark \
     --force
 
 mkdir -p "$output_dir/historical"
+
+python "$workspace/tools/generate-roundtrip-recursion-figure.py" \
+    --output-base "$output_dir/historical/figure1_roundtrip_reverse_neighbor" \
+    --dpi 240
+
 for historical_pdf in \
-    figure1_roundtrip_reverse_neighbor \
     fig_2018_knn_graph \
     fig_2018_leadership_graph \
     fig_2018_cluster_tree
@@ -248,5 +265,6 @@ pdftoppm -png -r 180 -singlefile \
 printf 'Vote models compared: %s\n' "${vote_models[*]}"
 printf 'Single-model diagnostics use: %s\n' "$historical_vote_model"
 echo 'Native baseline/pruned evidence: experimental/structural_pruning/'
+echo 'Multiscale transition evidence: experimental/multiscale/'
 echo 'RTKNNC/DBSCAN/spectral comparison: experimental/baselines/'
 echo "Article figures written to: $output_dir"

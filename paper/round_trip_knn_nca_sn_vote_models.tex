@@ -49,6 +49,7 @@
 {figures/article_20260826/historical/}%
 {figures/article_20260826/experimental/}%
 {figures/article_20260826/experimental/structural_pruning/}%
+{figures/article_20260826/experimental/multiscale/}%
 {figures/article_20260826/experimental/gnuplot/}}
 
 \begin{document}
@@ -64,7 +65,7 @@
 \orgaddress{\street{Av. 24-A, 1515}, \city{Rio Claro}, \state{S\~ao Paulo}, \country{Brazil}}}
 
 \abstract{
-We introduce a graph-based clustering formulation based on recursive, popularity-modulated, visibility-filtered round-trip closure on directed $k$-nearest-neighbour graphs, together with an optional label-free structural-pruning stage for overly connected closures. Incoming links contribute to popularity through a vote kernel, and popularity modulates a local visibility threshold in the squared-distance units used by the C implementation. We compare uniform, inverse-distance, inverse-square, and local sigmoid allocation shapes after matching every source point's outgoing vote mass to its historical inverse-square budget, while holding the unpruned closure pipeline fixed. As a software regression gate, the historical inverse-square model produced identical C and Python partitions in all 120 comparisons over eight datasets and $K=2,\ldots,16$; the subsequent kernel sweep produced 840 observations. Across 210 dataset--scale configurations, the cluster count depended on the kernel in 60 cases and the mean visible degree in all 210. The native pruning stage standardises each sufficiently large closure, compares one- through four-component diagonal Gaussian mixtures by BIC, retains only strongly supported two- or three-child graph-coherent splits, and removes their crossing visible connections. At $K=8$, it changes the variable-density result from four clusters and ARI $0.7817$ to five clusters and ARI $0.9627$. On the sparse bridge it raises ARI from $0.8083$ to $0.9853$ at $K=6$ and from $0$ to $0.9865$ at $K=10$, while leaving three already correct controls unchanged at ARI $1$. A native sensitivity check further shows that inverse-distance, inverse-square, and sigmoid allocation shapes all retain the five-cluster blobs and three-cluster bridge results; the six corresponding unpruned C partitions agree pointwise with the Python kernel definitions. Against label-selected DBSCAN and KNN spectral baselines on six discrete datasets, pruned RTKNNC ties the perfect ARI on four controls and obtains the best ARI on variable-density blobs ($0.9627$ versus $0.9569$ and $0.7916$) and the sparse bridge ($0.9865$ versus $0.9487$ and $0.8140$), where the competing values are spectral and DBSCAN, respectively. These results separate vote allocation, connectivity closure, and post-closure structural correction within one reproducible graph pipeline.
+We introduce a graph-based clustering formulation based on recursive, popularity-modulated, visibility-filtered round-trip closure on directed $k$-nearest-neighbour graphs, together with an optional label-free structural-pruning stage for overly connected closures. Incoming links contribute to popularity through a vote kernel, and popularity modulates a local visibility threshold in the squared-distance units used by the C implementation. We compare uniform, inverse-distance, inverse-square, and local sigmoid allocation shapes after matching every source point's outgoing vote mass to its historical inverse-square budget, while holding the unpruned closure pipeline fixed. As a software regression gate, the historical inverse-square model produced identical C and Python partitions in all 120 comparisons over eight datasets and $K=2,\ldots,16$; the subsequent kernel sweep produced 840 observations. Across 210 dataset--scale configurations, the cluster count depended on the kernel in 60 cases and the mean visible degree in all 210. The native pruning stage standardises each sufficiently large closure, compares one- through four-component diagonal Gaussian mixtures by BIC, retains only strongly supported two- or three-child graph-coherent splits, and removes their crossing visible connections. At $K=8$, it changes the variable-density result from four clusters and ARI $0.7817$ to five clusters and ARI $0.9627$. On the sparse bridge it raises ARI from $0.8083$ to $0.9853$ at $K=6$ and from $0$ to $0.9865$ at $K=10$, while leaving three already correct controls unchanged at ARI $1$. A native sensitivity check further shows that inverse-distance, inverse-square, and sigmoid allocation shapes all retain the five-cluster blobs and three-cluster bridge results; the six corresponding unpruned C partitions agree pointwise with the Python kernel definitions. An oracle-envelope comparison with seven external methods shows that pruned RTKNNC ties the perfect ARI on the standard controls, nearly matches the best Gaussian-mixture result on variable-density blobs ($0.9627$ versus $0.9639$), and obtains the highest ARI on the sparse bridge ($0.9865$, versus $0.9831$ for the nearest competitor). These results separate vote allocation, connectivity closure, and post-closure structural correction within one reproducible graph pipeline.
 }
 
 \keywords{k-nearest-neighbour graph, graph-based clustering, reverse nearest neighbours, round-trip closure, vote kernel, reverse-neighbour popularity, visibility, structural pruning, Gaussian mixture, multiscale clustering}
@@ -103,7 +104,7 @@ The main contributions of this paper are as follows:
 \item a recursive closure process with an explicit saturation criterion;
 \item an optional native structural-pruning rule that accepts only BIC-supported two- or three-child partitions satisfying minimum-size and visible-graph coherence constraints;
 \item a $K$-layer representation for multiscale cluster evolution and an overlap-based diagnostic for studying cluster absorption and merging across $K$;
-\item exact C--Python software regression gates, a controlled four-kernel benchmark, native pruning-sensitivity experiments, and a reproducible comparison with DBSCAN and KNN spectral clustering.
+\item exact C--Python software regression gates, a controlled four-kernel benchmark, native pruning-sensitivity experiments, and a reproducible comparison with seven external clustering methods.
 \end{enumerate}
 
 \section{Related work}\label{sec:related}
@@ -121,6 +122,10 @@ A particularly close recent construction at the level of the popularity statisti
 \subsection{Density-based and spectral graph clustering}
 
 DBSCAN, OPTICS, and HDBSCAN define clusters through density connectivity and hierarchical density estimates \citep{Ester1996DBSCAN,Ankerst1999OPTICS,Campello2013HDBSCAN,CampelloMoulaviZimekSander2015}. Spectral clustering constructs a similarity graph and uses eigenvectors of the associated graph Laplacian to reveal cluster structure \citep{NgJordanWeiss2002,VonLuxburg2007}. The method proposed here is graph-based, but it is combinatorial and closure-driven: it does not require eigenvalue decomposition and it exposes a sequence of partitions as the neighbourhood size $K$ varies.
+The comparison also includes classical agglomerative clustering
+\citep{MurtaghContreras2012}, $k$-means \citep{Lloyd1982,MacQueen1967}, and
+Gaussian mixtures, using the scikit-learn implementations
+\citep{PedregosaEtAl2011}.
 
 \subsection{Clustering methods for astronomical synthetic data}
 
@@ -193,12 +198,28 @@ The reverse-neighbour set of $x_j$ is
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.88\linewidth]{figure1_roundtrip_reverse_neighbor.pdf}
-\caption{Operational round-trip step on a directed KNN graph. A point $x_i$ selects $x_j$ as one of its $K$ nearest neighbours. The selected neighbour $x_j$ then reveals its reverse-neighbour set, i.e., all points that also selected $x_j$ as one of their $K$ nearest neighbours.}
-\label{fig:roundtrip_reverse_neighbour}
+\includegraphics[width=\linewidth]{figure1_roundtrip_reverse_neighbor.pdf}
+\caption{Recursive round-trip exploration on a directed KNN graph. (a) A
+query point $q$ exposes its directed $K$-nearest-neighbour list and follows an
+admissible transition to $p$. (b) The recursive call makes $p$ the next query,
+so that $p$ exposes its own forward neighbours; the incoming purple edge
+indicates that visible reverse neighbours are explored by the same routine.
+(c) Every newly reached point becomes another query and the expansion repeats
+until the closure no longer changes. Solid coloured arrows are traversed
+transitions, whereas grey dashed arrows are KNN relations rejected by the
+visibility filter.}
+\label{fig:roundtrip_recursive_exploration}
 \end{figure}
 
-Figure~\ref{fig:roundtrip_reverse_neighbour} illustrates the elementary operation. The forward step is a standard KNN edge. The backward step is not a Euclidean displacement; it is a query to the reverse-neighbour set of the selected point. This operation is the basic mechanism underlying the method presented in this paper, and provides a graph-theoretic realisation of the reflective composition $T^{-1}\circ T$.
+Figure~\ref{fig:roundtrip_recursive_exploration} shows the execution rather
+than only a static reciprocal relation.  After $q$ reaches an admissible
+$p\in\calV_K^+(q)$, the call on $p$ exposes $p$'s own visible forward and
+backward adjacency.  Each accepted endpoint is passed to the same routine and
+therefore becomes a new query.  The ``return'' in the round trip is thus an
+adjacency revelation followed by recursive propagation, not a geometric
+displacement back to the original point.  The process terminates when a full
+pass adds no new vertices, producing the saturated closure defined in
+Section~\ref{sec:visibility_closure}.
 
 \begin{figure}[t]
 \centering
@@ -589,12 +610,48 @@ $K$ & clusters & ARI & NMI & unclustered\\
 4 & 99  & 0.2809 & 0.5716 & 0\\
 5 & 18  & 0.6661 & 0.8017 & 0\\
 6 & 6   & 0.7774 & 0.8941 & 0\\
+7 & 5   & 0.7805 & 0.8981 & 0\\
 8 & 4   & 0.7817 & 0.9035 & 0\\
 \bottomrule
 \end{tabular}
 \end{table}
 
-This diagnostic is different from inter-layer overlap. Inter-layer overlap is expected and informative; it describes how clusters from one scale are preserved, split, or absorbed at another scale.
+This diagnostic is different from inter-layer overlap. Inter-layer overlap is
+expected and informative; it describes how clusters from one scale are
+preserved, split, or absorbed at another scale.  Figure~\ref{fig:multiscale_transition}
+connects the numerical diagnostic to the actual $K$-layer transitions.  In the
+displayed $K=5,6,7,8$ sequence, every lower-$K$ cluster is contained completely
+in exactly one cluster at the next scale: the overlap audit finds zero splits,
+so this particular sequence admits a merge-only transition forest.  This is an
+observed property of this dataset and range, not an assumption that every
+RTKNNC layer sequence must be nested.
+
+The same pointwise audit shows that the unpruned partition at $K=8$ remains
+unchanged through $K=16$.  Nevertheless, internal stability is not equivalent
+to external correctness.  At $K=7$, the cluster count already equals the five
+reference classes, but ARI is only $0.7805$; at the tested-range saturation
+beginning at $K=8$, four components remain and ARI is $0.7817$.  The structural
+pruning experiment in Sect.~\ref{sec:structural_pruning_results} addresses this
+specific stable merger without using the reference labels.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{blobs_var_density_multiscale_transition.pdf}
+\caption{Multiscale evolution of the unpruned historical inverse-square model
+on the variable-density blobs.  Every layer is generated independently with
+$K_0=K$.  (a) The cluster count decreases from 595 microclusters at $K=2$ to
+four components at $K=8$ and is plotted on a logarithmic scale; the dashed
+line is the reference count $C^*=5$, used only for evaluation.  (b) ARI and
+NMI against the withheld reference labels.  The shaded interval marks the
+exactly unchanged partition from $K=8$ through the largest tested value,
+$K=16$.  (c) The merge-only transition forest over $K=5,6,7,8$.  Node and
+ribbon thicknesses encode point population and overlap count
+$W_{ab}^{(K,K')}$, respectively.  Colours identify the four lineages ending
+at $K=8$ and do not encode reference labels.  The equality $m_7=C^*$ without
+high ARI and the stable $m_K=4$ plateau demonstrate that cluster-count or
+partition stability alone does not guarantee recovery of latent classes.}
+\label{fig:multiscale_transition}
+\end{figure}
 
 \section{Scale, popularity, visibility, and saturation}\label{sec:scale}
 
@@ -657,38 +714,48 @@ each kernel, the C baseline must first match the corresponding Python
 partition pointwise; the same native mixture, BIC, size, coherence, and pruning
 parameters are then applied without retuning.
 
-\subsection{Two-baseline comparison protocol}
+\subsection{External-method comparison protocol}
 
 The final comparison uses the six datasets having nontrivial discrete
-references and two complementary methods: density-connected DBSCAN
-\citep{Ester1996DBSCAN} and KNN-affinity spectral clustering
-\citep{NgJordanWeiss2002,VonLuxburg2007}.  The uniform cloud has no reference
-partition, and the Swiss-roll bands are an artificial discretisation of a
-continuous manifold; both are therefore excluded from this table.  No
-method-specific standardisation is applied: all three methods receive the same
-raw feature columns.
+references and seven external methods: agglomerative clustering, $k$-means,
+Gaussian mixtures, DBSCAN, OPTICS, KNN-affinity spectral clustering, and
+HDBSCAN.  The uniform cloud has no reference partition, and the Swiss-roll
+bands are an artificial discretisation of a continuous manifold; both are
+therefore excluded from this table.  No method-specific standardisation is
+applied: every method receives the same raw feature columns.
 
 Structurally pruned RTKNNC uses the historical inverse-square vote and sweeps
-$K=2,\ldots,16$ in the native executable.  DBSCAN sweeps
-$m\in\{3,5,10,20\}$ for \texttt{min\_samples}.  For each $m$, let
-$d_i^{(m)}$ be the distance from $x_i$ to its $(m-1)$st proper neighbour,
+$K=2,\ldots,16$ in the native executable.  Agglomerative clustering evaluates
+Ward, complete, average, and single linkage, both without a connectivity
+constraint and with symmetric KNN connectivity at 5, 10, and 15 neighbours.
+$k$-means uses 20 initialisations; Gaussian mixtures use five initialisations
+under full, tied, diagonal, and spherical covariance models.  These three
+methods and spectral clustering receive the reference cluster count $C^*$.
+Spectral clustering uses KNN affinity with $k_g=2,\ldots,16$, ARPACK
+eigenvectors, and 20 label-assignment restarts at random seed zero.
+
+DBSCAN sweeps $m\in\{3,5,10,20\}$ for \texttt{min\_samples}.  For each $m$,
+let $d_i^{(m)}$ be the distance from $x_i$ to its $(m-1)$st proper neighbour,
 because DBSCAN counts the query point itself.  Its $\epsilon$ candidates are
 the 400 empirical quantiles of $\{d_i^{(m)}\}_{i=1}^N$ at
-$q=0.0025,0.005,\ldots,1$.  This label-free construction adapts the numerical
-grid to each dataset's coordinate scale.  Spectral clustering uses a
-symmetrised KNN affinity with $k_g=2,\ldots,16$, ARPACK eigenvectors, and
-20 k-means label-assignment restarts at random seed zero.  Unlike RTKNNC and
-DBSCAN, it is supplied with the reference cluster count $C^*$.
+$q=0.0025,0.005,\ldots,1$.  OPTICS combines the same four values of $m$ with
+$\xi\in\{0.01,0.025,0.05,0.1\}$ and minimum-cluster fractions
+$\{0.01,0.025,0.05\}$.  HDBSCAN combines minimum cluster sizes
+$\{5,10,20,50,100\}$, \texttt{min\_samples} in
+$\{\texttt{None},5,10,20\}$, and excess-of-mass or leaf selection.  These
+three density-based methods infer their reported cluster counts.
 
 For each method--dataset pair, the table reports the candidate with maximum
-ARI, then maximum NMI.  Remaining ties prefer smaller $K$ or $k_g$; DBSCAN
-then prefers fewer noise points, smaller $m$, and smaller $\epsilon$.  Thus,
-the result is explicitly a label-selected oracle envelope measuring what each
-fixed grid can represent, not a claim that ARI supplies an unsupervised
-deployment rule.  DBSCAN's noise identifier $-1$ participates in ARI and NMI
-as a predicted label; $\widehat C$ excludes it and $n_0$ reports its
-cardinality.  The complete 9,780-row sweep, selected rows, software versions,
-input hashes, and parameter manifest are generated with the article artifacts.
+ARI, then maximum NMI.  Remaining external-method ties prefer fewer noise
+points and then the first candidate in the declared grid; RTKNNC ties prefer
+smaller $K$.  Thus, the result is explicitly a label-selected oracle envelope
+measuring what each fixed grid can represent, not a claim that ARI supplies an
+unsupervised deployment rule.  A noise identifier $-1$ participates in ARI
+and NMI as a predicted label, while the reported cluster count excludes it.
+The comparison comprises 10,344 external fits and 90 RTKNNC fits.  Complete
+external sweeps, selected rows, raw selected labels, software versions, input
+hashes, and a provenance-checked table manifest accompany the article
+artifacts.
 
 \section{Vote-model benchmark results}\label{sec:vote_results}
 
@@ -867,58 +934,50 @@ pointwise against its Python kernel definition.}
 \label{fig:blobs_pruning_vote_kernels}
 \end{figure}
 
-\section{Comparison with DBSCAN and spectral clustering}
+\section{Comparison with external clustering methods}
 \label{sec:baseline_comparison}
 
-Table~\ref{tab:baseline_comparison} reports the oracle envelope defined in
-Sect.~\ref{sec:experimental_protocol}.  All three methods attain
+Table~\ref{tab:all_methods_comparison} reports the oracle envelope defined in
+Sect.~\ref{sec:experimental_protocol}.  RTKNNC attains
 ARI${}={}$NMI${}={}$1 on anisotropic blobs, equal-density blobs, circles, and
-two moons.  These controls therefore do not distinguish the methods once each
-receives its best grid candidate.
+two moons.  Several external methods tie these results, but the controls also
+expose their inductive biases: $k$-means and Gaussian mixtures fail on circles
+and two moons, whereas graph-, density-, and connectivity-constrained methods
+recover the non-convex partitions.  In particular, the degradation of
+$k$-means is expected rather than an implementation anomaly.  Its
+nearest-centroid assignment induces convex Voronoi cells, which cannot
+represent two concentric rings adequately and only approximates the curved,
+interleaving moons.  Consequently, it obtains ARI/NMI
+$-0.0004/0.0001$ on circles and $0.4800/0.3815$ on two moons.  This limitation
+persists even under the favourable protocol used here, in which $k$-means is
+given the reference cluster count $C^*=2$.
 
-The two connectivity-stress cases do.  On the variable-density blobs, RTKNNC
-returns the intended five clusters with ARI $0.9627$ and NMI $0.9614$.
-Spectral clustering, despite being supplied with $C^*=5$, reaches ARI $0.9569$
-and NMI $0.9581$.  DBSCAN reaches ARI $0.7916$ and NMI $0.8044$, while its
+The two connectivity-stress cases provide finer discrimination.  On the
+variable-density blobs, RTKNNC returns the intended five clusters with ARI
+$0.9627$ and NMI $0.9614$, narrowly below the full-covariance Gaussian-mixture
+result $0.9639/0.9636$.  Spectral clustering reaches $0.9569/0.9581$, while
+agglomerative clustering, $k$-means, OPTICS, and HDBSCAN obtain ARIs between
+$0.9052$ and $0.9306$.  DBSCAN reaches ARI $0.7916$ and NMI $0.8044$; its
 score-maximising candidate fragments the data into 15 clusters and marks 204
-points as noise.  On the sparse bridge, RTKNNC reaches ARI $0.9865$ and NMI
-$0.9632$, compared with $0.9487/0.8993$ for spectral clustering and
-$0.8140/0.7422$ for DBSCAN.  The selected DBSCAN bridge candidate similarly
-has 14 clusters and 116 noise points.  The RTKNNC bridge envelope selects
-$K=11$ by a marginal ARI advantage over $K=10$; the focused $K=6$ experiment
-remains useful because it isolates the earliest corrected three-component
-partition under the three vote kernels.
+points as noise.
 
-\begin{table*}[t]
-\caption{Best label-selected grid result for pruned RTKNNC, DBSCAN, and KNN
-spectral clustering.  Each score cell reports ARI/NMI; bold denotes the
-highest ARI in the row, including ties.  $m$ is DBSCAN's
-\texttt{min\_samples}, $k_g$ is the spectral affinity-neighbour count,
-$\widehat C$ excludes DBSCAN's noise label, and $n_0$ is its noise count.
-Spectral clustering receives $C^*$, whereas RTKNNC and DBSCAN do not.  These
-are oracle envelopes over the fixed grids, not label-free parameter-selection
-results.}
-\label{tab:baseline_comparison}
-\centering
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{lrll ll ll}
-\toprule
-& & \multicolumn{2}{c}{RTKNNC + pruning} &
-\multicolumn{2}{c}{DBSCAN} & \multicolumn{2}{c}{Spectral}\\
-dataset & $C^*$ & setting & ARI/NMI & setting & ARI/NMI & setting & ARI/NMI\\
-\midrule
-\input{figures/article_20260826/experimental/baselines/clustering_baseline_table_rows.tex}\\
-\bottomrule
-\end{tabular}%
-}
-\end{table*}
+On the sparse bridge, RTKNNC attains the highest score,
+$0.9865/0.9632$, followed closely by the full-covariance Gaussian mixture at
+$0.9831/0.9552$.  Spectral clustering reaches $0.9487/0.8993$, and the other
+external ARIs range from $0.6723$ to $0.9342$.  The RTKNNC bridge envelope
+selects $K=11$ by a marginal ARI advantage over $K=10$; the focused $K=6$
+experiment remains useful because it isolates the earliest corrected
+three-component partition under the three vote kernels.
 
-The comparison supports a narrower conclusion than universal superiority.
-It shows that the structural correction is competitive on the four standard
-controls and retains an advantage on the two synthetic structures for which
-visible connectivity is deliberately difficult.  Repeated stochastic
-realisations, higher-dimensional data, and a label-free parameter-selection
-study remain necessary.
+\input{figures/article_20260826/experimental/baselines/all_methods_table.tex}
+
+The comparison therefore supports competitiveness rather than universal
+superiority.  RTKNNC ties the best result on the standard controls, is within
+$0.0013$ ARI of the best variable-density result, and leads on the sparse
+bridge.  The fixed-count baselines have the advantage of receiving $C^*$,
+whereas RTKNNC and the three density-based methods do not.  Repeated
+stochastic realisations, higher-dimensional data, and a label-free
+parameter-selection study remain necessary.
 
 \section{Discussion}\label{sec:discussion}
 
@@ -1026,7 +1085,7 @@ The present study has several limitations:
     \item the pruning thresholds and diagonal-covariance family are fixed and have been evaluated here on six primary dataset--scale cases;
     \item overlapping latent classes may remain only approximately identifiable, and broader tests are needed to quantify false splits on curved, heavy-tailed, and high-dimensional data;
     \item the empirical runtime measurements are not a substitute for a formal complexity analysis;
-    \item the external comparison is restricted to DBSCAN and KNN spectral clustering on six two-dimensional datasets and uses reference labels to select each grid optimum; label-free selection, repeated realisations, and comparisons with SNN, mutual-KNN, and hierarchical-density methods remain open.
+    \item the external comparison uses one implementation and one deterministic realisation of six two-dimensional datasets; it uses reference labels to select every grid optimum and supplies $C^*$ to four fixed-count baselines, so label-free selection, repeated realisations, and comparisons with SNN and mutual-KNN methods remain open.
 \end{enumerate}
 
 \section{Conclusion}\label{sec:conclusion}
@@ -1046,16 +1105,15 @@ three already correct controls, whose ARI remained $1$.  At the two difficult
 reference scales, inverse-distance, inverse-square, and sigmoid voting all
 preserved the corrected cluster counts with essentially identical scores, and
 their six unpruned native partitions passed pointwise C--Python agreement.
-A 9,780-candidate oracle-envelope comparison then showed that pruned RTKNNC,
-DBSCAN, and KNN spectral clustering all recover the four control datasets
-perfectly, while RTKNNC attains the best ARI on the variable-density blobs
-($0.9627$) and sparse bridge ($0.9865$), including against spectral clustering
-given the reference cluster count.  These results show that vote weighting,
-visible connectivity, and structural correction are distinct experimental
-axes.  Broader replication is still required for the fixed pruning
-thresholds, high-dimensional data, alternative covariance models, label-free
-scale selection, and additional graph-based and hierarchical-density
-baselines.
+A 10,434-candidate oracle-envelope comparison with seven external methods then
+showed that pruned RTKNNC ties the perfect result on the standard controls,
+nearly matches the best variable-density result ($0.9627$ versus $0.9639$ for
+a full-covariance Gaussian mixture), and attains the highest sparse-bridge ARI
+($0.9865$).  These results show that vote weighting, visible connectivity, and
+structural correction are distinct experimental axes.  Broader replication is
+still required for the fixed pruning thresholds, high-dimensional data,
+alternative covariance models, label-free scale selection, and additional
+graph-based baselines.
 
 \backmatter
 

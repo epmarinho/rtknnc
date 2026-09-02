@@ -1,0 +1,23 @@
+\begin{table*}[t]
+\caption{Best label-selected grid result for structurally pruned RTKNNC and
+external clustering methods. Each cell reports ARI/NMI; bold denotes the
+highest ARI in the row, including ties. Methods marked $\dagger$ receive the
+reference cluster count $C^*$; the others do not. Reference labels are used
+only for scoring and oracle selection, never as clustering features.}
+\label{tab:all_methods_comparison}
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lc*{8}{c}}
+\toprule
+dataset & $C^*$ & RTKNNC & Agglom.$^\dagger$ & K-means$^\dagger$ & GMM$^\dagger$ & DBSCAN & OPTICS & Spectral$^\dagger$ & HDBSCAN \\
+\midrule
+Anisotropic & 3 & \textbf{1.0000/1.0000} & \textbf{1.0000/1.0000} & \textbf{1.0000/1.0000} & \textbf{1.0000/1.0000} & \textbf{1.0000/1.0000} & \textbf{1.0000/1.0000} & \textbf{1.0000/1.0000} & \textbf{1.0000/1.0000} \\
+Equal-density blobs & 4 & \textbf{1.0000/1.0000} & \textbf{1.0000/1.0000} & \textbf{1.0000/1.0000} & \textbf{1.0000/1.0000} & \textbf{1.0000/1.0000} & 0.9987/0.9977 & \textbf{1.0000/1.0000} & 0.9940/0.9902 \\
+Variable-density blobs & 5 & 0.9627/0.9614 & 0.9306/0.9444 & 0.9189/0.9338 & \textbf{0.9639/0.9636} & 0.7916/0.8044 & 0.9266/0.9262 & 0.9569/0.9581 & 0.9052/0.9075 \\
+Sparse bridge & 3 & \textbf{0.9865/0.9632} & 0.9153/0.8580 & 0.9342/0.8780 & 0.9831/0.9552 & 0.8140/0.7422 & 0.6723/0.6491 & 0.9487/0.8993 & 0.8641/0.7828 \\
+Circles & 2 & \textbf{1.0000/1.0000} & \textbf{1.0000/1.0000} & -0.0004/0.0001 & -0.0004/0.0001 & \textbf{1.0000/1.0000} & \textbf{1.0000/1.0000} & \textbf{1.0000/1.0000} & \textbf{1.0000/1.0000} \\
+Two moons & 2 & \textbf{1.0000/1.0000} & \textbf{1.0000/1.0000} & 0.4800/0.3815 & 0.5096/0.4080 & \textbf{1.0000/1.0000} & 0.9990/0.9972 & \textbf{1.0000/1.0000} & \textbf{1.0000/1.0000} \\
+\bottomrule
+\end{tabular}%
+}
+\end{table*}
