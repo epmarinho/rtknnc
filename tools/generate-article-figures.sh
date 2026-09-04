@@ -30,7 +30,6 @@ variable-density blobs at K=8 and sparse bridge at K=6.
 The multiscale manuscript figure recomputes the independent inverse-square
 layers for K=2,...,16, validates them against the benchmark, and renders the
 merge-only K=5,...,8 transition forest after checking exact nesting.
-The recursive round-trip diagram is regenerated from its Matplotlib source.
 Archived directed-KNN, leadership, and tree PDFs are copied; the directed KNN
 illustration is converted deterministically to monochrome, while the
 leadership graph and corrected rooted forest are rendered from their included
@@ -180,7 +179,7 @@ scope_manifest="$output_dir/data/figure_scope.txt"
     printf 'Native pruning mosaics: budget-matched inv_r, historical inv_r2, and budget-matched sigmoid on blobs K8 C5 and bridge K6 C3.\n'
     printf 'Multiscale figure: independent inv_r2 K=2..16 layers, with an exact-nesting gate for the K=5..8 transition forest.\n'
     printf 'Oracle-envelope table: pruned inv_r2 RTKNNC, DBSCAN, and KNN spectral clustering on six labelled datasets.\n'
-    printf 'The recursive round-trip diagram is regenerated; archived graph figures are copied, with the KNN graph converted to monochrome and the leadership graph and corrected forest rendered from Graphviz sources.\n'
+    printf 'Archived graph figures are copied, with the KNN graph converted to monochrome and the leadership graph and corrected forest rendered from Graphviz sources.\n'
 } > "$scope_manifest"
 
 python "$workspace/tools/plot-vote-model-clusters.py" \
@@ -218,10 +217,6 @@ python -m rtknnc.baseline_benchmark \
     --force
 
 mkdir -p "$output_dir/historical"
-
-python "$workspace/tools/generate-roundtrip-recursion-figure.py" \
-    --output-base "$output_dir/historical/figure1_roundtrip_reverse_neighbor" \
-    --dpi 240
 
 for historical_pdf in \
     fig_2018_knn_graph \

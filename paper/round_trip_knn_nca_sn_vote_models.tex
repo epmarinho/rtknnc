@@ -91,7 +91,7 @@ Recent work on KNNG-CS likewise uses distance-weighted incoming votes on a direc
 
 The novelty of the proposed method is not the isolated use of KNN graphs, reverse-neighbour sets, reverse-neighbour counts, or shared-neighbour evidence. These components are well established in the nearest-neighbour clustering literature. The contribution lies in their organisation into a recursive round-trip closure operator on directed KNN graphs, constrained by a popularity-modulated visibility rule and followed by singleton rejection. The optional enhancement then combines leadership-seeded mixture evidence with visible-graph coherence to prevent a small number of cross-structure connections from dominating the final partition. The resulting $K$-layer sequence provides a multiscale description of cluster formation, absorption, splitting, and merging without relying on a classical linkage criterion.
 
-In this sense, the method is best understood as an algorithmic and topological construction. It does not reduce to a weighted voting rule or to a particular distance-based weight. The vote kernel is one parameterisation of the popularity mechanism inside a larger operator whose central object is the dynamics induced on the directed KNN graph: forward-neighbour selection, reverse-neighbour retrieval, popularity-modulated visibility filtering, recursive expansion, optional structural pruning, singleton rejection, and saturation.
+In this sense, the method is best understood as an algorithmic and topological construction. It does not reduce to a weighted voting rule or to a particular distance-based weight. The vote kernel is one parametrisation of the popularity mechanism inside a larger operator whose central object is the dynamics induced on the directed KNN graph: forward-neighbour selection, reverse-neighbour retrieval, popularity-modulated visibility filtering, recursive expansion, optional structural pruning, singleton rejection, and saturation.
 
 \subsection{Main contributions}
 
@@ -198,40 +198,14 @@ The reverse-neighbour set of $x_j$ is
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\linewidth]{figure1_roundtrip_reverse_neighbor.pdf}
-\caption{Recursive round-trip exploration on a directed KNN graph. (a) A
-query point $q$ exposes its directed $K$-nearest-neighbour list and follows an
-admissible transition to $p$. (b) The recursive call makes $p$ the next query,
-so that $p$ exposes its own forward neighbours; the incoming purple edge
-indicates that visible reverse neighbours are explored by the same routine.
-(c) Every newly reached point becomes another query and the expansion repeats
-until the closure no longer changes. Solid coloured arrows are traversed
-transitions, whereas grey dashed arrows are KNN relations rejected by the
-visibility filter.}
-\label{fig:roundtrip_recursive_exploration}
-\end{figure}
-
-Figure~\ref{fig:roundtrip_recursive_exploration} shows the execution rather
-than only a static reciprocal relation.  After $q$ reaches an admissible
-$p\in\calV_K^+(q)$, the call on $p$ exposes $p$'s own visible forward and
-backward adjacency.  Each accepted endpoint is passed to the same routine and
-therefore becomes a new query.  The ``return'' in the round trip is thus an
-adjacency revelation followed by recursive propagation, not a geometric
-displacement back to the original point.  The process terminates when a full
-pass adds no new vertices, producing the saturated closure defined in
-Section~\ref{sec:visibility_closure}.
-
-\begin{figure}[t]
-\centering
 \includegraphics[width=0.78\linewidth]{fig_2018_knn_graph_black.png}
-\caption{Example of a directed KNN graph used to illustrate the proposed
-mechanism.  Edges represent nearest-neighbour choices and arrowheads encode
-their direction.  Nodes and edges are drawn uniformly in black because the
-red/blue convention in the archived rendering is undocumented and is not used
-algorithmically.  The same graph supports reverse-neighbour retrieval and
-visibility-filtered round-trip expansion.}
-\label{fig:KNN_graph_2018}
-\end{figure}
+\caption{Example of a directed KNN graph with $K=2$, used to illustrate the
+proposed mechanism. Arrows represent directed nearest-neighbour choices. The
+graph encodes neighbourhood connectivity, but its abstract layout does not
+reproduce the spatial morphology of the original point distribution. Metric
+distances are stored as edge attributes and are not represented by the drawn
+edge lengths. The same graph supports reverse-neighbour retrieval and
+visibility-filtered round-trip expansion.}\end{figure}
 
 The historical prototype also organised local popularity preferences into a
 leadership graph and then converted each of its weakly connected components
@@ -334,12 +308,17 @@ g_{i,h}(x_j)=B_K(x_i)
 {\displaystyle\sum_{x_k\in\calN_K^+(x_i)}h(u_{ik})}.
 \label{eq:budget_matched_vote}
 \end{equation}
-Thus $\sum_j g_{i,h}(x_j)=B_K(x_i)$ for every model, and the incoming popularity of $x_j$ is
+Thus $\sum_j g_{i,h}(x_j)=B_K(x_i)$ for every model.  For a fixed
+allocation shape $h$, let $g_h=\{g_{i,h}\}_{i=1}^{N}$ denote the resulting
+vote model; when the selected shape is clear, we write $g=g_h$.  The incoming
+popularity of $x_j$ under that model is
 \begin{equation}
 P_{K,g}(x_j)=
 \sum_{x_i:\,x_j\in\calN_K^+(x_i)}g_{i,h}(x_j).
 \label{eq:reverse_popularity}
 \end{equation}
+Thus, $P_{K,g}(x_j)$ is a kernel-weighted in-degree: it accumulates the
+votes received by $x_j$ along its incoming KNN edges.
 For $h(u)=1/u^2$, Eq.~\eqref{eq:budget_matched_vote} reduces algebraically to the historical edge vote,
 \begin{equation}
 g_{i,\mathrm{inv}\_r2}(x_j)
@@ -352,7 +331,8 @@ The implementation uses this final expression directly for the inverse-square br
 
 \subsection{RMS visibility in squared-distance units}
 
-The unmodulated visibility threshold is the RMS of the stored squared distances,
+The base, or unmodulated, visibility threshold depends only on the outgoing
+KNN distances of $x_i$ and is the RMS of the stored squared distances,
 \begin{equation}
 V_{K,0}^{(2)}(x_i)=
 \left(
@@ -361,12 +341,18 @@ V_{K,0}^{(2)}(x_i)=
 \right)^{1/2}.
 \label{eq:rms_visibility_base}
 \end{equation}
+Here, the subscript $0$ denotes the absence of popularity modulation, rather
+than an additional vote model, and the superscript $(2)$ indicates
+squared-distance units.
 Popularity then produces the effective threshold
 \begin{equation}
 V_{K,g}^{(2)}(x_i)=V_{K,0}^{(2)}(x_i)
 \left(1+\frac{P_{K,g}(x_i)R_K^{(2)}(x_i)}{N}\right).
 \label{eq:popularity_modulated_visibility}
 \end{equation}
+The subscript $g$ records that this effective threshold uses the popularity
+computed under vote model $g$.  Since $P_{K,g}(x_i)\geq0$, modulation cannot
+reduce the base threshold.
 Equations~\eqref{eq:historical_reverse_popularity}--\eqref{eq:popularity_modulated_visibility} reproduce the historical inverse-square implementation exactly. The comparison models change only the within-source allocation in Eq.~\eqref{eq:budget_matched_vote}. Under a global coordinate rescaling $r\mapsto cr$, all four vote families scale as $c^{-2}$ because $B_K\mapsto c^{-2}B_K$, while $R_K^{(2)}\mapsto c^2R_K^{(2)}$; hence the popularity factor $P_{K,g}R_K^{(2)}$ is invariant for every model. Feature-wise preprocessing can still change the KNN graph and must therefore be specified and reused exactly.
 
 \subsection{Visible forward and backward steps}
@@ -1126,9 +1112,8 @@ To be completed.
 \item Conflict of interest/Competing interests: The authors declare that they have no competing interests. To be confirmed.
 \item Ethics approval and consent to participate: Not applicable.
 \item Consent for publication: Not applicable.
-\item Data availability: Synthetic datasets and scripts will be made available in a public repository upon publication. To be completed.
+\item Data availability: The synthetic datasets used in this study, including their reference labels, are publicly available in the project repository at \url{https://github.com/epmarinho/rtknnc}.
 \item Materials availability: Not applicable.
-\item Code availability: The implementation will be made available in a public repository upon publication. To be completed.
 \item Author contribution: To be completed.
 \end{itemize}
 
