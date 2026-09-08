@@ -195,6 +195,12 @@ python "$workspace/tools/generate-multiscale-figure.py" \
     --output-dir "$output_dir/experimental/multiscale" \
     --dpi 240
 
+python "$workspace/tools/plot-cluster-count-evolution.py" \
+    --benchmark-csv "$benchmark_csv" \
+    --dataset-dir "$input_stage" \
+    --output-dir "$output_dir/experimental/multiscale" \
+    --dpi 240
+
 python "$workspace/tools/render-vote-model-gnuplot.py" \
     --workspace "$workspace" \
     --benchmark-csv "$benchmark_csv" \
