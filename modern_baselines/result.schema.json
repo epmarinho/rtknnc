@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Modern baseline completed result v1",
+  "type": "object", "additionalProperties": false,
+  "required": ["schema_version", "status", "run_id", "identity", "predicted_labels", "evaluation", "elapsed_seconds", "completed_at_utc"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "status": {"const": "completed"},
+    "run_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "identity": {
+      "type": "object", "additionalProperties": false,
+      "required": ["algorithm", "foundation_version", "foundation_sha256", "dataset", "parameters", "dependencies", "upstream", "tie_handling", "environment"],
+      "properties": {
+        "algorithm": {"const": "RNN-DBSCAN"},
+        "foundation_version": {"type": "string", "minLength": 1},
+        "foundation_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "dataset": {"$ref": "dataset-manifest.schema.json#/properties/datasets/items"},
+        "parameters": {
+          "type": "object", "additionalProperties": false,
+          "required": ["n_neighbors", "n_jobs", "keep_knns", "input_guarantee"],
+          "properties": {
+            "n_neighbors": {"type": "integer", "minimum": 1},
+            "n_jobs": {"const": 1}, "keep_knns": {"type": "boolean"}, "input_guarantee": {"const": "none"}
+          }
+        },
+        "dependencies": {
+          "type": "object", "additionalProperties": false,
+          "required": ["python", "sklearn-ann", "scikit-learn", "numpy", "scipy"],
+          "properties": {
+            "python": {"type": "string", "minLength": 1}, "sklearn-ann": {"type": "string", "minLength": 1},
+            "scikit-learn": {"type": "string", "minLength": 1}, "numpy": {"type": "string", "minLength": 1}, "scipy": {"type": "string", "minLength": 1}
+          }
+        },
+        "upstream": {
+          "type": "object", "additionalProperties": false,
+          "required": ["repository_url", "commit", "provenance", "verification"],
+          "properties": {
+            "repository_url": {"const": "https://github.com/scikit-learn-contrib/sklearn-ann"},
+            "commit": {"const": "c105475ab0bc6dfcdb2239a38273d6895c5fe281"},
+            "provenance": {"const": "Maintained third-party implementation; not verified as originating from the paper's authors."},
+            "verification": {"const": "PEP610 VCS commit required before fitting"}
+          }
+        },
+        "tie_handling": {"type": "string", "minLength": 1},
+        "environment": {
+          "type": "object", "additionalProperties": false, "required": ["platform", "machine", "thread_controls"],
+          "properties": {
+            "platform": {"type": "string"}, "machine": {"type": "string"},
+            "thread_controls": {
+              "type": "object", "additionalProperties": false,
+              "required": ["OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS", "NUMEXPR_NUM_THREADS"],
+              "properties": {
+                "OMP_NUM_THREADS": {"const": "1"}, "OPENBLAS_NUM_THREADS": {"const": "1"},
+                "MKL_NUM_THREADS": {"const": "1"}, "NUMEXPR_NUM_THREADS": {"const": "1"}
+              }
+            }
+          }
+        }
+      }
+    },
+    "predicted_labels": {"type": "array", "minItems": 1, "items": {"type": "integer"}},
+    "evaluation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["ari_all_observations", "nmi_all_observations", "n_observations", "n_predicted_clusters", "negative_label_counts"],
+      "properties": {
+        "ari_all_observations": {"type": "number", "minimum": -1, "maximum": 1},
+        "nmi_all_observations": {"type": "number", "minimum": 0, "maximum": 1},
+        "n_observations": {"type": "integer", "minimum": 1},
+        "n_predicted_clusters": {"type": "integer", "minimum": 0},
+        "negative_label_counts": {"type": "object", "propertyNames": {"pattern": "^-[1-9][0-9]*$"}, "additionalProperties": {"type": "integer", "minimum": 1}}
+      }
+    },
+    "elapsed_seconds": {
+      "type": "object", "additionalProperties": false, "required": ["fit_predict", "total"],
+      "properties": {"fit_predict": {"type": "number", "minimum": 0}, "total": {"type": "number", "minimum": 0}}
+    },
+    "completed_at_utc": {"type": "string", "format": "date-time", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?\\+00:00$"}
+  },
+  "$comment": "Runtime validates full run identity, prediction shape, integer counts, ARI/NMI ranges, elapsed times and genuine UTC timestamps; runner rechecks cached ARI and arithmetic-normalized NMI over all observations against verified truth. Strict JSON reading rejects duplicate keys and nonfinite numbers. No automatic remote schema fetching is used."
+}

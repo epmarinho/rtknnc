@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Modern baseline dataset manifest v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "datasets"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "datasets": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["dataset_id", "path", "sha256", "feature_columns", "truth_column"],
+        "properties": {
+          "dataset_id": {"type": "string", "minLength": 1},
+          "path": {"type": "string", "minLength": 1},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "feature_columns": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "integer", "minimum": 0}},
+          "truth_column": {"type": "integer", "minimum": 0},
+          "delimiter": {"type": "string", "minLength": 1, "maxLength": 1, "pattern": "^[^\\r\\n\\u0000]$", "default": ","},
+          "header": {"type": "boolean", "default": false},
+          "preprocessing": {"const": "none", "default": "none"},
+          "row_order": {"const": "file", "default": "file"}
+        }
+      }
+    }
+  },
+  "$comment": "Runtime validation also requires unique dataset IDs and excludes truth_column from feature_columns. Defaults are implemented by DatasetSpec."
+}

@@ -1,0 +1,54 @@
+{
+  "captured_at_utc": "2026-10-14T18:10:42.146921+00:00",
+  "dependencies": {
+    "numpy": "2.5.4",
+    "python": "3.12.3",
+    "scikit-learn": "1.9.1",
+    "scipy": "1.18.1",
+    "sklearn-ann": "0.1.5.dev52+gc105475ab"
+  },
+  "direct_url": {
+    "url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+    "vcs_info": {
+      "commit_id": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+      "requested_revision": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+      "vcs": "git"
+    }
+  },
+  "foundation_sha256": "18355065d07da4b17c614e6fc7d9a0acd4d7924d063bab4e25274d923147f9b2",
+  "foundation_version": "4A",
+  "installation_command": "set -o pipefail\nTMPDIR=/home/emarinho/workspace/programs/rtknnc/modern_baselines/.venv-rnn/tmp PYTHONDONTWRITEBYTECODE=1 PIP_CONFIG_FILE=/dev/null PIP_DISABLE_PIP_VERSION_CHECK=1 modern_baselines/.venv-rnn/bin/python -m pip install --no-cache-dir 'sklearn-ann @ git+https://github.com/scikit-learn-contrib/sklearn-ann@c105475ab0bc6dfcdb2239a38273d6895c5fe281' 2>&1 | tee modern_baselines/environment/install.log\n",
+  "interpreter": "/home/emarinho/workspace/programs/rtknnc/modern_baselines/.venv-rnn/bin/python",
+  "pep610_verified_before_import": true,
+  "pip_freeze_command": [
+    "/home/emarinho/workspace/programs/rtknnc/modern_baselines/.venv-rnn/bin/python",
+    "-m",
+    "pip",
+    "freeze",
+    "--all"
+  ],
+  "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+  "python_implementation": "CPython",
+  "sklearn_ann_imported": false,
+  "sys_base_prefix": "/home/emarinho/miniconda3",
+  "sys_prefix": "/home/emarinho/workspace/programs/rtknnc/modern_baselines/.venv-rnn",
+  "thread_controls": {
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1"
+  },
+  "uname": {
+    "machine": "x86_64",
+    "node": "emarinho-B460GTQ",
+    "processor": "x86_64",
+    "release": "6.8.0-138-generic",
+    "system": "Linux",
+    "version": "#138~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Fri Aug  7 13:43:15 UTC "
+  },
+  "upstream": {
+    "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+    "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+    "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann"
+  }
+}

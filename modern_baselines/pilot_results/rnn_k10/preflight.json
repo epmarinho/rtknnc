@@ -1,0 +1,180 @@
+{
+  "all_datasets_verified_before_clustering": true,
+  "datasets": [
+    {
+      "comparison": "10th versus 11th non-self distance; exact equality, no tolerance",
+      "dataset_id": "anisotropic",
+      "effective_metric": "euclidean",
+      "effective_search_method": "kd_tree",
+      "exact_boundary_tie_count": 0,
+      "explicit_diagonal_count": 2000,
+      "integer_truth_labels_validated": true,
+      "minimum_boundary_distance_gap": 1.963541289867754e-06,
+      "n_observations": 2000,
+      "sha256": "438f1f6a8997f7b4b557ac158e0a4078d17c3829aac2c027728732c445a7f554",
+      "stored_entries_per_row": 11,
+      "tied_row_indices_zero_based": [],
+      "transformer_parameters": {
+        "algorithm": "auto",
+        "leaf_size": 30,
+        "metric": "minkowski",
+        "metric_params": null,
+        "mode": "distance",
+        "n_jobs": null,
+        "n_neighbors": 10,
+        "p": 2
+      }
+    },
+    {
+      "comparison": "10th versus 11th non-self distance; exact equality, no tolerance",
+      "dataset_id": "blobs",
+      "effective_metric": "euclidean",
+      "effective_search_method": "kd_tree",
+      "exact_boundary_tie_count": 0,
+      "explicit_diagonal_count": 2000,
+      "integer_truth_labels_validated": true,
+      "minimum_boundary_distance_gap": 1.2681589581509112e-06,
+      "n_observations": 2000,
+      "sha256": "77d79dba86401fb0f421825095d8dc457fafb22c2b4afd02d4536b25b05a8e6a",
+      "stored_entries_per_row": 11,
+      "tied_row_indices_zero_based": [],
+      "transformer_parameters": {
+        "algorithm": "auto",
+        "leaf_size": 30,
+        "metric": "minkowski",
+        "metric_params": null,
+        "mode": "distance",
+        "n_jobs": null,
+        "n_neighbors": 10,
+        "p": 2
+      }
+    },
+    {
+      "comparison": "10th versus 11th non-self distance; exact equality, no tolerance",
+      "dataset_id": "blobs_var_density",
+      "effective_metric": "euclidean",
+      "effective_search_method": "kd_tree",
+      "exact_boundary_tie_count": 0,
+      "explicit_diagonal_count": 2000,
+      "integer_truth_labels_validated": true,
+      "minimum_boundary_distance_gap": 6.56382640640274e-06,
+      "n_observations": 2000,
+      "sha256": "3aa25fbd219c1398535db712c8764a4ce7d837d6cc9decf564f04975a6cc4ffd",
+      "stored_entries_per_row": 11,
+      "tied_row_indices_zero_based": [],
+      "transformer_parameters": {
+        "algorithm": "auto",
+        "leaf_size": 30,
+        "metric": "minkowski",
+        "metric_params": null,
+        "mode": "distance",
+        "n_jobs": null,
+        "n_neighbors": 10,
+        "p": 2
+      }
+    },
+    {
+      "comparison": "10th versus 11th non-self distance; exact equality, no tolerance",
+      "dataset_id": "bridge",
+      "effective_metric": "euclidean",
+      "effective_search_method": "kd_tree",
+      "exact_boundary_tie_count": 0,
+      "explicit_diagonal_count": 2000,
+      "integer_truth_labels_validated": true,
+      "minimum_boundary_distance_gap": 5.597357923978197e-06,
+      "n_observations": 2000,
+      "sha256": "8c8a68983d711b978acafe967421367fa6f72050873278ff52b80551b3dc32e5",
+      "stored_entries_per_row": 11,
+      "tied_row_indices_zero_based": [],
+      "transformer_parameters": {
+        "algorithm": "auto",
+        "leaf_size": 30,
+        "metric": "minkowski",
+        "metric_params": null,
+        "mode": "distance",
+        "n_jobs": null,
+        "n_neighbors": 10,
+        "p": 2
+      }
+    },
+    {
+      "comparison": "10th versus 11th non-self distance; exact equality, no tolerance",
+      "dataset_id": "circles",
+      "effective_metric": "euclidean",
+      "effective_search_method": "kd_tree",
+      "exact_boundary_tie_count": 0,
+      "explicit_diagonal_count": 2000,
+      "integer_truth_labels_validated": true,
+      "minimum_boundary_distance_gap": 3.651515902973468e-06,
+      "n_observations": 2000,
+      "sha256": "ed773970a7eee13395ef8836c9cedf2c5f8612811bb5fa0fef609e7b6669ccc4",
+      "stored_entries_per_row": 11,
+      "tied_row_indices_zero_based": [],
+      "transformer_parameters": {
+        "algorithm": "auto",
+        "leaf_size": 30,
+        "metric": "minkowski",
+        "metric_params": null,
+        "mode": "distance",
+        "n_jobs": null,
+        "n_neighbors": 10,
+        "p": 2
+      }
+    },
+    {
+      "comparison": "10th versus 11th non-self distance; exact equality, no tolerance",
+      "dataset_id": "moons",
+      "effective_metric": "euclidean",
+      "effective_search_method": "kd_tree",
+      "exact_boundary_tie_count": 0,
+      "explicit_diagonal_count": 2000,
+      "integer_truth_labels_validated": true,
+      "minimum_boundary_distance_gap": 2.4429660017144528e-08,
+      "n_observations": 2000,
+      "sha256": "447251ba9640e7865dfaae6307a6b326a9319ae49a9022f97f86f2c1e277d6a2",
+      "stored_entries_per_row": 11,
+      "tied_row_indices_zero_based": [],
+      "transformer_parameters": {
+        "algorithm": "auto",
+        "leaf_size": 30,
+        "metric": "minkowski",
+        "metric_params": null,
+        "mode": "distance",
+        "n_jobs": null,
+        "n_neighbors": 10,
+        "p": 2
+      }
+    }
+  ],
+  "environment": {
+    "dependencies": {
+      "numpy": "2.5.4",
+      "python": "3.12.3",
+      "scikit-learn": "1.9.1",
+      "scipy": "1.18.1",
+      "sklearn-ann": "0.1.5.dev52+gc105475ab"
+    },
+    "direct_url": {
+      "url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+      "vcs_info": {
+        "commit_id": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+        "requested_revision": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+        "vcs": "git"
+      }
+    },
+    "interpreter": "/home/emarinho/workspace/programs/rtknnc/modern_baselines/.venv-rnn/bin/python",
+    "pip_freeze_all": "cloudpickle==3.1.2\njoblib==1.6.0\nnarwhals==2.27.1\nnumpy==2.5.4\npip==24.0\nscikit-learn==1.9.1\nscipy==1.18.1\nsklearn-ann @ git+https://github.com/scikit-learn-contrib/sklearn-ann@c105475ab0bc6dfcdb2239a38273d6895c5fe281\nthreadpoolctl==3.7.0\n",
+    "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+    "thread_controls": {
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1"
+    }
+  },
+  "foundation_sha256": "abd549ae9f9aa9f1be3bb7d19dee1ac316f87d0773e0d7760eac61140407ae58",
+  "foundation_version": "4B",
+  "protocol_sha256": "19e7cea86f12d17159aaa02f01c5edf71aea6faae3c564960cad6dbe0e0a541b",
+  "purpose": "pilot; not for manuscript comparison",
+  "tie_warning": "Ties are reported, never used to alter ordering or predictions, and do not abort the pilot."
+}

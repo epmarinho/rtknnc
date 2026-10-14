@@ -1,0 +1,74 @@
+{
+  "after": {
+    "02098f4b5f472b68cf77dc644a70091cfc91602dfd4b791d25652a81ee3c54b7.json": {
+      "mtime_ns": 1792004338145572713,
+      "sha256": "89955345828cf92e1a95cab67b20b6c6980314ccd5c5a7ef2fd3662a9ff898cf",
+      "size_bytes": 5757
+    },
+    "7d98316cf24fefd6e258401c771d457bd9abaa73480e98955426fa309c53f5f2.json": {
+      "mtime_ns": 1792004338248572710,
+      "sha256": "732de008d8c1a3a88da2ad329c50c26c83ab8d11952c4974b78dca16bc4fe812",
+      "size_bytes": 5746
+    },
+    "be586a477d14b0fd0b5f18581cde50b32ad7e8d9d9912055160b8f1cb0d51cd3.json": {
+      "mtime_ns": 1792004338024572716,
+      "sha256": "6a4997d651d7bff48cb3f10043898f0b48153268c26745b15ff301a9b27e6994",
+      "size_bytes": 5778
+    },
+    "beb369d0ee37a2dcebca52f963fbff9f1b30932fc9afc47963f1f24ebbe78901.json": {
+      "mtime_ns": 1792004338349572708,
+      "sha256": "aa6b6883b1d4ca517cfe4425122cb2450c4042e8ffdea149432ba824119302f4",
+      "size_bytes": 5845
+    },
+    "bef29ea6c77dba6d2036c593f681590b3e6b355861e5d64c2c557e17a22f10fd.json": {
+      "mtime_ns": 1792004338448572705,
+      "sha256": "2df870140b649459807c866f7eb4496c5797667546d3e70b7e367655fc6ed3fa",
+      "size_bytes": 5784
+    },
+    "d7ce81713a9c5337f6b25dc790cb89e0fb6bb6917c5aa99951c35c2a92bb0e5b.json": {
+      "mtime_ns": 1792004337903572719,
+      "sha256": "13766e1fcc072970dbd4fe8ac1e861b65e1b2eae9e0d4c4970f5fd5d037b5ce6",
+      "size_bytes": 5753
+    }
+  },
+  "before": {
+    "02098f4b5f472b68cf77dc644a70091cfc91602dfd4b791d25652a81ee3c54b7.json": {
+      "mtime_ns": 1792004338145572713,
+      "sha256": "89955345828cf92e1a95cab67b20b6c6980314ccd5c5a7ef2fd3662a9ff898cf",
+      "size_bytes": 5757
+    },
+    "7d98316cf24fefd6e258401c771d457bd9abaa73480e98955426fa309c53f5f2.json": {
+      "mtime_ns": 1792004338248572710,
+      "sha256": "732de008d8c1a3a88da2ad329c50c26c83ab8d11952c4974b78dca16bc4fe812",
+      "size_bytes": 5746
+    },
+    "be586a477d14b0fd0b5f18581cde50b32ad7e8d9d9912055160b8f1cb0d51cd3.json": {
+      "mtime_ns": 1792004338024572716,
+      "sha256": "6a4997d651d7bff48cb3f10043898f0b48153268c26745b15ff301a9b27e6994",
+      "size_bytes": 5778
+    },
+    "beb369d0ee37a2dcebca52f963fbff9f1b30932fc9afc47963f1f24ebbe78901.json": {
+      "mtime_ns": 1792004338349572708,
+      "sha256": "aa6b6883b1d4ca517cfe4425122cb2450c4042e8ffdea149432ba824119302f4",
+      "size_bytes": 5845
+    },
+    "bef29ea6c77dba6d2036c593f681590b3e6b355861e5d64c2c557e17a22f10fd.json": {
+      "mtime_ns": 1792004338448572705,
+      "sha256": "2df870140b649459807c866f7eb4496c5797667546d3e70b7e367655fc6ed3fa",
+      "size_bytes": 5784
+    },
+    "d7ce81713a9c5337f6b25dc790cb89e0fb6bb6917c5aa99951c35c2a92bb0e5b.json": {
+      "mtime_ns": 1792004337903572719,
+      "sha256": "13766e1fcc072970dbd4fe8ac1e861b65e1b2eae9e0d4c4970f5fd5d037b5ce6",
+      "size_bytes": 5753
+    }
+  },
+  "completed_results": 6,
+  "existing_result_files_unchanged": true,
+  "fits_performed": 0,
+  "fitting_permitted": false,
+  "purpose": "pilot; not for manuscript comparison",
+  "results_reused": 6,
+  "resume_only": true,
+  "schema_and_original_dataset_validation": "PASS for all six results"
+}

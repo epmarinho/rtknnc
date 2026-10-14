@@ -1,0 +1,2 @@
+set -o pipefail
+TMPDIR=/home/emarinho/workspace/programs/rtknnc/modern_baselines/.venv-rnn/tmp PYTHONDONTWRITEBYTECODE=1 PIP_CONFIG_FILE=/dev/null PIP_DISABLE_PIP_VERSION_CHECK=1 modern_baselines/.venv-rnn/bin/python -m pip install --no-cache-dir 'sklearn-ann @ git+https://github.com/scikit-learn-contrib/sklearn-ann@c105475ab0bc6dfcdb2239a38273d6895c5fe281' 2>&1 | tee modern_baselines/environment/install.log

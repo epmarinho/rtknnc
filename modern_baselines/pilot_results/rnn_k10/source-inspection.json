@@ -1,0 +1,82 @@
+{
+  "conclusion": "Distance graph has k+1 stored neighbors including explicit self; reverse core density subtracts one diagonal entry; neighborhood traversal excludes self.",
+  "negative_labels": {
+    "-1": "NOISE",
+    "-2": "UNCLASSIFIED: unexpected final label; preserve and flag"
+  },
+  "protocol_sha256": "19e7cea86f12d17159aaa02f01c5edf71aea6faae3c564960cad6dbe0e0a541b",
+  "sources": [
+    {
+      "excerpts": [
+        {
+          "line": 176,
+          "text": "algorithm = KNeighborsTransformer(n_neighbors=self.n_neighbors)"
+        },
+        {
+          "line": 177,
+          "text": "knns = cast(\"csr_matrix\", algorithm.fit_transform(X))"
+        },
+        {
+          "line": 185,
+          "text": "rev_knns = knns.transpose().tocsr(copy=True)"
+        },
+        {
+          "line": 194,
+          "text": "core_samples = rev_knns.getnnz(1) - 1 >= self.n_neighbors"
+        },
+        {
+          "line": 66,
+          "text": "if other_idx != idx"
+        },
+        {
+          "line": 23,
+          "text": "UNCLASSIFIED = -2"
+        },
+        {
+          "line": 24,
+          "text": "NOISE = -1"
+        }
+      ],
+      "installed_path": "/home/emarinho/workspace/programs/rtknnc/modern_baselines/.venv-rnn/lib/python3.12/site-packages/sklearn_ann/cluster/rnn_dbscan.py",
+      "sha256": "53dc9b13ab60197284b4ad04e7a687896810cc4f88bbbab2d50fd97a29da8ff5"
+    },
+    {
+      "excerpts": [
+        {
+          "line": 455,
+          "text": "The diagonal is always explicit."
+        },
+        {
+          "line": 483,
+          "text": "The diagonal is always explicit."
+        },
+        {
+          "line": 681,
+          "text": "The diagonal is always explicit."
+        },
+        {
+          "line": 706,
+          "text": "The diagonal is always explicit."
+        },
+        {
+          "line": 459,
+          "text": "add_one = self.mode == \"distance\""
+        },
+        {
+          "line": 461,
+          "text": "X, mode=self.mode, n_neighbors=self.n_neighbors + add_one"
+        },
+        {
+          "line": 486,
+          "text": "return self.fit(X).transform(X)"
+        },
+        {
+          "line": 709,
+          "text": "return self.fit(X).transform(X)"
+        }
+      ],
+      "installed_path": "/home/emarinho/workspace/programs/rtknnc/modern_baselines/.venv-rnn/lib/python3.12/site-packages/sklearn/neighbors/_graph.py",
+      "sha256": "4d00be760450850768c019952b512a02eb0a70555be1d983cb8ba0889f9cb4ba"
+    }
+  ]
+}

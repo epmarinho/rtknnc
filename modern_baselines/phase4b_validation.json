@@ -1,0 +1,38 @@
+{
+  "completed_result_count": 6,
+  "exact_boundary_tie_counts": {
+    "anisotropic": 0,
+    "blobs": 0,
+    "blobs_var_density": 0,
+    "bridge": 0,
+    "circles": 0,
+    "moons": 0
+  },
+  "foundation_sha256": "abd549ae9f9aa9f1be3bb7d19dee1ac316f87d0773e0d7760eac61140407ae58",
+  "generic_results_directory_used": false,
+  "initial_clustering_fits": 6,
+  "installation_or_environment_changes": false,
+  "json_files_parsed_including_this_report": 25,
+  "network_access": false,
+  "original_dataset_revalidation": "PASS: hashes, declarations, 2000 integer predictions, external ARI and arithmetic NMI",
+  "phase": "4B",
+  "preflight": "PASS: protocol, PEP610, full freeze, versions, interpreter/platform, threads, six hashes/row counts/integer truth, source inspection",
+  "purpose": "pilot; not for manuscript comparison",
+  "result_files": {
+    "anisotropic": "d7ce81713a9c5337f6b25dc790cb89e0fb6bb6917c5aa99951c35c2a92bb0e5b.json",
+    "blobs": "be586a477d14b0fd0b5f18581cde50b32ad7e8d9d9912055160b8f1cb0d51cd3.json",
+    "blobs_var_density": "02098f4b5f472b68cf77dc644a70091cfc91602dfd4b791d25652a81ee3c54b7.json",
+    "bridge": "7d98316cf24fefd6e258401c771d457bd9abaa73480e98955426fa309c53f5f2.json",
+    "circles": "beb369d0ee37a2dcebca52f963fbff9f1b30932fc9afc47963f1f24ebbe78901.json",
+    "moons": "bef29ea6c77dba6d2036c593f681590b3e6b355861e5d64c2c557e17a22f10fd.json"
+  },
+  "resume_clustering_fits": 0,
+  "resume_result_hash_size_mtime_unchanged": true,
+  "schema_validation": "PASS: all assertions in local result schema and local dataset-manifest reference",
+  "self_contained_tests": {
+    "failed": 0,
+    "passed": 69
+  },
+  "summary_json_csv_consistency": "PASS",
+  "syntax_python_files_checked": 14
+}

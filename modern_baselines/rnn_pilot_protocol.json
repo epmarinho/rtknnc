@@ -1,0 +1,157 @@
+{
+  "algorithm": "RNN-DBSCAN",
+  "dataset_base": "/home/emarinho/workspace/programs/rtknnc",
+  "dataset_manifest": "rnn_pilot_datasets.json",
+  "dataset_manifest_sha256": "342dd7c6fbdcfaa4be679b18a955d06e34368fd83e4e4cdaeabfc671cc7e7f9e",
+  "datasets": [
+    {
+      "dataset_id": "anisotropic",
+      "delimiter": ",",
+      "feature_columns": [
+        0,
+        1
+      ],
+      "header": true,
+      "path": "csv/benchmarks/anisotropic.csv",
+      "preprocessing": "none",
+      "row_order": "file",
+      "sha256": "438f1f6a8997f7b4b557ac158e0a4078d17c3829aac2c027728732c445a7f554",
+      "truth_column": 2
+    },
+    {
+      "dataset_id": "blobs",
+      "delimiter": ",",
+      "feature_columns": [
+        0,
+        1
+      ],
+      "header": true,
+      "path": "csv/benchmarks/blobs.csv",
+      "preprocessing": "none",
+      "row_order": "file",
+      "sha256": "77d79dba86401fb0f421825095d8dc457fafb22c2b4afd02d4536b25b05a8e6a",
+      "truth_column": 2
+    },
+    {
+      "dataset_id": "blobs_var_density",
+      "delimiter": ",",
+      "feature_columns": [
+        0,
+        1
+      ],
+      "header": true,
+      "path": "csv/benchmarks/blobs_var_density.csv",
+      "preprocessing": "none",
+      "row_order": "file",
+      "sha256": "3aa25fbd219c1398535db712c8764a4ce7d837d6cc9decf564f04975a6cc4ffd",
+      "truth_column": 2
+    },
+    {
+      "dataset_id": "bridge",
+      "delimiter": ",",
+      "feature_columns": [
+        0,
+        1
+      ],
+      "header": true,
+      "path": "csv/benchmarks/bridge.csv",
+      "preprocessing": "none",
+      "row_order": "file",
+      "sha256": "8c8a68983d711b978acafe967421367fa6f72050873278ff52b80551b3dc32e5",
+      "truth_column": 2
+    },
+    {
+      "dataset_id": "circles",
+      "delimiter": ",",
+      "feature_columns": [
+        0,
+        1
+      ],
+      "header": true,
+      "path": "csv/benchmarks/circles.csv",
+      "preprocessing": "none",
+      "row_order": "file",
+      "sha256": "ed773970a7eee13395ef8836c9cedf2c5f8612811bb5fa0fef609e7b6669ccc4",
+      "truth_column": 2
+    },
+    {
+      "dataset_id": "moons",
+      "delimiter": ",",
+      "feature_columns": [
+        0,
+        1
+      ],
+      "header": true,
+      "path": "csv/benchmarks/moons.csv",
+      "preprocessing": "none",
+      "row_order": "file",
+      "sha256": "447251ba9640e7865dfaae6307a6b326a9319ae49a9022f97f86f2c1e277d6a2",
+      "truth_column": 2
+    }
+  ],
+  "environment_lock": {
+    "dependencies": {
+      "numpy": "2.5.4",
+      "python": "3.12.3",
+      "scikit-learn": "1.9.1",
+      "scipy": "1.18.1",
+      "sklearn-ann": "0.1.5.dev52+gc105475ab"
+    },
+    "direct_url_file": "environment/direct_url.json",
+    "direct_url_sha256": "1d19216ee9cee815af298dfb2fb04904eee1a67c9dc9a80ec49e8ca4653bb53a",
+    "freeze_file": "environment/pip-freeze.txt",
+    "freeze_sha256": "f177ea8c11cf1dabf6c87683741e474bc2e2d23145fa5b240e922d1723134de5",
+    "installed_source_sha256": {
+      "_graph.py": "4d00be760450850768c019952b512a02eb0a70555be1d983cb8ba0889f9cb4ba",
+      "rnn_dbscan.py": "53dc9b13ab60197284b4ad04e7a687896810cc4f88bbbab2d50fd97a29da8ff5"
+    },
+    "interpreter": "/home/emarinho/workspace/programs/rtknnc/modern_baselines/.venv-rnn/bin/python",
+    "metadata_file": "environment/environment.json",
+    "metadata_sha256": "fbe3dfd07c8620056061ad2d8dd4693fc6183bb5389509826706cc7976b2b3f1",
+    "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+    "sys_prefix": "/home/emarinho/workspace/programs/rtknnc/modern_baselines/.venv-rnn"
+  },
+  "execution": {
+    "expected_datasets": 6,
+    "fits_per_dataset": 1,
+    "mode": "sequential",
+    "observations_per_dataset": 2000
+  },
+  "metrics": [
+    "ari_all_observations",
+    "nmi_all_observations"
+  ],
+  "negative_labels": "Retain all negative labels as prediction categories; preserve and flag any label other than expected noise -1.",
+  "output_directory": "pilot_results/rnn_k10",
+  "parameter_rationale": "k=10 is prespecified from the documented smoke example and lies within the manuscript K=2,...,16 range. It is not an optimum; results must not be inserted into the manuscript comparison table.",
+  "parameters": {
+    "input_guarantee": "none",
+    "keep_knns": false,
+    "n_jobs": 1,
+    "n_neighbors": 10
+  },
+  "preprocessing": "none",
+  "protocol_version": 1,
+  "purpose": "pilot; not for manuscript comparison",
+  "row_order": "file",
+  "thread_controls": {
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1"
+  },
+  "tie_diagnostic": {
+    "abort_on_ties": false,
+    "boundary": "10th versus 11th non-self exact-neighbor distances",
+    "changes_predictions": false,
+    "comparison": "exact floating-point equality; no tolerance",
+    "k": 10
+  },
+  "truth_based_parameter_selection": false,
+  "truth_use": "Preflight checks only observation count and integer label validity; scoring uses truth only after prediction for external ARI and arithmetic NMI. No truth enters fitting or parameter selection.",
+  "upstream": {
+    "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+    "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+    "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann"
+  }
+}

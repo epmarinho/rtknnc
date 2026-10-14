@@ -1,0 +1,9 @@
+cloudpickle==3.1.2
+joblib==1.6.0
+narwhals==2.27.1
+numpy==2.5.4
+pip==24.0
+scikit-learn==1.9.1
+scipy==1.18.1
+sklearn-ann @ git+https://github.com/scikit-learn-contrib/sklearn-ann@c105475ab0bc6dfcdb2239a38273d6895c5fe281
+threadpoolctl==3.7.0

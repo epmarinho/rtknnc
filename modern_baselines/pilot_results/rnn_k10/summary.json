@@ -1,0 +1,121 @@
+{
+  "completed_results": 6,
+  "protocol_sha256": "19e7cea86f12d17159aaa02f01c5edf71aea6faae3c564960cad6dbe0e0a541b",
+  "purpose": "pilot; not for manuscript comparison",
+  "results": [
+    {
+      "ari_all_observations": 0.9506772576552509,
+      "dataset_id": "anisotropic",
+      "dataset_sha256": "438f1f6a8997f7b4b557ac158e0a4078d17c3829aac2c027728732c445a7f554",
+      "exact_boundary_tie_count": 0,
+      "fit_predict_seconds": 0.03853170806542039,
+      "flags": [],
+      "n_observations": 2000,
+      "n_predicted_clusters": 5,
+      "negative_label_counts": {
+        "-1": 25
+      },
+      "nmi_all_observations": 0.9280661549580241,
+      "purpose": "pilot; not for manuscript comparison",
+      "result_file": "d7ce81713a9c5337f6b25dc790cb89e0fb6bb6917c5aa99951c35c2a92bb0e5b.json",
+      "run_id": "d7ce81713a9c5337f6b25dc790cb89e0fb6bb6917c5aa99951c35c2a92bb0e5b",
+      "total_seconds": 0.052338154055178165,
+      "unexpected_negative_label_counts": {}
+    },
+    {
+      "ari_all_observations": 0.9571619054733213,
+      "dataset_id": "blobs",
+      "dataset_sha256": "77d79dba86401fb0f421825095d8dc457fafb22c2b4afd02d4536b25b05a8e6a",
+      "exact_boundary_tie_count": 0,
+      "fit_predict_seconds": 0.037768705980852246,
+      "flags": [],
+      "n_observations": 2000,
+      "n_predicted_clusters": 4,
+      "negative_label_counts": {
+        "-1": 62
+      },
+      "nmi_all_observations": 0.9369244087733847,
+      "purpose": "pilot; not for manuscript comparison",
+      "result_file": "be586a477d14b0fd0b5f18581cde50b32ad7e8d9d9912055160b8f1cb0d51cd3.json",
+      "run_id": "be586a477d14b0fd0b5f18581cde50b32ad7e8d9d9912055160b8f1cb0d51cd3",
+      "total_seconds": 0.05146214191336185,
+      "unexpected_negative_label_counts": {}
+    },
+    {
+      "ari_all_observations": 0.6644863528314304,
+      "dataset_id": "blobs_var_density",
+      "dataset_sha256": "3aa25fbd219c1398535db712c8764a4ce7d837d6cc9decf564f04975a6cc4ffd",
+      "exact_boundary_tie_count": 0,
+      "fit_predict_seconds": 0.03675164305604994,
+      "flags": [],
+      "n_observations": 2000,
+      "n_predicted_clusters": 3,
+      "negative_label_counts": {
+        "-1": 18
+      },
+      "nmi_all_observations": 0.7405444228201626,
+      "purpose": "pilot; not for manuscript comparison",
+      "result_file": "02098f4b5f472b68cf77dc644a70091cfc91602dfd4b791d25652a81ee3c54b7.json",
+      "run_id": "02098f4b5f472b68cf77dc644a70091cfc91602dfd4b791d25652a81ee3c54b7",
+      "total_seconds": 0.07241847994737327,
+      "unexpected_negative_label_counts": {}
+    },
+    {
+      "ari_all_observations": -0.004870978177970649,
+      "dataset_id": "bridge",
+      "dataset_sha256": "8c8a68983d711b978acafe967421367fa6f72050873278ff52b80551b3dc32e5",
+      "exact_boundary_tie_count": 0,
+      "fit_predict_seconds": 0.03862297802697867,
+      "flags": [],
+      "n_observations": 2000,
+      "n_predicted_clusters": 2,
+      "negative_label_counts": {
+        "-1": 24
+      },
+      "nmi_all_observations": 0.017724119609236172,
+      "purpose": "pilot; not for manuscript comparison",
+      "result_file": "7d98316cf24fefd6e258401c771d457bd9abaa73480e98955426fa309c53f5f2.json",
+      "run_id": "7d98316cf24fefd6e258401c771d457bd9abaa73480e98955426fa309c53f5f2",
+      "total_seconds": 0.05248637206386775,
+      "unexpected_negative_label_counts": {}
+    },
+    {
+      "ari_all_observations": 0.23578700169130834,
+      "dataset_id": "circles",
+      "dataset_sha256": "ed773970a7eee13395ef8836c9cedf2c5f8612811bb5fa0fef609e7b6669ccc4",
+      "exact_boundary_tie_count": 0,
+      "fit_predict_seconds": 0.038355008931830525,
+      "flags": [],
+      "n_observations": 2000,
+      "n_predicted_clusters": 12,
+      "negative_label_counts": {
+        "-1": 81
+      },
+      "nmi_all_observations": 0.4507894165187024,
+      "purpose": "pilot; not for manuscript comparison",
+      "result_file": "beb369d0ee37a2dcebca52f963fbff9f1b30932fc9afc47963f1f24ebbe78901.json",
+      "run_id": "beb369d0ee37a2dcebca52f963fbff9f1b30932fc9afc47963f1f24ebbe78901",
+      "total_seconds": 0.053352413000538945,
+      "unexpected_negative_label_counts": {}
+    },
+    {
+      "ari_all_observations": 0.6740591415494293,
+      "dataset_id": "moons",
+      "dataset_sha256": "447251ba9640e7865dfaae6307a6b326a9319ae49a9022f97f86f2c1e277d6a2",
+      "exact_boundary_tie_count": 0,
+      "fit_predict_seconds": 0.03918118996080011,
+      "flags": [],
+      "n_observations": 2000,
+      "n_predicted_clusters": 4,
+      "negative_label_counts": {
+        "-1": 68
+      },
+      "nmi_all_observations": 0.6856367158948807,
+      "purpose": "pilot; not for manuscript comparison",
+      "result_file": "bef29ea6c77dba6d2036c593f681590b3e6b355861e5d64c2c557e17a22f10fd.json",
+      "run_id": "bef29ea6c77dba6d2036c593f681590b3e6b355861e5d64c2c557e17a22f10fd",
+      "total_seconds": 0.052869145991280675,
+      "unexpected_negative_label_counts": {}
+    }
+  ]
+}

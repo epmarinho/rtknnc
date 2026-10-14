@@ -1,0 +1,53 @@
+{
+  "predicted_labels_identical": true,
+  "purpose": "API/repeatability smoke test; no golden metric threshold or paper-fidelity claim",
+  "runs": [
+    {
+      "elapsed_seconds": {
+        "fit_predict": 0.09079319797456264,
+        "total": 1.1630808250047266
+      },
+      "evaluation": {
+        "ari_all_observations": 0.9143563412496827,
+        "n_observations": 750,
+        "n_predicted_clusters": 3,
+        "negative_label_counts": {
+          "-1": 38
+        },
+        "nmi_all_observations": 0.8764115337000884
+      },
+      "file": "run-1.json",
+      "process_id": 3
+    },
+    {
+      "elapsed_seconds": {
+        "fit_predict": 0.09064770094119012,
+        "total": 1.093291018041782
+      },
+      "evaluation": {
+        "ari_all_observations": 0.9143563412496827,
+        "n_observations": 750,
+        "n_predicted_clusters": 3,
+        "negative_label_counts": {
+          "-1": 38
+        },
+        "nmi_all_observations": 0.8764115337000884
+      },
+      "file": "run-2.json",
+      "process_id": 4
+    }
+  ],
+  "separate_processes": true,
+  "thread_controls": {
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1"
+  },
+  "worker_command": [
+    "/home/emarinho/workspace/programs/rtknnc/modern_baselines/.venv-rnn/bin/python",
+    "-m",
+    "modern_baselines.smoke_validation",
+    "--worker"
+  ]
+}
