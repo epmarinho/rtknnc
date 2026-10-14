@@ -1,0 +1,236 @@
+{
+  "files": {
+    "modern_baselines/.gitignore": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "01477d29ecfca57bb7b75b36d50120a2437d10112d6b465b29f62fd254fd9f1b",
+      "size_bytes": 50
+    },
+    "modern_baselines/README.md": {
+      "policy": "append-only committed prefix",
+      "sha256": "e57f403f2163b53ca103ffee74e4e555f4342fae578203ea8c655b9ca0f43416",
+      "size_bytes": 15186
+    },
+    "modern_baselines/__init__.py": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "40f4d1537eb9ef1712767188fdf99e12ea163f2b7b94a890361b557407fc7f70",
+      "size_bytes": 107
+    },
+    "modern_baselines/adapter.py": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "f3417a31cba6ada5240777a1bdd023ec7d71f4425c7d52d0971d15a30bd7adc6",
+      "size_bytes": 3440
+    },
+    "modern_baselines/capture_environment.py": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "a04921aee1e863f3ec7a4e13fe501b5426ad1dcc16d5d99bd090b14dbe34567d",
+      "size_bytes": 2598
+    },
+    "modern_baselines/dataset-manifest.schema.json": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "ead3a29a29d4c92f8aff19d93005a2581156e7b5e9c9261e497e7821d066ff99",
+      "size_bytes": 1377
+    },
+    "modern_baselines/datasets.py": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "370eaa14fe227647bb8f05751269b62ff25dfe51c27e46277a91a5fe4d81c3ce",
+      "size_bytes": 4094
+    },
+    "modern_baselines/environment/direct_url.json": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "1d19216ee9cee815af298dfb2fb04904eee1a67c9dc9a80ec49e8ca4653bb53a",
+      "size_bytes": 213
+    },
+    "modern_baselines/environment/environment.json": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "fbe3dfd07c8620056061ad2d8dd4693fc6183bb5389509826706cc7976b2b3f1",
+      "size_bytes": 2294
+    },
+    "modern_baselines/environment/install-command.txt": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "f9da33a5564fdfe05e2f87c559b307dcf7b3ed3eeb94c95b05d4499367bab81b",
+      "size_bytes": 412
+    },
+    "modern_baselines/environment/pip-freeze.txt": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "f177ea8c11cf1dabf6c87683741e474bc2e2d23145fa5b240e922d1723134de5",
+      "size_bytes": 239
+    },
+    "modern_baselines/environment/smoke-20261014T181055.487064Z/run-1.json": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "9b1605c48682e7105992911b27ddd8bb6ab8e73896b93e75bfa6f16cd9ad59e0",
+      "size_bytes": 7518
+    },
+    "modern_baselines/environment/smoke-20261014T181055.487064Z/run-1.stderr.txt": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    "modern_baselines/environment/smoke-20261014T181055.487064Z/run-2.json": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "cfa463260faa8175e5217e24a6d4a430ad930afcef75a0d915106a158baeb6d8",
+      "size_bytes": 7517
+    },
+    "modern_baselines/environment/smoke-20261014T181055.487064Z/run-2.stderr.txt": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    "modern_baselines/environment/smoke-20261014T181055.487064Z/summary.json": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "13d0b22b5975fecfea73b3835208a113c4741ab4777ebae09f2981a54a5810e0",
+      "size_bytes": 1398
+    },
+    "modern_baselines/environment/validation.json": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "3100fa131df2997d43126ccd7792a31347365602b99ab1a14975cf0ca5f2f460",
+      "size_bytes": 348
+    },
+    "modern_baselines/evaluation.py": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "d963a8b7d7b4cd2b19ac9bb8e9dae0ca7172456292e4c6a963b37cb59ac5fa35",
+      "size_bytes": 2180
+    },
+    "modern_baselines/phase4b_file_changes.json": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "62a31a58b0be54907563db5a685615a13217839a0731899e460bbe553e45c08f",
+      "size_bytes": 1890
+    },
+    "modern_baselines/phase4b_validation.json": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "3df36c2638eabf7a9d0975a1e6e7601e94b0ed8a44460e6b0b2580010d4538a0",
+      "size_bytes": 1719
+    },
+    "modern_baselines/pilot_results/rnn_k10/02098f4b5f472b68cf77dc644a70091cfc91602dfd4b791d25652a81ee3c54b7.json": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "89955345828cf92e1a95cab67b20b6c6980314ccd5c5a7ef2fd3662a9ff898cf",
+      "size_bytes": 5757
+    },
+    "modern_baselines/pilot_results/rnn_k10/7d98316cf24fefd6e258401c771d457bd9abaa73480e98955426fa309c53f5f2.json": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "732de008d8c1a3a88da2ad329c50c26c83ab8d11952c4974b78dca16bc4fe812",
+      "size_bytes": 5746
+    },
+    "modern_baselines/pilot_results/rnn_k10/be586a477d14b0fd0b5f18581cde50b32ad7e8d9d9912055160b8f1cb0d51cd3.json": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "6a4997d651d7bff48cb3f10043898f0b48153268c26745b15ff301a9b27e6994",
+      "size_bytes": 5778
+    },
+    "modern_baselines/pilot_results/rnn_k10/beb369d0ee37a2dcebca52f963fbff9f1b30932fc9afc47963f1f24ebbe78901.json": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "aa6b6883b1d4ca517cfe4425122cb2450c4042e8ffdea149432ba824119302f4",
+      "size_bytes": 5845
+    },
+    "modern_baselines/pilot_results/rnn_k10/bef29ea6c77dba6d2036c593f681590b3e6b355861e5d64c2c557e17a22f10fd.json": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "2df870140b649459807c866f7eb4496c5797667546d3e70b7e367655fc6ed3fa",
+      "size_bytes": 5784
+    },
+    "modern_baselines/pilot_results/rnn_k10/d7ce81713a9c5337f6b25dc790cb89e0fb6bb6917c5aa99951c35c2a92bb0e5b.json": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "13766e1fcc072970dbd4fe8ac1e861b65e1b2eae9e0d4c4970f5fd5d037b5ce6",
+      "size_bytes": 5753
+    },
+    "modern_baselines/pilot_results/rnn_k10/execution.json": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "eca1f1cb81d36cef77a7372f0dd3e6bb6ecb4aa4236ee672c8598d3866d5f4f3",
+      "size_bytes": 1733
+    },
+    "modern_baselines/pilot_results/rnn_k10/invocations/20261014T185858.492893Z.json": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "eca1f1cb81d36cef77a7372f0dd3e6bb6ecb4aa4236ee672c8598d3866d5f4f3",
+      "size_bytes": 1733
+    },
+    "modern_baselines/pilot_results/rnn_k10/invocations/20261014T185951.275854Z.json": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "6fd27f1033157c74c9a517d24cf0b976018271b3c5b5bde42285aa612e086358",
+      "size_bytes": 3139
+    },
+    "modern_baselines/pilot_results/rnn_k10/preflight.json": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "0a56d3f7c9c49f5bef5de62116307bcfcf753132a5ce8adf8e0792d2741a573d",
+      "size_bytes": 6598
+    },
+    "modern_baselines/pilot_results/rnn_k10/resume-verification.json": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "6fd27f1033157c74c9a517d24cf0b976018271b3c5b5bde42285aa612e086358",
+      "size_bytes": 3139
+    },
+    "modern_baselines/pilot_results/rnn_k10/source-inspection.json": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "6f700b408dd2e183b701126530dd008178f162af4f2754a9af9e12ca95695984",
+      "size_bytes": 2476
+    },
+    "modern_baselines/pilot_results/rnn_k10/summary.csv": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "729ca23ab2fcf13543cd4307ea94a4c44dea413941312ecb2fd272e505ee2058",
+      "size_bytes": 2391
+    },
+    "modern_baselines/pilot_results/rnn_k10/summary.json": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "f2220eb10fcb0be1eb18707a8cf3c1a391e9308a297cd36435d9b30394165442",
+      "size_bytes": 4939
+    },
+    "modern_baselines/pilot_runner.py": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "64332c88863890ae7490c12a7a2679633d3e14d100f13c35ee8d0de129ab9426",
+      "size_bytes": 15536
+    },
+    "modern_baselines/result.schema.json": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "06c1e41ab4b3700b518b99288821de78e0494fc06aefd4c38725252a5a9fb985",
+      "size_bytes": 4783
+    },
+    "modern_baselines/results.py": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "ede609d74cd667e8703e565e9e1b1cb1b1a185e8a090bbee6931449fe2dd55ad",
+      "size_bytes": 7651
+    },
+    "modern_baselines/rnn_pilot_datasets.json": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "342dd7c6fbdcfaa4be679b18a955d06e34368fd83e4e4cdaeabfc671cc7e7f9e",
+      "size_bytes": 2206
+    },
+    "modern_baselines/rnn_pilot_protocol.json": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "19e7cea86f12d17159aaa02f01c5edf71aea6faae3c564960cad6dbe0e0a541b",
+      "size_bytes": 5302
+    },
+    "modern_baselines/runner.py": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "936a6e8615275566436cb94714d20cd7e8d8344784b3a213c282da94b6f45b93",
+      "size_bytes": 3697
+    },
+    "modern_baselines/schema_checks.py": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "a965dc4ca29123e8f1bf62f58f90040c01305cc079f88fef851c017e4a6237fc",
+      "size_bytes": 4566
+    },
+    "modern_baselines/smoke_validation.py": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "3cd9102382d216bebb06b64b5a0004cedbcae0dfdebf35bbabd9de0d085880ec",
+      "size_bytes": 5319
+    },
+    "modern_baselines/tests/test_foundation.py": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "3f3b7d29b50746e3ff36eb20b2f9ab77eec1d4a06f0d97b4c7b624ae78fd164d",
+      "size_bytes": 28522
+    },
+    "modern_baselines/tests/test_pilot.py": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "dbd04cbef57036301e92f73936dc82cd24e4f3864969aaced01b83bbaec69a29",
+      "size_bytes": 9061
+    },
+    "modern_baselines/thread_controls.py": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "d1fdd2aea7c7f8f115088c20882a106c3b0faa11c89594e67f968ed4ac329109",
+      "size_bytes": 477
+    },
+    "modern_baselines/validation.py": {
+      "policy": "byte-for-byte immutable",
+      "sha256": "2c97ccc92b8669a39f1ba98d7b574500a895b77796ecd10033c8cf95ecda644a",
+      "size_bytes": 1286
+    }
+  },
+  "pilot_commit": "14f7bb1b0c26cd12763836df147f9fc52cfdec9d",
+  "pilot_foundation_sha256": "abd549ae9f9aa9f1be3bb7d19dee1ac316f87d0773e0d7760eac61140407ae58"
+}

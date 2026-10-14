@@ -1,0 +1,62 @@
+{
+  "all_six_identical": true,
+  "comparisons": [
+    {
+      "candidate_run_id": "305a05f30aa3cde77ec589cf831a82e90beca2dd506305a0bdd88d2aabfcb624",
+      "dataset_id": "anisotropic",
+      "diagnostic_file": "repeatability/anisotropic.json",
+      "diagnostic_process_id": 52,
+      "n_neighbors": 15,
+      "observations": 2000,
+      "predicted_labels_identical": true
+    },
+    {
+      "candidate_run_id": "23f2d0dbed458f0168b24e28d01a920dd7ab32ba070161e8e71ce53320952a6a",
+      "dataset_id": "blobs",
+      "diagnostic_file": "repeatability/blobs.json",
+      "diagnostic_process_id": 102,
+      "n_neighbors": 13,
+      "observations": 2000,
+      "predicted_labels_identical": true
+    },
+    {
+      "candidate_run_id": "c27e5e0a39f8abdc5ea816d8aac039a8f1b77ec050f774023b5d8f5a5ebe6c6d",
+      "dataset_id": "blobs_var_density",
+      "diagnostic_file": "repeatability/blobs_var_density.json",
+      "diagnostic_process_id": 152,
+      "n_neighbors": 9,
+      "observations": 2000,
+      "predicted_labels_identical": true
+    },
+    {
+      "candidate_run_id": "cbf21890f6fb7b29a367c06dd9eb8c84f04eb1816e3699985e0f212e940cb16b",
+      "dataset_id": "bridge",
+      "diagnostic_file": "repeatability/bridge.json",
+      "diagnostic_process_id": 202,
+      "n_neighbors": 14,
+      "observations": 2000,
+      "predicted_labels_identical": true
+    },
+    {
+      "candidate_run_id": "b4af11df7cefc82483c4f0c6b45316fac927a1ed7e897660cb8d275e46c132d4",
+      "dataset_id": "circles",
+      "diagnostic_file": "repeatability/circles.json",
+      "diagnostic_process_id": 252,
+      "n_neighbors": 16,
+      "observations": 2000,
+      "predicted_labels_identical": true
+    },
+    {
+      "candidate_run_id": "cf7f1a610ee291927348e436a83ecbeb4be3114474c7d807a449ca702c9c5076",
+      "dataset_id": "moons",
+      "diagnostic_file": "repeatability/moons.json",
+      "diagnostic_process_id": 302,
+      "n_neighbors": 16,
+      "observations": 2000,
+      "predicted_labels_identical": true
+    }
+  ],
+  "diagnostics_only_not_used_for_selection": true,
+  "fresh_processes": 6,
+  "method": "RNN-DBSCAN third-party implementation results; not merged with manuscript table"
+}

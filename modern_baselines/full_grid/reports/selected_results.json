@@ -1,0 +1,131 @@
+{
+  "complete_candidate_count": 90,
+  "method": "RNN-DBSCAN third-party implementation results; not merged with manuscript table",
+  "protocol_sha256": "a8ed01e255da55bb1e0e70bdb6fc7f3f543a6c23cd633d7443f3c2c645e9f66c",
+  "results": [
+    {
+      "ari_all_observations": 0.9834150720360708,
+      "candidate_file": "results/rnn_k2_16/305a05f30aa3cde77ec589cf831a82e90beca2dd506305a0bdd88d2aabfcb624.json",
+      "dataset_id": "anisotropic",
+      "fit_predict_seconds": 0.06373820395674556,
+      "flags": [],
+      "method": "RNN-DBSCAN third-party implementation results; not merged with manuscript table",
+      "n_neighbors": 15,
+      "n_observations": 2000,
+      "n_predicted_clusters": 3,
+      "negative_label_counts": {
+        "-1": 22
+      },
+      "negative_observations": 22,
+      "nmi_all_observations": 0.9679683373152002,
+      "run_id": "305a05f30aa3cde77ec589cf831a82e90beca2dd506305a0bdd88d2aabfcb624",
+      "total_seconds": 0.08078362699598074,
+      "unexpected_negative_label_counts": {}
+    },
+    {
+      "ari_all_observations": 0.9594689695214395,
+      "candidate_file": "results/rnn_k2_16/23f2d0dbed458f0168b24e28d01a920dd7ab32ba070161e8e71ce53320952a6a.json",
+      "dataset_id": "blobs",
+      "fit_predict_seconds": 0.05855803401209414,
+      "flags": [],
+      "method": "RNN-DBSCAN third-party implementation results; not merged with manuscript table",
+      "n_neighbors": 13,
+      "n_observations": 2000,
+      "n_predicted_clusters": 4,
+      "negative_label_counts": {
+        "-1": 59
+      },
+      "negative_observations": 59,
+      "nmi_all_observations": 0.9404040236681526,
+      "run_id": "23f2d0dbed458f0168b24e28d01a920dd7ab32ba070161e8e71ce53320952a6a",
+      "total_seconds": 0.0767093850299716,
+      "unexpected_negative_label_counts": {}
+    },
+    {
+      "ari_all_observations": 0.7478805612960893,
+      "candidate_file": "results/rnn_k2_16/c27e5e0a39f8abdc5ea816d8aac039a8f1b77ec050f774023b5d8f5a5ebe6c6d.json",
+      "dataset_id": "blobs_var_density",
+      "fit_predict_seconds": 0.048745137988589704,
+      "flags": [],
+      "method": "RNN-DBSCAN third-party implementation results; not merged with manuscript table",
+      "n_neighbors": 9,
+      "n_observations": 2000,
+      "n_predicted_clusters": 6,
+      "negative_label_counts": {
+        "-1": 33
+      },
+      "negative_observations": 33,
+      "nmi_all_observations": 0.7585585113955288,
+      "run_id": "c27e5e0a39f8abdc5ea816d8aac039a8f1b77ec050f774023b5d8f5a5ebe6c6d",
+      "total_seconds": 0.0655523989116773,
+      "unexpected_negative_label_counts": {}
+    },
+    {
+      "ari_all_observations": 0.7358692483006877,
+      "candidate_file": "results/rnn_k2_16/cbf21890f6fb7b29a367c06dd9eb8c84f04eb1816e3699985e0f212e940cb16b.json",
+      "dataset_id": "bridge",
+      "fit_predict_seconds": 0.04548345401417464,
+      "flags": [],
+      "method": "RNN-DBSCAN third-party implementation results; not merged with manuscript table",
+      "n_neighbors": 14,
+      "n_observations": 2000,
+      "n_predicted_clusters": 2,
+      "negative_label_counts": {
+        "-1": 54
+      },
+      "negative_observations": 54,
+      "nmi_all_observations": 0.7133945978171541,
+      "run_id": "cbf21890f6fb7b29a367c06dd9eb8c84f04eb1816e3699985e0f212e940cb16b",
+      "total_seconds": 0.05797355098184198,
+      "unexpected_negative_label_counts": {}
+    },
+    {
+      "ari_all_observations": 0.7270532314915351,
+      "candidate_file": "results/rnn_k2_16/b4af11df7cefc82483c4f0c6b45316fac927a1ed7e897660cb8d275e46c132d4.json",
+      "dataset_id": "circles",
+      "fit_predict_seconds": 0.061648149974644184,
+      "flags": [],
+      "method": "RNN-DBSCAN third-party implementation results; not merged with manuscript table",
+      "n_neighbors": 16,
+      "n_observations": 2000,
+      "n_predicted_clusters": 3,
+      "negative_label_counts": {
+        "-1": 35
+      },
+      "negative_observations": 35,
+      "nmi_all_observations": 0.7668532377687207,
+      "run_id": "b4af11df7cefc82483c4f0c6b45316fac927a1ed7e897660cb8d275e46c132d4",
+      "total_seconds": 0.08614382904488593,
+      "unexpected_negative_label_counts": {}
+    },
+    {
+      "ari_all_observations": 0.9603824123509593,
+      "candidate_file": "results/rnn_k2_16/cf7f1a610ee291927348e436a83ecbeb4be3114474c7d807a449ca702c9c5076.json",
+      "dataset_id": "moons",
+      "fit_predict_seconds": 0.04996065399609506,
+      "flags": [],
+      "method": "RNN-DBSCAN third-party implementation results; not merged with manuscript table",
+      "n_neighbors": 16,
+      "n_observations": 2000,
+      "n_predicted_clusters": 2,
+      "negative_label_counts": {
+        "-1": 40
+      },
+      "negative_observations": 40,
+      "nmi_all_observations": 0.9239348478603291,
+      "run_id": "cf7f1a610ee291927348e436a83ecbeb4be3114474c7d807a449ca702c9c5076",
+      "total_seconds": 0.05979551491327584,
+      "unexpected_negative_label_counts": {}
+    }
+  ],
+  "selection": {
+    "after_all_candidates": true,
+    "description": "Oracle, label-selected best-of-grid evaluation, consistent with the manuscript's existing external-comparison protocol; not an unsupervised parameter-selection rule.",
+    "order": [
+      "maximum ARI",
+      "maximum NMI",
+      "fewer predicted negative-label observations",
+      "smaller n_neighbors"
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RNN-DBSCAN third-party implementation full-grid candidate",
+  "$ref": "../result.schema.json",
+  "type": "object",
+  "properties": {
+    "identity": {
+      "properties": {
+        "foundation_version": {"const": "5"},
+        "parameters": {"properties": {"n_neighbors": {"minimum": 2, "maximum": 16}}}
+      }
+    }
+  },
+  "$comment": "Extends the immutable foundation schema locally, without editing it or remote resolution."
+}

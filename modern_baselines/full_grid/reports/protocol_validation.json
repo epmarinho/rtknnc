@@ -1,0 +1,17 @@
+{
+  "absolute_interpreter_or_prefix_binding": false,
+  "candidate_count": 90,
+  "method": "RNN-DBSCAN third-party implementation results; not merged with manuscript table",
+  "portable_relative_resolution": true,
+  "protocol_sha256": "a8ed01e255da55bb1e0e70bdb6fc7f3f543a6c23cd633d7443f3c2c645e9f66c",
+  "selection": {
+    "after_all_candidates": true,
+    "description": "Oracle, label-selected best-of-grid evaluation, consistent with the manuscript's existing external-comparison protocol; not an unsupervised parameter-selection rule.",
+    "order": [
+      "maximum ARI",
+      "maximum NMI",
+      "fewer predicted negative-label observations",
+      "smaller n_neighbors"
+    ]
+  }
+}

@@ -1,0 +1,186 @@
+{
+  "candidate_directory": "results/rnn_k2_16",
+  "dataset_manifest": "rnn_pilot_datasets.json",
+  "dataset_manifest_sha256": "342dd7c6fbdcfaa4be679b18a955d06e34368fd83e4e4cdaeabfc671cc7e7f9e",
+  "datasets": [
+    {
+      "dataset_id": "anisotropic",
+      "delimiter": ",",
+      "feature_columns": [
+        0,
+        1
+      ],
+      "header": true,
+      "path": "csv/benchmarks/anisotropic.csv",
+      "preprocessing": "none",
+      "row_order": "file",
+      "sha256": "438f1f6a8997f7b4b557ac158e0a4078d17c3829aac2c027728732c445a7f554",
+      "truth_column": 2
+    },
+    {
+      "dataset_id": "blobs",
+      "delimiter": ",",
+      "feature_columns": [
+        0,
+        1
+      ],
+      "header": true,
+      "path": "csv/benchmarks/blobs.csv",
+      "preprocessing": "none",
+      "row_order": "file",
+      "sha256": "77d79dba86401fb0f421825095d8dc457fafb22c2b4afd02d4536b25b05a8e6a",
+      "truth_column": 2
+    },
+    {
+      "dataset_id": "blobs_var_density",
+      "delimiter": ",",
+      "feature_columns": [
+        0,
+        1
+      ],
+      "header": true,
+      "path": "csv/benchmarks/blobs_var_density.csv",
+      "preprocessing": "none",
+      "row_order": "file",
+      "sha256": "3aa25fbd219c1398535db712c8764a4ce7d837d6cc9decf564f04975a6cc4ffd",
+      "truth_column": 2
+    },
+    {
+      "dataset_id": "bridge",
+      "delimiter": ",",
+      "feature_columns": [
+        0,
+        1
+      ],
+      "header": true,
+      "path": "csv/benchmarks/bridge.csv",
+      "preprocessing": "none",
+      "row_order": "file",
+      "sha256": "8c8a68983d711b978acafe967421367fa6f72050873278ff52b80551b3dc32e5",
+      "truth_column": 2
+    },
+    {
+      "dataset_id": "circles",
+      "delimiter": ",",
+      "feature_columns": [
+        0,
+        1
+      ],
+      "header": true,
+      "path": "csv/benchmarks/circles.csv",
+      "preprocessing": "none",
+      "row_order": "file",
+      "sha256": "ed773970a7eee13395ef8836c9cedf2c5f8612811bb5fa0fef609e7b6669ccc4",
+      "truth_column": 2
+    },
+    {
+      "dataset_id": "moons",
+      "delimiter": ",",
+      "feature_columns": [
+        0,
+        1
+      ],
+      "header": true,
+      "path": "csv/benchmarks/moons.csv",
+      "preprocessing": "none",
+      "row_order": "file",
+      "sha256": "447251ba9640e7865dfaae6307a6b326a9319ae49a9022f97f86f2c1e277d6a2",
+      "truth_column": 2
+    }
+  ],
+  "environment": {
+    "dependencies": {
+      "numpy": "2.5.4",
+      "python": "3.12.3",
+      "scikit-learn": "1.9.1",
+      "scipy": "1.18.1",
+      "sklearn-ann": "0.1.5.dev52+gc105475ab"
+    },
+    "direct_url_file": "environment/direct_url.json",
+    "direct_url_sha256": "1d19216ee9cee815af298dfb2fb04904eee1a67c9dc9a80ec49e8ca4653bb53a",
+    "freeze_file": "environment/pip-freeze.txt",
+    "freeze_sha256": "f177ea8c11cf1dabf6c87683741e474bc2e2d23145fa5b240e922d1723134de5",
+    "installed_source_sha256": {
+      "_graph.py": "4d00be760450850768c019952b512a02eb0a70555be1d983cb8ba0889f9cb4ba",
+      "rnn_dbscan.py": "53dc9b13ab60197284b4ad04e7a687896810cc4f88bbbab2d50fd97a29da8ff5"
+    }
+  },
+  "evaluation": {
+    "cluster_count": "Distinct nonnegative predicted labels only",
+    "metrics_after_prediction": [
+      "ari_all_observations",
+      "nmi_all_observations"
+    ],
+    "negative_labels": "Every negative prediction is retained as a partition category; unexpected negative labels are preserved and flagged.",
+    "nmi_normalization": "arithmetic",
+    "quality_threshold": null,
+    "truth_excluded_from_fitting": true
+  },
+  "execution": {
+    "candidate_fits": 90,
+    "determinism_rationale": "Fixed implementation, exact-neighbor route, fixed file order and thread protocol are deterministic; no stochastic repeats.",
+    "mode": "sequential",
+    "observations_per_candidate": 2000,
+    "selected_fresh_process_diagnostic_fits": 6,
+    "stochastic_repeats": 0
+  },
+  "features": "raw declared feature columns",
+  "grid": {
+    "input_guarantee": "none",
+    "keep_knns": false,
+    "n_jobs": 1,
+    "n_neighbors": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16
+    ]
+  },
+  "method": "RNN-DBSCAN third-party implementation",
+  "output_marker": "RNN-DBSCAN third-party implementation results; not merged with manuscript table",
+  "pilot_commit": "14f7bb1b0c26cd12763836df147f9fc52cfdec9d",
+  "preprocessing": "none",
+  "preservation_manifest": "preservation_manifest.json",
+  "preservation_manifest_sha256": "c376d671ddae6dcde9f3ca1057db4e2508eb81410cf1ddaa7a47303bb7db7ead",
+  "protocol_version": 1,
+  "repository_root_resolution": "modern_baselines package directory parent, resolved at runtime",
+  "row_order": "file",
+  "selection": {
+    "after_all_candidates": true,
+    "description": "Oracle, label-selected best-of-grid evaluation, consistent with the manuscript's existing external-comparison protocol; not an unsupervised parameter-selection rule.",
+    "order": [
+      "maximum ARI",
+      "maximum NMI",
+      "fewer predicted negative-label observations",
+      "smaller n_neighbors"
+    ]
+  },
+  "thread_controls": {
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1"
+  },
+  "tie_diagnostic": {
+    "abort_on_ties": false,
+    "boundary": "kth versus (k+1)th non-self exact-neighbor distances",
+    "changes_predictions": false,
+    "comparison": "exact floating-point equality"
+  },
+  "upstream": {
+    "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+    "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+    "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann"
+  }
+}

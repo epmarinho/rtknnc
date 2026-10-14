@@ -1,0 +1,4867 @@
+{
+  "candidates": [
+    {
+      "dataset_id": "anisotropic",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "anisotropic",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/anisotropic.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "438f1f6a8997f7b4b557ac158e0a4078d17c3829aac2c027728732c445a7f554",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 2
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 2,
+      "run_id": "a703a66c0974069c92ade742e0c593935aaae955374f1c260c7c405e770ccb52"
+    },
+    {
+      "dataset_id": "anisotropic",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "anisotropic",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/anisotropic.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "438f1f6a8997f7b4b557ac158e0a4078d17c3829aac2c027728732c445a7f554",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 3
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 3,
+      "run_id": "46491490691bd957cfa0f6746e26671827ea27bc046dcae58a6138508665edb4"
+    },
+    {
+      "dataset_id": "anisotropic",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "anisotropic",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/anisotropic.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "438f1f6a8997f7b4b557ac158e0a4078d17c3829aac2c027728732c445a7f554",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 4
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 4,
+      "run_id": "97d5b79a530009a10266e172a79fbfedaaf4bdf29b444369d46fa26c0db12801"
+    },
+    {
+      "dataset_id": "anisotropic",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "anisotropic",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/anisotropic.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "438f1f6a8997f7b4b557ac158e0a4078d17c3829aac2c027728732c445a7f554",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 5
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 5,
+      "run_id": "eda34ecf7eaeac25f27a38cb09dde4730718e3cee8983c911f36ac70bc63872e"
+    },
+    {
+      "dataset_id": "anisotropic",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "anisotropic",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/anisotropic.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "438f1f6a8997f7b4b557ac158e0a4078d17c3829aac2c027728732c445a7f554",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 6
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 6,
+      "run_id": "dd28bfff09016e92f1f067c0feecfbdb295ef722d40b12faea2047231e5d43de"
+    },
+    {
+      "dataset_id": "anisotropic",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "anisotropic",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/anisotropic.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "438f1f6a8997f7b4b557ac158e0a4078d17c3829aac2c027728732c445a7f554",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 7
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 7,
+      "run_id": "249e685774d572c590fac7f5272afeb0d79b8cb8b6f96a50c980cffba77bb675"
+    },
+    {
+      "dataset_id": "anisotropic",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "anisotropic",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/anisotropic.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "438f1f6a8997f7b4b557ac158e0a4078d17c3829aac2c027728732c445a7f554",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 8
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 8,
+      "run_id": "14cb91c7a89459999fe45a23d81e19108c3fa3c952af205f22f9bcd878660d59"
+    },
+    {
+      "dataset_id": "anisotropic",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "anisotropic",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/anisotropic.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "438f1f6a8997f7b4b557ac158e0a4078d17c3829aac2c027728732c445a7f554",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 9
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 9,
+      "run_id": "20ab21d46d45474a7974fac7f78c9a7c933ced61993a5ee2b09f1f8ee188ad20"
+    },
+    {
+      "dataset_id": "anisotropic",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "anisotropic",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/anisotropic.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "438f1f6a8997f7b4b557ac158e0a4078d17c3829aac2c027728732c445a7f554",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 10
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 10,
+      "run_id": "5e96c7003bdcd800d3bb6c8123796683083eb525d3ff648c92da38de9031efc4"
+    },
+    {
+      "dataset_id": "anisotropic",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "anisotropic",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/anisotropic.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "438f1f6a8997f7b4b557ac158e0a4078d17c3829aac2c027728732c445a7f554",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 11
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 11,
+      "run_id": "d1c1f9cc7304c6fd127c01d94e196dee5b0b78fa9a700e7c24b3acd1f0a6aff9"
+    },
+    {
+      "dataset_id": "anisotropic",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "anisotropic",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/anisotropic.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "438f1f6a8997f7b4b557ac158e0a4078d17c3829aac2c027728732c445a7f554",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 12
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 12,
+      "run_id": "eafc365a6ff13be74cbdce322024478ea80e99e313dde4cb6a6d8a9b021a25d0"
+    },
+    {
+      "dataset_id": "anisotropic",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "anisotropic",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/anisotropic.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "438f1f6a8997f7b4b557ac158e0a4078d17c3829aac2c027728732c445a7f554",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 13
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 13,
+      "run_id": "2b99634d94778115f4663cc5afa1b997b5e421a3e00ea9160315d60af60e01b9"
+    },
+    {
+      "dataset_id": "anisotropic",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "anisotropic",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/anisotropic.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "438f1f6a8997f7b4b557ac158e0a4078d17c3829aac2c027728732c445a7f554",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 14
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 14,
+      "run_id": "87083fd132f0fced6750a250b9f65917ef7b1d6817f5ef459b45784020b58425"
+    },
+    {
+      "dataset_id": "anisotropic",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "anisotropic",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/anisotropic.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "438f1f6a8997f7b4b557ac158e0a4078d17c3829aac2c027728732c445a7f554",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 15
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 15,
+      "run_id": "305a05f30aa3cde77ec589cf831a82e90beca2dd506305a0bdd88d2aabfcb624"
+    },
+    {
+      "dataset_id": "anisotropic",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "anisotropic",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/anisotropic.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "438f1f6a8997f7b4b557ac158e0a4078d17c3829aac2c027728732c445a7f554",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 16
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 16,
+      "run_id": "ad76159402ca7260e351e49f9731c39fba1b2b840dc8e8231c299f3f445526f3"
+    },
+    {
+      "dataset_id": "blobs",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "blobs",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/blobs.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "77d79dba86401fb0f421825095d8dc457fafb22c2b4afd02d4536b25b05a8e6a",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 2
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 2,
+      "run_id": "31953c5fde4fe24c33df055ea2b53abb44e665994bd88ea7ffa71649b659407d"
+    },
+    {
+      "dataset_id": "blobs",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "blobs",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/blobs.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "77d79dba86401fb0f421825095d8dc457fafb22c2b4afd02d4536b25b05a8e6a",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 3
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 3,
+      "run_id": "8280f1578c8aec785e13d8f9d13002ff4247bb64d5cbb2edc39b0cc240775f19"
+    },
+    {
+      "dataset_id": "blobs",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "blobs",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/blobs.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "77d79dba86401fb0f421825095d8dc457fafb22c2b4afd02d4536b25b05a8e6a",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 4
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 4,
+      "run_id": "41f0c7aa6a3737eee340518327178cde3df39a534e8c47c1347eb9275fdad411"
+    },
+    {
+      "dataset_id": "blobs",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "blobs",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/blobs.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "77d79dba86401fb0f421825095d8dc457fafb22c2b4afd02d4536b25b05a8e6a",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 5
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 5,
+      "run_id": "f3eede3b3978fe28467c86c6f0227e094ffbf7a144b73dbf73a3bea1c82eef8f"
+    },
+    {
+      "dataset_id": "blobs",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "blobs",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/blobs.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "77d79dba86401fb0f421825095d8dc457fafb22c2b4afd02d4536b25b05a8e6a",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 6
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 6,
+      "run_id": "2b8f3bfdd0acb56393cb90b2eede7ca215c13e1fe19640e4318cd884dd4b50f1"
+    },
+    {
+      "dataset_id": "blobs",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "blobs",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/blobs.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "77d79dba86401fb0f421825095d8dc457fafb22c2b4afd02d4536b25b05a8e6a",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 7
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 7,
+      "run_id": "fe1f16dc32aa0d641e182e233d8386a933458da6121640e38ef93d5713d4360f"
+    },
+    {
+      "dataset_id": "blobs",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "blobs",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/blobs.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "77d79dba86401fb0f421825095d8dc457fafb22c2b4afd02d4536b25b05a8e6a",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 8
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 8,
+      "run_id": "f3c9dfc43e44c1e7a10f78b496520e47653b8c32eb68d5da0a92c716c576217f"
+    },
+    {
+      "dataset_id": "blobs",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "blobs",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/blobs.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "77d79dba86401fb0f421825095d8dc457fafb22c2b4afd02d4536b25b05a8e6a",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 9
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 9,
+      "run_id": "63041c0d3e89ab7e8d51b8e8a0e9819f39ad99280c352ea3eaa4f2f85035503b"
+    },
+    {
+      "dataset_id": "blobs",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "blobs",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/blobs.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "77d79dba86401fb0f421825095d8dc457fafb22c2b4afd02d4536b25b05a8e6a",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 10
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 10,
+      "run_id": "f01bb52073e786b0bac138e4e1370d21b53657a6c94e838ec8130e80986749f9"
+    },
+    {
+      "dataset_id": "blobs",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "blobs",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/blobs.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "77d79dba86401fb0f421825095d8dc457fafb22c2b4afd02d4536b25b05a8e6a",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 11
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 11,
+      "run_id": "932207cb54cff329293ff692eb245ab6f2bb4ee3ebee514c937fa1af010ef3a0"
+    },
+    {
+      "dataset_id": "blobs",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "blobs",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/blobs.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "77d79dba86401fb0f421825095d8dc457fafb22c2b4afd02d4536b25b05a8e6a",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 12
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 12,
+      "run_id": "887a615f9144a43ca86928e3ef0623395ee092e6808f7de30cb7f1f40feceb59"
+    },
+    {
+      "dataset_id": "blobs",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "blobs",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/blobs.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "77d79dba86401fb0f421825095d8dc457fafb22c2b4afd02d4536b25b05a8e6a",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 13
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 13,
+      "run_id": "23f2d0dbed458f0168b24e28d01a920dd7ab32ba070161e8e71ce53320952a6a"
+    },
+    {
+      "dataset_id": "blobs",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "blobs",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/blobs.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "77d79dba86401fb0f421825095d8dc457fafb22c2b4afd02d4536b25b05a8e6a",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 14
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 14,
+      "run_id": "20c5f956c033fb30cce7f1d0dd4ffeecb40fb68bd041dd71d7bafd9650ccbe76"
+    },
+    {
+      "dataset_id": "blobs",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "blobs",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/blobs.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "77d79dba86401fb0f421825095d8dc457fafb22c2b4afd02d4536b25b05a8e6a",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 15
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 15,
+      "run_id": "a081b3edf68fa33857214a58c6a70334f58991765bd38872524e762278a646f6"
+    },
+    {
+      "dataset_id": "blobs",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "blobs",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/blobs.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "77d79dba86401fb0f421825095d8dc457fafb22c2b4afd02d4536b25b05a8e6a",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 16
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 16,
+      "run_id": "9f0401d4bd1d20e0d616ba1536696b6e6e588507132cdc36395ddea53e638ad5"
+    },
+    {
+      "dataset_id": "blobs_var_density",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "blobs_var_density",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/blobs_var_density.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "3aa25fbd219c1398535db712c8764a4ce7d837d6cc9decf564f04975a6cc4ffd",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 2
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 2,
+      "run_id": "f7ccf71d867061965040793ff16a581d92b80c83b1eea7ecc102713f25dd0d8e"
+    },
+    {
+      "dataset_id": "blobs_var_density",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "blobs_var_density",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/blobs_var_density.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "3aa25fbd219c1398535db712c8764a4ce7d837d6cc9decf564f04975a6cc4ffd",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 3
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 3,
+      "run_id": "06cb2440e0ca293f16410e9cb542a1f64a3340c9bf3400d7d8204e805b879cd3"
+    },
+    {
+      "dataset_id": "blobs_var_density",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "blobs_var_density",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/blobs_var_density.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "3aa25fbd219c1398535db712c8764a4ce7d837d6cc9decf564f04975a6cc4ffd",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 4
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 4,
+      "run_id": "ca87a41ab10341aae26b50921717682020103a0c085480bc328d1b19b2786e88"
+    },
+    {
+      "dataset_id": "blobs_var_density",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "blobs_var_density",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/blobs_var_density.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "3aa25fbd219c1398535db712c8764a4ce7d837d6cc9decf564f04975a6cc4ffd",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 5
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 5,
+      "run_id": "579a690964fe76fee5f53631ed817829fe338d1c0ebb2e1577e381b5ba380964"
+    },
+    {
+      "dataset_id": "blobs_var_density",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "blobs_var_density",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/blobs_var_density.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "3aa25fbd219c1398535db712c8764a4ce7d837d6cc9decf564f04975a6cc4ffd",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 6
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 6,
+      "run_id": "2353c02ca5a1a5d2d23bed97700f6f00f917552ad1ab798e247ced631dd87ca0"
+    },
+    {
+      "dataset_id": "blobs_var_density",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "blobs_var_density",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/blobs_var_density.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "3aa25fbd219c1398535db712c8764a4ce7d837d6cc9decf564f04975a6cc4ffd",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 7
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 7,
+      "run_id": "525036e1832fff3969b58112230be6c054b019110b6f7251b671688cbdeccd9f"
+    },
+    {
+      "dataset_id": "blobs_var_density",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "blobs_var_density",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/blobs_var_density.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "3aa25fbd219c1398535db712c8764a4ce7d837d6cc9decf564f04975a6cc4ffd",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 8
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 8,
+      "run_id": "4b9bf32007bc88fddeefeaf17ffd7736d8bc03b008064d46be32af6cfc4b3f7f"
+    },
+    {
+      "dataset_id": "blobs_var_density",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "blobs_var_density",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/blobs_var_density.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "3aa25fbd219c1398535db712c8764a4ce7d837d6cc9decf564f04975a6cc4ffd",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 9
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 9,
+      "run_id": "c27e5e0a39f8abdc5ea816d8aac039a8f1b77ec050f774023b5d8f5a5ebe6c6d"
+    },
+    {
+      "dataset_id": "blobs_var_density",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "blobs_var_density",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/blobs_var_density.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "3aa25fbd219c1398535db712c8764a4ce7d837d6cc9decf564f04975a6cc4ffd",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 10
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 10,
+      "run_id": "9f943659ba621aa06c37ce907d27ebbc16bf93471311650b17e5493c96918df3"
+    },
+    {
+      "dataset_id": "blobs_var_density",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "blobs_var_density",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/blobs_var_density.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "3aa25fbd219c1398535db712c8764a4ce7d837d6cc9decf564f04975a6cc4ffd",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 11
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 11,
+      "run_id": "ceb9c82075778847e8bf4f770ce6ed5e88fd1e2bd613dada0fec0248576cf8ef"
+    },
+    {
+      "dataset_id": "blobs_var_density",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "blobs_var_density",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/blobs_var_density.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "3aa25fbd219c1398535db712c8764a4ce7d837d6cc9decf564f04975a6cc4ffd",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 12
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 12,
+      "run_id": "17988ecaf78543ccc0542611ded04d8251892b69a1078ac2545a0ad55abb9a20"
+    },
+    {
+      "dataset_id": "blobs_var_density",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "blobs_var_density",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/blobs_var_density.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "3aa25fbd219c1398535db712c8764a4ce7d837d6cc9decf564f04975a6cc4ffd",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 13
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 13,
+      "run_id": "9962af52258238cf35802bb804eaf93f23dc9960139d28791e061ffe3d2f1caa"
+    },
+    {
+      "dataset_id": "blobs_var_density",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "blobs_var_density",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/blobs_var_density.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "3aa25fbd219c1398535db712c8764a4ce7d837d6cc9decf564f04975a6cc4ffd",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 14
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 14,
+      "run_id": "580b14dfbb780c86c1155167fafd99c3d49f746ed611d8e0f29ef51b158f9e09"
+    },
+    {
+      "dataset_id": "blobs_var_density",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "blobs_var_density",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/blobs_var_density.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "3aa25fbd219c1398535db712c8764a4ce7d837d6cc9decf564f04975a6cc4ffd",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 15
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 15,
+      "run_id": "363a0d0b47aef4a3127dbb6580b60aafc8a7470a1c49e63862c257b951ace0a6"
+    },
+    {
+      "dataset_id": "blobs_var_density",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "blobs_var_density",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/blobs_var_density.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "3aa25fbd219c1398535db712c8764a4ce7d837d6cc9decf564f04975a6cc4ffd",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 16
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 16,
+      "run_id": "fc721dcb2c632bc2d7a507e83b6993dbfddc27d898dcf9251a73758431cdfaae"
+    },
+    {
+      "dataset_id": "bridge",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "bridge",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/bridge.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "8c8a68983d711b978acafe967421367fa6f72050873278ff52b80551b3dc32e5",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 2
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 2,
+      "run_id": "6c9968336fab1dc64d71f9ebb6f8db1f42f4bede9f245cf5edaf8bc503051ff8"
+    },
+    {
+      "dataset_id": "bridge",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "bridge",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/bridge.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "8c8a68983d711b978acafe967421367fa6f72050873278ff52b80551b3dc32e5",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 3
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 3,
+      "run_id": "eaf8514d449209799cf3640fc0baef9d3fdfb7607b0f885d522dd92f6f672355"
+    },
+    {
+      "dataset_id": "bridge",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "bridge",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/bridge.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "8c8a68983d711b978acafe967421367fa6f72050873278ff52b80551b3dc32e5",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 4
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 4,
+      "run_id": "88a22c7fdf195b91040a2d5ebd850c045ddbe51f37c25476e6c4861b068f67e2"
+    },
+    {
+      "dataset_id": "bridge",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "bridge",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/bridge.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "8c8a68983d711b978acafe967421367fa6f72050873278ff52b80551b3dc32e5",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 5
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 5,
+      "run_id": "d51c06f42cb9d96bd1caecabf4a19a9ba86a2842d56d784765deb38578f18a20"
+    },
+    {
+      "dataset_id": "bridge",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "bridge",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/bridge.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "8c8a68983d711b978acafe967421367fa6f72050873278ff52b80551b3dc32e5",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 6
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 6,
+      "run_id": "6571f2ea53e452b99678896d09b98ea8e8236258715634037648090dd5933430"
+    },
+    {
+      "dataset_id": "bridge",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "bridge",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/bridge.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "8c8a68983d711b978acafe967421367fa6f72050873278ff52b80551b3dc32e5",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 7
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 7,
+      "run_id": "2f8478060a7d8e2052812084be14e97ee3fd3c83f8b0888629531928b21d602a"
+    },
+    {
+      "dataset_id": "bridge",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "bridge",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/bridge.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "8c8a68983d711b978acafe967421367fa6f72050873278ff52b80551b3dc32e5",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 8
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 8,
+      "run_id": "1647d046fc1856365330d1c9e4fc7bda5b354fe8a7e457e5431f3a8f022a6b76"
+    },
+    {
+      "dataset_id": "bridge",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "bridge",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/bridge.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "8c8a68983d711b978acafe967421367fa6f72050873278ff52b80551b3dc32e5",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 9
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 9,
+      "run_id": "0816b1f7bf215153621a5de9c39df4f43d39bd903ba689da7eb6b612f710c235"
+    },
+    {
+      "dataset_id": "bridge",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "bridge",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/bridge.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "8c8a68983d711b978acafe967421367fa6f72050873278ff52b80551b3dc32e5",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 10
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 10,
+      "run_id": "5c2f3ce1ebd8e938bb8bff06a658c1e5790a3722f4bbe45dd49c7fab8bac87b9"
+    },
+    {
+      "dataset_id": "bridge",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "bridge",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/bridge.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "8c8a68983d711b978acafe967421367fa6f72050873278ff52b80551b3dc32e5",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 11
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 11,
+      "run_id": "ff98c3b14ddef13fb7b22db0f08b4f840e0282f1f3ad167eff9325c0970fc8bd"
+    },
+    {
+      "dataset_id": "bridge",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "bridge",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/bridge.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "8c8a68983d711b978acafe967421367fa6f72050873278ff52b80551b3dc32e5",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 12
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 12,
+      "run_id": "9b059db55c7525dbc6e2bd765ff52eaae3098b280070d3269d5b8e43b9b87452"
+    },
+    {
+      "dataset_id": "bridge",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "bridge",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/bridge.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "8c8a68983d711b978acafe967421367fa6f72050873278ff52b80551b3dc32e5",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 13
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 13,
+      "run_id": "ecf79143ecc8aea1f73015ca6e33bf17404e04cccf10e7256b9c5645adef41d7"
+    },
+    {
+      "dataset_id": "bridge",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "bridge",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/bridge.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "8c8a68983d711b978acafe967421367fa6f72050873278ff52b80551b3dc32e5",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 14
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 14,
+      "run_id": "cbf21890f6fb7b29a367c06dd9eb8c84f04eb1816e3699985e0f212e940cb16b"
+    },
+    {
+      "dataset_id": "bridge",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "bridge",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/bridge.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "8c8a68983d711b978acafe967421367fa6f72050873278ff52b80551b3dc32e5",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 15
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 15,
+      "run_id": "5a797d283cf392dd90ec4555637acbbd4bc830cbe91a5a4e098c3abb3bc28c02"
+    },
+    {
+      "dataset_id": "bridge",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "bridge",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/bridge.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "8c8a68983d711b978acafe967421367fa6f72050873278ff52b80551b3dc32e5",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 16
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 16,
+      "run_id": "6f2dfb983108e179dcdad8836804fa6b5e73645279009a524beceb34feb735bd"
+    },
+    {
+      "dataset_id": "circles",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "circles",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/circles.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "ed773970a7eee13395ef8836c9cedf2c5f8612811bb5fa0fef609e7b6669ccc4",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 2
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 2,
+      "run_id": "4e97ec426c0b6553f59db7e7a4b247edf54876f67f79249f7a5b48434282c103"
+    },
+    {
+      "dataset_id": "circles",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "circles",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/circles.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "ed773970a7eee13395ef8836c9cedf2c5f8612811bb5fa0fef609e7b6669ccc4",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 3
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 3,
+      "run_id": "1ba9b09c72040444efce16642697a0dbb9b5a2028b4d8e4ada42954c9782b518"
+    },
+    {
+      "dataset_id": "circles",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "circles",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/circles.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "ed773970a7eee13395ef8836c9cedf2c5f8612811bb5fa0fef609e7b6669ccc4",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 4
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 4,
+      "run_id": "09684595cbfbc1e1ff055d12b43bb9efa53fd2c0bd65b7a2c034c7ba7d8a4bee"
+    },
+    {
+      "dataset_id": "circles",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "circles",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/circles.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "ed773970a7eee13395ef8836c9cedf2c5f8612811bb5fa0fef609e7b6669ccc4",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 5
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 5,
+      "run_id": "b7b7da5d4e0edd4acd6accab96d5ef22532af8a9a1d4650a1a631c9b9948e45a"
+    },
+    {
+      "dataset_id": "circles",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "circles",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/circles.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "ed773970a7eee13395ef8836c9cedf2c5f8612811bb5fa0fef609e7b6669ccc4",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 6
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 6,
+      "run_id": "5f19adf65d0f66290454b269c3759d1a128ade1d8e5f84c8a2a2a55b1a569783"
+    },
+    {
+      "dataset_id": "circles",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "circles",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/circles.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "ed773970a7eee13395ef8836c9cedf2c5f8612811bb5fa0fef609e7b6669ccc4",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 7
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 7,
+      "run_id": "1ca544526ab8dc2202788aece72b2c5f56d543c5abb3675de0ded9f10e33aff8"
+    },
+    {
+      "dataset_id": "circles",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "circles",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/circles.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "ed773970a7eee13395ef8836c9cedf2c5f8612811bb5fa0fef609e7b6669ccc4",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 8
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 8,
+      "run_id": "68cbdb17950b7bb21705d5444756a1b6073b7644b98ccd6158ac9409f5c44c79"
+    },
+    {
+      "dataset_id": "circles",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "circles",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/circles.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "ed773970a7eee13395ef8836c9cedf2c5f8612811bb5fa0fef609e7b6669ccc4",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 9
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 9,
+      "run_id": "47218537246eef97d4919478b132bbea01c0d8e10ecd5bbf045118a99923eac8"
+    },
+    {
+      "dataset_id": "circles",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "circles",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/circles.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "ed773970a7eee13395ef8836c9cedf2c5f8612811bb5fa0fef609e7b6669ccc4",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 10
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 10,
+      "run_id": "dac63b012890a4176d64e430cac96427aad1687977e64a961a4fd4003621a2c2"
+    },
+    {
+      "dataset_id": "circles",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "circles",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/circles.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "ed773970a7eee13395ef8836c9cedf2c5f8612811bb5fa0fef609e7b6669ccc4",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 11
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 11,
+      "run_id": "ac25fce7d2dfb5952606ee5a737ccb9ffdd47e4a015017f8b205ff137a5dbd92"
+    },
+    {
+      "dataset_id": "circles",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "circles",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/circles.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "ed773970a7eee13395ef8836c9cedf2c5f8612811bb5fa0fef609e7b6669ccc4",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 12
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 12,
+      "run_id": "a12df7a1718bb3c44f61d91bd2560283761beb64b23652cf20305155dbd4eb43"
+    },
+    {
+      "dataset_id": "circles",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "circles",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/circles.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "ed773970a7eee13395ef8836c9cedf2c5f8612811bb5fa0fef609e7b6669ccc4",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 13
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 13,
+      "run_id": "4bc45def4b2165d12f5c1a1c50cb87b320ac3e02eeb7860d8c938c07a2fc3dc2"
+    },
+    {
+      "dataset_id": "circles",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "circles",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/circles.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "ed773970a7eee13395ef8836c9cedf2c5f8612811bb5fa0fef609e7b6669ccc4",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 14
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 14,
+      "run_id": "943f435c7d0cb38d8b60e00278013cd2969faa01b57349af4da8d7c1cfaec279"
+    },
+    {
+      "dataset_id": "circles",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "circles",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/circles.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "ed773970a7eee13395ef8836c9cedf2c5f8612811bb5fa0fef609e7b6669ccc4",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 15
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 15,
+      "run_id": "3f9bbe8337fbf96a3111b55d1135fd2558e74db5c0af272e972249612bd61d0a"
+    },
+    {
+      "dataset_id": "circles",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "circles",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/circles.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "ed773970a7eee13395ef8836c9cedf2c5f8612811bb5fa0fef609e7b6669ccc4",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 16
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 16,
+      "run_id": "b4af11df7cefc82483c4f0c6b45316fac927a1ed7e897660cb8d275e46c132d4"
+    },
+    {
+      "dataset_id": "moons",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "moons",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/moons.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "447251ba9640e7865dfaae6307a6b326a9319ae49a9022f97f86f2c1e277d6a2",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 2
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 2,
+      "run_id": "e056a47923de6f0d8f99425e1c87214058730753fe750d4ad97fb1659f93abe1"
+    },
+    {
+      "dataset_id": "moons",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "moons",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/moons.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "447251ba9640e7865dfaae6307a6b326a9319ae49a9022f97f86f2c1e277d6a2",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 3
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 3,
+      "run_id": "4690fbe3c10bfdfd5d633dd8647cd13bcef7dc825bcb5559c111a24d0f440c23"
+    },
+    {
+      "dataset_id": "moons",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "moons",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/moons.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "447251ba9640e7865dfaae6307a6b326a9319ae49a9022f97f86f2c1e277d6a2",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 4
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 4,
+      "run_id": "ac0b0d4bd9ac48e9b7a5cdaf27f081ca027c86c6e81d0eb3c7f5664093fbf1a9"
+    },
+    {
+      "dataset_id": "moons",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "moons",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/moons.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "447251ba9640e7865dfaae6307a6b326a9319ae49a9022f97f86f2c1e277d6a2",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 5
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 5,
+      "run_id": "04b7a2941cfd58431379f2127d0a09062915d9ef13468dbd57e362590bf421fb"
+    },
+    {
+      "dataset_id": "moons",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "moons",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/moons.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "447251ba9640e7865dfaae6307a6b326a9319ae49a9022f97f86f2c1e277d6a2",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 6
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 6,
+      "run_id": "79103b113c90ae5f965790e7dc61b938b9e6dceeca283898b755ee50d04c0f5e"
+    },
+    {
+      "dataset_id": "moons",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "moons",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/moons.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "447251ba9640e7865dfaae6307a6b326a9319ae49a9022f97f86f2c1e277d6a2",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 7
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 7,
+      "run_id": "a19088041366108f28f4936ae2a04d018b5dd461791f0ccfa915b4ce03784ad5"
+    },
+    {
+      "dataset_id": "moons",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "moons",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/moons.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "447251ba9640e7865dfaae6307a6b326a9319ae49a9022f97f86f2c1e277d6a2",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 8
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 8,
+      "run_id": "1be632740cc9275aba6286121f0d536d5cf9811d337277031f8df0148c084b76"
+    },
+    {
+      "dataset_id": "moons",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "moons",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/moons.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "447251ba9640e7865dfaae6307a6b326a9319ae49a9022f97f86f2c1e277d6a2",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 9
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 9,
+      "run_id": "fcf559c29206efde3048931c8d89baf80da331db09601268e0c35f73683583dd"
+    },
+    {
+      "dataset_id": "moons",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "moons",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/moons.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "447251ba9640e7865dfaae6307a6b326a9319ae49a9022f97f86f2c1e277d6a2",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 10
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 10,
+      "run_id": "9c0d11fc46756fc563eafe02d86dda6ba5f06696d479e9bd27297f084a1c09bc"
+    },
+    {
+      "dataset_id": "moons",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "moons",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/moons.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "447251ba9640e7865dfaae6307a6b326a9319ae49a9022f97f86f2c1e277d6a2",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 11
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 11,
+      "run_id": "f0f0dc98d1d26a10525d4c4b5e63a992b330dd6bdd80c8bd05fdd8a21c05770e"
+    },
+    {
+      "dataset_id": "moons",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "moons",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/moons.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "447251ba9640e7865dfaae6307a6b326a9319ae49a9022f97f86f2c1e277d6a2",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 12
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 12,
+      "run_id": "3ed525b7add8a478045b604f1ad601a1d9261698c63fbbdc6dbb48fd567625a2"
+    },
+    {
+      "dataset_id": "moons",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "moons",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/moons.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "447251ba9640e7865dfaae6307a6b326a9319ae49a9022f97f86f2c1e277d6a2",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 13
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 13,
+      "run_id": "ae6534c1cc43a94ae49d0cbb40986927a215acf4720468ba6c09ad7f622691ca"
+    },
+    {
+      "dataset_id": "moons",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "moons",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/moons.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "447251ba9640e7865dfaae6307a6b326a9319ae49a9022f97f86f2c1e277d6a2",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 14
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 14,
+      "run_id": "14d9abc91349c5243c50d04f5aac762256c421089ee7d20676035d3bf2db6f95"
+    },
+    {
+      "dataset_id": "moons",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "moons",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/moons.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "447251ba9640e7865dfaae6307a6b326a9319ae49a9022f97f86f2c1e277d6a2",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 15
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 15,
+      "run_id": "0ef329f281473bbf7ebc44ebf7bfd8aeca279b39997f663a384f9bd1f753b0a8"
+    },
+    {
+      "dataset_id": "moons",
+      "identity": {
+        "algorithm": "RNN-DBSCAN",
+        "dataset": {
+          "dataset_id": "moons",
+          "delimiter": ",",
+          "feature_columns": [
+            0,
+            1
+          ],
+          "header": true,
+          "path": "csv/benchmarks/moons.csv",
+          "preprocessing": "none",
+          "row_order": "file",
+          "sha256": "447251ba9640e7865dfaae6307a6b326a9319ae49a9022f97f86f2c1e277d6a2",
+          "truth_column": 2
+        },
+        "dependencies": {
+          "numpy": "2.5.4",
+          "python": "3.12.3",
+          "scikit-learn": "1.9.1",
+          "scipy": "1.18.1",
+          "sklearn-ann": "0.1.5.dev52+gc105475ab"
+        },
+        "environment": {
+          "machine": "x86_64",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+          "thread_controls": {
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1"
+          }
+        },
+        "foundation_sha256": "00b634b6bf9c34c5141531a81b61d966564c32251f27d5da64ccc920fd6b6942",
+        "foundation_version": "5",
+        "parameters": {
+          "input_guarantee": "none",
+          "keep_knns": false,
+          "n_jobs": 1,
+          "n_neighbors": 16
+        },
+        "tie_handling": "Upstream default KNeighborsTransformer; preserve file row order; no tie perturbation or custom tie-break.",
+        "upstream": {
+          "commit": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+          "provenance": "Maintained third-party implementation; not verified as originating from the paper's authors.",
+          "repository_url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+          "verification": "PEP610 VCS commit required before fitting"
+        }
+      },
+      "n_neighbors": 16,
+      "run_id": "cf7f1a610ee291927348e436a83ecbeb4be3114474c7d807a449ca702c9c5076"
+    }
+  ],
+  "method": "RNN-DBSCAN third-party implementation results; not merged with manuscript table",
+  "protocol_sha256": "a8ed01e255da55bb1e0e70bdb6fc7f3f543a6c23cd633d7443f3c2c645e9f66c",
+  "unique_planned_identities": 90
+}

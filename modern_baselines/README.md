@@ -254,3 +254,75 @@ remains 1; the thread declarations are now required in its environment identity.
 Foundation tests still verify analytic NMI and fake-adapter wiring without
 executing scikit-learn or sklearn-ann. Separate real-smoke evidence is preserved
 only under `environment/`; pilot evidence resides under `pilot_results/rnn_k10/`.
+
+## Phase 5: complete prespecified third-party RNN-DBSCAN grid
+
+This appended section describes the full-grid extension. The preceding Phase 4B
+claims are retained as historical context. All new implementation is under
+`full_grid/`; committed pilot artifacts and top-level Python remain unchanged.
+`full_grid/preservation_manifest.json` pins all 46 committed package files to
+pilot commit `14f7bb1b0c26cd12763836df147f9fc52cfdec9d`. The README is checked
+against its committed prefix; the other 45 files must remain byte-identical.
+The committed pilot foundation digest must also remain unchanged.
+
+`full_grid/protocol.json` is portable: it contains no absolute home path or
+hostname and binds no absolute interpreter or sys_prefix. The repository root
+is resolved from the package at runtime. The frozen versions, full pip freeze,
+PEP 610 commit, installed source hashes and four thread declarations are checked.
+The existing package-relative `.venv-rnn/` is used without package or network
+changes. Raw features and original file row order are retained.
+
+There are exactly 90 candidates: the six canonical datasets at every integer
+k=2,...,16, with `n_jobs=1`, `input_guarantee="none"`, `keep_knns=false`, no
+preprocessing, sequential execution and no stochastic repeats. All 90 unique
+identities and k-boundary diagnostics are retained before candidate fitting.
+Every prediction, including negative labels, enters external ARI and arithmetic
+NMI after prediction. Cluster count excludes negative labels. Poor results are
+retained; unexpected negatives are preserved and flagged, without recoding.
+
+Only after all 90 candidates are complete, select one per dataset by maximum
+ARI, then maximum NMI, then fewer negative-label observations, then smaller k.
+This is an **oracle, label-selected best-of-grid evaluation**, consistent with
+the manuscript's existing external-comparison protocol. It is **not an
+unsupervised parameter-selection rule**. No result is merged into the manuscript
+table in this phase. All outputs disclose the third-party implementation.
+
+From the repository root, run preflight, execution, then resume verification:
+
+```sh
+OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1 \
+PYTHONDONTWRITEBYTECODE=1 modern_baselines/.venv-rnn/bin/python \
+  -m modern_baselines.full_grid.runner --preflight-only
+
+OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1 \
+PYTHONDONTWRITEBYTECODE=1 modern_baselines/.venv-rnn/bin/python \
+  -m modern_baselines.full_grid.runner
+
+OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1 \
+PYTHONDONTWRITEBYTECODE=1 modern_baselines/.venv-rnn/bin/python \
+  -m modern_baselines.full_grid.runner --resume-only
+
+OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1 \
+PYTHONDONTWRITEBYTECODE=1 modern_baselines/.venv-rnn/bin/python \
+  -m modern_baselines.full_grid.validate
+```
+
+Immutable candidates reside in `full_grid/results/rnn_k2_16/`; the local
+`.gitignore` explicitly includes this directory despite the generic results
+ignore rule. `full_grid/reports/` holds the plan, preflight and preservation
+evidence, all 90 tie diagnostics, full long CSV, six selected rows in CSV/JSON,
+k=10 agreement with the committed pilot, and execution/resume receipts. Candidate
+identities include a combined digest of the preserved foundation, new grid
+implementation, portable protocol and local schema. The pilot digest is intact.
+
+Each selected configuration is fitted once more in a fresh process without
+reading candidate caches. The six checks are diagnostics only, never selection
+candidates or replacements. Their predictions and process/cache evidence are
+saved separately under `reports/repeatability/`. Resume-only mode permits no
+candidate or diagnostic fits. Existing candidate bytes, SHA-256, sizes and
+nanosecond modification times, plus report snapshots, are checked for equality.
+The full-grid schema locally extends the committed foundation schema.
+
+Run all self-contained tests with the unchanged discovery command above.
+Numerical fidelity to the published algorithm is not established by exhaustive
+parameter coverage, k=10 agreement or deterministic repeatability alone.
