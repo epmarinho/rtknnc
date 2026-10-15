@@ -1,0 +1,6 @@
+# Reopen only Phase 6B candidate JSON records beneath the parent results/ rule.
+!results/
+results/*
+!results/rnn_k1_100_missing/
+results/rnn_k1_100_missing/*
+!results/rnn_k1_100_missing/*.json

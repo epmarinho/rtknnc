@@ -1,0 +1,32 @@
+{
+  "absolute_local_home_paths": 0,
+  "absolute_virtual_environment_paths": 0,
+  "actual_hostname_matches": 0,
+  "benign_home_prefix_assertions": [
+    {
+      "classification": "Negative assertion literal; not an absolute local path",
+      "file": "modern_baselines/expanded_grid/test_expanded.py",
+      "line": 32
+    }
+  ],
+  "candidate_results_unchanged_bytes_hashes_sizes_mtimes": 600,
+  "credential_pattern_findings": [],
+  "credential_scan_limit": "Pattern scan; not a guarantee against every possible secret encoding",
+  "generator": "modern_baselines/expanded_grid/report_checks.sh",
+  "generator_sha256": "dd14d944e90ca961fe42efc35e60125ee44392b8975c137efa3b4b3e6fcc104d",
+  "portable_test_command": [
+    "modern_baselines/.venv-rnn/bin/python",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "modern_baselines/tests"
+  ],
+  "resume_additional_fits": 0,
+  "resume_receipt_sha256": "299aa001309fc60e49cfff1bc50dc342908f4245f0d81380f8b0b95b5452bf64",
+  "scan_scope": "Every file in expanded_grid plus tests/test_expanded_grid.py, including this generator and reports",
+  "self_contained_tests": 103,
+  "status": "PASS",
+  "test_file_sha256": "2242485420e958f5d40e23eb6a53f1de4b0389c4311e956a771c47d233d68a02",
+  "tests_report_sha256": "12809114b4a5b201446464fc2a3c6e739a64ee38eae4acf84602c1143ab53f59"
+}

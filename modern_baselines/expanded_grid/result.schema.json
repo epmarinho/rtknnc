@@ -1,0 +1,23 @@
+{
+  "$ref": "../result.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "properties": {
+    "identity": {
+      "properties": {
+        "foundation_version": {
+          "const": "6B"
+        },
+        "parameters": {
+          "properties": {
+            "n_neighbors": {
+              "maximum": 100,
+              "minimum": 1
+            }
+          }
+        }
+      }
+    }
+  },
+  "title": "Phase 6B third-party oracle RNN-DBSCAN new execution record",
+  "type": "object"
+}

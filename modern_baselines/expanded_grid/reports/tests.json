@@ -1,0 +1,17 @@
+{
+  "command": [
+    "modern_baselines/.venv-rnn/bin/python",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "modern_baselines/tests"
+  ],
+  "earlier_post_run_check": "Frozen test_failed_k1_gate_prevents_fit encountered existing artifacts before its injected gate failure; corrected by artifact-independent wrapper, not by changing execution sources.",
+  "fixture_correction": "New tests/test_expanded_grid.py inherits the frozen execution tests and isolates the empty-plan directory listing in the k1-failure fixture. Execution sources and recorded foundation digests unchanged.",
+  "returncode": 0,
+  "self_contained_tests": 103,
+  "status": "PASS",
+  "stderr": ".......................................................................................................\n----------------------------------------------------------------------\nRan 103 tests in 11.780s\n\nOK\n",
+  "stdout": ""
+}

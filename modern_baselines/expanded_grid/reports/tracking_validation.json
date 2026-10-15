@@ -1,0 +1,13 @@
+{
+  "actual_candidate_json_files": 510,
+  "collection_and_inventory_hashes_verified": 510,
+  "expected_phase6b_staged_file_count": 545,
+  "fresh_repository_regression": "PASS: copied 510 records and six datasets; all records schema/data validated and visible to Git without staging; unrelated result paths stay ignored",
+  "index_entries_sha256": "0121673a41dbe3c649b2ecb2ebe5ea4b5a966d0559cc85031ff20f2b1e794a37",
+  "local_ignore_sha256": "528af78dc18abbaffac8a912252205310bff0d46993191645286183c0678d868",
+  "nonignored_candidate_json_files": 510,
+  "parent_ignore_sha256": "01477d29ecfca57bb7b75b36d50120a2437d10112d6b465b29f62fd254fd9f1b",
+  "resume_additional_fits": 0,
+  "staged_content_unchanged": true,
+  "status": "PASS"
+}
