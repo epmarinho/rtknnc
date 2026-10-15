@@ -82,8 +82,9 @@ KNN graph. Across eight synthetic datasets and $K=2,\ldots,16$, independent C
 and Python implementations produced identical partitions in all 120 reference
 runs. Refinement increased adjusted Rand index from $0.7817$ to $0.9627$ on a
 variable-density benchmark and from $0.8083$ to $0.9853$ on a sparse-bridge
-benchmark. Comparisons with seven external clustering methods show competitive
-performance while preserving a label-free cluster-construction process.
+benchmark. Comparisons with eight external clustering methods show competitive
+performance under oracle parameter selection; cluster construction itself
+excludes reference labels.
 }
 \keywords{k-nearest-neighbour graph, graph-based clustering, reverse nearest neighbours, round-trip closure, structural refinement, multiscale clustering}
 
@@ -179,7 +180,7 @@ supported internal subdivisions and accepts them only after size and graph
 coherence checks; and
 \item an experimental evaluation covering implementation agreement, vote-model
 ablations, multiscale behaviour, structural-refinement cases, and comparison
-with seven external clustering methods.
+with eight external clustering methods.
 \end{enumerate}
 
 The remainder of the paper is organised as follows. Section~\ref{sec:related}
@@ -204,6 +205,12 @@ Jarvis and Patrick introduced a clustering criterion based on shared near neighb
 \subsection{Mutual, reciprocal, and reverse nearest-neighbour methods}
 
 Mutual KNN and reciprocal nearest-neighbour graphs have been used for clustering and outlier detection \citep{BritoChavezQuirozYukich1997,GowdaKrishna1978,SardanaBhatnagar2014}. Reverse nearest-neighbour methods use incoming KNN links as density or representativeness signals \citep{ChowdhuryAmorim2018}. RTKNNC uses reverse-neighbour sets both for backward traversal and to compute kernel-weighted popularity. Popularity then modulates the local visibility threshold for forward and backward transitions.
+
+RNN-DBSCAN uses reverse nearest-neighbour counts as density estimates for
+density-based clustering \citep{BryantCios2018RNNDBSCAN}. This differs from
+RTKNNC's kernel-weighted popularity and visibility-filtered recursive closure.
+The comparison below evaluates a maintained third-party implementation of
+RNN-DBSCAN, rather than a verified implementation from the original authors.
 
 Recent work continues to develop neighbour relations as clustering primitives.
 MGNR constructs task-adapted multi-granularity relations
@@ -1125,7 +1132,7 @@ The controlled benchmark reuses the eight synthetic datasets already distributed
 \end{itemize}
 The label column is used only for evaluation and is never included among the clustering features. The Swiss-roll labels are an artificial discretisation of a continuous manifold and its external scores are therefore interpreted descriptively. ARI and NMI are not reported for the uniform dataset because it has no nontrivial reference partition.
 
-For every dataset, $K$ ranges from 2 through 16. Each $K$ is run independently with $K_0=K$. The KNN graph is constructed once for a dataset--$K$ pair and is reused unchanged by all four vote kernels. All models share the inverse-square source budget in Eq.~\eqref{eq:reference_source_budget} and therefore require strictly positive neighbour distances, so the input is checked for exact duplicate points before execution. Uniform, inverse-distance, inverse-square, and sigmoid refer to the four allocation shapes in Eq.~\eqref{eq:vote_kernel_family}; the sigmoid uses $\alpha=8$. RMS visibility and singleton rejection are enabled for every model. Structural pruning is disabled throughout this 840-run comparison, preserving a controlled ablation in which only the within-source allocation changes.
+For every dataset in the vote-kernel ablation, $K$ ranges from 2 through 16. Each $K$ is run independently with $K_0=K$. The KNN graph is constructed once for a dataset--$K$ pair and is reused unchanged by all four vote kernels. All models share the inverse-square source budget in Eq.~\eqref{eq:reference_source_budget} and therefore require strictly positive neighbour distances, so the input is checked for exact duplicate points before execution. Uniform, inverse-distance, inverse-square, and sigmoid refer to the four allocation shapes in Eq.~\eqref{eq:vote_kernel_family}; the sigmoid uses $\alpha=8$. RMS visibility and singleton rejection are enabled for every model. Structural pruning is disabled throughout this 840-run comparison, preserving a controlled ablation in which only the within-source allocation changes.
 
 The independent-run convention is important for reproducibility. In the raw
 interface, a run with $K_0<K_{\max}$ allocates the neighbour list at
@@ -1173,9 +1180,9 @@ parameters are then applied without retuning.
 \subsection{External-method comparison protocol}\label{sec:external_comparison_protocol}
 
 The final comparison uses the six datasets having nontrivial discrete
-references and seven external methods: agglomerative clustering, $k$-means,
+references and eight external methods: agglomerative clustering, $k$-means,
 Gaussian mixtures, DBSCAN, OPTICS, KNN-affinity spectral clustering, and
-HDBSCAN.  The uniform cloud has no reference partition, and the Swiss-roll
+HDBSCAN, together with RNN-DBSCAN. The uniform cloud has no reference partition, and the Swiss-roll
 bands are an artificial discretisation of a continuous manifold; both are
 therefore excluded from this table.  Every method receives the same raw feature columns, without
 method-specific input preprocessing. RTKNNC standardises coordinates locally
@@ -1202,18 +1209,73 @@ $\{5,10,20,50,100\}$, \texttt{min\_samples} in
 $\{\texttt{None},5,10,20\}$, and excess-of-mass or leaf selection.  These
 three density-based methods infer their reported cluster counts.
 
+RNN-DBSCAN \citep{BryantCios2018RNNDBSCAN} is evaluated using the maintained
+third-party \texttt{sklearn-ann} implementation \citep{SklearnAnnRNNDBSCAN},
+pinned to commit
+\texttt{c105475ab0bc6dfcdb2239a38273d6895c5fe281}.
+This source snapshot is not verified as originating from the paper's authors,
+and no numerical-fidelity claim to their implementation is made. This
+implementation has no $\epsilon$ parameter: \texttt{n\_neighbors}$=k$
+determines both the exact KNN graph and the reverse-neighbour core-density
+threshold. A point is core when its number of reverse neighbours, excluding
+itself, is at least $k$. We evaluate every integer $k=1,\ldots,100$, with
+\texttt{n\_jobs=1}, \texttt{input\_guarantee="none"}, and
+\texttt{keep\_knns=False}; RNN-DBSCAN does not receive $C^*$.
+The graph retains an explicit diagonal, which is subtracted for core-density
+estimation. The source/API and feature-only graph checks establish defined
+$k=1$ behaviour before candidate fitting.
+
+The aligned RNN-DBSCAN collection uses the exact input bytes and SHA-256 hashes
+recorded by the existing external and native comparison manifests, with
+feature columns 0 and 1, a separate integer truth column 2, the CSV header
+removed, original file row order, and no preprocessing. The inputs are
+\path{csv/synthetic/anisotropic.csv}, \path{csv/benchmarks/blobs.csv},
+\path{csv/synthetic/blobs_var_density.csv}, \path{csv/synthetic/bridge.csv},
+\path{csv/synthetic/circles.csv}, and \path{csv/synthetic/moons.csv}.
+Dataset names alone are not used to establish alignment. Two hundred
+previously executed blobs/bridge candidates are imported only after checking
+byte, parsed-feature, truth-label, row-order, parameter, environment, and
+provenance equality; their original execution identities and hashes are
+retained. The remaining 400 aligned candidates are executed sequentially.
+The pinned environment uses Python 3.12.3, \texttt{sklearn-ann}
+0.1.5.dev52+gc105475ab, scikit-learn 1.9.1, NumPy 2.5.4, and SciPy 1.18.1.
+\texttt{OMP\_NUM\_THREADS}, \texttt{OPENBLAS\_NUM\_THREADS},
+\texttt{MKL\_NUM\_THREADS}, and \texttt{NUMEXPR\_NUM\_THREADS} are each
+fixed to 1. Exact distance ties across the $k$th/$(k+1)$th non-self-neighbour
+boundary are checked without changing row order or predictions; none occurs
+in the 600 aligned configurations. Six selected configurations reproduce
+identical prediction vectors in fresh-process diagnostic runs; these
+diagnostics are excluded from candidate selection and counts.
+
 For each method--dataset pair, the table reports the candidate with maximum
-ARI, then maximum NMI.  Remaining external-method ties prefer fewer noise
-points and then the first candidate in the declared grid; RTKNNC ties prefer
-smaller $K$. Thus, the result is a label-selected best-of-grid comparison
-measuring what each preset parameter grid can represent. Reference labels
-are used only to select the best candidate within each grid; ARI is not proposed
-as an unsupervised deployment rule. A noise identifier $-1$ participates in ARI
-and NMI as a predicted label, while the reported cluster count excludes it.
-The comparison comprises 10,344 external fits and 90 RTKNNC fits.  Complete
-external sweeps, selected rows, raw selected labels, software versions, input
-hashes, and a provenance-checked table manifest accompany the article
-artifacts.
+ARI, then maximum NMI. Remaining ties for the seven original external methods
+prefer fewer noise points and then the first candidate in the declared grid;
+RTKNNC ties prefer smaller $K$. For RNN-DBSCAN, remaining ties prefer fewer
+observations with any negative prediction, then smaller $k$. Selection occurs
+only after all 600 aligned RNN-DBSCAN candidates are complete. Thus, the
+result is an oracle, label-selected best-of-grid comparison measuring what
+each preset parameter grid can represent. The search budgets differ:
+RTKNNC uses $K=2,\ldots,16$, whereas RNN-DBSCAN uses $k=1,\ldots,100$;
+the reported optimum is restricted to the respective declared grid.
+Reference labels are excluded from fitting and used afterwards for external
+scoring and oracle selection, not as an unsupervised deployment rule. No
+label-free RNN-DBSCAN parameter-selection rule is implemented or
+approximated here.
+
+ARI and arithmetic-normalised NMI are computed over all observations. The
+original methods retain noise label $-1$ as a predicted category. For
+RNN-DBSCAN, every distinct negative label is likewise retained as a partition
+category for both metrics, counted separately, and excluded from the reported
+cluster count; unexpected negative labels are preserved and flagged, never
+recoded or discarded. No unexpected negative label occurs in this collection.
+The comparison comprises 10,944 external candidates: the original 10,344 plus
+600 aligned RNN-DBSCAN configurations (200 provenance-linked imports and 400
+new executions). Together with 90 RTKNNC candidates, the total is 11,034.
+Complete sweeps, selected rows, prediction vectors, software versions,
+input hashes, and provenance-linked manifests accompany the article artifacts;
+the aligned RNN-DBSCAN evidence is in
+\path{modern_baselines/comparison_aligned_grid/}. Timings are retained for
+reproduction, without a cross-environment runtime-superiority claim.
 
 \section{Results}\label{sec:results}
 
@@ -1422,8 +1484,8 @@ comparison defined in Sect.~\ref{sec:external_comparison_protocol}. RTKNNC attai
 ARI${}={}$NMI${}={}$1 on anisotropic blobs, equal-density blobs, circles, and
 two moons.  Several external methods tie these results, but the controls also
 expose their inductive biases: $k$-means and Gaussian mixtures fail on circles
-and two moons, whereas graph-, density-, and connectivity-constrained methods
-recover the non-convex partitions. As expected from its nearest-centroid
+and two moons, whereas several graph-, density-, and connectivity-constrained
+methods recover the non-convex partitions. As expected from its nearest-centroid
 geometry, $k$-means induces convex Voronoi cells, which cannot represent two
 concentric rings adequately and only approximate the curved, interleaving
 moons.  Consequently, it obtains ARI/NMI
@@ -1448,6 +1510,17 @@ for the sparse bridge selects $K=11$ by a marginal ARI advantage over $K=10$;
 the focused $K=6$ experiment remains useful because it isolates the earliest
 corrected three-component partition under the three vote kernels.
 
+The aligned third-party RNN-DBSCAN oracle selects $k=17,13,11,52,50,82$ for
+anisotropic blobs, equal-density blobs, variable-density blobs, the sparse
+bridge, circles, and two moons, respectively. Its corresponding ARI/NMI
+pairs are $0.9834/0.9680$, $0.9595/0.9404$, $0.9218/0.9127$,
+$0.8791/0.8057$, $1.0000/1.0000$, and $0.9900/0.9753$.
+It reports 3, 4, 5, 3, 2, and 2 clusters, respectively, with 22, 59, 49, 43,
+0, and 10 observations labelled $-1$. At the table's four-decimal precision,
+RTKNNC therefore has higher ARI and NMI on five datasets and equal scores on
+circles compared with RNN-DBSCAN. These are descriptive results on six
+fixed datasets, without a statistical-significance claim.
+
 \input{all_methods_table.tex}
 
 The comparison therefore supports competitiveness rather than universal
@@ -1455,8 +1528,8 @@ superiority. RTKNNC matches the best ARI on four benchmark datasets. On the
 variable-density dataset it obtains ARI $0.9627$, compared with $0.9639$ for
 the full-covariance GMM, while on the sparse bridge it obtains the highest ARI,
 $0.9865$, compared with $0.9831$ for the GMM. The fixed-count baselines have
-the advantage of receiving $C^*$, whereas RTKNNC and the three density-based
-methods do not. Future work will
+the advantage of receiving $C^*$, whereas RTKNNC, DBSCAN, OPTICS, HDBSCAN,
+and RNN-DBSCAN do not. Future work will
 extend the evaluation to repeated stochastic realisations, higher-dimensional
 data, and label-free scale selection.
 
@@ -1607,12 +1680,14 @@ three already correct controls, whose ARI remained $1$.  At the two difficult
 reference scales, inverse-distance, inverse-square, and sigmoid voting all
 preserved the corrected cluster counts with essentially identical scores, and
 their six unpruned native partitions passed pointwise C--Python agreement.
-A label-selected best-of-grid comparison comprising 10,434 candidate fits
-across RTKNNC and seven external methods showed that RTKNNC with structural
+A label-selected best-of-grid comparison comprising 11,034 oracle candidates
+across RTKNNC and eight external methods showed that RTKNNC with structural
 refinement enabled matches ARI $1$ on four benchmark datasets, obtains ARI
 $0.9627$ on the variable-density dataset versus $0.9639$ for a full-covariance
 GMM, and attains the highest sparse-bridge ARI, $0.9865$ versus $0.9831$ for
-the GMM.  These results separate the roles of vote weighting, visible connectivity, and
+the GMM. Against the publication-input-aligned third-party RNN-DBSCAN oracle,
+RTKNNC has higher ARI and NMI on five datasets and equal scores on circles
+at four-decimal precision. These results separate the roles of vote weighting, visible connectivity, and
 structural refinement in the behaviour of RTKNNC. Future work will examine
 repeated stochastic realisations and higher-dimensional data, as well as
 alternative covariance models, label-free scale selection, and additional

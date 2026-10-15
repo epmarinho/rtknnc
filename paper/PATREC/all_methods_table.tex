@@ -26,7 +26,7 @@
 \caption{Best label-selected grid result for RTKNNC with structural refinement enabled and
 external clustering methods. Each cell reports ARI/NMI; bold denotes the
 highest ARI in the column, including ties. Methods marked $\dagger$ receive the
-reference cluster count $C^*$; the others do not. Reference labels are used
+reference cluster count $C^*$; the others, including third-party RNN-DBSCAN, do not. Reference labels are used
 only for scoring and best-of-grid selection, never as clustering features.}
 \label{tab:all_methods_comparison}
 \centering
@@ -101,6 +101,14 @@ HDBSCAN
 & 0.8641/0.7828
 & \textbf{1.0000/1.0000}
 & \textbf{1.0000/1.0000} \\
+
+RNN-DBSCAN
+& 0.9834/0.9680
+& 0.9595/0.9404
+& 0.9218/0.9127
+& 0.8791/0.8057
+& \textbf{1.0000/1.0000}
+& 0.9900/0.9753 \\
 \bottomrule
 \end{tabular}%
 }
