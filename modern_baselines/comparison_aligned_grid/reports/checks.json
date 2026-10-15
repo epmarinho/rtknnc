@@ -1,0 +1,21 @@
+{
+  "candidate_files_verified": 600,
+  "credential_pattern_findings": [],
+  "credential_scan_limit": "Pattern scan does not establish absence of every possible secret encoding.",
+  "fresh_repository_regression": "All 600 actual files copied, schema/data validated and Git-visible without staging.",
+  "imported_candidate_files_not_ignored": 200,
+  "json_files_parsed_before_this_report": 1098,
+  "new_candidate_files_not_ignored": 400,
+  "portable_paths_and_hostname_scan": "PASS",
+  "preservation": {
+    "all_preexisting_tracked_files_unchanged": true,
+    "index_unchanged": true,
+    "outside_collection_status_unchanged": true,
+    "tracked_paths_verified": 1492
+  },
+  "python_syntax_files": 30,
+  "self_contained_tests": 113,
+  "status": "PASS",
+  "tests_report_sha256": "d7b135b212f804744b9dc8e8e1b6a31e878b2c1582783e5f93e66c00e991d504",
+  "validation_report_sha256": "fe6219a5a8cabea7255929a015a3f43a885138f8a1c0124da8917afec5f8a6f7"
+}

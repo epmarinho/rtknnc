@@ -1,0 +1,6 @@
+# Reopen only this collection's immutable candidate JSON files.
+!results/
+results/*
+!results/rnn_k1_100_missing/
+results/rnn_k1_100_missing/*
+!results/rnn_k1_100_missing/*.json

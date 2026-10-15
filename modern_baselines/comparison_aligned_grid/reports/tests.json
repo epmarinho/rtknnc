@@ -1,0 +1,32 @@
+{
+  "commands": [
+    {
+      "command": [
+        "modern_baselines/.venv-rnn/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "modern_baselines/tests"
+      ],
+      "returncode": 0,
+      "stderr": ".......................................................................................................\n----------------------------------------------------------------------\nRan 103 tests in 12.300s\n\nOK\n",
+      "stdout": "",
+      "tests": 103
+    },
+    {
+      "command": [
+        "modern_baselines/.venv-rnn/bin/python",
+        "-m",
+        "unittest",
+        "modern_baselines.comparison_aligned_grid.test_aligned"
+      ],
+      "returncode": 0,
+      "stderr": "..........\n----------------------------------------------------------------------\nRan 10 tests in 15.025s\n\nOK\n",
+      "stdout": "",
+      "tests": 10
+    }
+  ],
+  "self_contained": true,
+  "status": "PASS"
+}

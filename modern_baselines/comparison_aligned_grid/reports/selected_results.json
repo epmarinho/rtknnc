@@ -1,0 +1,140 @@
+{
+  "complete_candidate_count": 600,
+  "label_free_selection": {
+    "implemented": false,
+    "reason": "Original-paper heuristic has not been directly verified; no approximation or label-free results permitted.",
+    "status": "deferred"
+  },
+  "method": "RNN-DBSCAN maintained third-party implementation; oracle, label-selected evaluation",
+  "protocol_sha256": "726e83f2a840df15d1f1b9d74f829b0995b187f21710727e72a289119a2a19dd",
+  "results": [
+    {
+      "ari_all_observations": 0.9834184750013238,
+      "candidate_file_relative_to_modern_baselines": "comparison_aligned_grid/results/rnn_k1_100_missing/fbe6d68a26f9922c8f3ee63c189775cb903e4d3d3eb472c2b078007e8d97c291.json",
+      "dataset_id": "anisotropic",
+      "execution_run_id": "fbe6d68a26f9922c8f3ee63c189775cb903e4d3d3eb472c2b078007e8d97c291",
+      "fit_predict_seconds": 0.05598316399846226,
+      "flags": [],
+      "method": "RNN-DBSCAN maintained third-party implementation; oracle, label-selected evaluation",
+      "n_neighbors": 17,
+      "n_observations": 2000,
+      "n_predicted_clusters": 3,
+      "negative_label_counts": {
+        "-1": 22
+      },
+      "negative_observations": 22,
+      "nmi_all_observations": 0.9680432273959293,
+      "origin": "new_phase6c_execution",
+      "total_seconds": 0.06501702591776848,
+      "unexpected_negative_label_counts": {}
+    },
+    {
+      "ari_all_observations": 0.9594689695214395,
+      "candidate_file_relative_to_modern_baselines": "full_grid/results/rnn_k2_16/23f2d0dbed458f0168b24e28d01a920dd7ab32ba070161e8e71ce53320952a6a.json",
+      "dataset_id": "blobs",
+      "execution_run_id": "23f2d0dbed458f0168b24e28d01a920dd7ab32ba070161e8e71ce53320952a6a",
+      "fit_predict_seconds": 0.05855803401209414,
+      "flags": [],
+      "method": "RNN-DBSCAN maintained third-party implementation; oracle, label-selected evaluation",
+      "n_neighbors": 13,
+      "n_observations": 2000,
+      "n_predicted_clusters": 4,
+      "negative_label_counts": {
+        "-1": 59
+      },
+      "negative_observations": 59,
+      "nmi_all_observations": 0.9404040236681526,
+      "origin": "imported_original_execution_not_phase6c_fit",
+      "total_seconds": 0.0767093850299716,
+      "unexpected_negative_label_counts": {}
+    },
+    {
+      "ari_all_observations": 0.92175129035602,
+      "candidate_file_relative_to_modern_baselines": "comparison_aligned_grid/results/rnn_k1_100_missing/3048b8202e231f1070c342b1f87dbb87e7ff3477eee0b7c539fefd0830d21abc.json",
+      "dataset_id": "blobs_var_density",
+      "execution_run_id": "3048b8202e231f1070c342b1f87dbb87e7ff3477eee0b7c539fefd0830d21abc",
+      "fit_predict_seconds": 0.040856122970581055,
+      "flags": [],
+      "method": "RNN-DBSCAN maintained third-party implementation; oracle, label-selected evaluation",
+      "n_neighbors": 11,
+      "n_observations": 2000,
+      "n_predicted_clusters": 5,
+      "negative_label_counts": {
+        "-1": 49
+      },
+      "negative_observations": 49,
+      "nmi_all_observations": 0.9126638160446537,
+      "origin": "new_phase6c_execution",
+      "total_seconds": 0.05024830100592226,
+      "unexpected_negative_label_counts": {}
+    },
+    {
+      "ari_all_observations": 0.8791454120632122,
+      "candidate_file_relative_to_modern_baselines": "expanded_grid/results/rnn_k1_100_missing/75ceea85b947edb2b56efcedb25243ac8901deb9af32827aa5307d5b0a3c5525.json",
+      "dataset_id": "bridge",
+      "execution_run_id": "75ceea85b947edb2b56efcedb25243ac8901deb9af32827aa5307d5b0a3c5525",
+      "fit_predict_seconds": 0.15372140309773386,
+      "flags": [],
+      "method": "RNN-DBSCAN maintained third-party implementation; oracle, label-selected evaluation",
+      "n_neighbors": 52,
+      "n_observations": 2000,
+      "n_predicted_clusters": 3,
+      "negative_label_counts": {
+        "-1": 43
+      },
+      "negative_observations": 43,
+      "nmi_all_observations": 0.8057012896400468,
+      "origin": "imported_original_execution_not_phase6c_fit",
+      "total_seconds": 0.16390142706222832,
+      "unexpected_negative_label_counts": {}
+    },
+    {
+      "ari_all_observations": 1.0,
+      "candidate_file_relative_to_modern_baselines": "comparison_aligned_grid/results/rnn_k1_100_missing/06869b7cc4708f86b71c3975ce75d3d13487f2878f8f308f2b52c965688720e7.json",
+      "dataset_id": "circles",
+      "execution_run_id": "06869b7cc4708f86b71c3975ce75d3d13487f2878f8f308f2b52c965688720e7",
+      "fit_predict_seconds": 0.13366605690680444,
+      "flags": [],
+      "method": "RNN-DBSCAN maintained third-party implementation; oracle, label-selected evaluation",
+      "n_neighbors": 50,
+      "n_observations": 2000,
+      "n_predicted_clusters": 2,
+      "negative_label_counts": {},
+      "negative_observations": 0,
+      "nmi_all_observations": 1.0,
+      "origin": "new_phase6c_execution",
+      "total_seconds": 0.14274485292844474,
+      "unexpected_negative_label_counts": {}
+    },
+    {
+      "ari_all_observations": 0.9900199579319732,
+      "candidate_file_relative_to_modern_baselines": "comparison_aligned_grid/results/rnn_k1_100_missing/78addfdc045a74cc5d809771d3a6b713a1cf5d73f1971a7a9f8e83741386e84d.json",
+      "dataset_id": "moons",
+      "execution_run_id": "78addfdc045a74cc5d809771d3a6b713a1cf5d73f1971a7a9f8e83741386e84d",
+      "fit_predict_seconds": 0.21541002101730555,
+      "flags": [],
+      "method": "RNN-DBSCAN maintained third-party implementation; oracle, label-selected evaluation",
+      "n_neighbors": 82,
+      "n_observations": 2000,
+      "n_predicted_clusters": 2,
+      "negative_label_counts": {
+        "-1": 10
+      },
+      "negative_observations": 10,
+      "nmi_all_observations": 0.9752919381911866,
+      "origin": "new_phase6c_execution",
+      "total_seconds": 0.25371408299542964,
+      "unexpected_negative_label_counts": {}
+    }
+  ],
+  "selection": {
+    "after_all_candidates": true,
+    "description": "Oracle, label-selected best-of-grid evaluation, consistent with the manuscript's existing external-comparison protocol; not an unsupervised parameter-selection rule.",
+    "order": [
+      "maximum ARI",
+      "maximum NMI",
+      "fewer predicted negative-label observations",
+      "smaller n_neighbors"
+    ]
+  }
+}

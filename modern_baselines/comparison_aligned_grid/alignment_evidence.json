@@ -1,0 +1,137 @@
+{
+  "archive_mapping": "Logical paper/figures baseline manifest and selected CSV relocated to paper_figures_archive with hashes identical to the committed comparison manifest.",
+  "archived_native_manifest": "paper_figures_archive/article_20260826/experimental/baselines/clustering_baseline_manifest.json",
+  "canonical_layout": "Current method-by-dataset table checked numerically against committed all_methods_best.csv; no table regeneration.",
+  "canonical_table_numerical_cells_verified": 48,
+  "comparison_manifest": "others/results/all_methods_manifest.json",
+  "datasets": [
+    {
+      "connection": "Committed external manifest input; hash matched archived native manifest; selected source scores matched all 48 canonical table cells.",
+      "dataset_id": "anisotropic",
+      "delimiter": ",",
+      "feature_columns": [
+        0,
+        1
+      ],
+      "header": true,
+      "observations": 2000,
+      "parsed_features_sha256": "ba45f874aa401f4e434ebe9de5bf101abca6ff48e02e6ae396142ce818a57710",
+      "parsed_truth_sha256": "ef47f4ed626d9d757138de10a0a27d088b687251d9116456dfadb6b7b0c3b7aa",
+      "path": "csv/synthetic/anisotropic.csv",
+      "preprocessing": "none",
+      "reference_classes": 3,
+      "row_order": "file",
+      "sha256": "35a36a3c9352b4eb7eb246f9f09fd6a628621a53f03a4606ebe72d69aa238d86",
+      "truth_column": 2
+    },
+    {
+      "connection": "Committed external manifest input; hash matched archived native manifest; selected source scores matched all 48 canonical table cells.",
+      "dataset_id": "blobs",
+      "delimiter": ",",
+      "feature_columns": [
+        0,
+        1
+      ],
+      "header": true,
+      "observations": 2000,
+      "parsed_features_sha256": "44cd34d0720883e15e97e8c14270088b2365f4e89d71e499e7488035358aa3f1",
+      "parsed_truth_sha256": "fa5ffb1a9d9ffe0ba61a5a435a64531e35b14ac6510bb7d6a66f8788869de368",
+      "path": "csv/benchmarks/blobs.csv",
+      "preprocessing": "none",
+      "reference_classes": 4,
+      "row_order": "file",
+      "sha256": "77d79dba86401fb0f421825095d8dc457fafb22c2b4afd02d4536b25b05a8e6a",
+      "truth_column": 2
+    },
+    {
+      "connection": "Committed external manifest input; hash matched archived native manifest; selected source scores matched all 48 canonical table cells.",
+      "dataset_id": "blobs_var_density",
+      "delimiter": ",",
+      "feature_columns": [
+        0,
+        1
+      ],
+      "header": true,
+      "observations": 2000,
+      "parsed_features_sha256": "e107a604b02876f7baa75a371b9245ca694aa79a10b331fae17486b47656b0d9",
+      "parsed_truth_sha256": "13fc3a7ffc61d7750dfc2559f0dd61fb517ea44d165b2d3c9a02690fab46cb1a",
+      "path": "csv/synthetic/blobs_var_density.csv",
+      "preprocessing": "none",
+      "reference_classes": 5,
+      "row_order": "file",
+      "sha256": "65fa8cb515de5080e27698c1d1ddbc6b89c40bd8dc3975b77ce23149cd2a7deb",
+      "truth_column": 2
+    },
+    {
+      "connection": "Committed external manifest input; hash matched archived native manifest; selected source scores matched all 48 canonical table cells.",
+      "dataset_id": "bridge",
+      "delimiter": ",",
+      "feature_columns": [
+        0,
+        1
+      ],
+      "header": true,
+      "observations": 2000,
+      "parsed_features_sha256": "6aab6816f1177a9878940b9c0318847c3c03526eedd8495456f3ad99231fa71b",
+      "parsed_truth_sha256": "ab0f6ad060766ce41d8da37fd308b21320782a30ae76554665482a0497e77713",
+      "path": "csv/synthetic/bridge.csv",
+      "preprocessing": "none",
+      "reference_classes": 3,
+      "row_order": "file",
+      "sha256": "8c8a68983d711b978acafe967421367fa6f72050873278ff52b80551b3dc32e5",
+      "truth_column": 2
+    },
+    {
+      "connection": "Committed external manifest input; hash matched archived native manifest; selected source scores matched all 48 canonical table cells.",
+      "dataset_id": "circles",
+      "delimiter": ",",
+      "feature_columns": [
+        0,
+        1
+      ],
+      "header": true,
+      "observations": 2000,
+      "parsed_features_sha256": "588b49ed79d48b92e015641e9f3549204fc3b2fb4bf203ab37342b72adb29e39",
+      "parsed_truth_sha256": "cec57f9d51ef714cc786324fce23f0af92254f3137723bb0d42bbbac1e368532",
+      "path": "csv/synthetic/circles.csv",
+      "preprocessing": "none",
+      "reference_classes": 2,
+      "row_order": "file",
+      "sha256": "a3a4b9425ce9912e674372d35ea8177ee78f3ac04943465ebe84ed82e7ab5e3c",
+      "truth_column": 2
+    },
+    {
+      "connection": "Committed external manifest input; hash matched archived native manifest; selected source scores matched all 48 canonical table cells.",
+      "dataset_id": "moons",
+      "delimiter": ",",
+      "feature_columns": [
+        0,
+        1
+      ],
+      "header": true,
+      "observations": 2000,
+      "parsed_features_sha256": "edb22528f6c4d9b917048ed2662084ceb5f6bc79e0b34b81fe1cc3d5f64de1d0",
+      "parsed_truth_sha256": "cec57f9d51ef714cc786324fce23f0af92254f3137723bb0d42bbbac1e368532",
+      "path": "csv/synthetic/moons.csv",
+      "preprocessing": "none",
+      "reference_classes": 2,
+      "row_order": "file",
+      "sha256": "1804ffacdad0ac82bcc545a604de218764e3cc93aadf2ec2146ebb9f382d76db",
+      "truth_column": 2
+    }
+  ],
+  "original_loader": "others/benchmark.py: load_labeled_csv; x-prefixed columns, separate label column, file order, raw features",
+  "source_files": {
+    "others/benchmark.py": "c125f13c0eac5c18d025e0bf905878cc3d6cd35b4ddc966bae77af7431f7d235",
+    "others/make_comparison.py": "b9e9fa9213020fd2f8535865bbc5117863c124872a8a04e55dc1805f30452f64",
+    "others/results/all_methods_best.csv": "26f6fed5d65a0f524bfc67383c825a057d0fba813ef98c92887cf9578c777688",
+    "others/results/all_methods_manifest.json": "d3d4ed3f77261ea633a30c152c2ffb63431dd13ff3e1db9e73d94ab767906509",
+    "others/results/all_methods_table.tex": "3c4a4acc78d65e2b7046c318e2626070d8d0d69a35986b2700535b8c982c58e0",
+    "others/results/external_methods_best.csv": "48267758a15cc45e6a8e15e34b7544f6a8692cb1f455832f28faa66d4fba453d",
+    "others/results/external_methods_manifest.json": "45e9498f42760332f8cff5d079135de4e7576011ce6194742c89e63a3aa4dbfd",
+    "paper/PATREC/all_methods_table.tex": "0bfcadab6bb1c2d80ae23f0f8bbd57fcefd80f05d3f51c388c02ed0fc68dab3a",
+    "paper_figures_archive/article_20260826/experimental/baselines/clustering_baseline_best.csv": "c1e827ac0a9b551412f909dce077e4a46ff8fc01cde083c1fcf1236604101af7",
+    "paper_figures_archive/article_20260826/experimental/baselines/clustering_baseline_manifest.json": "ea96d2d2322a736560c76a757be72691ef5eb4df1be330c245de467ddb7d546f"
+  },
+  "status": "PASS"
+}

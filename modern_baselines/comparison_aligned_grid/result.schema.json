@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$ref": "../result.schema.json",
+  "title": "Phase 6C aligned third-party oracle RNN-DBSCAN candidate",
+  "type": "object",
+  "properties": {
+    "identity": {
+      "properties": {
+        "foundation_version": {"const": "6C"},
+        "parameters": {"properties": {"n_neighbors": {"minimum": 1, "maximum": 100}}}
+      }
+    }
+  }
+}

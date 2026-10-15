@@ -1,0 +1,62 @@
+{
+  "all_six_identical": true,
+  "comparisons": [
+    {
+      "dataset_id": "anisotropic",
+      "fresh_process_id": 243,
+      "n_neighbors": 17,
+      "original_execution_run_id": "fbe6d68a26f9922c8f3ee63c189775cb903e4d3d3eb472c2b078007e8d97c291",
+      "original_predictions_sha256": "bbb1503b9b52a214d418d83039987808743ee01eecd34b895d978e5d97bf30e4",
+      "prediction_vectors_identical": true,
+      "repeated_predictions_sha256": "bbb1503b9b52a214d418d83039987808743ee01eecd34b895d978e5d97bf30e4"
+    },
+    {
+      "dataset_id": "blobs",
+      "fresh_process_id": 261,
+      "n_neighbors": 13,
+      "original_execution_run_id": "23f2d0dbed458f0168b24e28d01a920dd7ab32ba070161e8e71ce53320952a6a",
+      "original_predictions_sha256": "9733f3802e8e540331bac95442740038bf15471f8800a860075c1570b100fe0f",
+      "prediction_vectors_identical": true,
+      "repeated_predictions_sha256": "9733f3802e8e540331bac95442740038bf15471f8800a860075c1570b100fe0f"
+    },
+    {
+      "dataset_id": "blobs_var_density",
+      "fresh_process_id": 279,
+      "n_neighbors": 11,
+      "original_execution_run_id": "3048b8202e231f1070c342b1f87dbb87e7ff3477eee0b7c539fefd0830d21abc",
+      "original_predictions_sha256": "f0263f6fa14e7da91c811746528bd6347a0f682d06295b4acf48e862246362c0",
+      "prediction_vectors_identical": true,
+      "repeated_predictions_sha256": "f0263f6fa14e7da91c811746528bd6347a0f682d06295b4acf48e862246362c0"
+    },
+    {
+      "dataset_id": "bridge",
+      "fresh_process_id": 297,
+      "n_neighbors": 52,
+      "original_execution_run_id": "75ceea85b947edb2b56efcedb25243ac8901deb9af32827aa5307d5b0a3c5525",
+      "original_predictions_sha256": "9a178b25f4684e2c9edd72986957ef13af476d1a008fa170dd589b527f515ffb",
+      "prediction_vectors_identical": true,
+      "repeated_predictions_sha256": "9a178b25f4684e2c9edd72986957ef13af476d1a008fa170dd589b527f515ffb"
+    },
+    {
+      "dataset_id": "circles",
+      "fresh_process_id": 315,
+      "n_neighbors": 50,
+      "original_execution_run_id": "06869b7cc4708f86b71c3975ce75d3d13487f2878f8f308f2b52c965688720e7",
+      "original_predictions_sha256": "a5ffa42e2966f749b83fcde96b17bf94ae8bc7310c51144169e35c3f7e824e4a",
+      "prediction_vectors_identical": true,
+      "repeated_predictions_sha256": "a5ffa42e2966f749b83fcde96b17bf94ae8bc7310c51144169e35c3f7e824e4a"
+    },
+    {
+      "dataset_id": "moons",
+      "fresh_process_id": 333,
+      "n_neighbors": 82,
+      "original_execution_run_id": "78addfdc045a74cc5d809771d3a6b713a1cf5d73f1971a7a9f8e83741386e84d",
+      "original_predictions_sha256": "d9c5aa4bd3a91831c57dc3d1d6aa0245fdda4b73d64743243e6d9a1e7d4b7325",
+      "prediction_vectors_identical": true,
+      "repeated_predictions_sha256": "d9c5aa4bd3a91831c57dc3d1d6aa0245fdda4b73d64743243e6d9a1e7d4b7325"
+    }
+  ],
+  "diagnostics_only_not_candidates": true,
+  "fresh_processes": 6,
+  "method": "RNN-DBSCAN maintained third-party implementation; oracle, label-selected evaluation"
+}

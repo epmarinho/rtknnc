@@ -1,0 +1,135 @@
+{
+  "clustering_fits_performed": 0,
+  "conclusion": "k=1 has one nonself outgoing edge, threshold one on reverse density, nonempty neighborhoods and both core/noncore observations. No self-only or empty-core degeneracy. Static pinned-source plus graph/API validation, not numerical paper fidelity.",
+  "constructor_accepts_k1": true,
+  "datasets": [
+    {
+      "core_observations": 1425,
+      "dataset_id": "anisotropic",
+      "explicit_diagonal": 2000,
+      "maximum_neighborhood_size": 4,
+      "minimum_neighborhood_size": 1,
+      "noncore_observations": 575,
+      "nonself_outgoing_edges_per_observation": 1,
+      "observations": 2000,
+      "reverse_density_sum": 2000
+    },
+    {
+      "core_observations": 1418,
+      "dataset_id": "blobs",
+      "explicit_diagonal": 2000,
+      "maximum_neighborhood_size": 4,
+      "minimum_neighborhood_size": 1,
+      "noncore_observations": 582,
+      "nonself_outgoing_edges_per_observation": 1,
+      "observations": 2000,
+      "reverse_density_sum": 2000
+    },
+    {
+      "core_observations": 1424,
+      "dataset_id": "blobs_var_density",
+      "explicit_diagonal": 2000,
+      "maximum_neighborhood_size": 4,
+      "minimum_neighborhood_size": 1,
+      "noncore_observations": 576,
+      "nonself_outgoing_edges_per_observation": 1,
+      "observations": 2000,
+      "reverse_density_sum": 2000
+    },
+    {
+      "core_observations": 1421,
+      "dataset_id": "bridge",
+      "explicit_diagonal": 2000,
+      "maximum_neighborhood_size": 3,
+      "minimum_neighborhood_size": 1,
+      "noncore_observations": 579,
+      "nonself_outgoing_edges_per_observation": 1,
+      "observations": 2000,
+      "reverse_density_sum": 2000
+    },
+    {
+      "core_observations": 1433,
+      "dataset_id": "circles",
+      "explicit_diagonal": 2000,
+      "maximum_neighborhood_size": 3,
+      "minimum_neighborhood_size": 1,
+      "noncore_observations": 567,
+      "nonself_outgoing_edges_per_observation": 1,
+      "observations": 2000,
+      "reverse_density_sum": 2000
+    },
+    {
+      "core_observations": 1425,
+      "dataset_id": "moons",
+      "explicit_diagonal": 2000,
+      "maximum_neighborhood_size": 4,
+      "minimum_neighborhood_size": 1,
+      "noncore_observations": 575,
+      "nonself_outgoing_edges_per_observation": 1,
+      "observations": 2000,
+      "reverse_density_sum": 2000
+    }
+  ],
+  "method": "RNN-DBSCAN third-party implementation; oracle, label-selected evaluation",
+  "sources": [
+    {
+      "distribution": "sklearn-ann",
+      "excerpts": [
+        {
+          "line": 176,
+          "text": "algorithm = KNeighborsTransformer(n_neighbors=self.n_neighbors)"
+        },
+        {
+          "line": 194,
+          "text": "core_samples = rev_knns.getnnz(1) - 1 >= self.n_neighbors"
+        },
+        {
+          "line": 66,
+          "text": "if other_idx != idx"
+        },
+        {
+          "line": 82,
+          "text": "if is_core[x_idx]:"
+        },
+        {
+          "line": 92,
+          "text": "while seeds:"
+        }
+      ],
+      "relative_source": "sklearn_ann/cluster/rnn_dbscan.py",
+      "sha256": "53dc9b13ab60197284b4ad04e7a687896810cc4f88bbbab2d50fd97a29da8ff5"
+    },
+    {
+      "distribution": "scikit-learn",
+      "excerpts": [
+        {
+          "line": 455,
+          "text": "The diagonal is always explicit."
+        },
+        {
+          "line": 483,
+          "text": "The diagonal is always explicit."
+        },
+        {
+          "line": 681,
+          "text": "The diagonal is always explicit."
+        },
+        {
+          "line": 706,
+          "text": "The diagonal is always explicit."
+        },
+        {
+          "line": 459,
+          "text": "add_one = self.mode == \"distance\""
+        },
+        {
+          "line": 461,
+          "text": "X, mode=self.mode, n_neighbors=self.n_neighbors + add_one"
+        }
+      ],
+      "relative_source": "sklearn/neighbors/_graph.py",
+      "sha256": "4d00be760450850768c019952b512a02eb0a70555be1d983cb8ba0889f9cb4ba"
+    }
+  ],
+  "status": "PASS"
+}

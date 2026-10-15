@@ -1,0 +1,44 @@
+{
+  "boundary_diagnostics": 600,
+  "environment": {
+    "dependencies": {
+      "numpy": "2.5.4",
+      "python": "3.12.3",
+      "scikit-learn": "1.9.1",
+      "scipy": "1.18.1",
+      "sklearn-ann": "0.1.5.dev52+gc105475ab"
+    },
+    "direct_url": {
+      "url": "https://github.com/scikit-learn-contrib/sklearn-ann",
+      "vcs_info": {
+        "commit_id": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+        "requested_revision": "c105475ab0bc6dfcdb2239a38273d6895c5fe281",
+        "vcs": "git"
+      }
+    },
+    "machine": "x86_64",
+    "pip_freeze_all": "cloudpickle==3.1.2\njoblib==1.6.0\nnarwhals==2.27.1\nnumpy==2.5.4\npip==24.0\nscikit-learn==1.9.1\nscipy==1.18.1\nsklearn-ann @ git+https://github.com/scikit-learn-contrib/sklearn-ann@c105475ab0bc6dfcdb2239a38273d6895c5fe281\nthreadpoolctl==3.7.0\n",
+    "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+    "provenance_verified_before_upstream_import": true,
+    "thread_controls": {
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1"
+    }
+  },
+  "hashes_features_truth_row_order_parameters_environment_provenance_verified": true,
+  "method": "RNN-DBSCAN maintained third-party implementation; oracle, label-selected evaluation",
+  "missing_aligned_candidates": 400,
+  "new_result_paths_not_ignored": 400,
+  "observations_each": 2000,
+  "preservation": {
+    "all_preexisting_tracked_files_unchanged": true,
+    "index_unchanged": true,
+    "outside_collection_status_unchanged": true,
+    "tracked_paths_verified": 1492
+  },
+  "selection": "oracle; label-free heuristic deferred, not implemented or approximated",
+  "status": "PASS",
+  "verified_imports": 200
+}

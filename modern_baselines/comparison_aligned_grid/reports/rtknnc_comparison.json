@@ -1,0 +1,159 @@
+{
+  "candidate_ledger": {
+    "aligned_rnn_collection": 600,
+    "alternative_phase6b_counted_again": false,
+    "existing_external": 10344,
+    "external_total": 10944,
+    "rtknnc": 90,
+    "total_oracle_candidates": 11034
+  },
+  "comparison_basis": "Canonical table precision, four decimals; exact underlying differences also retained. ARI and NMI assessed separately.",
+  "comparisons": [
+    {
+      "dataset_id": "anisotropic",
+      "metrics": {
+        "ARI": {
+          "outcome_at_table_precision": "loss",
+          "rnn": 0.9834184750013238,
+          "rnn_display": "0.9834",
+          "rtknnc": 1.0,
+          "rtknnc_display": "1.0000",
+          "unrounded_difference_rnn_minus_rtknnc": -0.016581524998676156
+        },
+        "NMI": {
+          "outcome_at_table_precision": "loss",
+          "rnn": 0.9680432273959293,
+          "rnn_display": "0.9680",
+          "rtknnc": 0.9999999999999998,
+          "rtknnc_display": "1.0000",
+          "unrounded_difference_rnn_minus_rtknnc": -0.03195677260407048
+        }
+      },
+      "n_neighbors": 17
+    },
+    {
+      "dataset_id": "blobs",
+      "metrics": {
+        "ARI": {
+          "outcome_at_table_precision": "loss",
+          "rnn": 0.9594689695214395,
+          "rnn_display": "0.9595",
+          "rtknnc": 1.0,
+          "rtknnc_display": "1.0000",
+          "unrounded_difference_rnn_minus_rtknnc": -0.04053103047856055
+        },
+        "NMI": {
+          "outcome_at_table_precision": "loss",
+          "rnn": 0.9404040236681526,
+          "rnn_display": "0.9404",
+          "rtknnc": 1.0,
+          "rtknnc_display": "1.0000",
+          "unrounded_difference_rnn_minus_rtknnc": -0.05959597633184743
+        }
+      },
+      "n_neighbors": 13
+    },
+    {
+      "dataset_id": "blobs_var_density",
+      "metrics": {
+        "ARI": {
+          "outcome_at_table_precision": "loss",
+          "rnn": 0.92175129035602,
+          "rnn_display": "0.9218",
+          "rtknnc": 0.9626510240665552,
+          "rtknnc_display": "0.9627",
+          "unrounded_difference_rnn_minus_rtknnc": -0.040899733710535235
+        },
+        "NMI": {
+          "outcome_at_table_precision": "loss",
+          "rnn": 0.9126638160446537,
+          "rnn_display": "0.9127",
+          "rtknnc": 0.9614092928848869,
+          "rtknnc_display": "0.9614",
+          "unrounded_difference_rnn_minus_rtknnc": -0.048745476840233115
+        }
+      },
+      "n_neighbors": 11
+    },
+    {
+      "dataset_id": "bridge",
+      "metrics": {
+        "ARI": {
+          "outcome_at_table_precision": "loss",
+          "rnn": 0.8791454120632122,
+          "rnn_display": "0.8791",
+          "rtknnc": 0.9864713322819554,
+          "rtknnc_display": "0.9865",
+          "unrounded_difference_rnn_minus_rtknnc": -0.10732592021874321
+        },
+        "NMI": {
+          "outcome_at_table_precision": "loss",
+          "rnn": 0.8057012896400468,
+          "rnn_display": "0.8057",
+          "rtknnc": 0.9632102284228976,
+          "rtknnc_display": "0.9632",
+          "unrounded_difference_rnn_minus_rtknnc": -0.15750893878285077
+        }
+      },
+      "n_neighbors": 52
+    },
+    {
+      "dataset_id": "circles",
+      "metrics": {
+        "ARI": {
+          "outcome_at_table_precision": "tie",
+          "rnn": 1.0,
+          "rnn_display": "1.0000",
+          "rtknnc": 1.0,
+          "rtknnc_display": "1.0000",
+          "unrounded_difference_rnn_minus_rtknnc": 0.0
+        },
+        "NMI": {
+          "outcome_at_table_precision": "tie",
+          "rnn": 1.0,
+          "rnn_display": "1.0000",
+          "rtknnc": 1.0,
+          "rtknnc_display": "1.0000",
+          "unrounded_difference_rnn_minus_rtknnc": 0.0
+        }
+      },
+      "n_neighbors": 50
+    },
+    {
+      "dataset_id": "moons",
+      "metrics": {
+        "ARI": {
+          "outcome_at_table_precision": "loss",
+          "rnn": 0.9900199579319732,
+          "rnn_display": "0.9900",
+          "rtknnc": 1.0,
+          "rtknnc_display": "1.0000",
+          "unrounded_difference_rnn_minus_rtknnc": -0.009980042068026829
+        },
+        "NMI": {
+          "outcome_at_table_precision": "loss",
+          "rnn": 0.9752919381911866,
+          "rnn_display": "0.9753",
+          "rtknnc": 1.0,
+          "rtknnc_display": "1.0000",
+          "unrounded_difference_rnn_minus_rtknnc": -0.024708061808813353
+        }
+      },
+      "n_neighbors": 82
+    }
+  ],
+  "manuscript_table_unchanged": true,
+  "method": "RNN-DBSCAN maintained third-party implementation; oracle, label-selected evaluation",
+  "totals": {
+    "ARI": {
+      "loss": 5,
+      "tie": 1,
+      "win": 0
+    },
+    "NMI": {
+      "loss": 5,
+      "tie": 1,
+      "win": 0
+    }
+  }
+}

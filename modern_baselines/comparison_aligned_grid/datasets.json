@@ -1,0 +1,89 @@
+{
+  "datasets": [
+    {
+      "dataset_id": "anisotropic",
+      "delimiter": ",",
+      "feature_columns": [
+        0,
+        1
+      ],
+      "header": true,
+      "path": "csv/synthetic/anisotropic.csv",
+      "preprocessing": "none",
+      "row_order": "file",
+      "sha256": "35a36a3c9352b4eb7eb246f9f09fd6a628621a53f03a4606ebe72d69aa238d86",
+      "truth_column": 2
+    },
+    {
+      "dataset_id": "blobs",
+      "delimiter": ",",
+      "feature_columns": [
+        0,
+        1
+      ],
+      "header": true,
+      "path": "csv/benchmarks/blobs.csv",
+      "preprocessing": "none",
+      "row_order": "file",
+      "sha256": "77d79dba86401fb0f421825095d8dc457fafb22c2b4afd02d4536b25b05a8e6a",
+      "truth_column": 2
+    },
+    {
+      "dataset_id": "blobs_var_density",
+      "delimiter": ",",
+      "feature_columns": [
+        0,
+        1
+      ],
+      "header": true,
+      "path": "csv/synthetic/blobs_var_density.csv",
+      "preprocessing": "none",
+      "row_order": "file",
+      "sha256": "65fa8cb515de5080e27698c1d1ddbc6b89c40bd8dc3975b77ce23149cd2a7deb",
+      "truth_column": 2
+    },
+    {
+      "dataset_id": "bridge",
+      "delimiter": ",",
+      "feature_columns": [
+        0,
+        1
+      ],
+      "header": true,
+      "path": "csv/synthetic/bridge.csv",
+      "preprocessing": "none",
+      "row_order": "file",
+      "sha256": "8c8a68983d711b978acafe967421367fa6f72050873278ff52b80551b3dc32e5",
+      "truth_column": 2
+    },
+    {
+      "dataset_id": "circles",
+      "delimiter": ",",
+      "feature_columns": [
+        0,
+        1
+      ],
+      "header": true,
+      "path": "csv/synthetic/circles.csv",
+      "preprocessing": "none",
+      "row_order": "file",
+      "sha256": "a3a4b9425ce9912e674372d35ea8177ee78f3ac04943465ebe84ed82e7ab5e3c",
+      "truth_column": 2
+    },
+    {
+      "dataset_id": "moons",
+      "delimiter": ",",
+      "feature_columns": [
+        0,
+        1
+      ],
+      "header": true,
+      "path": "csv/synthetic/moons.csv",
+      "preprocessing": "none",
+      "row_order": "file",
+      "sha256": "1804ffacdad0ac82bcc545a604de218764e3cc93aadf2ec2146ebb9f382d76db",
+      "truth_column": 2
+    }
+  ],
+  "schema_version": 1
+}

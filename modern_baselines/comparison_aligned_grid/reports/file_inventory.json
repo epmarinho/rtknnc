@@ -1,0 +1,2192 @@
+{
+  "created_file_count": 437,
+  "created_files": [
+    "modern_baselines/comparison_aligned_grid/.gitignore",
+    "modern_baselines/comparison_aligned_grid/README.md",
+    "modern_baselines/comparison_aligned_grid/__init__.py",
+    "modern_baselines/comparison_aligned_grid/alignment_evidence.json",
+    "modern_baselines/comparison_aligned_grid/checks.py",
+    "modern_baselines/comparison_aligned_grid/core.py",
+    "modern_baselines/comparison_aligned_grid/datasets.json",
+    "modern_baselines/comparison_aligned_grid/freeze.py",
+    "modern_baselines/comparison_aligned_grid/imports.json",
+    "modern_baselines/comparison_aligned_grid/locks.json",
+    "modern_baselines/comparison_aligned_grid/preservation.json",
+    "modern_baselines/comparison_aligned_grid/protocol.json",
+    "modern_baselines/comparison_aligned_grid/reports/checks.json",
+    "modern_baselines/comparison_aligned_grid/reports/collection.json",
+    "modern_baselines/comparison_aligned_grid/reports/execution_receipt.json",
+    "modern_baselines/comparison_aligned_grid/reports/file_inventory.json",
+    "modern_baselines/comparison_aligned_grid/reports/full_long.csv",
+    "modern_baselines/comparison_aligned_grid/reports/k1_gate.json",
+    "modern_baselines/comparison_aligned_grid/reports/plan.json",
+    "modern_baselines/comparison_aligned_grid/reports/preflight.json",
+    "modern_baselines/comparison_aligned_grid/reports/repeatability/anisotropic.json",
+    "modern_baselines/comparison_aligned_grid/reports/repeatability/blobs.json",
+    "modern_baselines/comparison_aligned_grid/reports/repeatability/blobs_var_density.json",
+    "modern_baselines/comparison_aligned_grid/reports/repeatability/bridge.json",
+    "modern_baselines/comparison_aligned_grid/reports/repeatability/circles.json",
+    "modern_baselines/comparison_aligned_grid/reports/repeatability/moons.json",
+    "modern_baselines/comparison_aligned_grid/reports/resume_receipt.json",
+    "modern_baselines/comparison_aligned_grid/reports/rtknnc_comparison.json",
+    "modern_baselines/comparison_aligned_grid/reports/selected_repeatability.json",
+    "modern_baselines/comparison_aligned_grid/reports/selected_results.csv",
+    "modern_baselines/comparison_aligned_grid/reports/selected_results.json",
+    "modern_baselines/comparison_aligned_grid/reports/tests.json",
+    "modern_baselines/comparison_aligned_grid/reports/tie_diagnostics.json",
+    "modern_baselines/comparison_aligned_grid/reports/validation.json",
+    "modern_baselines/comparison_aligned_grid/result.schema.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/00ea88d188793d455d339b50c0ffa709182bdf8fdc5a6d514fae02cdf348ed0b.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/01f404e975a4d478ecd47a4ba961a8f1bbad12fb14a64e422beb16396d9662b4.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/038a472f9854fe91b4e121c8460f01cd3cb540f59481cb63e17e94c15d9a171e.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/04b2a08974e0a6469a9f5483c39f1056443a53069ed5cf39829862e0492b6b09.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/052e18fe370a0a68c70936516091904f240f03600c4d805c4cbacec4e982784e.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/0672322557a5e5803b9052aec1b55c46440126c875e3761e4dc0c32dab31a6e0.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/06869b7cc4708f86b71c3975ce75d3d13487f2878f8f308f2b52c965688720e7.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/06e6a13680e09a06e1f4f155325d3b5143dd7da3d7ee35beb61517e29735e041.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/0814e89e002a2a4b96c3d1188a12eeabf192a1611683dcf6eafe6aa1599fe7c3.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/088da8a3e22c4c4030d50c540801ba2675a0633ceafe0dce118d7dcfeb7d91a1.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/08ab5455f765077fd8ba46ee910d81096af112f1a97b8bd86686e4a2f97e17e5.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/097179cc50a6dddd85262e835f6ee786eb6a2791d7ea73b17b6c3a5ae3641c56.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/0a9ae04b26040076e39e55e9cb3e1306ebd0bfc3f4c8186a8997b200fd47237f.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/0b19a0b88a9af7dadc82693b826a973c70fe113808146520c6fe65a4b66b0481.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/0bc8f7ab2a2f8c0ecab9133e40d6d51074ad80558b686c98500269ea60d1678a.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/0c77ec03a4babdb9482d2d7890eebfc65152cbbdfaa506bbd98a70ca2139661a.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/0c81475db4a5441067be037767bde11df6f2d7b6dbdf9cbb4021160b7b7c9a24.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/0d2cf69787d71419e595868c40eac1b492ec200ae6383c5321b55ddcfaafeb6f.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/0de802710edef7e1dae914bae16478d9d6e7e24863b37926413e60efdefa7197.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/0eb0800fd983924e10b8ea72365f9c561dddd2dc69aa0bb5d5165e4c724b09a4.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/0efe2e7cbb8d8271626711ae8f353081ea312f4920f007291b248bd3bad5ad2b.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/100136b073c98112ddd37b922f2e986da320660e2f894c2c59e5367964914d09.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/115de533cedd38e9654056d727b622a87438eeef8449a1758b4032eb91036669.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/1189d001c2b7c45ef09641df167bef5b5c1031592bc619dec6ce6e0998fb93ea.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/11b567d6b9274461521804ddec819ac0640f109b4de804ccbe9cb960c9d8361b.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/11f2821d2f1bfbc8f462384b5469f3f777c1b9a613ffc9868c511278711bee3a.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/123f5968680d8a7d361916472ab461372167c6bb50389ba2f5bc6060afd576c5.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/1250be4b427dd6a2de9e59e10acaf42a7173838765ce5859dbda1f630aad4551.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/13d1204acf7c96b7f1289f5f5ce349ed81ffabb8034d481640868f7703470754.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/13d120a50848c8d35225c5579a2af8aea3a5afc2bfeee4580ed6669c57a06ca8.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/1427be6420f0512d4da99ef25d1df699c9f27856ade15e27ea4619ea8b1e6a57.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/1557cfe31316b19faee77a582e6520497c7fda94a286b0851cc5ab6feade6596.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/16e10b3b7ac6bb09ac35f202cab9bc0be9d9e87d3b52cec881d785d857f4b9d3.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/177d0aae91ed5531c7636c583378e6866e9db68f5b3a37fffdedfac254f7d51e.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/18aa59f70dd49ba8b9d096466491d4966370df484d483a0f8276ba2a50539840.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/19435567d3ebfe2326814c7a3e31e21fe088b8893d02264e9456c1ca8737a36a.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/1a8b754b0d587b8d40f5568a0b554327fd3247d10aba2164c8f424be180f9bd4.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/1ae6ff7f936caa7cc081c68b40a2bbb5f2201140416f8df681e703b436aef7f9.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/1c56224f9683ac0d09103b42e958c7f04c45d27a5b97aff68fe58cf1b3b16ae8.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/1ce9d207cc663c7b573d26a9e68707899474b74b477d4bdd77bf7f79e48c3d0f.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/1d42a2210891a20ead0bee06afccbb17052e8a47a8eaec104e9ff2f665913949.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/1e1848a351c464c7dffcbd45e2d1b8e6e196d5580353c1ec176d13113e473639.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/1e5cabbc79a24e3566935b240771f67251848e71509a43401b7efa1b54005118.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/1e7250fefc983322e3363148a2bc387b9ef6623cbb89c63bf63a51283b3cedd6.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/1e770e4dff4dc9eb28049f177a08ef8b4866d742d0f5c7ffda7226e654088c25.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/1eaa2e2cc66d947ce131c7b4693f8cf5cae188553d3898213898cba8b010cb11.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/1ec4c90b7773a1277c3dc27c4ea653b3555ef5eed19cf83d6d568fef6f35d1a3.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/1f359a8b8b4d0d08abecb51927193c4a1633dbbce116ec83219c004f34aef680.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/1fdb2eaca9e691cc5fb189302ccbfa5f7ee3130ed3c59f813c01c39919457646.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/1fffbdcd9cc398af321ddf93e6aaef83a8786803199adb5fc875396a72529880.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/202d957b51104a3d5380010e2ac4bd3006dd29d45d64f0abcd1e380263b84f27.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/20a1bec7ce0759c8bde8dc9e7716a10ea8b9e3b21655f35d45a45350c9f6065e.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/20dfef15e939fc7886f76e180f076e450b8eca3935c5aec174a4eb67c29fdf35.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/2114e76d321213765b3a7d7c9a624ee3daf058f0feaeb64d0c7082420a2299d4.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/2191d7b354daf1ab3ec5c8d586bd87b341ef2ec9f23c2f5ca76b29c732084678.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/21e49d71c2c59fb2243b70973836a6b7a49a730ffb061435da2231dd057724c6.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/22e2802d8bf0b1d5d9b62cac0175207434bb880411873a0b6401f479b5347096.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/2329fe810b08f309c5f1bf533c33002b92d4e78636ba416107222d45360373de.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/252ac9f700b3f96f0a939833dacaa55b940fe3c36662d5196f5b035a0419686c.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/253bcd38f31cd51dab4b9fec018cf3d2cdd623db936aece8745e7ff822236cd5.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/25c92cf9517e1c6ced1f7e950a3e40a23b65745ce961cfedb54b16b7f53c7d88.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/25dbf676e93b83e6be1956bab86754c2144810f228eda51c82664c46359ccf65.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/2615b1534049a7cdc43e432459b67e487dbe878435a88208280a1dd43f783f95.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/266b9e3e9e5d4009c21d7e144555ca523d9857db7c2362170ed0a2a912022000.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/26bf323fbf12877a1dac233138fc1bf1e839626ce79c37d60768d1568d12ea97.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/270e2a1615d5e0f22fa9b997031c424dbb1f7eb7da060fdab436c7e27b394626.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/2716a493cfbacbac20966a865af56f14b33308a1405a10c15df02137f87a1b09.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/27578ff657003a0dd2c80b16df3a275178974fd5678c13ffe1f4a71a0ad3ec56.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/27d10ec4407125c3a4c7a632ca9bfe9063a66e5bcee8144617bc76cc15d02be8.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/28f8b17fde5dfd7cdeafbd0bd7a2bb5e11101cef696fdb499b6df127c8ce5d10.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/29cfa97b462a146dadc5cca2b8033397201b5859bd054ffa164a04dbf5ecf719.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/29dc385ec5bcb70696c3b57f1d4dcaf7fe4803162c89d64ec72eab3fbc9fc5de.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/29e9d0469e538eec05b4b737a05294655dd0cdbc0648520569cc051e38977604.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/2a21ac231c2ab157f8a74cd7c895a0ca5f3eb3019d3af8a07bac9e701a0eed32.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/2a37380abb39f4ae348c14c887223b47852de8ab3504e018dfdf3299b28b4372.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/2acbba83633ede5d320c9569c9532df419f13d0d165670bcd044d73a6d8f3fdf.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/2af8deb909a76a00204a5f38f9a7d5822385e79239598b5a73d28e30b49d9d00.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/2d89f47a98012aeb28acaf77d186281c3fec8ebb9e452807603f1361ebf3cad0.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/2d91835d9536f8ef4646efc4aba58883376c940080f23fcbc2cc73d043f27b58.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/2e0a8adbc65a1c9bf4a618cbf45d3378c8a05a9332c573b31a455e836e2c3407.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/2f815b2d1cfe5fd7d07932585803d5a4bd02a0443fdce61601ef4120416c4b65.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/2fe153f3596c1c82edcfcab1b6704640b53e6443b4fcd9afebbcc2eef9b077c6.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/3048b8202e231f1070c342b1f87dbb87e7ff3477eee0b7c539fefd0830d21abc.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/30bb81add9c81f3c6f0565f9cf4e189b4fa2d6c53080c7d1e1c46bec7dc779f5.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/31b0d50cd4f8fd7a3c825b734e10bacd6aa8e3cf0a3cb9e0ce83f6a18c116930.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/32311ab1aef0c381ba01b2008d2dac312c39f4c98811b0dbe4e03300d586a5e8.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/32c62a7ab8cc73d2441db6f01dbe164a980110831a3fa6d6c13699546ffe1bc0.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/333726e25eab8d97df03a7d2a4865289b5703d5eb1f48f969eab350f85450903.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/33e97d154904d684b6d84b06c10c959a5e6011dce3e64e5c9474e0fd0f8b0e23.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/33ef94247b4c3777a9e7ddc7fd4c434de58aea08461e400163d2d849395a4fb5.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/350545eec550238a0647dcf26981a9790aa84167f3418bf466a44ec079abb657.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/361da892a07ff1912ab1e559b4ba1ca4e166cf87f69f2f49fa5a21285960e9f5.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/364dad06b8de725fd5a1cdbb55b6c1a0af471addaf7b92ab9dfd6ed02c0363be.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/381dd3c551e8ba5e5745ce5d3549dd0c86e64ddf6f4045afd8ea9c31fe9d15d8.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/387a3c4a4fd1af0dfd00bb587a107d1ab473dea184a0a1df86df79ba00c111b6.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/38e88cc9ae3a707bc25dd05ec30869c59b12fa888fc44d395e6823bb802393cd.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/3991a88ec4f16cb9fdac4497ad6e1b181d2333d39dce8d5560ae55b67c8dbb1d.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/3a294d08a213224c14e9897387aa60dcaec440ee0fcbe3207a3d70ab8c7e13b3.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/3a657149a9fd0a7bc1ffc53bf36af0c398a73e75bd687ca62e1ba41434dbd672.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/3a6dee12693d186e636532d99656ea30a9b59805de25cc42b7f5b8e26ed2ebda.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/3aed69d07d1bb9be668682ed48381e4252c7421ec4ad08ae8b68fd486a8a9399.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/3b10c34da86743e8b9c31d5ca9d3a5a7433ebe9197f1659d32d709ea6aa95d70.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/3b1d8a8104b62a181b9711c0d4629cbdba5519e0a4620bdc99cebbf572dd04fe.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/3b501af18286b5adbd975a550032a3bf2e7de55f7e17aaffc87d9b0bf1ab7f90.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/3c5adf0c1a0f043e3e79260170d79dc14276985a2f7fd6a3670fe776c275b179.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/3c8444caba87fce5900684afe07a66599100c7000913a317982946e23773e2a6.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/3d2ac28b6861d3c2a4d8e49b359d74407297eafa97a4f5d65b1a70ee9604b068.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/3dd565b6ac2679d08d7955bf1200afae67e8379425b0997808fe0612007709a9.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/3e80d5df841bb4b0525c045d46f3254b40c6ccdbb6820448bb6e04c37c4fc333.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/3f9bc601c376a13ee1704ccfaa429a1022bcc22de916d5e180ca4d9b936e734f.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/401d9a1691c70190ec818d667e9c27d82d9fe61b660aa86f61fc9c66567f2da5.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/41befaff24c5257b22a7a59eb26d2c0030570b26fa4984c6726a5e5d1882db66.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/424b993fb72d313d1ff869a3ceb6d55a5c804973928172dd51e9a6513682ac03.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/44bcc0c0795657d794ea6594ac62b77c297da0b67b41fb743bcb81c07c36ff6f.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/45f65781e2f46cfb79f4bacc561052f6d0dffbc1b303f06d73d85695bbe18964.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/4744e28d2101fbcb86d19977cb9256d34fda85242f81f1933b9d8e40c93365b5.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/475215ddcf6b9757f98f715c9e28a14be18b6dbd10eac761fcdcf90edf22f82e.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/47c59d1b797457a42c3e310cb81021bf6b410c87ca309693a10ac3bd8b01c80a.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/4889bdb92676a29ea733744561869d712cac5824b8eb9e2c1b0d1544df7f830b.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/48c9e3bb84f64c2525e0d0baf9c5dbbcbc0933885ac778448b5116d7bb637c83.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/492890da97d272e7625912118178e28ee0431c9aa34304c390f39e9d268da050.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/4997119904aa1012c0e171c0b25b3372acbd6cfa3509af5b702112be9c5f19c7.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/49ae6e1617d7b7af4acec4296d98ed378d2fe59680ef18041e04c517ec452457.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/4b9b1e61a06d18a908148d57f6e94401c81675d8cf866a51bfe92cb9fd13bfcc.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/4bc7f1be3e64c4cdee0400df69b420f553821b5bd3882f3c2d96eb60efb76d48.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/4c00fed5d3105391b64d7641b85f33bb732abeda046d4359b27f2e8180a5069d.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/4c1b98b834de8678e6d1cfad6ca603ed20206fc0f00b3852bd8614a4c9910e85.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/4c1c282ec56d66c6af28f2542a6a7df3f88e716b6a3c47d13a4c4660eff9ddd9.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/4d0fe57c115d3a8d4a29e7f94c3bac2e0bf3a3642442c4d6fee090962e294efa.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/4d3be487155522ee21385cb0b378ffd24de92d84396aa3cf972021a758e6ba47.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/4d7547c437cbc35991580e393f40d300af83ec660f1e53e49cdb71bc47d36a3e.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/4d7857c86225deb1b57df2ed814a0c2b152220502b8b2e5626c03fc84e759c5a.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/4da62c8aaa42c00b7cc0d30d63ab0ad76ef3e6b33ccd303c258e10f0b289035e.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/4db2283c3ccbfe9d342d48a5ba55f4247d60ab657520462e5babe1a3c1b7001b.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/4e1506b6d09e8c83782f61453a0ddd0316d2cb70b4aae93f36050fa05bc941ea.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/4e4936b9a0d34a670e6793a524c95e728de4cd41ee388af65aadcc24c7df321b.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/4ea9bc15e992f2a8b6e1ca693ef244e8713ece268b610840c7fe7b7f2e9509ac.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/4f7bd5dd17ba1bc927011335204897158f6e749321d49a8b6553e852027ba016.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/4fdbd07d038a9eab3d325383f2cdab0f825e52c58d7f09c860b6458a121976d0.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/511b035170bcbfe86057f1422552ee7bff2c29b7ea35271cf49cde64c4a93753.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/5144fb3434b16434a526c9aab3013842e58a34941db2f13218362820c749feec.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/518edefe338d934b3e9eecfcea42c83bbb91235e560c441d820cc1a73d139e2d.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/51f648a74078030534fc6dedbc9bfc06277d27781378cf5d23b8ba9facfcd73c.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/521a32fcbf39249cefb331245dd4fb212f3361cd6ba76134f5ea0b69c139c539.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/5221125721f2a2325adfbae7baed69002bfa605592123d07a0f8b84f388a4049.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/52608e02575e41ba4c51f300ef414c6e502424e6c03f8abb0d27b845df90e628.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/54e13eaabff2a6a591705f779dc271920944729f5e377d1709868d7dacde3da0.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/55de30a04268e3a8b829bb381d0fb287c91b9d6b8bd404d07d5d19d8b9696986.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/573829f288fb5bb231a6d6cba1059265714e1317698c2ad76c48fe2104feb2b0.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/573bdea2ec138486765a52b336adc44812aeaa66139f2c6325a9c6e20c9f1dfc.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/579a14815ed763b5c35f8e55836f4184f085f868a870e962fe05da43268bb058.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/57cbf88d8da9ce0c7c4b21625a5606a59047817e6ac24c1845da267c7b4b22fd.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/58275036bbbe46eeb91fcfeb829028baf5e432b3e03b00d58bc6f2a26f957bdb.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/58c6ee57dfe6082d4cbdf41b0cbc5be3355fba852e51315dd7bfddeb9009a1e6.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/58d43e0946137c1ee9f01e50ba5fb3e80c29102e742d73c7380099ee01932c67.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/58f14ba2dfd3297ed586fe3b65b1db810057edde6a2c26a6018dadf07a8128ce.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/5945961a5f1913d645876c22641d1db579c4e58b563009c0f8662a200581a0eb.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/596aad8f4e191bd90a7a47b30968c2999e1627a36d3301aecd644650132b63bd.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/5a57cb99e1dd8cc911b847b3f21c350ea0c6a4359f2b60a87599f2e1b6af7651.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/5a8d61ee52a11501fbcdcd61e881fdbbdb530d2bd6a14c76d3e1c636632f4866.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/5b5055737ea01ee9f159e9e4b46768982f691278381854ec6ac886c5e7ef318e.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/5c8352b2b277883e49b1536352a6dfa4a252dc8505c67c33a89653bd7575b66d.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/5cf5917e2013360d25b37e7c2b87827222915f40e520babcf963b914ee2826cd.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/5cf7f9e0843ec7c0298c1edb66de3ed99983ef098246541b8cbf89961b52afef.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/5d33daa9dd99489113532007c305fca6f914e6b354b8772e0cdc049f5554050f.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/5e419b5bbc20f7e5e391abcc155b972dabbc5aac8c1e554d148d740b50bb01d4.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/5eb2bf5cd1fd829bb79baa834c021a40e3f7cadfc982ef38eab824aaaa4025df.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/5f0a83c32bbfa43b8dc04c71fd26f8b7a86456c17ef15648a0cc40097f1918cf.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/5f868945b19eb553eb6fc70d6481590d2d197a6e8cea2f56d3649033cdf8faba.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/60afb5c31ab9073d4095194d704943991857dcd73dc8c31bcc183f6314ff76b3.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/614a69ea8dc660a3a2b8f800924b700d0a926374fcb591fcf8b6a609f890c231.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/617264f9c99e3fe13686841fab299eb6857b8db01995bb27ed5bdf8564ec2be2.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/6230f521bcc54436a7212de4da8dc01781e91e8a1833501f6021861abdd1ecaf.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/6358c34c2321a7bcf2433692ca63b76f8397422b332222aa27be9c38cc1eeff8.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/6362c074e5283cfe712fa6aa6d3ffe6878513dca834185cb3c56d8f11a15073a.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/65921463bf88759f6b1040dc63d07604444826972f970480652ee201f8798487.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/661c18738cded49f5bd7510a91dbaddac8f6634c471424fc0941cbf3c07d9b14.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/6629e5a21637003ef85d0cf74253f9119b3bd7f60fdf720a9ba40e17c85b8975.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/66a6244c3f37f3c371669d5d78d64c91db3484c35411b8fe8806f9b0db05e5e3.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/671bd43700354e4215ee09ec092504e7016f2b5b186b95ce6d3bbdccc1094d80.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/6745c91d3a45f631ac3e6faa4d637b69e91d3d8d4cbbda2c57805c3571155aad.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/6810d37932bdafda83116f4382dfc30d5b2def969e5e7d868254f39bf3a2f1d7.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/69f544c479dfec25174678fb0d0095e6bb3e692a3bfa4f00f155c537061823ba.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/6a9127533668d788503e326c42657933e9b8c7dc94e48367b23ec2fce0278a74.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/6b2b02353f32baea4c91e5e10e710e7b78552a8ae3bba80938402e0a4b0101a6.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/6b32971acb11de513afc6890078be99f89e3e66719509c380e13d4243fde57c7.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/6b8a96d9ee902cb7a43d83822b4228eed9504b0def089813979b85b606856620.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/6be69f1f7ce435857ae16e7e21f40a32c04a3a17ae69ef5cefcbf32002986382.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/6cbea98ff7d5d4acd3c6a395173c203238803bc7ecb2dd6306cd825b021d722e.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/6cc7bb4015efc5947b35919330da843fd8249cb5ae76a9894cbbd8630e65511f.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/6e7021467f70c17a7e42e728641b8171ec2f73e345d68eda056ad51d31042052.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/6ec92f82f86baf0850882ffbe2eaee3188c5e771988ef15f7b1c105cba2f8499.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/7131c7d57abddee387ce7f1cffcf5577a4d12fcc4607fdbd69cabd0c7fb909bd.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/7278ec22322d0443174a12a69516382c2bb898d40687dce33a57910fcd4ae2bb.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/73563c782c90f7a75f4149ccb1e2da63cb01dbc9ddcb61096c9b09e46210912b.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/735f42fc7ee9a7bef13aa4f3de6c779f24baaabe8e6c8f67b1afbd2cd084a2cd.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/7384f7fbdc5cc282daee576ac63569e21591718b105ba7ad7942ed9d751af31b.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/739460467241c1187947bc01f59681472a705415d78da6d1c6134079ee532e21.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/73debeb50c4d9ede836117442ad13b9a879403691c9c450af65465272e8282db.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/74c564aa84e965cce69f8753001a4b85224540296f90b4c1a72ebf39fe868d34.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/750ed43f201ee8a0c01fc589431de2361c91ef6fdba6d5698468ace66c352a83.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/7513a0240d2aa5daa2af1ba4c0e75f29b7a0f26cc756c27d203eb035076f40e0.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/7726b017a07ac1660fa3afde521593c69f4b7a7f774881e9960a1fbda7903901.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/77af7a43de7bd18c2db1576d6dede6045ea11f1e59c9ccca458edcd421888300.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/77cecd4d5cc4768e42013effb551b8d7831209fe7b98b5765f6c0604dc7d0d0c.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/78638d0d8d82085f4b7d849a9786255dd408a7ae1d31f6564af808bd93d3c1b8.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/78addfdc045a74cc5d809771d3a6b713a1cf5d73f1971a7a9f8e83741386e84d.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/78c42dc5b0e58dc94f8aa761b10677d28c8da2e2a3ef4cff7e167ace2290edff.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/79665c0202474a483d97228040af47b4321895ef6ca5b31e5c5edc2839172cb3.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/7a27a5f703e6f4f9ed929efac9d7c61cd38e79e2045dca60361cd924c74fc004.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/7af4807fc6c44ff541033e7e62542e66b7b2f9fa4a3fe4119253df33ab619b04.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/7b08bf698380f38b3033085ee46e94693c0525bf2931c0e52f9529a87c3b9028.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/7b8bb14f47f5e027630fab352e771c64ba9cf18383f511828316c2cf178f4919.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/7c183739f5344e200ea2555e726a7c66c6d19d15315ee6be3d939935460a3ae0.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/7cbab9fe53cddce201bfa44b067412894a3ad088e7c0067955e8469c63e98ff9.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/7d799cf069a4096194e47197a993fb7d65d934da24124ee66d4dd5f22a9d0719.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/7f4b8c69c4fc9125667b389df1b4357f3fdb22e3caaebc2ea4148aacc9f35367.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/7fb3d97d4f6aa7574114eb63dfbf6b548abf6fb9c366d2757cb8d7f8fd8617b9.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/7fd1d94e329a346f5bcb72354b55197354dac2e4515033437173010514089296.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/7fdd7332ab11a7e1a8a811d663a310a1a72b70ddcc9de7640767ac58a4c40968.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/8060ada66be19cf325c121c4b1f55a9ed925d0aba07a46df201f083b39e955f9.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/8079d1722f44c1dfac7e721fac61bb233805b3094b002fa0853132705fc73856.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/81f862fb8674b209613fa9d5ace3d8813a0d14ab3b950ef7bc58c022108ed77d.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/830d813bd741105cdd5e0c8fa3d4190668703dd8fc1c1e7fe486c535ba2a3f5f.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/83c8019b2c52f2163d356e78e162d17a1e020be2d364da10045a6f7d7cb93192.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/85579865e4fdb61e28da0bfa37d7f94693250203d06a60ba42e5384dbb1c4ccb.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/85b9feb5689aa87b7ce5b7758315e6e9813f9164474c98d2d07e8d330ab5021a.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/868499ecce186e34398cae655789f3de999321ef490cb18b853faa1408db2fae.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/86a7d449f60f03b51c51afd428ccc21bcdb4d54e4e90a3de1d34cb995692d4f7.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/86f3f922be50c085a51f016fc537f95bf5ed971a3aebc290866ccc90f436624c.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/873ef20b9aaf3f5f6e64e216c5014d4f13722140c5314c4ddf6d99270e268260.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/875017009aa5d14a904d639d40760210c4fc13a4bf78304b57bbbd006989b8ae.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/87bb98abb36eb1c46c9604f2e238066e44917013dadb06a47cc9a7e55a8188d6.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/87e8df358a79d245fd69cec02172183028d9ffd9224c8f50eafa3f56d91b0c6a.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/89e271b97881b119a73b93e97d50559c829324d5379b7093ac5c3f59902a9d68.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/8a887594c05356fdf861c55d2e0388a15a1e92e3c78f2b51703de37f8b8bc826.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/8b3d090cc032641a112b2a7238ac6fb558d0f46b70bcd5df5aafa5ad0a934cdd.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/8b610d435c46b881d3c9d2bd94aa736909337f35f12462b2b120283a5fb1a4c5.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/8befc7cb4261d3cd50ce6b3a6e79c8f8975d3e1e6923b5c4ed2f29059e07303d.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/8d99426f3fe740fa0a42d19dcf6a3bdd519a13448a64e0d90bc004cf1df99d40.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/8dc79a05c6e1eabc439b23a61c86287feecf092fcfe90805f069ccfdcb4be8fb.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/8ed760d8a149e293fa98cf24111386d4d8b2e036013c83aae11a887b08000f08.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/8ee4be6a03f2854472b0992d63cc193addb4a0b660bd6b586104e07e15b0e8a8.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/8f87dc79639153009121755c1cab62bbf90de469b5463d575dccb672b7d82169.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/916b87efb7d01f36575aee326ce7e0182ddaa9154a8d247dd8a8121c3ca53885.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/924611ab576d921f9e4d0bf4e55ba044ff3896f62c06c23667b9959bf8a5f57d.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/927649830077406e34db6ef75131eaa7777b820d5821f50045917f357711544c.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/929258255a167a1b01a90ab1c2b41b851864828c976e156db770649da418526c.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/935ac1eef41c51b5104650ee9ce8e2d977c49422242990e872587467861726bc.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/93787b7b3566b2c6875c073e05e26e25ddb195094ac0850719c946543016b6e1.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/941f31f8da2d7bbf6b43ac2038e26cce5a1a1c14d9b6bcc4b002557b00ad973f.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/9485bc9d9a1070c41dd90daa49809bf54935319e3e978ce670f7fe5e719086f1.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/969188a13df350dc47bbd652b45ff29c649c9d30469f453d4ea332bc8382c158.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/99257647b896ee3e5adac54ad9f811888067eb965b408ef332c1bdd539fbc7a4.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/999266f68c1d04458e42584c1c7fc771200fa886e11bb864f917f84e69260271.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/99dc1d33875e94a8b6b91e6a2a6506461ec4a9c55670882745102886a6498fbb.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/9a3df7e4491ca758ff0ad264870684fe7aa078fc928bc97609057a34f70f3179.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/9c1690b32d8ceb02b3d14b259e912414cb622f294e2e1e7017838b252a0c2377.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/9c317b7d3985d9e08343738880d81bf966d5c63a68443c29f26f413b0810f3ee.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/9c56629ea8c97f68c9845b1b0dc254820e34ba4e325badc062021b7687b53cd9.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/9e8a04d014eb3435c40716c402cc2111705c17a784953ee063fc846244a395b2.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/9f19fcac21ba8503c91469d07637fc7fdab2f3a4cb5c61549d6470acffcb3aac.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/9f2a96c4c5d718a7b2c832feda57e6799593ca193a418e48595fa628baad8d90.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/9f6b286a177fd85f24a2c246db2873e15a809ce83439b591a10cd7528ce94b79.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/a134bd0cce53377c421175a67be879e98677cf7e537c6e7da5a1f4beb808c6b1.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/a139d91284ef8efa46736ca8d22e612a16608b7bea3d88959cacf2317adb678f.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/a22f27283bcc604c1ae4dcc007e7fb4feaf6bd3851f0c33300f846d278ee8a44.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/a28f420f55c978515773d62e1a58fe8c940c9b4b720b39710b50e8673e4adc98.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/a3fc4cf32261816571dbf00f3c86b16db8fd564073ca258360aad511d07fcc3c.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/a444cbc56495a5e21089c55c10bb3591596a9f61086f81becc4fee936b3bfc52.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/a44b8272362cde3ba5cbe21e3270c7d578929494d6354bdd38c1aefc81eac7a9.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/a486ec7b18ac5ba9c3c10f2fcd22e8cc1de1aff938428781a5f5daa2d58a01e9.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/a68348fb4786b3c56091cf605c57f2b1407f899146b52ed3498114072c24791e.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/a8cca5ae40407e8ebb3dc6d91142655fba671b45ac456f9b10c3362891191ded.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/a90aa082ef126ca22a0c5eaf370045993ae91e315cc8654a28ee01756a5a99a7.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/a91940366bea36c3ae8ca8c0c9a4cf8dea8ccc5d16ff3a6ed47d137ca5c28b33.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/a9e329d3d3ed5185629986a58388ffc29f9176faceba5301cd7d223b1821d09c.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ab15ea9e1a58de9a745431e510a8ad18175aa1f1681bfda3a7e10235de83bf9b.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ab320ec7473addf9621c2c27134f25e9356ebd1c1cde200dd798807a18339ca4.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ab73be98cd69d75c40e54a0ed7028aa482b005d68b2e4d93c89ab0f818479446.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ac2303583d69970156b55d3ac31c41583562fd749718601b20fc22cc0a9e237d.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/aca264b8b8a68e2a6a02f7aadb2a24928a7969ca044e3cad8eaa772c372210b0.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/acb70cae2ad01e702585142fa097e615d88bd50b32453c61ec8962549b388df6.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ad1027cadfc1e3752925d3d1f78457bc6bb26d1f43ee8fd9e3a9d17c9281af7b.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ae8ce629b830e0fdbe9fe0a87f02a9c1ad79cf9760b12bf61790a41b256109da.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/aff8c2de4d2c4833469c29ad4c8bcadaec280a7d2fcc2129a1935522dd46db9f.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/b0300a28e2fe45233cd45f1de4fe1a917d6627f873b8d6de7b79238cee05c40f.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/b12ec82e9984310888842329732805e506a3226587575af934c991c3ccf3971a.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/b183a5237ca734a8bf27f4590aa2be84362474ed471f941285035e2670660901.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/b1d213a8e4e4a7ac0298750a8ace78e4fd1c69ea875e59d6367f00b3e382d9b0.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/b20330b28a2f031d435e0ea69f8848d04bfb97349c78bff5b53a596c96f3e0d1.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/b2b871d09b25832ab44a98298a3c18a3d7e9ec3ef1c09859bc41f5f70d54769c.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/b379cdedf6464d9772bab08c1a8318a5103bc2d7fa8a84b00769216da05ed791.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/b3f9b63375a7c4597cae7ec86cde4effb43945cf21e7933a1523becb9f589947.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/b4ec2238cabbdc74608ba84efd295bd49ab8836ec7da5f99153b3070e23eec6b.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/b686ef279768581da47d9a964da98c4b44f0e80780c7a2bd67fee9e8827f0d99.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/b7baa99de87562e15d5b8eba36c44e33fb916c5eea3facf84fe25d687c316a07.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ba1839071e29781ce119d0a426b4cd276c7206c15aa57aba336bb770be42f1ce.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ba1d46cc6be6cd2fcab01e0584016f85cf60667fb55477f1877d39c553964a28.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/bad5e63fdb4831e1b047551f03a8c47b66115a2dcd389dded9875df5381951bb.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/bb9d0c6ecb6ecd666766617125e47a60c4a34bd519f5d546a7e1694fa385d754.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/bbfce894933bdb24cbffcbdbf2e831604998bc5fe0656442667eb28588ebd86a.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/bf515d4d5f1840829ec58c7c54d09979eebaeedbda0f64d9f604a77e400d4e05.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/bfb53f2c47d3174f2745330a10a638ce3fa75a4bfe1b9e4432b1de2cabd84440.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/c0b73e5861a874156e739cffd02e6f817ab56bb4def8c06e215888e5dd1e703a.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/c0c12b7e28ed3ce2019ca2b482411ec6b6128a0597df61d87eb92f675c92b17d.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/c18c8bd3af58ad80712fe5e8be272df63d8fe39160f3d388b01581ce6ad8d304.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/c432b338aa11e5645e03af388d4661d9f0e7a9e2828a2b2d78b669e5b463af98.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/c513aec00dd7327fa774a636c322707c481e02298b182c3b8773837012ce91a0.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/c5f4d333398d024a9a65be8e20a63354359874967e8b61a5bdce185dd48c6f8a.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/c653088e234218e60f3fec9c380ec2e3dc30e2c3ff695c20e1449604f9accd2c.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/c72c5b646424a46789314c87e4af766f1ec0f0fb32eba0a598bc6ee15b37770f.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/c75501d6a30444d8f37651ab78095486615af584dde7f1019770f1d86516468a.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/c7a064131a1edf969a3d89aaffad156761b2084cae082c5d00b5173d5faff101.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/c7d3f57e3f315b47e44008ade454711e97cdb89df7222f3e728372960b86356e.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/c886c3557d7e8fe21b718fac4a0a967e0861d6602ab63a0762e92fa389ebe3fb.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/c95efaaa23504d994aa135a6aa8a336f265e7dc453c9a8c17c5859d423c851b3.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/c97974480c559942b0e73fc449d8f1004d25fce8535588960eb413d2f9862555.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/caf56d8572578e9ecdaea2ac84d70c5d97572cd31da04873cc76b95e920ac774.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ccd3d27ac7910b9ac5fe017a8475b65038eb1f0475cf0fd4396930b281c390e8.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/cd8edb847408b0b30c30464f47f78f3cf09999e80f32dd1d467890adef20de5f.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/cdb1964a2012f006f2ce4c72e8189edf3965a9855acb7d7bf283176a106a82f3.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ce0c246021ca948ddc9c1c45002829a77a49c33122b84c78716c7a485f640338.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ce18ed023d65997e8c81278422a8c75319dd518ea5c28933efbf58c8a1c03132.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ce41678455d8ed81c62a4e2c97a337304fa96b2dbd7a398ffe65c222d289853a.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/cf049955e2d54fbe1005dfc6d165e164c4970db23a3a7d47e83c43f5dfa36c8f.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/d0765c6d6c9933abba03b3109f2d03504e9813975f57ece63e5017e3df889a9d.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/d0dfa60185c9bd28ab9766533b5341a4986748a162a3b4d63089f0c4836ba4e3.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/d10e435445e29e5d169ed636c0e90e5b159bfae7e7b4626121a0f06cf6bdedb6.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/d17c988523413f80580b4142bac91f372cf138b6343ccdcbca0481a63a876aa6.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/d25bd98d718e3514ceb533783e6716d307b1da6bad73dad21c4f550bc065b50f.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/d2b17eb799438ed2e28361a5cf1132f5dd0a601c3e227f5aa6aa8b323b250963.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/d41f079a5f529fd9fe3f6701f8e1f5c0b52a81cbc4b51e9b7f5ee9ef4f1795e2.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/d45c3e5f529df7fb6bacc81db53ef48bd4d829cff33fd27175c49dd1de30a6d7.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/d5b01915d7dd6bd35f76566b8146768aee6e07baafbcdcd83bd30e2f3e1c838c.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/d6f6563282e9ebd8f8b233498f97eb3c211474a29aa784f266dbc4ca7840c285.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/d7dc27580684cb55c015928a5019bb229a656008bdb05fed04a0f0b3c8c34b9b.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/d870d4b7dc28b484c2eadb17e59ecc2bcbf9070395d4d9ae1023cb0636516505.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/d99519b5bde371007e94f59a6b47ccbffa91a249a68f9d4dedd729468e5afa53.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/d9e10cc5482345c5ae17748bcae8546e3a5cce6b1e3e5053414ffc73276558c5.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/dac86aa2cc4e4e555b426c75c6b489aac2f8a765029accf3343dcc721219d558.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/daf430ec9dbae681577034a1882decfcb570ff426122443be4e71187c9f77468.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/db4fdcecec5307b52f9b7d09c53c045b4fdcd3ccb6bf53c109aae15a1f0bf94b.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/db51a61ae96f1f94da9742338689c533308b5ba3722484f6091d61573aaf13e3.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/dce784a269b1f38570d126b2a0475a48738bdfa430a411b176ebde3865864b2b.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/dd829221a7b5a144508366117273a9e7dad373150815957fd9dd14dc6535438e.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/dda10dbdcd440b55aa9a41f9382f273124ff94deeae0bcb25dfb356dc1160c86.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ddfc710e2b0abd4ec8dd3c0b7d93db394c639fbdb1f801ed4158d845e60778ef.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/de1644d50fd15c52cda05070d93dfab417ce39d4bc1dcf363f3ef07281df5486.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/de6160fd6a99c442db2bec6260fb304a2846e9e2d57404af411531ff09c46284.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/de8f2f7a42c3811b306f2e9164868c78e145aaab6aeac3433763442b94af8d11.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/dec2cc868d7f98ed714c84e7b85a9030808b636330045d4c68abd02ee12d49b4.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/df726f65b23a0b8984cb1d98c731587805f5cb353521985f54338b65fca83589.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/dfa70fcf9b497e8be88cf6b575ce956e41e44e49585decbcecf075b41b812331.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/e27f3cd2c9dd4aa6953cb1dff690c5e77fd7bb84778efd7b9ef2b44bce49752c.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/e299b930419ecd0e2b859b33db80cd9cce424346f703071f2e170f3988b49125.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/e37f94c4351379d6cf375a0552d6fef046be7a9d8b5e622ae621a04177124295.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/e506d1da9b3552772ff7931c2f31c1eec2a4ee5177d795889e300f8043a3a9ed.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/e6beab1a04bad0a257fd59b8ee2906f049dc7ecdcd35cb1a21ebdc83527fde6d.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/e70e2879fc62d125e602359bb11b62f1be541460789f78e72c9a17323c6303dd.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/e72ed052c1caab3d6ba6622f7aa8f59f9211bcbd811a1fcba1e8877cf89bbf12.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/e7426be8e1c9fe1bbeec744b3501dd52b0665b29a01dc55f7e7cd601c4f9124e.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/e7ba5419c8915a925ca492125f34f1457609a1300b4b32eb3fd927cb7ab0e0be.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/e815c9afc10f38138a2e7f1d63aec2a27f74ba7f91352107d05ee25e70527075.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/e9e5ccc84570f52b806f0b8454a6a0efe9393727a75a0f7c5d65166f98471111.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/e9f8bffecbd1a47fec760ca3fea8ae618c663ac1397fd629c9c0d6a42f7a4f48.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ea24f443cb2834912a1594b62d5aa6f4646b529dba39dcd1c006383862ea667a.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ea2f0b2be88ff4c8e273a8da5876e8c4437b54c78faf1cfed1bf393daf24980f.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ea84d94b038f7fdfe8035b462268c34d472dd20e35391bcac904269c998cd079.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ec4e0e823c64731c6eb227816ef906bfa69e61961cd3d9123d91d367ba6767be.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ed6203c59898478946afc5189940e74ef930f340344e3481f277941233727ce3.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ee02563873af2c533e42399ede5e0beeb630b99cd759ccd9f4d4994c4b47ea87.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ee0a3355e3117f788f375214ef2768a58e0c477b25d309fd5656ac1432fca735.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ee9f8c40adaa5898f3addca06dca029283a1b75cf55a5f478b1b6064366b3b92.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/efc36188ce4bb35f911bc081965313a8a645df567d129d82ad54e46e42de680d.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/f011e41c9f5669bc5f4a55b6028b7ddd6bac27e98ae8d7afbde43954198e985b.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/f0955bd16fe4c464ddd7a5a2f67ab622d83cdbc71cd531d78887d1f3eab617a3.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/f1002abcfdd8952a5f427bc4600af7139fbbd3925c5cdb112423bfb4681b591d.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/f1a23c9d389675dde01562b39176d7af0616fb439033c8d84bc4c5fd3716c5b5.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/f1d572d98ac0c06aa99c458815ba8ab3a93e6a1d9c14e070835537086ca45f7b.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/f25743902afbeae86292faeac1b70d0e9e0d984946eaa010c3709542cda977ca.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/f32fe7e19eb8dc31cfb36c74855d51268dc62bfb779bf9d25fbb99e7795dce56.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/f3c3a4b1fc9ccbd3d33ff7b9df74d258eae93ee123f3558c5cddd8ee3c9dfaac.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/f4b9106abf2cb638e4b6d5045ba4cd05d40b8d86d67ffe267afc70a5fe1c90de.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/f552767ee46c9022779b2302b03e4fba6085d10fcdd2a015c2b3d1b81b3e5605.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/f578c92a6ffcbdada4b90a45cc8fbfb49a9a9d60a1c73a4f64fecabddc954534.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/f5edb427d4626f7bd3783909c8dc07390aae7134bb4fa23e0fe62728f7626b00.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/f66ded5e65e232d314acb50878dfeef55b636f893ea1d982d1bafa171dc6dcf5.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/f6be86d84c75ff3e81163640519939a5e1a9fefb51a3a01911f55e6951ffe815.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/f86b561bf2c0e19b217c3d22f5ec67416cc6fd8622b517e8a45aa535119f0c81.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/f921ba7ec04d9b6b1499ed2a312f747c9445be74a2769acd63782b067df44906.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/fa618e75c5c8f1120706e8257c7b03679294007407dfedb69a09c39a497be279.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/fb36654d142dfdbc573ed57b098969129948d87bcc52230279542d920d266d9c.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/fbe6d68a26f9922c8f3ee63c189775cb903e4d3d3eb472c2b078007e8d97c291.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/fcbf9db98f6ecc43d69d6215005517cf8009f055b46da49e1c428dad7228eca5.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/fd70a76e78cc15d2a8ba78d0f4f82e0065593b9eba49cf15eefd45c4210be32a.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ff3f09299a137bf29156e08da5170fc6025ae60ce7a833f6cb1b7b4cfe8e3fb1.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ffa5c9f0fdb59cdc52e00d1ef3a0d8ae4d683ddc0835a98212f74f314c0d1ba5.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ffbfe2fff0b7497e4ef290f02f3e667152e91c4e97d91472fdacca74c0df3415.json",
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ffd467896df5d8a918c81bbce2d9eb0fc98f0b900b433b2ce2f51dc6b665e736.json",
+    "modern_baselines/comparison_aligned_grid/runner.py",
+    "modern_baselines/comparison_aligned_grid/test_aligned.py"
+  ],
+  "file_hashes": {
+    "modern_baselines/comparison_aligned_grid/.gitignore": {
+      "sha256": "cecf4cbbaab88e3a37ce21cd75b143120e753a00531f98b445fdfc57bcf96364",
+      "size_bytes": 177
+    },
+    "modern_baselines/comparison_aligned_grid/README.md": {
+      "sha256": "c3304b29e0027cecaf272798e89d57f19789bbb23e62043feeed0f8016527661",
+      "size_bytes": 4677
+    },
+    "modern_baselines/comparison_aligned_grid/__init__.py": {
+      "sha256": "87142c17750a25923a1c5224b36c6271989a6669ce3f82b05cd59e2db6b3fab2",
+      "size_bytes": 73
+    },
+    "modern_baselines/comparison_aligned_grid/alignment_evidence.json": {
+      "sha256": "f641d8e78a65483556773232452ac7649a259aaf41b427a0561cac2fd177cd9a",
+      "size_bytes": 6614
+    },
+    "modern_baselines/comparison_aligned_grid/checks.py": {
+      "sha256": "958ce186f797919754ce7dfb09cfc68e0180ab11abb6bd33937353e6f36af1e1",
+      "size_bytes": 5692
+    },
+    "modern_baselines/comparison_aligned_grid/core.py": {
+      "sha256": "01d4d034c79715392aad2e6a993f49c35bde58ce870ccfe17fca97f181bea845",
+      "size_bytes": 12662
+    },
+    "modern_baselines/comparison_aligned_grid/datasets.json": {
+      "sha256": "b11c0e6cc3f77813186adf4fd910f5e15f6bc0376caf4b4b7f3bd5e00f5faccd",
+      "size_bytes": 2201
+    },
+    "modern_baselines/comparison_aligned_grid/freeze.py": {
+      "sha256": "635f7899b2a68056089180d75a32391486cbade1a6c2126184648708b92f9574",
+      "size_bytes": 10810
+    },
+    "modern_baselines/comparison_aligned_grid/imports.json": {
+      "sha256": "734adb6bc2782dad236f9963638514fce2a7ce1adcc7404932a864eaf3a17cb2",
+      "size_bytes": 627069
+    },
+    "modern_baselines/comparison_aligned_grid/locks.json": {
+      "sha256": "fb7e5c52deb69b298c5b835e5ee0db333caa453a5ccbf639f3adaa8abb0617b8",
+      "size_bytes": 92
+    },
+    "modern_baselines/comparison_aligned_grid/preservation.json": {
+      "sha256": "926b7656330303154e9363110a01aa08ed61980d09301fa0b1bafa9b7acfed83",
+      "size_bytes": 348355
+    },
+    "modern_baselines/comparison_aligned_grid/protocol.json": {
+      "sha256": "726e83f2a840df15d1f1b9d74f829b0995b187f21710727e72a289119a2a19dd",
+      "size_bytes": 7527
+    },
+    "modern_baselines/comparison_aligned_grid/reports/checks.json": {
+      "sha256": "7316cbfc1413c91e4f4a5d2781c6bf13d61063113fec3048922bd51ef7de8cd9",
+      "size_bytes": 945
+    },
+    "modern_baselines/comparison_aligned_grid/reports/collection.json": {
+      "sha256": "f40ffe06ae43d9b0eb555dfb887a775cb0cf5ca0ff5c0191db471745cec3ea16",
+      "size_bytes": 2183030
+    },
+    "modern_baselines/comparison_aligned_grid/reports/execution_receipt.json": {
+      "sha256": "c80e72cc9ab3a6ce7ed60036602b8c1daa68f541de4ffc35e08a5edf51bded84",
+      "size_bytes": 223789
+    },
+    "modern_baselines/comparison_aligned_grid/reports/full_long.csv": {
+      "sha256": "d0fd66b363a5312a517bef826f800226e12322eae2ab05353e03b499952f7e34",
+      "size_bytes": 249728
+    },
+    "modern_baselines/comparison_aligned_grid/reports/k1_gate.json": {
+      "sha256": "fd37dd5cbd5d5b25fe3c627d5e73b0bf626b4d9da61b196d1800739ae04fc172",
+      "size_bytes": 4037
+    },
+    "modern_baselines/comparison_aligned_grid/reports/plan.json": {
+      "sha256": "4e8efa718669507b9675a3a49d7570ad62f42e1879e12ac24633a0e5222e6a36",
+      "size_bytes": 801924
+    },
+    "modern_baselines/comparison_aligned_grid/reports/preflight.json": {
+      "sha256": "504f989e21416548cb2954cabc142c228ef5651c7833c787b253adf18d9ab06f",
+      "size_bytes": 1718
+    },
+    "modern_baselines/comparison_aligned_grid/reports/repeatability/anisotropic.json": {
+      "sha256": "d8f9e3c9997aaf9f629509ad20d269273f888c471eef195394135d2ece4658aa",
+      "size_bytes": 20758
+    },
+    "modern_baselines/comparison_aligned_grid/reports/repeatability/blobs.json": {
+      "sha256": "20bc31d9c0b9a20801b5ca75be83303ac9346c82bf818f71427259c52a3ea73e",
+      "size_bytes": 20778
+    },
+    "modern_baselines/comparison_aligned_grid/reports/repeatability/blobs_var_density.json": {
+      "sha256": "a9b90e7d68668c93a3c391d0d9f0e7d39dd080e53c27f1b288ecf30277257c11",
+      "size_bytes": 20801
+    },
+    "modern_baselines/comparison_aligned_grid/reports/repeatability/bridge.json": {
+      "sha256": "92fa3c6f4a0865226192bc143890831288be647ba2b609ae3c5af293cad330d6",
+      "size_bytes": 20764
+    },
+    "modern_baselines/comparison_aligned_grid/reports/repeatability/circles.json": {
+      "sha256": "a44a60148672034d4863154214fa9809635cab52a9f3cc9cc7c053736f6bfcaa",
+      "size_bytes": 20669
+    },
+    "modern_baselines/comparison_aligned_grid/reports/repeatability/moons.json": {
+      "sha256": "0a171f346a1510190ee214e1793413a695fef59addd8a4268ce726cb553a487b",
+      "size_bytes": 20728
+    },
+    "modern_baselines/comparison_aligned_grid/reports/resume_receipt.json": {
+      "sha256": "7e2dd4e6b970d0301899487e468ab76a45664e0386aa3e3f461d4a1864ea67c9",
+      "size_bytes": 337786
+    },
+    "modern_baselines/comparison_aligned_grid/reports/rtknnc_comparison.json": {
+      "sha256": "991eefe296df26641f399a40d8a9af9abd1c0dcee6420e5723a267eab2042ede",
+      "size_bytes": 4676
+    },
+    "modern_baselines/comparison_aligned_grid/reports/selected_repeatability.json": {
+      "sha256": "0c2fc560cdb2f7f2c75983c40905941b5eb1f843a4948408beec46a7cc6bb5dc",
+      "size_bytes": 2966
+    },
+    "modern_baselines/comparison_aligned_grid/reports/selected_results.csv": {
+      "sha256": "20a397d8be186b0264b325a11ea6ee003210765c26f2a4c597fdd5dc32febf64",
+      "size_bytes": 2754
+    },
+    "modern_baselines/comparison_aligned_grid/reports/selected_results.json": {
+      "sha256": "ca79a9d7682c055dd8c206275529def6433f660ef9fafad39411112ef60ee040",
+      "size_bytes": 6198
+    },
+    "modern_baselines/comparison_aligned_grid/reports/tests.json": {
+      "sha256": "d7b135b212f804744b9dc8e8e1b6a31e878b2c1582783e5f93e66c00e991d504",
+      "size_bytes": 935
+    },
+    "modern_baselines/comparison_aligned_grid/reports/tie_diagnostics.json": {
+      "sha256": "71811bc5b4612f92491586008c31085183b420dbee294e04114591c6e4e3cbf9",
+      "size_bytes": 343698
+    },
+    "modern_baselines/comparison_aligned_grid/reports/validation.json": {
+      "sha256": "fe6219a5a8cabea7255929a015a3f43a885138f8a1c0124da8917afec5f8a6f7",
+      "size_bytes": 1963
+    },
+    "modern_baselines/comparison_aligned_grid/result.schema.json": {
+      "sha256": "cffa4aa1d57097a3dd81b4b98d60aa2710e44585a3445b4caa9f37b75031f375",
+      "size_bytes": 400
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/00ea88d188793d455d339b50c0ffa709182bdf8fdc5a6d514fae02cdf348ed0b.json": {
+      "sha256": "68db5fa2c76f3b30195502a32d87046a17595e6fd73ac99d31b9cd8ad726f07f",
+      "size_bytes": 5891
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/01f404e975a4d478ecd47a4ba961a8f1bbad12fb14a64e422beb16396d9662b4.json": {
+      "sha256": "752d769e4e7234fc0e250546b107f7a16aa0913f75c401137c80c823afe821fb",
+      "size_bytes": 5833
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/038a472f9854fe91b4e121c8460f01cd3cb540f59481cb63e17e94c15d9a171e.json": {
+      "sha256": "b6037badd011d8ac33d6d22b8c6da5220caa4df67bdfd4e0420b88d8f56e5323",
+      "size_bytes": 5832
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/04b2a08974e0a6469a9f5483c39f1056443a53069ed5cf39829862e0492b6b09.json": {
+      "sha256": "5d56e2a23ca8d68522a8736525ffa4439118d333eea319ed3b818613773007b2",
+      "size_bytes": 5880
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/052e18fe370a0a68c70936516091904f240f03600c4d805c4cbacec4e982784e.json": {
+      "sha256": "48a6800ad195e596c8c0ec438a12a29ddf5288fb8597f34be702fec6628597f4",
+      "size_bytes": 5830
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/0672322557a5e5803b9052aec1b55c46440126c875e3761e4dc0c32dab31a6e0.json": {
+      "sha256": "d3f594cc9ebdfa6ac279ba406feeaace99862a380ee470e625070d2fb73661b2",
+      "size_bytes": 5778
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/06869b7cc4708f86b71c3975ce75d3d13487f2878f8f308f2b52c965688720e7.json": {
+      "sha256": "0ddc5f965e2d0a3b49db063f84470de43a37ef873da2066197c72aa9a738047c",
+      "size_bytes": 5681
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/06e6a13680e09a06e1f4f155325d3b5143dd7da3d7ee35beb61517e29735e041.json": {
+      "sha256": "da60363268e834fd4f335866403890e9296ac4a984bc2a7f87002b3f0ea07b44",
+      "size_bytes": 5756
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/0814e89e002a2a4b96c3d1188a12eeabf192a1611683dcf6eafe6aa1599fe7c3.json": {
+      "sha256": "21cf48dd558e6e5b2bb7a507a9493b1991a798401cc95f13c5b8c2db7ce551a4",
+      "size_bytes": 5733
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/088da8a3e22c4c4030d50c540801ba2675a0633ceafe0dce118d7dcfeb7d91a1.json": {
+      "sha256": "a73d0c463caa458be54c65190ce6c87cf6bc027a7d5fcf6df4ec38e5768e04ff",
+      "size_bytes": 5728
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/08ab5455f765077fd8ba46ee910d81096af112f1a97b8bd86686e4a2f97e17e5.json": {
+      "sha256": "f8f9459c455f496520a20391ac3babdbf2367a6dd5ccf61a397aa7f05a0d582c",
+      "size_bytes": 5861
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/097179cc50a6dddd85262e835f6ee786eb6a2791d7ea73b17b6c3a5ae3641c56.json": {
+      "sha256": "46ecf373386bcc83fbd4fb74a8046d31c070cba8234a0ffc866bf0ad76020ff4",
+      "size_bytes": 5733
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/0a9ae04b26040076e39e55e9cb3e1306ebd0bfc3f4c8186a8997b200fd47237f.json": {
+      "sha256": "7e2ae357a01dbefffa146bcc90e91858f3f9d4bcd36553ac076227647e7c4988",
+      "size_bytes": 5722
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/0b19a0b88a9af7dadc82693b826a973c70fe113808146520c6fe65a4b66b0481.json": {
+      "sha256": "3d34d8367120d11ac2b3f66f26b2fba8382c06f050b39d1dc64ae85877487f34",
+      "size_bytes": 5895
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/0bc8f7ab2a2f8c0ecab9133e40d6d51074ad80558b686c98500269ea60d1678a.json": {
+      "sha256": "3ba350498cbe320fa278167c2ba6c2aa366d880ea7bbb31e1c7d5003da322dee",
+      "size_bytes": 5894
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/0c77ec03a4babdb9482d2d7890eebfc65152cbbdfaa506bbd98a70ca2139661a.json": {
+      "sha256": "d594fbe31c09d64d4515542ef6aafc656f7dfb0a15e13071bbfff57957616e95",
+      "size_bytes": 5828
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/0c81475db4a5441067be037767bde11df6f2d7b6dbdf9cbb4021160b7b7c9a24.json": {
+      "sha256": "61ce7acb3edd7b1f71722bc72d515444ea9b4a5c88a6fbf3446ae94b2db5bd2a",
+      "size_bytes": 5752
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/0d2cf69787d71419e595868c40eac1b492ec200ae6383c5321b55ddcfaafeb6f.json": {
+      "sha256": "b0fee34a4a1cae99bf2184d4ef709d41df8f9b7d54740d740ea1dc0a21992f38",
+      "size_bytes": 5761
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/0de802710edef7e1dae914bae16478d9d6e7e24863b37926413e60efdefa7197.json": {
+      "sha256": "4ad45c40c2ee91b0fdc9408fa042a969d59fcc15fb6b120050cdc4f87e7ba2e6",
+      "size_bytes": 5732
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/0eb0800fd983924e10b8ea72365f9c561dddd2dc69aa0bb5d5165e4c724b09a4.json": {
+      "sha256": "7750e88af15a71a24c45253e322309aeed335d310b16eefb60f0e8e6ebdf2a0d",
+      "size_bytes": 6941
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/0efe2e7cbb8d8271626711ae8f353081ea312f4920f007291b248bd3bad5ad2b.json": {
+      "sha256": "177645714d3c3d8a8664fa25cf0e0df2c6130ac00404f1e524976ed1e5e7227e",
+      "size_bytes": 5889
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/100136b073c98112ddd37b922f2e986da320660e2f894c2c59e5367964914d09.json": {
+      "sha256": "4b6965c86d745ef2394a0bb89fe0bee7a88b1d44102551ab5f529cd6ed0eee79",
+      "size_bytes": 5681
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/115de533cedd38e9654056d727b622a87438eeef8449a1758b4032eb91036669.json": {
+      "sha256": "6200f352f4b1121a7ab7f47a8f4f5b6d74ceb2f76b8d1bcd10cfdf48b96e4b33",
+      "size_bytes": 5732
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/1189d001c2b7c45ef09641df167bef5b5c1031592bc619dec6ce6e0998fb93ea.json": {
+      "sha256": "db4b7192546ab3b48446a441e2d52036f33649fbab2cbab9fe894bb6439994e5",
+      "size_bytes": 5765
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/11b567d6b9274461521804ddec819ac0640f109b4de804ccbe9cb960c9d8361b.json": {
+      "sha256": "eef278e6e75caff3a0601cb44cd2de7d609b8d5349308a314eff2bca8ab5c4f7",
+      "size_bytes": 5763
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/11f2821d2f1bfbc8f462384b5469f3f777c1b9a613ffc9868c511278711bee3a.json": {
+      "sha256": "607d7ca88a95095141d07cc7f3756d4382a46201ae54a85e8240527aa5b2b979",
+      "size_bytes": 5879
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/123f5968680d8a7d361916472ab461372167c6bb50389ba2f5bc6060afd576c5.json": {
+      "sha256": "09da08895a34bca385eef672ff3a53ade96529fb7e22d6edd0e8ba15dfacadf2",
+      "size_bytes": 5680
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/1250be4b427dd6a2de9e59e10acaf42a7173838765ce5859dbda1f630aad4551.json": {
+      "sha256": "29c68e05b77afb50f13a58c01d680e83cd3934ba4b3c4e0f6c4e09f96470f64f",
+      "size_bytes": 6763
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/13d1204acf7c96b7f1289f5f5ce349ed81ffabb8034d481640868f7703470754.json": {
+      "sha256": "caf72f004b67024a3ae1830968997b92f9c486a2e5c124a672a1a7445bf282d2",
+      "size_bytes": 5725
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/13d120a50848c8d35225c5579a2af8aea3a5afc2bfeee4580ed6669c57a06ca8.json": {
+      "sha256": "0a081b2a45da5f4493e49c997d1c98ca57231795db489ffa14b007291b9c6066",
+      "size_bytes": 5729
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/1427be6420f0512d4da99ef25d1df699c9f27856ade15e27ea4619ea8b1e6a57.json": {
+      "sha256": "b60e32b7b92c8b415d107d265b93204dc96759bfe82ded792e82e7be8142de6e",
+      "size_bytes": 8897
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/1557cfe31316b19faee77a582e6520497c7fda94a286b0851cc5ab6feade6596.json": {
+      "sha256": "36000c7df37ad60ee4907c81cc9ff6b0b475ea030687c96d057182df215dd6dc",
+      "size_bytes": 5796
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/16e10b3b7ac6bb09ac35f202cab9bc0be9d9e87d3b52cec881d785d857f4b9d3.json": {
+      "sha256": "973d4cca3ea407539667d402955d47cfd3909e50db0312ff17c04722094bf2b4",
+      "size_bytes": 5787
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/177d0aae91ed5531c7636c583378e6866e9db68f5b3a37fffdedfac254f7d51e.json": {
+      "sha256": "67bd688328fb790435664242daffcd8c5b58f5b61e02876127b85e22215bf8c4",
+      "size_bytes": 5729
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/18aa59f70dd49ba8b9d096466491d4966370df484d483a0f8276ba2a50539840.json": {
+      "sha256": "0eb591805ca42a6972393f96cbf1a8761da333b3ad87d22a9213235ceca2e942",
+      "size_bytes": 5781
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/19435567d3ebfe2326814c7a3e31e21fe088b8893d02264e9456c1ca8737a36a.json": {
+      "sha256": "28fc8dd84830d120b211cabb4a84870849109c1082489909da176c0f1f58d41e",
+      "size_bytes": 5840
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/1a8b754b0d587b8d40f5568a0b554327fd3247d10aba2164c8f424be180f9bd4.json": {
+      "sha256": "c42d3d7389741f40efb9ee760ae1749988016e059a1f0ce345b2124b46f37161",
+      "size_bytes": 5815
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/1ae6ff7f936caa7cc081c68b40a2bbb5f2201140416f8df681e703b436aef7f9.json": {
+      "sha256": "18b80e16c277f030fbabb713143d0a06d8b8e4ed580fe7f57d93edc1d0dc3bf8",
+      "size_bytes": 5831
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/1c56224f9683ac0d09103b42e958c7f04c45d27a5b97aff68fe58cf1b3b16ae8.json": {
+      "sha256": "c302e751164468fb6cdfd0face37383b83c0b1f86bb513d458051f61c1f6cc8c",
+      "size_bytes": 5879
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/1ce9d207cc663c7b573d26a9e68707899474b74b477d4bdd77bf7f79e48c3d0f.json": {
+      "sha256": "b694c47047cb0bb2b2845ee9287a053cc993d46a986986df763a9ec4dd847c5c",
+      "size_bytes": 5681
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/1d42a2210891a20ead0bee06afccbb17052e8a47a8eaec104e9ff2f665913949.json": {
+      "sha256": "9252359c510d24f2747e35e7fe84a74a54a38ebc5fe3881cbd4a08e37058457a",
+      "size_bytes": 5681
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/1e1848a351c464c7dffcbd45e2d1b8e6e196d5580353c1ec176d13113e473639.json": {
+      "sha256": "8b2aba835b564e9360a64af6880a5a5332d5539c466b6ee07b8b40be5d30b256",
+      "size_bytes": 5888
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/1e5cabbc79a24e3566935b240771f67251848e71509a43401b7efa1b54005118.json": {
+      "sha256": "fb957a35d3b946adb49ee941ff1abda5f91854a0826a3d9ae41b0d37cd41f501",
+      "size_bytes": 5678
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/1e7250fefc983322e3363148a2bc387b9ef6623cbb89c63bf63a51283b3cedd6.json": {
+      "sha256": "2bda4dc63820af2ceb723b5177a7202c6c5a2175b7a8063001c4c9fc31210cfa",
+      "size_bytes": 5824
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/1e770e4dff4dc9eb28049f177a08ef8b4866d742d0f5c7ffda7226e654088c25.json": {
+      "sha256": "73da9c8a2a266ac0c3a3ac8fc45ca0340ab9d3c85e7eb5e52de64449f217b005",
+      "size_bytes": 5727
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/1eaa2e2cc66d947ce131c7b4693f8cf5cae188553d3898213898cba8b010cb11.json": {
+      "sha256": "d4f62a16189c5503a68851688d4429a6516f16c5793b1d6f0852e3039fd2168a",
+      "size_bytes": 5766
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/1ec4c90b7773a1277c3dc27c4ea653b3555ef5eed19cf83d6d568fef6f35d1a3.json": {
+      "sha256": "08cc9a7f4de49871aff7c1ca6fde7975a99b2abaa7e46f841c8c6bef9d149bc4",
+      "size_bytes": 6244
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/1f359a8b8b4d0d08abecb51927193c4a1633dbbce116ec83219c004f34aef680.json": {
+      "sha256": "a39ef308b34b55a04e70098aa6f90fcdf41d7b2953c140b30a161f1d0817de40",
+      "size_bytes": 5746
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/1fdb2eaca9e691cc5fb189302ccbfa5f7ee3130ed3c59f813c01c39919457646.json": {
+      "sha256": "173e06d9f62aef7accbbf64c5de2e833bffac635c7dcac486a5f6a5ff7b2a0fd",
+      "size_bytes": 5717
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/1fffbdcd9cc398af321ddf93e6aaef83a8786803199adb5fc875396a72529880.json": {
+      "sha256": "82bcbd7f7610f430e7e1a1401ca69443d76d781c332694f9905bda86fc954281",
+      "size_bytes": 5917
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/202d957b51104a3d5380010e2ac4bd3006dd29d45d64f0abcd1e380263b84f27.json": {
+      "sha256": "8849f961e914da4a7819b41fe19354acd54a32b27e393c087fe1384d2e1b30d0",
+      "size_bytes": 5747
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/20a1bec7ce0759c8bde8dc9e7716a10ea8b9e3b21655f35d45a45350c9f6065e.json": {
+      "sha256": "1db5b109d62d18adfa2b025dbfb79feb0cad24d4a93e8b8c208b1bbe23769a93",
+      "size_bytes": 5730
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/20dfef15e939fc7886f76e180f076e450b8eca3935c5aec174a4eb67c29fdf35.json": {
+      "sha256": "88abcb124a2e95da4bf2611b49cfe93c4d1271ebde1c7549d4e80c1a377d94e5",
+      "size_bytes": 5884
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/2114e76d321213765b3a7d7c9a624ee3daf058f0feaeb64d0c7082420a2299d4.json": {
+      "sha256": "13291d24ad2a76ae9ee07f8fe70d9e905e71b96c6524ae37aefb71876e11eff6",
+      "size_bytes": 8572
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/2191d7b354daf1ab3ec5c8d586bd87b341ef2ec9f23c2f5ca76b29c732084678.json": {
+      "sha256": "3cfaf2152729e3cf05660cffbda10d3a6f689c666f80f6a25b093f782f974921",
+      "size_bytes": 5730
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/21e49d71c2c59fb2243b70973836a6b7a49a730ffb061435da2231dd057724c6.json": {
+      "sha256": "06c6d26884f119aabf632d82df010538c582469a54869754c9a1a3de6e3b17fb",
+      "size_bytes": 5680
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/22e2802d8bf0b1d5d9b62cac0175207434bb880411873a0b6401f479b5347096.json": {
+      "sha256": "efd571069670c8dc09cb51132ab7b7c33870fb8e68ecdb84d8f46f898ec1fa73",
+      "size_bytes": 5779
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/2329fe810b08f309c5f1bf533c33002b92d4e78636ba416107222d45360373de.json": {
+      "sha256": "36f46c18cef1b6bc93928683c22161b098386b9db04851c45eccaa19e685208b",
+      "size_bytes": 5884
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/252ac9f700b3f96f0a939833dacaa55b940fe3c36662d5196f5b035a0419686c.json": {
+      "sha256": "b64beb070015a19f2b2b1d734bf9ac78ab75c7078957cb7049e7bb9fdde05ab1",
+      "size_bytes": 5883
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/253bcd38f31cd51dab4b9fec018cf3d2cdd623db936aece8745e7ff822236cd5.json": {
+      "sha256": "c1a994ae11ff2d470e423885b903b1be2d3a6ee96dfe2ae57b8d5508a712599a",
+      "size_bytes": 5781
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/25c92cf9517e1c6ced1f7e950a3e40a23b65745ce961cfedb54b16b7f53c7d88.json": {
+      "sha256": "d431d473ea6e1b315403c2b4bc908244f60763ef31931f6e690423004db514b9",
+      "size_bytes": 5832
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/25dbf676e93b83e6be1956bab86754c2144810f228eda51c82664c46359ccf65.json": {
+      "sha256": "77a4118036313facf0f5e4c75113ac3ac0cfc6f7c7e9ad0810e0d12b244d604c",
+      "size_bytes": 5889
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/2615b1534049a7cdc43e432459b67e487dbe878435a88208280a1dd43f783f95.json": {
+      "sha256": "34ab8f2a7f4a8dbfbc58590e521ef0046dba0bd956e16a1a74fe9e9e04e44816",
+      "size_bytes": 5769
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/266b9e3e9e5d4009c21d7e144555ca523d9857db7c2362170ed0a2a912022000.json": {
+      "sha256": "9113f511dde72a323c19f1c4678e7277e2584a21ff1fd1f9a81b1b83ce6067f6",
+      "size_bytes": 5893
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/26bf323fbf12877a1dac233138fc1bf1e839626ce79c37d60768d1568d12ea97.json": {
+      "sha256": "04a20a4a362e3f48d09f24b98e89ccbf9eaa9c40c8f3643e89c0af1fe8da6bb8",
+      "size_bytes": 5729
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/270e2a1615d5e0f22fa9b997031c424dbb1f7eb7da060fdab436c7e27b394626.json": {
+      "sha256": "b83c6921fdb11a09ccba6fdf13634d5c54593e1b120dbf70cae13accf99aed52",
+      "size_bytes": 5732
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/2716a493cfbacbac20966a865af56f14b33308a1405a10c15df02137f87a1b09.json": {
+      "sha256": "860ffee1b0f07e8d19b25ce0b5a91444b5e2905ee82c77362db58465d619ca20",
+      "size_bytes": 5729
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/27578ff657003a0dd2c80b16df3a275178974fd5678c13ffe1f4a71a0ad3ec56.json": {
+      "sha256": "af7c642a75ac2ba90d9caf64ce5d1e046406cae85b77d0b5c29d2c89f3ea3830",
+      "size_bytes": 5819
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/27d10ec4407125c3a4c7a632ca9bfe9063a66e5bcee8144617bc76cc15d02be8.json": {
+      "sha256": "7592cbb39c7c2221257f4de54eeb2b7cc4cbfd74ba1ad9c7910f531dbe9e9d4d",
+      "size_bytes": 5726
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/28f8b17fde5dfd7cdeafbd0bd7a2bb5e11101cef696fdb499b6df127c8ce5d10.json": {
+      "sha256": "09658d533a5d8261e8f2156e0a601eb932139c89c86832eab78b71c216d0566f",
+      "size_bytes": 5682
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/29cfa97b462a146dadc5cca2b8033397201b5859bd054ffa164a04dbf5ecf719.json": {
+      "sha256": "0b6123f298534edb881f19830359b543aa8f592d2e1d3543425132fdc1be3a2a",
+      "size_bytes": 5786
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/29dc385ec5bcb70696c3b57f1d4dcaf7fe4803162c89d64ec72eab3fbc9fc5de.json": {
+      "sha256": "75c82f1afc63661c6516249ad6e2f03727fc2649c13139bbaed02895b55e36be",
+      "size_bytes": 5725
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/29e9d0469e538eec05b4b737a05294655dd0cdbc0648520569cc051e38977604.json": {
+      "sha256": "86e5e8f08d73f0fde94ca8b5cce1a0862a0b5ae05321ddc91b0bfe0dbc4daf5b",
+      "size_bytes": 5724
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/2a21ac231c2ab157f8a74cd7c895a0ca5f3eb3019d3af8a07bac9e701a0eed32.json": {
+      "sha256": "2a89ff24b18079723fd3c127d1cedaddd6aa876105884f3f6414a726d6c77d67",
+      "size_bytes": 5680
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/2a37380abb39f4ae348c14c887223b47852de8ab3504e018dfdf3299b28b4372.json": {
+      "sha256": "0c594ffc290a33be8530588ee8f5c3a5df36474e0670e38c692a6e22b5034dde",
+      "size_bytes": 5731
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/2acbba83633ede5d320c9569c9532df419f13d0d165670bcd044d73a6d8f3fdf.json": {
+      "sha256": "b65a9638339d86c2427ad32aaa489c8cbf76cc0df5f44731d2aefdab01fbc4ab",
+      "size_bytes": 5952
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/2af8deb909a76a00204a5f38f9a7d5822385e79239598b5a73d28e30b49d9d00.json": {
+      "sha256": "5892d7a293c1510d404d130c9d96a51cbe9b3f8699d1bcbf42cb926dbee6b34b",
+      "size_bytes": 5725
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/2d89f47a98012aeb28acaf77d186281c3fec8ebb9e452807603f1361ebf3cad0.json": {
+      "sha256": "1e4ec77b377c702d4f3584a0bc515435973fc953deb33bbc1109c065a73659a5",
+      "size_bytes": 5680
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/2d91835d9536f8ef4646efc4aba58883376c940080f23fcbc2cc73d043f27b58.json": {
+      "sha256": "583726ca3d95fd17bc8d25199b69e4c74c4c49a9666e51f27192ee9b3a05476b",
+      "size_bytes": 5805
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/2e0a8adbc65a1c9bf4a618cbf45d3378c8a05a9332c573b31a455e836e2c3407.json": {
+      "sha256": "9ab82733edda0a2fce7d0a772be09a0ae42e6a6c8c6155c795ade4611b5fb84a",
+      "size_bytes": 5732
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/2f815b2d1cfe5fd7d07932585803d5a4bd02a0443fdce61601ef4120416c4b65.json": {
+      "sha256": "177592f8b8828a59efa518c09102c5feb094537b12c5a83f136412df2f1f5ca1",
+      "size_bytes": 5801
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/2fe153f3596c1c82edcfcab1b6704640b53e6443b4fcd9afebbcc2eef9b077c6.json": {
+      "sha256": "c940f3e961d5ec1f742e817727d29d17d383b0a9edebecd3d8c7e5dfa69f0b39",
+      "size_bytes": 5950
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/3048b8202e231f1070c342b1f87dbb87e7ff3477eee0b7c539fefd0830d21abc.json": {
+      "sha256": "fcf4af7eb070d117d99fe6bee7fb2f87a9ea7ebf15e268c67f6387ee90ce27c7",
+      "size_bytes": 5786
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/30bb81add9c81f3c6f0565f9cf4e189b4fa2d6c53080c7d1e1c46bec7dc779f5.json": {
+      "sha256": "96014bcf6a1b1376583ade6fecf1efc672bf161be84550a584553ca0c4791786",
+      "size_bytes": 5826
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/31b0d50cd4f8fd7a3c825b734e10bacd6aa8e3cf0a3cb9e0ce83f6a18c116930.json": {
+      "sha256": "f70b290553a2c163550b75ebfaabd54e6803c633301ab13229329dff0e531710",
+      "size_bytes": 5729
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/32311ab1aef0c381ba01b2008d2dac312c39f4c98811b0dbe4e03300d586a5e8.json": {
+      "sha256": "660904dd74eaed262e1ba5d452ce9e3243b55cca6025aff786d528c2d71258f9",
+      "size_bytes": 5826
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/32c62a7ab8cc73d2441db6f01dbe164a980110831a3fa6d6c13699546ffe1bc0.json": {
+      "sha256": "eca7b5c15fa2564a9618f7e36bf74e7cefb21b73a38b537edf5deea4076a6c79",
+      "size_bytes": 5847
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/333726e25eab8d97df03a7d2a4865289b5703d5eb1f48f969eab350f85450903.json": {
+      "sha256": "99243ac371777e0a5f72aa0ad8560a0e5c23bd46f24f5661e6a5b9be21a9a402",
+      "size_bytes": 5754
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/33e97d154904d684b6d84b06c10c959a5e6011dce3e64e5c9474e0fd0f8b0e23.json": {
+      "sha256": "1e960f2f3fc6e550580712e22226734b6b077c5a15cbe61bf680f3f97d8b89aa",
+      "size_bytes": 5749
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/33ef94247b4c3777a9e7ddc7fd4c434de58aea08461e400163d2d849395a4fb5.json": {
+      "sha256": "dba98eaf6b3dfcd088e3d7fdec704c6954ad85b4d7a9ce2f2f3235c9849db711",
+      "size_bytes": 5831
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/350545eec550238a0647dcf26981a9790aa84167f3418bf466a44ec079abb657.json": {
+      "sha256": "ae14c5f7c08f33ff4448220ef9c7d7071b4278d071545a240e220e6c54158bcc",
+      "size_bytes": 5681
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/361da892a07ff1912ab1e559b4ba1ca4e166cf87f69f2f49fa5a21285960e9f5.json": {
+      "sha256": "57f37821b9dffcfd50fe5a96a237c70a2323c35103c4ed01c98ed878c92b3477",
+      "size_bytes": 5731
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/364dad06b8de725fd5a1cdbb55b6c1a0af471addaf7b92ab9dfd6ed02c0363be.json": {
+      "sha256": "bf38997440789ab2537d40b86650442e180bb3e57188a1b4feab12f6666cee5e",
+      "size_bytes": 5680
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/381dd3c551e8ba5e5745ce5d3549dd0c86e64ddf6f4045afd8ea9c31fe9d15d8.json": {
+      "sha256": "e68104f4ac666a1c9a3dd2bba66398730643d8526a7838318814b748fb29fa56",
+      "size_bytes": 5751
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/387a3c4a4fd1af0dfd00bb587a107d1ab473dea184a0a1df86df79ba00c111b6.json": {
+      "sha256": "d0e373b88f09ed19b62cf1162a1c8e3c126ac5729a58016e6e1350e174aa40b1",
+      "size_bytes": 5818
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/38e88cc9ae3a707bc25dd05ec30869c59b12fa888fc44d395e6823bb802393cd.json": {
+      "sha256": "3ec9b248d5821e15ce1b71f7ece983b2ea1081e45b73e30b35175a8ca6c30ff0",
+      "size_bytes": 5824
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/3991a88ec4f16cb9fdac4497ad6e1b181d2333d39dce8d5560ae55b67c8dbb1d.json": {
+      "sha256": "827db671a0907268572221b8edaaf7554fa36352fda4c97617676d6e2c12cc32",
+      "size_bytes": 5768
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/3a294d08a213224c14e9897387aa60dcaec440ee0fcbe3207a3d70ab8c7e13b3.json": {
+      "sha256": "939e7fa2bf233798b8e207762bb0ef5cb176f838773782cf6d976b82f834ec7c",
+      "size_bytes": 5725
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/3a657149a9fd0a7bc1ffc53bf36af0c398a73e75bd687ca62e1ba41434dbd672.json": {
+      "sha256": "e9692b9a0408d1455dbdcfc840adc6480a02265132a4260d18b74d00cb9205a8",
+      "size_bytes": 5681
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/3a6dee12693d186e636532d99656ea30a9b59805de25cc42b7f5b8e26ed2ebda.json": {
+      "sha256": "3d04d077ce045851b36ab39d4d0bfe91195e1e4afb9079e471b126b84c9e2087",
+      "size_bytes": 5762
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/3aed69d07d1bb9be668682ed48381e4252c7421ec4ad08ae8b68fd486a8a9399.json": {
+      "sha256": "d8c550021c141c12e26e8c7ce9df6dd70d500dc94de7221e0c4b44f93324459a",
+      "size_bytes": 7319
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/3b10c34da86743e8b9c31d5ca9d3a5a7433ebe9197f1659d32d709ea6aa95d70.json": {
+      "sha256": "3e7ed6cc1a4cec499933bb106d5ae14e358aaf736db92b3ba3cc5a8845b79e0d",
+      "size_bytes": 5722
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/3b1d8a8104b62a181b9711c0d4629cbdba5519e0a4620bdc99cebbf572dd04fe.json": {
+      "sha256": "90b13b7dffde703eaa5fb918a03dacc9f50993d5a2d62cd17dc6a055a892505d",
+      "size_bytes": 5730
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/3b501af18286b5adbd975a550032a3bf2e7de55f7e17aaffc87d9b0bf1ab7f90.json": {
+      "sha256": "2dd92b8aac5345a826301868117d2fa15419ee46549df1a27a7b0808421b6bfa",
+      "size_bytes": 5762
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/3c5adf0c1a0f043e3e79260170d79dc14276985a2f7fd6a3670fe776c275b179.json": {
+      "sha256": "32f2fd78372b1b3cd05a498d5a5619aa3c4304fbeb81bcdba6f13d0fb7421455",
+      "size_bytes": 5745
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/3c8444caba87fce5900684afe07a66599100c7000913a317982946e23773e2a6.json": {
+      "sha256": "5b5ce3478e75d6b16b04f1844874f00bba316d921051971ad5576598a047030c",
+      "size_bytes": 5727
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/3d2ac28b6861d3c2a4d8e49b359d74407297eafa97a4f5d65b1a70ee9604b068.json": {
+      "sha256": "7a868eee5428eca41b5d636d5e4106f67f2d328990cd6f9e4249c56114bb16ef",
+      "size_bytes": 5732
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/3dd565b6ac2679d08d7955bf1200afae67e8379425b0997808fe0612007709a9.json": {
+      "sha256": "179ecbd509489b3b21e4f01c885e173084fef294824c1373e811a23a165a600c",
+      "size_bytes": 7987
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/3e80d5df841bb4b0525c045d46f3254b40c6ccdbb6820448bb6e04c37c4fc333.json": {
+      "sha256": "2812aee95629eefc447786432cd84a89194d4123b683503faa93f913f1c473c9",
+      "size_bytes": 5728
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/3f9bc601c376a13ee1704ccfaa429a1022bcc22de916d5e180ca4d9b936e734f.json": {
+      "sha256": "a361442b778b2dc40c45cab66c35af4d8fbbb1daf9181236d01f5821fee19a7a",
+      "size_bytes": 5801
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/401d9a1691c70190ec818d667e9c27d82d9fe61b660aa86f61fc9c66567f2da5.json": {
+      "sha256": "c40ca68c6734494daff5ba2ca9c83fe9497d7d79f94e14c4229904eec9d8fcc3",
+      "size_bytes": 5878
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/41befaff24c5257b22a7a59eb26d2c0030570b26fa4984c6726a5e5d1882db66.json": {
+      "sha256": "bfa20c90ba942c914db586ac45b5b8508bbde10c9b2c717e86945da5f2363457",
+      "size_bytes": 5825
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/424b993fb72d313d1ff869a3ceb6d55a5c804973928172dd51e9a6513682ac03.json": {
+      "sha256": "b122cdfff2b8d78e96355952f89d634679f9aa5fc4ffea7a6014729e0ee38002",
+      "size_bytes": 5680
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/44bcc0c0795657d794ea6594ac62b77c297da0b67b41fb743bcb81c07c36ff6f.json": {
+      "sha256": "7e9f4ded6fed223f67929b4e1a23c2e5737906211cc7a1408d0a863bec655618",
+      "size_bytes": 5893
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/45f65781e2f46cfb79f4bacc561052f6d0dffbc1b303f06d73d85695bbe18964.json": {
+      "sha256": "2ffbf28c31c82736630a04bfeaf2d6f69ed3ac9e6040706495f43fe6cd4f9a4f",
+      "size_bytes": 5767
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/4744e28d2101fbcb86d19977cb9256d34fda85242f81f1933b9d8e40c93365b5.json": {
+      "sha256": "0914a1aa6c06566276971b77b0d2356d886737276ea2ae81b7a9d1bdf02a000f",
+      "size_bytes": 5850
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/475215ddcf6b9757f98f715c9e28a14be18b6dbd10eac761fcdcf90edf22f82e.json": {
+      "sha256": "03f601c9bc5ff6b0bf71f1d8db959e8afc59a2464d63805828803ea3cfcbc4c4",
+      "size_bytes": 5762
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/47c59d1b797457a42c3e310cb81021bf6b410c87ca309693a10ac3bd8b01c80a.json": {
+      "sha256": "e9edc06acd86135a64a3b0314f276e5894b720b0aeb8e0e5a0a942d5fdb822be",
+      "size_bytes": 5839
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/4889bdb92676a29ea733744561869d712cac5824b8eb9e2c1b0d1544df7f830b.json": {
+      "sha256": "b904ac078c157f4f79bc8de7f2557d4e15f100d824a0003361efe75fe98c01bc",
+      "size_bytes": 8635
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/48c9e3bb84f64c2525e0d0baf9c5dbbcbc0933885ac778448b5116d7bb637c83.json": {
+      "sha256": "0724c55c8a2be5ff16e8ddea009d750018da8c57147b627a1a814494769886ed",
+      "size_bytes": 5891
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/492890da97d272e7625912118178e28ee0431c9aa34304c390f39e9d268da050.json": {
+      "sha256": "4a263e820685b4835a39c067b8b711ea54e52adc4a3f3138e184fb32c60e4ef2",
+      "size_bytes": 7160
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/4997119904aa1012c0e171c0b25b3372acbd6cfa3509af5b702112be9c5f19c7.json": {
+      "sha256": "74622766e2419b19d290897106b5b741d4cae189926189398157e137baa7686a",
+      "size_bytes": 5774
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/49ae6e1617d7b7af4acec4296d98ed378d2fe59680ef18041e04c517ec452457.json": {
+      "sha256": "322fe3a6011880e2e1d45fe2bd76142fdb8ded7861a00c9e92423b323feef66a",
+      "size_bytes": 5737
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/4b9b1e61a06d18a908148d57f6e94401c81675d8cf866a51bfe92cb9fd13bfcc.json": {
+      "sha256": "9f6173182a34d71172c0961c688269ce418e58715ef6fc6fe867b092af964c47",
+      "size_bytes": 5896
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/4bc7f1be3e64c4cdee0400df69b420f553821b5bd3882f3c2d96eb60efb76d48.json": {
+      "sha256": "ca36ff9616354eefe1fec01d6882c8c5fd66c2be300096e61569e68738b9dc74",
+      "size_bytes": 5877
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/4c00fed5d3105391b64d7641b85f33bb732abeda046d4359b27f2e8180a5069d.json": {
+      "sha256": "58fc59a97a649c4533a2d816ccc2dd44ec081690a7f4544d98184b1cacc6c73e",
+      "size_bytes": 5786
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/4c1b98b834de8678e6d1cfad6ca603ed20206fc0f00b3852bd8614a4c9910e85.json": {
+      "sha256": "10211f4cb7868d6049399c7f8e7429e547376056db71bff95e7938d0234361f9",
+      "size_bytes": 5680
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/4c1c282ec56d66c6af28f2542a6a7df3f88e716b6a3c47d13a4c4660eff9ddd9.json": {
+      "sha256": "c2e6eefb47169779fce6057d81ebd35af6e19e980eb502a7f567b796e2a2109f",
+      "size_bytes": 5839
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/4d0fe57c115d3a8d4a29e7f94c3bac2e0bf3a3642442c4d6fee090962e294efa.json": {
+      "sha256": "4ebbfa5027edf719056f57f0502200ea5b99a5f27c8ff887ea7e031c38e2885d",
+      "size_bytes": 5752
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/4d3be487155522ee21385cb0b378ffd24de92d84396aa3cf972021a758e6ba47.json": {
+      "sha256": "c962fc30c11b6617a96b022753c8d6d708a21cba8171abf217588bb4ab93886f",
+      "size_bytes": 5819
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/4d7547c437cbc35991580e393f40d300af83ec660f1e53e49cdb71bc47d36a3e.json": {
+      "sha256": "8b476f049a91b804c21b6f4a05ed287e12774d129683759e8d6e0c3b3aba37c0",
+      "size_bytes": 5820
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/4d7857c86225deb1b57df2ed814a0c2b152220502b8b2e5626c03fc84e759c5a.json": {
+      "sha256": "d6901f62f2b0693ce2e832ad6d6a985b095d91920c041f8e6884742e57dba021",
+      "size_bytes": 5885
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/4da62c8aaa42c00b7cc0d30d63ab0ad76ef3e6b33ccd303c258e10f0b289035e.json": {
+      "sha256": "1080fd12852eda3e08e2f1a58271d92d7c6dbdab378239c1b631d046f1ab249c",
+      "size_bytes": 5776
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/4db2283c3ccbfe9d342d48a5ba55f4247d60ab657520462e5babe1a3c1b7001b.json": {
+      "sha256": "710548f9789dd87acd586ca1f49a0ce191da71828eecafcf95e1793631145cf6",
+      "size_bytes": 5728
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/4e1506b6d09e8c83782f61453a0ddd0316d2cb70b4aae93f36050fa05bc941ea.json": {
+      "sha256": "ad9e3a9fd82fe116ecc886323b90291f0e4eb6392a7e94fc97989e5cfae761de",
+      "size_bytes": 5781
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/4e4936b9a0d34a670e6793a524c95e728de4cd41ee388af65aadcc24c7df321b.json": {
+      "sha256": "e9a71ef5cbf432e87164d69306a3181babef40383a53f7c6a3c0be5070a9cf53",
+      "size_bytes": 5822
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/4ea9bc15e992f2a8b6e1ca693ef244e8713ece268b610840c7fe7b7f2e9509ac.json": {
+      "sha256": "9a827ce39d52a18803bced2d80f3784e7f88fb620d77829193cdb8d8dcf45ca5",
+      "size_bytes": 7343
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/4f7bd5dd17ba1bc927011335204897158f6e749321d49a8b6553e852027ba016.json": {
+      "sha256": "e34103d892ce75a911d9fefed153329056a27b68f6a8c355631615ffcded7f2e",
+      "size_bytes": 5679
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/4fdbd07d038a9eab3d325383f2cdab0f825e52c58d7f09c860b6458a121976d0.json": {
+      "sha256": "2c43739b8c96e1a92f21d060491e5d00ba1c3dd94cfbab8df948042f5c61170f",
+      "size_bytes": 5764
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/511b035170bcbfe86057f1422552ee7bff2c29b7ea35271cf49cde64c4a93753.json": {
+      "sha256": "d2e373a94e204b06f730b0dc37faf491f5bc0d9b3eca121e4adfbbf628f61553",
+      "size_bytes": 5800
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/5144fb3434b16434a526c9aab3013842e58a34941db2f13218362820c749feec.json": {
+      "sha256": "7d5bf14c12dcf3df46868e007df5bd8909613a67e83832e890b7ae77f5951172",
+      "size_bytes": 5749
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/518edefe338d934b3e9eecfcea42c83bbb91235e560c441d820cc1a73d139e2d.json": {
+      "sha256": "7df1feefe7f5bd0885e21f34cadcc7adfdce98afc2bc8582f0feafb82b741dc1",
+      "size_bytes": 5832
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/51f648a74078030534fc6dedbc9bfc06277d27781378cf5d23b8ba9facfcd73c.json": {
+      "sha256": "099c5096198929d54c3111071ad4c2fd274d42368124c52eba9b638a4899c652",
+      "size_bytes": 5729
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/521a32fcbf39249cefb331245dd4fb212f3361cd6ba76134f5ea0b69c139c539.json": {
+      "sha256": "c7b1d038555f6139f71e39b7726fef2a454f34171ebc4c5ee626288f2f5cbeb7",
+      "size_bytes": 5748
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/5221125721f2a2325adfbae7baed69002bfa605592123d07a0f8b84f388a4049.json": {
+      "sha256": "f2e8f9d7d29786fb0823670c1a9563f6b99e775ef65ae2bcb41350110d71bb68",
+      "size_bytes": 5822
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/52608e02575e41ba4c51f300ef414c6e502424e6c03f8abb0d27b845df90e628.json": {
+      "sha256": "64e2e6c5e5892a8099cf85e98c64a62ea82a589f796867df2f023b37d9c292db",
+      "size_bytes": 5849
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/54e13eaabff2a6a591705f779dc271920944729f5e377d1709868d7dacde3da0.json": {
+      "sha256": "c15eabec4dab875346262afd1b2a426e4f3afe5f27c4eb5924440fb6ad28bedd",
+      "size_bytes": 5771
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/55de30a04268e3a8b829bb381d0fb287c91b9d6b8bd404d07d5d19d8b9696986.json": {
+      "sha256": "be9e8458dc3e630e5336622c2422c31be06a2a7bd880318cc5cbff94b7fabac8",
+      "size_bytes": 5781
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/573829f288fb5bb231a6d6cba1059265714e1317698c2ad76c48fe2104feb2b0.json": {
+      "sha256": "93ba7299ce179b07f72bc2f8a2c7d8cf7752e62301b79de88e804f6fcc0c7d3e",
+      "size_bytes": 5728
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/573bdea2ec138486765a52b336adc44812aeaa66139f2c6325a9c6e20c9f1dfc.json": {
+      "sha256": "512e892d2ecf54fdd09728d2a1adbddd024ddb0b2071cc3cd0fca49d9f23096c",
+      "size_bytes": 5723
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/579a14815ed763b5c35f8e55836f4184f085f868a870e962fe05da43268bb058.json": {
+      "sha256": "71bf105842d12d8144ee1f6599acc87b60ca1d2eb3a779774db7ddfba54fc54e",
+      "size_bytes": 5730
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/57cbf88d8da9ce0c7c4b21625a5606a59047817e6ac24c1845da267c7b4b22fd.json": {
+      "sha256": "8ff4300c79d8967467992f96802e0267c7ce08d797ee24620d0533bbed57ac15",
+      "size_bytes": 5880
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/58275036bbbe46eeb91fcfeb829028baf5e432b3e03b00d58bc6f2a26f957bdb.json": {
+      "sha256": "bc75574970ad7f51e478f5afcca12cdcf5a4d1f068e2ef6af288dedec19fa469",
+      "size_bytes": 5730
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/58c6ee57dfe6082d4cbdf41b0cbc5be3355fba852e51315dd7bfddeb9009a1e6.json": {
+      "sha256": "616d7e6cb1070c0a9a43220cea5b7526e83f9a4d1273edf2ab7d3a344840119a",
+      "size_bytes": 5724
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/58d43e0946137c1ee9f01e50ba5fb3e80c29102e742d73c7380099ee01932c67.json": {
+      "sha256": "d2adc10593fa8f9048f25cb87734c8b7baf6b081e5964808ce7f5493b4d1211f",
+      "size_bytes": 5896
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/58f14ba2dfd3297ed586fe3b65b1db810057edde6a2c26a6018dadf07a8128ce.json": {
+      "sha256": "10a503c30ed7085ef745e5af2c7a6f51d84f8302d2b6833d3c8af8b2c9cb40fd",
+      "size_bytes": 5845
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/5945961a5f1913d645876c22641d1db579c4e58b563009c0f8662a200581a0eb.json": {
+      "sha256": "a10fbdd122ceeb625344b1f16b6fb25c42cfc69058d8a51db74b2bebdf2089ba",
+      "size_bytes": 5680
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/596aad8f4e191bd90a7a47b30968c2999e1627a36d3301aecd644650132b63bd.json": {
+      "sha256": "56ce33e62ca4a1ebe51d80ff466e4a5e30e043146ba72f63fcf2f0220ca5c4c9",
+      "size_bytes": 5857
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/5a57cb99e1dd8cc911b847b3f21c350ea0c6a4359f2b60a87599f2e1b6af7651.json": {
+      "sha256": "d16ca5419ce554f12a8ae235230664fa779eb9144b88f4e755abbcc88defe1f7",
+      "size_bytes": 5884
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/5a8d61ee52a11501fbcdcd61e881fdbbdb530d2bd6a14c76d3e1c636632f4866.json": {
+      "sha256": "50d8e09a0482d9cb1aeecd0f0d43cbb3fc0f4084a14141e0986cbeba7833fd41",
+      "size_bytes": 5826
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/5b5055737ea01ee9f159e9e4b46768982f691278381854ec6ac886c5e7ef318e.json": {
+      "sha256": "5b7d37fcc909325186b5485fb48c16ae5e668bdead4a83fdb7b7a851da869a3c",
+      "size_bytes": 5731
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/5c8352b2b277883e49b1536352a6dfa4a252dc8505c67c33a89653bd7575b66d.json": {
+      "sha256": "6dbfe8cf25914bd3bbbab47a612119bdbca191229b5985a02b3711d0269d8d03",
+      "size_bytes": 5725
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/5cf5917e2013360d25b37e7c2b87827222915f40e520babcf963b914ee2826cd.json": {
+      "sha256": "df1a333393427abf335bdcbf59de6a06c29eee098d77c83db52ba02e71104f80",
+      "size_bytes": 5785
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/5cf7f9e0843ec7c0298c1edb66de3ed99983ef098246541b8cbf89961b52afef.json": {
+      "sha256": "1a6e41244776b8fa3d471e22859783c7102d2fa13cb9549f986db1955509eea3",
+      "size_bytes": 5786
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/5d33daa9dd99489113532007c305fca6f914e6b354b8772e0cdc049f5554050f.json": {
+      "sha256": "84d54f6713d1e901116a9322b539347c99b80d6d984ef335d24d1773057e8856",
+      "size_bytes": 5844
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/5e419b5bbc20f7e5e391abcc155b972dabbc5aac8c1e554d148d740b50bb01d4.json": {
+      "sha256": "3ee3929677b6af51504a9e9a064ac9f16e7f6372e14f3f8840e2f3dd646bd9d5",
+      "size_bytes": 5820
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/5eb2bf5cd1fd829bb79baa834c021a40e3f7cadfc982ef38eab824aaaa4025df.json": {
+      "sha256": "6f78422ea6982ac26821f2c240790b5fbb6181ed547a02387e2c8483847f9a51",
+      "size_bytes": 5747
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/5f0a83c32bbfa43b8dc04c71fd26f8b7a86456c17ef15648a0cc40097f1918cf.json": {
+      "sha256": "318f9e1096fb16c32da07c649b3fcf00c7214a26bceef43cf5794f0abbd1b7b9",
+      "size_bytes": 5839
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/5f868945b19eb553eb6fc70d6481590d2d197a6e8cea2f56d3649033cdf8faba.json": {
+      "sha256": "a94d523126367b6d731167643e72fd9301c9e1c5a954b3effdb04d62f434e884",
+      "size_bytes": 5871
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/60afb5c31ab9073d4095194d704943991857dcd73dc8c31bcc183f6314ff76b3.json": {
+      "sha256": "c70412e0e49ea483f1ed4440ea283965b046f066a61879be0400be3bea595e3b",
+      "size_bytes": 5827
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/614a69ea8dc660a3a2b8f800924b700d0a926374fcb591fcf8b6a609f890c231.json": {
+      "sha256": "4b6facfd26eb436f7264227b127b1960e4884cd26eeaf9ee84b205fb86656171",
+      "size_bytes": 5739
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/617264f9c99e3fe13686841fab299eb6857b8db01995bb27ed5bdf8564ec2be2.json": {
+      "sha256": "6158446914e03a5cb6fa71f45c74caf66b8baddf6fcdb7cf4ccf6d25756fd79a",
+      "size_bytes": 5727
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/6230f521bcc54436a7212de4da8dc01781e91e8a1833501f6021861abdd1ecaf.json": {
+      "sha256": "469c7be68f7a072ef144805175d4adca9ff078859d2390e83381d2062a9159ec",
+      "size_bytes": 5897
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/6358c34c2321a7bcf2433692ca63b76f8397422b332222aa27be9c38cc1eeff8.json": {
+      "sha256": "dbc5d4ef0dcb86969e6e8c58ded70bae09734eb4b26a6f7fccf90da52a44bf37",
+      "size_bytes": 5681
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/6362c074e5283cfe712fa6aa6d3ffe6878513dca834185cb3c56d8f11a15073a.json": {
+      "sha256": "6ac082a1f362936ba5a880093ad9f2fc8fa1832860c4825b17bffda62749e62b",
+      "size_bytes": 7871
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/65921463bf88759f6b1040dc63d07604444826972f970480652ee201f8798487.json": {
+      "sha256": "576f2c9edabf396003896d9126772c4ce4080234b92690826be82f9d64cae0ae",
+      "size_bytes": 5818
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/661c18738cded49f5bd7510a91dbaddac8f6634c471424fc0941cbf3c07d9b14.json": {
+      "sha256": "464d235f96cc218a88cfb85efa65ef62d7ea317dfcd74fc17447bb01d35c4c3d",
+      "size_bytes": 5769
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/6629e5a21637003ef85d0cf74253f9119b3bd7f60fdf720a9ba40e17c85b8975.json": {
+      "sha256": "3f16c1ab86aa7bd5d5b36d948402275bb6092b57fcb6cccc16fd897f7ea3e6c3",
+      "size_bytes": 5721
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/66a6244c3f37f3c371669d5d78d64c91db3484c35411b8fe8806f9b0db05e5e3.json": {
+      "sha256": "9afb5ee9ec29c30f80aa7fb5f57b9f8cec52bcddc862d816ed7b75dff3109007",
+      "size_bytes": 5884
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/671bd43700354e4215ee09ec092504e7016f2b5b186b95ce6d3bbdccc1094d80.json": {
+      "sha256": "e52a060a02c60fed96ce8bff4f0771a3bc8143fc74f968f67b83ca6ae7c2664d",
+      "size_bytes": 5680
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/6745c91d3a45f631ac3e6faa4d637b69e91d3d8d4cbbda2c57805c3571155aad.json": {
+      "sha256": "3f8081d09a4aeec18797bf9a9a9572913f0a11df3b18b9d289d5f03f64a4210c",
+      "size_bytes": 5800
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/6810d37932bdafda83116f4382dfc30d5b2def969e5e7d868254f39bf3a2f1d7.json": {
+      "sha256": "9a4f1799bc7b85e7d49746877ff67b8eaec976531dc0b49060c84567cc985aed",
+      "size_bytes": 5718
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/69f544c479dfec25174678fb0d0095e6bb3e692a3bfa4f00f155c537061823ba.json": {
+      "sha256": "1e2f0f39e81ef3f658fff4bca1226d70c024f20321f73f412f6920ca7fe8bcb5",
+      "size_bytes": 5786
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/6a9127533668d788503e326c42657933e9b8c7dc94e48367b23ec2fce0278a74.json": {
+      "sha256": "0b2bba8b5cb031e71cd91e6e841a39029f39c0aec514c5d4e1106218f1572b6f",
+      "size_bytes": 5679
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/6b2b02353f32baea4c91e5e10e710e7b78552a8ae3bba80938402e0a4b0101a6.json": {
+      "sha256": "07d41ad8e27cbad8c8640dc94b93ff5e73ba6c6bfeb0276f0b42b5ffd918806e",
+      "size_bytes": 5681
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/6b32971acb11de513afc6890078be99f89e3e66719509c380e13d4243fde57c7.json": {
+      "sha256": "88f23848a9b4ebd23803fec7075176ce4f782f5c7e7d4439108f9143e8a15250",
+      "size_bytes": 5728
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/6b8a96d9ee902cb7a43d83822b4228eed9504b0def089813979b85b606856620.json": {
+      "sha256": "8fc3c3dee1048fb4f5421e74ea624e05a5d5e1cc92261e1b1c3b18387950b458",
+      "size_bytes": 5730
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/6be69f1f7ce435857ae16e7e21f40a32c04a3a17ae69ef5cefcbf32002986382.json": {
+      "sha256": "e83d9ef4f1e298d7452c91c4628d9e5bb0398e0a802f88592cd0c2f007421a8a",
+      "size_bytes": 5748
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/6cbea98ff7d5d4acd3c6a395173c203238803bc7ecb2dd6306cd825b021d722e.json": {
+      "sha256": "5ba828e376afd3ea8da26abd3da4f2f5d0ed0dd531dbf90ee3453ccda370c141",
+      "size_bytes": 5681
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/6cc7bb4015efc5947b35919330da843fd8249cb5ae76a9894cbbd8630e65511f.json": {
+      "sha256": "8b27692021cf3d72f2ae925833a7edbcd14713997f42ca8e8cd9fb1006699fb5",
+      "size_bytes": 5780
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/6e7021467f70c17a7e42e728641b8171ec2f73e345d68eda056ad51d31042052.json": {
+      "sha256": "6720eb9a5ff7a4da739fb242adfc03fc21f0f9bb87cd42554207e5e842ea2f87",
+      "size_bytes": 5818
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/6ec92f82f86baf0850882ffbe2eaee3188c5e771988ef15f7b1c105cba2f8499.json": {
+      "sha256": "b0b691b1ed020cd9ab96ad34846d6c1749d615feca08a26021a18c705ca1807f",
+      "size_bytes": 5849
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/7131c7d57abddee387ce7f1cffcf5577a4d12fcc4607fdbd69cabd0c7fb909bd.json": {
+      "sha256": "3ee6948466216a1cca6cd1bc8ee46d75ded6f7d7ea37ebfebc6d892ad447b8ac",
+      "size_bytes": 5741
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/7278ec22322d0443174a12a69516382c2bb898d40687dce33a57910fcd4ae2bb.json": {
+      "sha256": "06c88f5d7f0316eb0cbd8be1c9d85f5e9314c663ac11a1c789b603ac1768b075",
+      "size_bytes": 5748
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/73563c782c90f7a75f4149ccb1e2da63cb01dbc9ddcb61096c9b09e46210912b.json": {
+      "sha256": "064e251b537d6712368650ebe84357b169506d4cfa8d9b585c37a8aa4273821a",
+      "size_bytes": 5718
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/735f42fc7ee9a7bef13aa4f3de6c779f24baaabe8e6c8f67b1afbd2cd084a2cd.json": {
+      "sha256": "61abaffa99b996748c04d3ce3fa9b72789e6c4ee7eb022162979718906a41069",
+      "size_bytes": 5778
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/7384f7fbdc5cc282daee576ac63569e21591718b105ba7ad7942ed9d751af31b.json": {
+      "sha256": "232430b5fb9e61190f8629c78b7a655435fc1e3e25b4aaed3edefe146585e168",
+      "size_bytes": 5785
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/739460467241c1187947bc01f59681472a705415d78da6d1c6134079ee532e21.json": {
+      "sha256": "5fa46628d51777dfda535bfb8a9a4ae386bd305cea6af4b05ae689f5c6b53a6b",
+      "size_bytes": 5890
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/73debeb50c4d9ede836117442ad13b9a879403691c9c450af65465272e8282db.json": {
+      "sha256": "b1b3cd4bbff3732def2f5351671252d3f90ea743e91b4e17bd67563bf886b926",
+      "size_bytes": 5755
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/74c564aa84e965cce69f8753001a4b85224540296f90b4c1a72ebf39fe868d34.json": {
+      "sha256": "092d38a4d2135c78ae65905eb1a707112914c9c9f0e3297ace24d44259cebc56",
+      "size_bytes": 5729
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/750ed43f201ee8a0c01fc589431de2361c91ef6fdba6d5698468ace66c352a83.json": {
+      "sha256": "2415444e5118e3249ca997803a5e373642e07254e7893833838cc05561797190",
+      "size_bytes": 5857
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/7513a0240d2aa5daa2af1ba4c0e75f29b7a0f26cc756c27d203eb035076f40e0.json": {
+      "sha256": "4ace6802953dd876460008b1abb485fae3549bffc598accb5d4c716e92d151b8",
+      "size_bytes": 5787
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/7726b017a07ac1660fa3afde521593c69f4b7a7f774881e9960a1fbda7903901.json": {
+      "sha256": "2410bbb3545b50d18fa114cca72b468869e449b6898c692db6d3531bc7436334",
+      "size_bytes": 5729
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/77af7a43de7bd18c2db1576d6dede6045ea11f1e59c9ccca458edcd421888300.json": {
+      "sha256": "b3f2e4d2f2bb54d394358292b33586de8b7dbf7d03064ec207ba8d6c7c237aff",
+      "size_bytes": 8580
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/77cecd4d5cc4768e42013effb551b8d7831209fe7b98b5765f6c0604dc7d0d0c.json": {
+      "sha256": "ba79794963840f74e1d7f20ee1b381b15c3b3bd770b7e543cb073297184e18bf",
+      "size_bytes": 8035
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/78638d0d8d82085f4b7d849a9786255dd408a7ae1d31f6564af808bd93d3c1b8.json": {
+      "sha256": "a8c4bf64ba8867fad9718a21c1a97585f8f3554087acc5437c69190399b1a968",
+      "size_bytes": 5679
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/78addfdc045a74cc5d809771d3a6b713a1cf5d73f1971a7a9f8e83741386e84d.json": {
+      "sha256": "f22217e94b3e6f4599a5c75f44aa596584aa059457f3d66e56e00de38f7391c1",
+      "size_bytes": 5724
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/78c42dc5b0e58dc94f8aa761b10677d28c8da2e2a3ef4cff7e167ace2290edff.json": {
+      "sha256": "1592da815c63a2c18adf6b67e3c87f89a9bfc6c22c8e8baeb92a26cdd15c37d4",
+      "size_bytes": 5741
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/79665c0202474a483d97228040af47b4321895ef6ca5b31e5c5edc2839172cb3.json": {
+      "sha256": "ea0d7eddbab52c205b6c27fc0f2c270568d8c7581fca1d8f3ebc45fbf546c00f",
+      "size_bytes": 5871
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/7a27a5f703e6f4f9ed929efac9d7c61cd38e79e2045dca60361cd924c74fc004.json": {
+      "sha256": "7a86d04eb425e3a14508ec174991fcc863f3a16d7320cefa746c7c1051ec1607",
+      "size_bytes": 5832
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/7af4807fc6c44ff541033e7e62542e66b7b2f9fa4a3fe4119253df33ab619b04.json": {
+      "sha256": "86b12379f143e9e478898af55c98177fdb903f19679a9cfe72c71598292a2e0d",
+      "size_bytes": 5882
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/7b08bf698380f38b3033085ee46e94693c0525bf2931c0e52f9529a87c3b9028.json": {
+      "sha256": "2209fd97a5d6ae0b71a85834a3ac0b9ac8fd381055e8ee0b3cbed6dea9c4eb89",
+      "size_bytes": 6832
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/7b8bb14f47f5e027630fab352e771c64ba9cf18383f511828316c2cf178f4919.json": {
+      "sha256": "b255dc256b01eeac9b29ee1a2a13c81aef795459ada405b13adb6a50d39920e5",
+      "size_bytes": 5748
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/7c183739f5344e200ea2555e726a7c66c6d19d15315ee6be3d939935460a3ae0.json": {
+      "sha256": "5a368df64b352cfccb289f1b888d8168c0beaa546d80b2bffe9eeb738a29c877",
+      "size_bytes": 5718
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/7cbab9fe53cddce201bfa44b067412894a3ad088e7c0067955e8469c63e98ff9.json": {
+      "sha256": "2c6aafa354b52f60d2a09d2e6eb3b5df7063c1ea73a07b2981513aeb1bdb1516",
+      "size_bytes": 5680
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/7d799cf069a4096194e47197a993fb7d65d934da24124ee66d4dd5f22a9d0719.json": {
+      "sha256": "cc02a0e612045a1d8064401d5e476a07853fd0bca414f3f2ae3e2c22571540f6",
+      "size_bytes": 5728
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/7f4b8c69c4fc9125667b389df1b4357f3fdb22e3caaebc2ea4148aacc9f35367.json": {
+      "sha256": "ee2c90ce10d4fb8af2e8fc9fa0b0cfdc1ab8f4c370e7ae15b1eec9f402cdaf5c",
+      "size_bytes": 5727
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/7fb3d97d4f6aa7574114eb63dfbf6b548abf6fb9c366d2757cb8d7f8fd8617b9.json": {
+      "sha256": "bd2793849a9339dc33cd52fbd76de5a23f6bdfb7825971e5eb28cae967681f21",
+      "size_bytes": 5907
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/7fd1d94e329a346f5bcb72354b55197354dac2e4515033437173010514089296.json": {
+      "sha256": "f01d96942014eea94dea6244dba3a81b9f0fabe25b5dad4195f57a46afec47ef",
+      "size_bytes": 5788
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/7fdd7332ab11a7e1a8a811d663a310a1a72b70ddcc9de7640767ac58a4c40968.json": {
+      "sha256": "9c5510d6fb5a0757fbd119d895827bbfee253cc49d6bd7a02c7898836c722d2b",
+      "size_bytes": 5727
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/8060ada66be19cf325c121c4b1f55a9ed925d0aba07a46df201f083b39e955f9.json": {
+      "sha256": "ba9533e36798b364c21343d363fc918137632c3a708d5349f796172d2b86b6cf",
+      "size_bytes": 5824
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/8079d1722f44c1dfac7e721fac61bb233805b3094b002fa0853132705fc73856.json": {
+      "sha256": "95bd35a4b0ed71f27755e84740ac8c3d395c2cd585d8849b85895fa7c898e19f",
+      "size_bytes": 5781
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/81f862fb8674b209613fa9d5ace3d8813a0d14ab3b950ef7bc58c022108ed77d.json": {
+      "sha256": "c4f58bb2f49bf3f4caa14dfdfeae2f6bf8ceeb413d3a5f201733b5708decc609",
+      "size_bytes": 5680
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/830d813bd741105cdd5e0c8fa3d4190668703dd8fc1c1e7fe486c535ba2a3f5f.json": {
+      "sha256": "dda521d3434a73056eb72cd07b06a27b1e07c8f50a02faa45283dc764b753874",
+      "size_bytes": 6490
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/83c8019b2c52f2163d356e78e162d17a1e020be2d364da10045a6f7d7cb93192.json": {
+      "sha256": "6483aeeeba74b88ea7a40dad5f6577f98e96ec72a10b5b9c16ead01340d6aaf0",
+      "size_bytes": 5680
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/85579865e4fdb61e28da0bfa37d7f94693250203d06a60ba42e5384dbb1c4ccb.json": {
+      "sha256": "2ac5a2f041eea17a0199f95fa5adfaafe0cf444d6756129c92bec7901db82069",
+      "size_bytes": 5873
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/85b9feb5689aa87b7ce5b7758315e6e9813f9164474c98d2d07e8d330ab5021a.json": {
+      "sha256": "894c954d50b2dec6dcfbddaa15bff9b327bb6ad6c3dbefcf46359d45aa922f85",
+      "size_bytes": 5796
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/868499ecce186e34398cae655789f3de999321ef490cb18b853faa1408db2fae.json": {
+      "sha256": "e9cfab38fc05b00bffb20099f4e2173422b9d00a760cd170aac8bcf298a1291e",
+      "size_bytes": 5681
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/86a7d449f60f03b51c51afd428ccc21bcdb4d54e4e90a3de1d34cb995692d4f7.json": {
+      "sha256": "dd63856b8543b27a229cb3b4779538eb4224d7af89b833b65ee5d4bf3c99caa8",
+      "size_bytes": 5724
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/86f3f922be50c085a51f016fc537f95bf5ed971a3aebc290866ccc90f436624c.json": {
+      "sha256": "e183713ba5c73040a29b0d04171c716f650bd1e69f9c9e19fea9c3b48adb01fc",
+      "size_bytes": 5728
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/873ef20b9aaf3f5f6e64e216c5014d4f13722140c5314c4ddf6d99270e268260.json": {
+      "sha256": "44a2cf65a408fd211620d374ece77a39e34c76049cc7dfe09ed4fb9ea378edde",
+      "size_bytes": 5779
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/875017009aa5d14a904d639d40760210c4fc13a4bf78304b57bbbd006989b8ae.json": {
+      "sha256": "71cb6ecea179cab071c7c8940b2f7bfcafcb3a3c854a49eb1a8f62f18e178630",
+      "size_bytes": 5813
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/87bb98abb36eb1c46c9604f2e238066e44917013dadb06a47cc9a7e55a8188d6.json": {
+      "sha256": "3ebd017961305b862ee4a1073e41596071e6c11d5c06bf810d98a952c693d0ec",
+      "size_bytes": 5680
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/87e8df358a79d245fd69cec02172183028d9ffd9224c8f50eafa3f56d91b0c6a.json": {
+      "sha256": "f7e9d64a4e3a2032b397a30b2c777aeb62add5f26b08bb03355dade6515efdae",
+      "size_bytes": 5679
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/89e271b97881b119a73b93e97d50559c829324d5379b7093ac5c3f59902a9d68.json": {
+      "sha256": "99c50369ccffd8ae39814c0e93cadf49477a74f1f2b746e655d63b177fa57581",
+      "size_bytes": 5680
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/8a887594c05356fdf861c55d2e0388a15a1e92e3c78f2b51703de37f8b8bc826.json": {
+      "sha256": "288f381b9350213cf38ea2d2a589e903104c36e88e05c72e71c53d9eecfd7e9a",
+      "size_bytes": 5850
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/8b3d090cc032641a112b2a7238ac6fb558d0f46b70bcd5df5aafa5ad0a934cdd.json": {
+      "sha256": "12f5c2dcbfaa16a6f45ba919f279410360329f22a04eb6f77171e7880b22a8f0",
+      "size_bytes": 5800
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/8b610d435c46b881d3c9d2bd94aa736909337f35f12462b2b120283a5fb1a4c5.json": {
+      "sha256": "a74b4f5d9ecd11e81faa31c0a0efae3101845761bd03ce40b1ede1ca8785d9d6",
+      "size_bytes": 5815
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/8befc7cb4261d3cd50ce6b3a6e79c8f8975d3e1e6923b5c4ed2f29059e07303d.json": {
+      "sha256": "27be716738c93a7bc7d8e738d707ff5931cce9a5f326c35e83a2dc85edd01320",
+      "size_bytes": 5892
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/8d99426f3fe740fa0a42d19dcf6a3bdd519a13448a64e0d90bc004cf1df99d40.json": {
+      "sha256": "68abc5dea8bea0f9b1563f3f729a801881b16a774dd9ebfe4929a70dda906fe4",
+      "size_bytes": 5752
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/8dc79a05c6e1eabc439b23a61c86287feecf092fcfe90805f069ccfdcb4be8fb.json": {
+      "sha256": "c88005b4f10cdeebb71fe081316692217b4265040b75c46c49d6ec1a7de97577",
+      "size_bytes": 5751
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/8ed760d8a149e293fa98cf24111386d4d8b2e036013c83aae11a887b08000f08.json": {
+      "sha256": "be797a0616ce72a51f8e1b3796f443abf718ea247cae8922e30cef3afcb28904",
+      "size_bytes": 5886
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/8ee4be6a03f2854472b0992d63cc193addb4a0b660bd6b586104e07e15b0e8a8.json": {
+      "sha256": "4316e2cd192974224adb7cabec950676c94687782df2a99b22f4fd69895b9274",
+      "size_bytes": 5874
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/8f87dc79639153009121755c1cab62bbf90de469b5463d575dccb672b7d82169.json": {
+      "sha256": "b009b27f37b8773238d70fc0f85056f5cc3452e0469544fa95d4215ea0ca9f76",
+      "size_bytes": 5783
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/916b87efb7d01f36575aee326ce7e0182ddaa9154a8d247dd8a8121c3ca53885.json": {
+      "sha256": "3b263428ccb0ac0655ff9c4dccb0e850fc7cf643ad9d410f6c71e19b9046c59a",
+      "size_bytes": 5733
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/924611ab576d921f9e4d0bf4e55ba044ff3896f62c06c23667b9959bf8a5f57d.json": {
+      "sha256": "ea42b7e289c1058436380db1de1aaf15cc7362796ed795e5a43af4073aac034b",
+      "size_bytes": 5819
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/927649830077406e34db6ef75131eaa7777b820d5821f50045917f357711544c.json": {
+      "sha256": "28ec30277c934a935a7bfdce56415dca23179f757d2c96989e34c9950e7e98e0",
+      "size_bytes": 5680
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/929258255a167a1b01a90ab1c2b41b851864828c976e156db770649da418526c.json": {
+      "sha256": "c79ea1f3d84e8efcf7087350094a754c5a81bd5e502b104884237440989e1953",
+      "size_bytes": 8909
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/935ac1eef41c51b5104650ee9ce8e2d977c49422242990e872587467861726bc.json": {
+      "sha256": "4e7966c2116b7f13cb72d2e24a0c8c615e8f86049fdc6db318d59fe4f2bf5f0a",
+      "size_bytes": 5771
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/93787b7b3566b2c6875c073e05e26e25ddb195094ac0850719c946543016b6e1.json": {
+      "sha256": "9e33ddf3fcdf99fc5ab619ed8fb8c167bd249f6fabac0f5d370ddcbf81904f1d",
+      "size_bytes": 5794
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/941f31f8da2d7bbf6b43ac2038e26cce5a1a1c14d9b6bcc4b002557b00ad973f.json": {
+      "sha256": "45098a8ae6c7b7263c40441d2cd61febcfef8d42889464455b301a3835f0165d",
+      "size_bytes": 5894
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/9485bc9d9a1070c41dd90daa49809bf54935319e3e978ce670f7fe5e719086f1.json": {
+      "sha256": "8bd450c06adf6cf8f3db486b274a04d3316348921c89e472782b140beb64c263",
+      "size_bytes": 5781
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/969188a13df350dc47bbd652b45ff29c649c9d30469f453d4ea332bc8382c158.json": {
+      "sha256": "ccd5ef59dc4338a5b7537ffb6bef7089c5a1404d3bf55768933c8eee5a3e36d4",
+      "size_bytes": 5760
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/99257647b896ee3e5adac54ad9f811888067eb965b408ef332c1bdd539fbc7a4.json": {
+      "sha256": "569e83b935fff054aa85ccf38c4890d594e8d34993396754be1dbb0cc4b2db75",
+      "size_bytes": 5731
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/999266f68c1d04458e42584c1c7fc771200fa886e11bb864f917f84e69260271.json": {
+      "sha256": "76aa8aec8879971947cc2a4b0f301a4984aa81b52a564b02542a96b7341e9ed2",
+      "size_bytes": 5818
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/99dc1d33875e94a8b6b91e6a2a6506461ec4a9c55670882745102886a6498fbb.json": {
+      "sha256": "345df98aec5148b6ad500cacbcbda19876d5a01179eb636f807088bb52538388",
+      "size_bytes": 5888
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/9a3df7e4491ca758ff0ad264870684fe7aa078fc928bc97609057a34f70f3179.json": {
+      "sha256": "625fa9f6cb30a8b6a749c0af5496c34fe4f393be2dace29156882d38fb1754fe",
+      "size_bytes": 6128
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/9c1690b32d8ceb02b3d14b259e912414cb622f294e2e1e7017838b252a0c2377.json": {
+      "sha256": "c53658134b7d20050e2b21c57c7c86eaf3d6375146902f7bd3532c26af6e1470",
+      "size_bytes": 5777
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/9c317b7d3985d9e08343738880d81bf966d5c63a68443c29f26f413b0810f3ee.json": {
+      "sha256": "dddd863222e4b9494575c94c602b0ec1d7895be0838bfd51aa00e6da3f85fef6",
+      "size_bytes": 5750
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/9c56629ea8c97f68c9845b1b0dc254820e34ba4e325badc062021b7687b53cd9.json": {
+      "sha256": "464269052dc934a3dd78a8fc9a8ecffc953be4e275a853dbdfb4d2ab243a06b8",
+      "size_bytes": 5732
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/9e8a04d014eb3435c40716c402cc2111705c17a784953ee063fc846244a395b2.json": {
+      "sha256": "a2de03e645a0d2ab6e0c150ea56a7ee5ad6a08e30cf782361f33d3ef6cfe2f69",
+      "size_bytes": 5779
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/9f19fcac21ba8503c91469d07637fc7fdab2f3a4cb5c61549d6470acffcb3aac.json": {
+      "sha256": "912b821f6b2745607be61d6a65d518a38ff24d5bf014c7d674122a5681d0edba",
+      "size_bytes": 5890
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/9f2a96c4c5d718a7b2c832feda57e6799593ca193a418e48595fa628baad8d90.json": {
+      "sha256": "a4537f871204e88af805a1d907e11f7b5bd7156ed65c2a5b7a59602155faf18c",
+      "size_bytes": 5762
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/9f6b286a177fd85f24a2c246db2873e15a809ce83439b591a10cd7528ce94b79.json": {
+      "sha256": "3601d40fad61158cf5429d73314ae0e441ca29b156897559ffb00c17efa4f9fe",
+      "size_bytes": 5845
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/a134bd0cce53377c421175a67be879e98677cf7e537c6e7da5a1f4beb808c6b1.json": {
+      "sha256": "f99c608d0f3d2c8b3766a6504a2411add3be8d66241bbe6a616b14a7ee5b3e1a",
+      "size_bytes": 6371
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/a139d91284ef8efa46736ca8d22e612a16608b7bea3d88959cacf2317adb678f.json": {
+      "sha256": "4c5d2bfa7fa2f96d9e32609ba34bcba821e68c7a83a9fe112d7f4f769996a6ed",
+      "size_bytes": 5681
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/a22f27283bcc604c1ae4dcc007e7fb4feaf6bd3851f0c33300f846d278ee8a44.json": {
+      "sha256": "4b0de90ee8bebb62d2e1c97fd2b9b55a9d94ba945b29dc0eb272578c52f91c9d",
+      "size_bytes": 5730
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/a28f420f55c978515773d62e1a58fe8c940c9b4b720b39710b50e8673e4adc98.json": {
+      "sha256": "81facc7b6b3ae17444cadcf387dfacc4cc6db0d6bf9930301c5c41264bdbe65c",
+      "size_bytes": 5742
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/a3fc4cf32261816571dbf00f3c86b16db8fd564073ca258360aad511d07fcc3c.json": {
+      "sha256": "41c1ed82f4219eb8bc84e5473d4a658cca621b87b391298902a1f964cfa54cd6",
+      "size_bytes": 5832
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/a444cbc56495a5e21089c55c10bb3591596a9f61086f81becc4fee936b3bfc52.json": {
+      "sha256": "94201c90f601fe56ecc2eb122f0f9adc417976a80589eceabf72af90022ed76c",
+      "size_bytes": 5718
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/a44b8272362cde3ba5cbe21e3270c7d578929494d6354bdd38c1aefc81eac7a9.json": {
+      "sha256": "22a3b75a64a9eaaa631f18943af0618076c0ef22869fddb2d12c9b6ba9ac1606",
+      "size_bytes": 5813
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/a486ec7b18ac5ba9c3c10f2fcd22e8cc1de1aff938428781a5f5daa2d58a01e9.json": {
+      "sha256": "5c211c33c89114cda1b6eb18afe1cabe690674ce6ff4909618cba91603c1b089",
+      "size_bytes": 5727
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/a68348fb4786b3c56091cf605c57f2b1407f899146b52ed3498114072c24791e.json": {
+      "sha256": "58ce13194bc4db53d15ce48a5a0399c61adc16b9e8ac5dd93788bf49f22260f5",
+      "size_bytes": 5729
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/a8cca5ae40407e8ebb3dc6d91142655fba671b45ac456f9b10c3362891191ded.json": {
+      "sha256": "3a21c0230a86ea8576878efa8d72226f70919773b7b5753b4194caa24a27cd6d",
+      "size_bytes": 5680
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/a90aa082ef126ca22a0c5eaf370045993ae91e315cc8654a28ee01756a5a99a7.json": {
+      "sha256": "86290be592913fb036a330764aca6b40c140f9592bd17b57045a4a56e6112af2",
+      "size_bytes": 5791
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/a91940366bea36c3ae8ca8c0c9a4cf8dea8ccc5d16ff3a6ed47d137ca5c28b33.json": {
+      "sha256": "df7e7ca0cb68db0b41c9e0511fbdf989d67b079f56d4781f3baa3b6b7ee82b55",
+      "size_bytes": 5729
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/a9e329d3d3ed5185629986a58388ffc29f9176faceba5301cd7d223b1821d09c.json": {
+      "sha256": "4c25adda09154d6eecccb9f19d50483e8039bdf3d77a34151c464e0fb2248e46",
+      "size_bytes": 5731
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ab15ea9e1a58de9a745431e510a8ad18175aa1f1681bfda3a7e10235de83bf9b.json": {
+      "sha256": "66dac91553c418dc48107da01a6fd3eebbdd8410dba0f6218ae2edb463f8506f",
+      "size_bytes": 5892
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ab320ec7473addf9621c2c27134f25e9356ebd1c1cde200dd798807a18339ca4.json": {
+      "sha256": "daff684b99a7426328519fc09e575ace6f609c18a5d382f532b8b8d449a06202",
+      "size_bytes": 5891
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ab73be98cd69d75c40e54a0ed7028aa482b005d68b2e4d93c89ab0f818479446.json": {
+      "sha256": "123da885dbfc690ea098bc6c02921cc479a704569ccb04f0b6d7a94d4833b8d3",
+      "size_bytes": 5681
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ac2303583d69970156b55d3ac31c41583562fd749718601b20fc22cc0a9e237d.json": {
+      "sha256": "2f7e688ee9205d8e8bf61d774dbd569cffce3fd5d860f679aa67fb48d88efef4",
+      "size_bytes": 5733
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/aca264b8b8a68e2a6a02f7aadb2a24928a7969ca044e3cad8eaa772c372210b0.json": {
+      "sha256": "2cc4dbdfb83f75f1afce8f0de7aadfa921a5476c599d6ad0a93fd2f185efa261",
+      "size_bytes": 5785
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/acb70cae2ad01e702585142fa097e615d88bd50b32453c61ec8962549b388df6.json": {
+      "sha256": "314d76d0829ec5fe951b504b877746638f31ef28734dfe9b6d651805ee3b1063",
+      "size_bytes": 5837
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ad1027cadfc1e3752925d3d1f78457bc6bb26d1f43ee8fd9e3a9d17c9281af7b.json": {
+      "sha256": "260f32bbae20440f813743e60e84a4df65df789b829f652ababc687bf3e2c23b",
+      "size_bytes": 5732
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ae8ce629b830e0fdbe9fe0a87f02a9c1ad79cf9760b12bf61790a41b256109da.json": {
+      "sha256": "970cd5395b7f88abea96f738942575842a69ddc9cee8b0889a4cc11abc772320",
+      "size_bytes": 5824
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/aff8c2de4d2c4833469c29ad4c8bcadaec280a7d2fcc2129a1935522dd46db9f.json": {
+      "sha256": "8338fc80c5a14cef5bfe1c5319cd5de9d79ce3f4ea5fb509ad6766eeea1fb1d9",
+      "size_bytes": 5786
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/b0300a28e2fe45233cd45f1de4fe1a917d6627f873b8d6de7b79238cee05c40f.json": {
+      "sha256": "ae1b0a68f2028cdbd3c742c4ebce417f4d65714bd30e35788a7e0735ec5e656a",
+      "size_bytes": 5728
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/b12ec82e9984310888842329732805e506a3226587575af934c991c3ccf3971a.json": {
+      "sha256": "1ce0150a32b362910d2135d4c05dcb2204e5b041f4f2e74a6b808d5d56bf5c29",
+      "size_bytes": 5741
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/b183a5237ca734a8bf27f4590aa2be84362474ed471f941285035e2670660901.json": {
+      "sha256": "1b013ab274c29c158e40c18a96da4691581f9005b23dafc3eef97d90114021e3",
+      "size_bytes": 5841
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/b1d213a8e4e4a7ac0298750a8ace78e4fd1c69ea875e59d6367f00b3e382d9b0.json": {
+      "sha256": "25fe2e67badf33d5af224f645d6b79343582712077fc5695ad1d5666111fcebf",
+      "size_bytes": 5680
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/b20330b28a2f031d435e0ea69f8848d04bfb97349c78bff5b53a596c96f3e0d1.json": {
+      "sha256": "074b295ed872eea84fe36dfc64e45759ba8421d6834de922c413530ceb56fe79",
+      "size_bytes": 5837
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/b2b871d09b25832ab44a98298a3c18a3d7e9ec3ef1c09859bc41f5f70d54769c.json": {
+      "sha256": "f73b5f1cd043fa8e328ec467d5206da733769cf0d150ee70cf244d7734cf8807",
+      "size_bytes": 5681
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/b379cdedf6464d9772bab08c1a8318a5103bc2d7fa8a84b00769216da05ed791.json": {
+      "sha256": "aa8b0f8f8cb4aa398989e8cb4607608b4fc55414c164deca01e25c107663868d",
+      "size_bytes": 5725
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/b3f9b63375a7c4597cae7ec86cde4effb43945cf21e7933a1523becb9f589947.json": {
+      "sha256": "7f7bbf9e8eb3b390ceff729ec5feed586c86e4253cee83677b2f645cc7465932",
+      "size_bytes": 5727
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/b4ec2238cabbdc74608ba84efd295bd49ab8836ec7da5f99153b3070e23eec6b.json": {
+      "sha256": "bc352a61065f4f34035d6ccf19d1f9ecbe5708e86701a2e340e7ceb23d557531",
+      "size_bytes": 5867
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/b686ef279768581da47d9a964da98c4b44f0e80780c7a2bd67fee9e8827f0d99.json": {
+      "sha256": "768ef4932a42190b3f11e669581754f0694e73d19e501c8a42c10b9affa4377a",
+      "size_bytes": 5735
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/b7baa99de87562e15d5b8eba36c44e33fb916c5eea3facf84fe25d687c316a07.json": {
+      "sha256": "4260712d114f1b910f743d925143dc195306c106987a252fabf7562cb3bb4e8a",
+      "size_bytes": 5851
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ba1839071e29781ce119d0a426b4cd276c7206c15aa57aba336bb770be42f1ce.json": {
+      "sha256": "5a2af200b4da4504127795f294406834f6cbcb1b30e710bb1b673defcae8321d",
+      "size_bytes": 5776
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ba1d46cc6be6cd2fcab01e0584016f85cf60667fb55477f1877d39c553964a28.json": {
+      "sha256": "123881f7f6c92e913dbb61463910b6dc1b2ec6d0dbfb9bb07b6c237d33ee919f",
+      "size_bytes": 5791
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/bad5e63fdb4831e1b047551f03a8c47b66115a2dcd389dded9875df5381951bb.json": {
+      "sha256": "586468e2b3d160babdfe1a1a33c976934aebbd8255d94ad9d09eb91a1b185a7b",
+      "size_bytes": 5680
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/bb9d0c6ecb6ecd666766617125e47a60c4a34bd519f5d546a7e1694fa385d754.json": {
+      "sha256": "7492192c11eb50e202393e52c1abcd04b46410a676fb778ec8b32ec62a89b5c4",
+      "size_bytes": 5733
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/bbfce894933bdb24cbffcbdbf2e831604998bc5fe0656442667eb28588ebd86a.json": {
+      "sha256": "06a8ba884366cb0103019d842caf7d95705ca834e3c758a7aac386331e6d965c",
+      "size_bytes": 5883
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/bf515d4d5f1840829ec58c7c54d09979eebaeedbda0f64d9f604a77e400d4e05.json": {
+      "sha256": "f36030f73b54d1cba7d10900b2acb456154a1f5140d291ab12363929a8ea537d",
+      "size_bytes": 5820
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/bfb53f2c47d3174f2745330a10a638ce3fa75a4bfe1b9e4432b1de2cabd84440.json": {
+      "sha256": "8d802568f4f028564191f2aa9c298a486f9b337814a9e4f092d2fe23cfed9b90",
+      "size_bytes": 5885
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/c0b73e5861a874156e739cffd02e6f817ab56bb4def8c06e215888e5dd1e703a.json": {
+      "sha256": "4dd231594d9c6074c7ac78649caa6097e3aa308ac2f8900fffbfde19946d3e0d",
+      "size_bytes": 5739
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/c0c12b7e28ed3ce2019ca2b482411ec6b6128a0597df61d87eb92f675c92b17d.json": {
+      "sha256": "2289317189ca29959535b4576699dc17dc8fb3ab51125ddf643a21c1705d6d1b",
+      "size_bytes": 5680
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/c18c8bd3af58ad80712fe5e8be272df63d8fe39160f3d388b01581ce6ad8d304.json": {
+      "sha256": "f43f06c7a0568b3a1d5ce944aa0a3b51f89d4fdd585126ffd63b18aa6c5a7d7a",
+      "size_bytes": 5726
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/c432b338aa11e5645e03af388d4661d9f0e7a9e2828a2b2d78b669e5b463af98.json": {
+      "sha256": "426b52be88cb5378b7cb377dcae48ec20776e4a26f94b3ef2df96fed8dd29d26",
+      "size_bytes": 5729
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/c513aec00dd7327fa774a636c322707c481e02298b182c3b8773837012ce91a0.json": {
+      "sha256": "4fd0c615906418e9a8e70df14cb814547362593f1ab31808c7560c978a70bbb2",
+      "size_bytes": 5731
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/c5f4d333398d024a9a65be8e20a63354359874967e8b61a5bdce185dd48c6f8a.json": {
+      "sha256": "d7992dc42fbd3cd7a2766ab7e0c1231ed200164603768d9e56816b8e42c2c379",
+      "size_bytes": 5717
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/c653088e234218e60f3fec9c380ec2e3dc30e2c3ff695c20e1449604f9accd2c.json": {
+      "sha256": "de471049076e430e75f08c448ba71c8ccb415fb1a2464340d3ddc51a3dd235b7",
+      "size_bytes": 5775
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/c72c5b646424a46789314c87e4af766f1ec0f0fb32eba0a598bc6ee15b37770f.json": {
+      "sha256": "0028ffc7f27a2b14482788e8d8d902523746264bbfafb5ba4126c59ca30b56c2",
+      "size_bytes": 5727
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/c75501d6a30444d8f37651ab78095486615af584dde7f1019770f1d86516468a.json": {
+      "sha256": "4fa5c65f76fd2d6c0ba2d12f3a3a1b34468c5f5c288158a2c44ecc68e53effcf",
+      "size_bytes": 5726
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/c7a064131a1edf969a3d89aaffad156761b2084cae082c5d00b5173d5faff101.json": {
+      "sha256": "6cf75772909a42be33655e8c005ad08f3903fe58f67f3ca3c8cbcd0cf26ebc1c",
+      "size_bytes": 5726
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/c7d3f57e3f315b47e44008ade454711e97cdb89df7222f3e728372960b86356e.json": {
+      "sha256": "32ad425b444a0c8d7490fdae34d176ebb2c338720417fdcf7f5927dc7c1ac587",
+      "size_bytes": 5769
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/c886c3557d7e8fe21b718fac4a0a967e0861d6602ab63a0762e92fa389ebe3fb.json": {
+      "sha256": "4050cae64ea62b71a22344a64a1ac3abc5b3692682f50797319965224beef78a",
+      "size_bytes": 5881
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/c95efaaa23504d994aa135a6aa8a336f265e7dc453c9a8c17c5859d423c851b3.json": {
+      "sha256": "e751a2e0fc76d8974bdc23a0660dfc4e5923947ada749677caa234cc4c51906a",
+      "size_bytes": 5681
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/c97974480c559942b0e73fc449d8f1004d25fce8535588960eb413d2f9862555.json": {
+      "sha256": "321dd2e599b09a5d2cfb4ceda84c7dc3800c2db982bfbfe1824b93bbe5e4ab38",
+      "size_bytes": 5786
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/caf56d8572578e9ecdaea2ac84d70c5d97572cd31da04873cc76b95e920ac774.json": {
+      "sha256": "7ef94a2dd408746029b5decae644ad058debc9d3a7e1b2f59f8b93c5d6989d35",
+      "size_bytes": 5681
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ccd3d27ac7910b9ac5fe017a8475b65038eb1f0475cf0fd4396930b281c390e8.json": {
+      "sha256": "c64626cc4cac1bd14f658a2ffcd1bde58b675783a5b8a4c10ead98626c291f42",
+      "size_bytes": 5842
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/cd8edb847408b0b30c30464f47f78f3cf09999e80f32dd1d467890adef20de5f.json": {
+      "sha256": "1944117447d58f07708fa43154f5ced98e35d50e308c220aa017667c51612da1",
+      "size_bytes": 5894
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/cdb1964a2012f006f2ce4c72e8189edf3965a9855acb7d7bf283176a106a82f3.json": {
+      "sha256": "6e58207920a6513ca1eff1c3ce2b517206aebf44c6e9fde8f3d85bb8b5f33513",
+      "size_bytes": 5769
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ce0c246021ca948ddc9c1c45002829a77a49c33122b84c78716c7a485f640338.json": {
+      "sha256": "4b696f9a83a763b0192aece260f7d99b2f5d6650dcc5ef0d694b5d50de247221",
+      "size_bytes": 8606
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ce18ed023d65997e8c81278422a8c75319dd518ea5c28933efbf58c8a1c03132.json": {
+      "sha256": "c66368435241a944a4898e2f56d9141db09ad007004e1412b99a05f5c9d164c7",
+      "size_bytes": 5774
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ce41678455d8ed81c62a4e2c97a337304fa96b2dbd7a398ffe65c222d289853a.json": {
+      "sha256": "c23afcc4601bf3fcbc1da5ab1ddbc72c4e3a7f0067d737947d0a9e4478dac1bc",
+      "size_bytes": 5894
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/cf049955e2d54fbe1005dfc6d165e164c4970db23a3a7d47e83c43f5dfa36c8f.json": {
+      "sha256": "8fa97829738be6b58940e8616a323196e604593f532a8433e5de279dced1f77f",
+      "size_bytes": 5787
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/d0765c6d6c9933abba03b3109f2d03504e9813975f57ece63e5017e3df889a9d.json": {
+      "sha256": "6ae91029c07b5c80a208373aca977d5366825785da0ff46858e49143174cd148",
+      "size_bytes": 6928
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/d0dfa60185c9bd28ab9766533b5341a4986748a162a3b4d63089f0c4836ba4e3.json": {
+      "sha256": "211f0ea43d9cf5d6be1db97ccc7d2ffade58ab5c0241eb4ef7e924bd9715e6ec",
+      "size_bytes": 5848
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/d10e435445e29e5d169ed636c0e90e5b159bfae7e7b4626121a0f06cf6bdedb6.json": {
+      "sha256": "906daba4667ef13419297ae79191b9e9937dbed3fddf5593aaa13d8ae6ec1282",
+      "size_bytes": 5680
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/d17c988523413f80580b4142bac91f372cf138b6343ccdcbca0481a63a876aa6.json": {
+      "sha256": "b24e1e9d8e0dc3cb38f63ea16b88985bc30811925a1d34ebfc0cca843487f425",
+      "size_bytes": 5681
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/d25bd98d718e3514ceb533783e6716d307b1da6bad73dad21c4f550bc065b50f.json": {
+      "sha256": "0d17b8ecbd28e1e1ff8929d51c99542dcbd22635432b7a9d526bf6399968830b",
+      "size_bytes": 5822
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/d2b17eb799438ed2e28361a5cf1132f5dd0a601c3e227f5aa6aa8b323b250963.json": {
+      "sha256": "425cc2012e40d3c8ae6746a500b93d30fd8b87bdf24c9db16408d4b6620814ed",
+      "size_bytes": 5896
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/d41f079a5f529fd9fe3f6701f8e1f5c0b52a81cbc4b51e9b7f5ee9ef4f1795e2.json": {
+      "sha256": "373ca10d95ac7d49a8e4f3e0340ecacd3a58d72f573c58ec8716c72de6d7e7b2",
+      "size_bytes": 5740
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/d45c3e5f529df7fb6bacc81db53ef48bd4d829cff33fd27175c49dd1de30a6d7.json": {
+      "sha256": "45f8bea496b2589494279533a8416cd08d05e3bd5a5f717fdf157af4581111eb",
+      "size_bytes": 7343
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/d5b01915d7dd6bd35f76566b8146768aee6e07baafbcdcd83bd30e2f3e1c838c.json": {
+      "sha256": "80bd8b5a0824aec1052b5b4bc6a7dfb0dfb562cc62e733a48b742f2ca1edef5a",
+      "size_bytes": 5738
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/d6f6563282e9ebd8f8b233498f97eb3c211474a29aa784f266dbc4ca7840c285.json": {
+      "sha256": "a933276b0fa4cda7931f2a378abcd9345007aa551b7472d5183175df39cbccbf",
+      "size_bytes": 5883
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/d7dc27580684cb55c015928a5019bb229a656008bdb05fed04a0f0b3c8c34b9b.json": {
+      "sha256": "8fa4e49fe06ce6b9448669c3a10cebf95eb69e5b9d85dbbdfe2f266779144be7",
+      "size_bytes": 5775
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/d870d4b7dc28b484c2eadb17e59ecc2bcbf9070395d4d9ae1023cb0636516505.json": {
+      "sha256": "9e2e2a7454c389eae2575057a69ee6624b0215ffd9e266fbc9a8f435510421a5",
+      "size_bytes": 5876
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/d99519b5bde371007e94f59a6b47ccbffa91a249a68f9d4dedd729468e5afa53.json": {
+      "sha256": "62ac299d5d7780fa6b9a019cf16801e9ae2d86f5edecde05adbea75cb632b541",
+      "size_bytes": 5767
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/d9e10cc5482345c5ae17748bcae8546e3a5cce6b1e3e5053414ffc73276558c5.json": {
+      "sha256": "81885d3fc39ef48d60316ce678d14dffee1554bc3b342073da57e467d7b44f70",
+      "size_bytes": 5722
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/dac86aa2cc4e4e555b426c75c6b489aac2f8a765029accf3343dcc721219d558.json": {
+      "sha256": "bc2afeb179f1f790b30e5ce1300d8315f45abbe63bc3e4814b682bfae411c274",
+      "size_bytes": 5680
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/daf430ec9dbae681577034a1882decfcb570ff426122443be4e71187c9f77468.json": {
+      "sha256": "d1d77ed6ce1480ede097fe4e308a5d071cf73141575c6932122cd720ed68a8fd",
+      "size_bytes": 5729
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/db4fdcecec5307b52f9b7d09c53c045b4fdcd3ccb6bf53c109aae15a1f0bf94b.json": {
+      "sha256": "2ee9a4308a61636aedcc1db1e9d7c8ba3e8de7a2f526eb334612abcb06248771",
+      "size_bytes": 5734
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/db51a61ae96f1f94da9742338689c533308b5ba3722484f6091d61573aaf13e3.json": {
+      "sha256": "292618debb9eb5597955462625e0ec76fdad71e864dda856719645c0eb71cb08",
+      "size_bytes": 5741
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/dce784a269b1f38570d126b2a0475a48738bdfa430a411b176ebde3865864b2b.json": {
+      "sha256": "0e3c139a3a68fcd6e25d51a39905396a1fa5b6e16eabb140f8d9db0fd4a9fd92",
+      "size_bytes": 5730
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/dd829221a7b5a144508366117273a9e7dad373150815957fd9dd14dc6535438e.json": {
+      "sha256": "a0a56d2825507a0194c107d70b95fc149d8b5c869a3b4d3e6cf780d550b5adc3",
+      "size_bytes": 5789
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/dda10dbdcd440b55aa9a41f9382f273124ff94deeae0bcb25dfb356dc1160c86.json": {
+      "sha256": "6786fde60fd4e8c836aeb4078886395dc02a2f777d592abd0537db093fa99047",
+      "size_bytes": 7007
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ddfc710e2b0abd4ec8dd3c0b7d93db394c639fbdb1f801ed4158d845e60778ef.json": {
+      "sha256": "8f24e3ab496c53479ecd707fba40c447bb4259c3f17bf44405aa8f7f0db72e5c",
+      "size_bytes": 5731
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/de1644d50fd15c52cda05070d93dfab417ce39d4bc1dcf363f3ef07281df5486.json": {
+      "sha256": "45d64e8beb7130c3ad059beaf3c4625bf344bb38d18b8765bf474e9daeea9574",
+      "size_bytes": 6969
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/de6160fd6a99c442db2bec6260fb304a2846e9e2d57404af411531ff09c46284.json": {
+      "sha256": "e06dfe9163ff3bc09ba77ac758243a24efa17de19336f8cf3307e7714c41de4e",
+      "size_bytes": 5776
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/de8f2f7a42c3811b306f2e9164868c78e145aaab6aeac3433763442b94af8d11.json": {
+      "sha256": "c9e4b90d39d9c728afd076670888ec46bfe1bdf23c3e6184f1994bdc0ae076e3",
+      "size_bytes": 6730
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/dec2cc868d7f98ed714c84e7b85a9030808b636330045d4c68abd02ee12d49b4.json": {
+      "sha256": "8e2e6e411fd3427cb9e43b1586c7010c823c20f05f60ab1096e54676199878cd",
+      "size_bytes": 5726
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/df726f65b23a0b8984cb1d98c731587805f5cb353521985f54338b65fca83589.json": {
+      "sha256": "7039489ebb93c29cbaf8625d14129b89c8fa8f1c1ef1ec35e37ebf1c9df0b32d",
+      "size_bytes": 5729
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/dfa70fcf9b497e8be88cf6b575ce956e41e44e49585decbcecf075b41b812331.json": {
+      "sha256": "c8fe77d46c664823d94e635d0462516a8882dc34aa3d489ad94f165e2935fb55",
+      "size_bytes": 5728
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/e27f3cd2c9dd4aa6953cb1dff690c5e77fd7bb84778efd7b9ef2b44bce49752c.json": {
+      "sha256": "fe3589673f3a078e1c7b886b241bcacd53805e239e365146e33b8361a37541d0",
+      "size_bytes": 5730
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/e299b930419ecd0e2b859b33db80cd9cce424346f703071f2e170f3988b49125.json": {
+      "sha256": "39570cd64b02e4ac7e031f93c76aba0650c127fe7ebefdeb94ff1df5ecabfa77",
+      "size_bytes": 7091
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/e37f94c4351379d6cf375a0552d6fef046be7a9d8b5e622ae621a04177124295.json": {
+      "sha256": "a7900f69a3d4fe5de5ca8d9c84799c2c4731bd185c11f90e8e89c4e116fd2fc6",
+      "size_bytes": 5681
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/e506d1da9b3552772ff7931c2f31c1eec2a4ee5177d795889e300f8043a3a9ed.json": {
+      "sha256": "6570c7c47872047d1a30eb34665556434652633b0f12fc55185d371c662e30c1",
+      "size_bytes": 5721
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/e6beab1a04bad0a257fd59b8ee2906f049dc7ecdcd35cb1a21ebdc83527fde6d.json": {
+      "sha256": "d6f4058f522ea158d0185c95d9c12ee81bcb84c555109c9f30dc435f230eaf50",
+      "size_bytes": 5766
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/e70e2879fc62d125e602359bb11b62f1be541460789f78e72c9a17323c6303dd.json": {
+      "sha256": "5bd2336df7b016e6a18a2fdbcc907d8408109b78f3de2b3a01f6488f83b530ac",
+      "size_bytes": 5681
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/e72ed052c1caab3d6ba6622f7aa8f59f9211bcbd811a1fcba1e8877cf89bbf12.json": {
+      "sha256": "5d021729af343de37679bf09f2878bc3b1e51668fbaf59539eb158c4d0edf8d0",
+      "size_bytes": 5800
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/e7426be8e1c9fe1bbeec744b3501dd52b0665b29a01dc55f7e7cd601c4f9124e.json": {
+      "sha256": "f9720e2687f90023cd612c57d7850da205c44924c52561ad5e1b7e52f2484d95",
+      "size_bytes": 5681
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/e7ba5419c8915a925ca492125f34f1457609a1300b4b32eb3fd927cb7ab0e0be.json": {
+      "sha256": "56c57163c46db66567d78c107138b3dbaa13534927fda9d1f1df737471b48c3d",
+      "size_bytes": 5719
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/e815c9afc10f38138a2e7f1d63aec2a27f74ba7f91352107d05ee25e70527075.json": {
+      "sha256": "d6f19c6ca5660d61af31ffb3dc1d1532a9f81e8395f682fba21738c3707ce4b9",
+      "size_bytes": 5729
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/e9e5ccc84570f52b806f0b8454a6a0efe9393727a75a0f7c5d65166f98471111.json": {
+      "sha256": "7824eee99f9fbd4aae2543a531a2121bf1e7e28beec05967f6ab6ff6fca9a2f9",
+      "size_bytes": 5878
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/e9f8bffecbd1a47fec760ca3fea8ae618c663ac1397fd629c9c0d6a42f7a4f48.json": {
+      "sha256": "7816bc4074f4ffa54ed300e41cb220bed839f628598c0998eab72a04a58a91e5",
+      "size_bytes": 5729
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ea24f443cb2834912a1594b62d5aa6f4646b529dba39dcd1c006383862ea667a.json": {
+      "sha256": "832a61da8872c92b8d216fbe68ca1f64ea04ef87d574e2d87e30c769c8d5e41d",
+      "size_bytes": 8896
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ea2f0b2be88ff4c8e273a8da5876e8c4437b54c78faf1cfed1bf393daf24980f.json": {
+      "sha256": "05101355c5d8e482d9a51c8d558d969a5ae53eaeff2cf6acdcc6cdc95275a31c",
+      "size_bytes": 5680
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ea84d94b038f7fdfe8035b462268c34d472dd20e35391bcac904269c998cd079.json": {
+      "sha256": "d4781ba18dc8d41dceaa266d4669409a9959f6782f9e6b4af3677464edbe5f37",
+      "size_bytes": 5729
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ec4e0e823c64731c6eb227816ef906bfa69e61961cd3d9123d91d367ba6767be.json": {
+      "sha256": "93b2cf98f9f16f5ddb0e85174fac9331f0e116e25b85e688728820c2a50d4440",
+      "size_bytes": 5866
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ed6203c59898478946afc5189940e74ef930f340344e3481f277941233727ce3.json": {
+      "sha256": "6ac9efbb031d12fc92f78d598073be4ff9988fbbfb5b9dfd353bf8252e3dc185",
+      "size_bytes": 5739
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ee02563873af2c533e42399ede5e0beeb630b99cd759ccd9f4d4994c4b47ea87.json": {
+      "sha256": "2f5de2f1b5242075ea2408e98ebeb07fb2d53033cf35e9b3805a6057d5d154cf",
+      "size_bytes": 5752
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ee0a3355e3117f788f375214ef2768a58e0c477b25d309fd5656ac1432fca735.json": {
+      "sha256": "ff8076b19ff4375346d23831ac2e72359d2f8e989d0d45c7af1a4001bcb6f3b9",
+      "size_bytes": 5813
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ee9f8c40adaa5898f3addca06dca029283a1b75cf55a5f478b1b6064366b3b92.json": {
+      "sha256": "d9a37b487fe0b278e493b395d3afa1502d5b76e9a063ab72960a03528a6c1cae",
+      "size_bytes": 5773
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/efc36188ce4bb35f911bc081965313a8a645df567d129d82ad54e46e42de680d.json": {
+      "sha256": "3a54e4f88a994821f489cc01705bf3e1756f6937de4444557088dd4ff327a4d4",
+      "size_bytes": 5887
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/f011e41c9f5669bc5f4a55b6028b7ddd6bac27e98ae8d7afbde43954198e985b.json": {
+      "sha256": "4a580a33f4beb2c1c31af60dbd3433bfa0390aed8cf23f1d4c4c2b35ba9a2712",
+      "size_bytes": 5828
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/f0955bd16fe4c464ddd7a5a2f67ab622d83cdbc71cd531d78887d1f3eab617a3.json": {
+      "sha256": "3561766e4209fcbdf66fc0e763feec17132cf8edac28fd7511369ae5f4810a3d",
+      "size_bytes": 5880
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/f1002abcfdd8952a5f427bc4600af7139fbbd3925c5cdb112423bfb4681b591d.json": {
+      "sha256": "c5d3add20e57a3f69b84bb5560ad32f785bff3f83706a0448e25c8cf1e1561be",
+      "size_bytes": 5681
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/f1a23c9d389675dde01562b39176d7af0616fb439033c8d84bc4c5fd3716c5b5.json": {
+      "sha256": "72fb521d5e8dd8cb2f467273d4902e7b2da3eb95842db27426dd24f67f481016",
+      "size_bytes": 5810
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/f1d572d98ac0c06aa99c458815ba8ab3a93e6a1d9c14e070835537086ca45f7b.json": {
+      "sha256": "bbf678ef121317ce92cc7e1ddddb527b6cd559b22949c8dab2c3589d042d95d1",
+      "size_bytes": 5729
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/f25743902afbeae86292faeac1b70d0e9e0d984946eaa010c3709542cda977ca.json": {
+      "sha256": "e5e7f5608a4e93c7fa6dbf7560c8b58019b723a974b0f2b37dc4658cfef5fcf5",
+      "size_bytes": 5729
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/f32fe7e19eb8dc31cfb36c74855d51268dc62bfb779bf9d25fbb99e7795dce56.json": {
+      "sha256": "d40e04995ec369a2e1d7213faab6f3d44461d60a821c3e5abbd13791ec7cb91e",
+      "size_bytes": 5728
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/f3c3a4b1fc9ccbd3d33ff7b9df74d258eae93ee123f3558c5cddd8ee3c9dfaac.json": {
+      "sha256": "24d89614e99acd8618ae6c5f1778d04d5466a258799a9c2ab08c5e4cae9f566e",
+      "size_bytes": 5880
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/f4b9106abf2cb638e4b6d5045ba4cd05d40b8d86d67ffe267afc70a5fe1c90de.json": {
+      "sha256": "e5f23e75d3b86173d4757115f77b6709714feaf8a62b136f89fe95050a9ca473",
+      "size_bytes": 5678
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/f552767ee46c9022779b2302b03e4fba6085d10fcdd2a015c2b3d1b81b3e5605.json": {
+      "sha256": "66a102b955511cf53f42a438338cd9997d9e23b47306aed6d7939375afad7820",
+      "size_bytes": 5737
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/f578c92a6ffcbdada4b90a45cc8fbfb49a9a9d60a1c73a4f64fecabddc954534.json": {
+      "sha256": "67aec31d7b5789f3077d421e94a2b02bb4346edccd5effa6b72e4851ab1fa6d4",
+      "size_bytes": 5887
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/f5edb427d4626f7bd3783909c8dc07390aae7134bb4fa23e0fe62728f7626b00.json": {
+      "sha256": "308c2d12b4b46d07dedb336b6370ec9746c9da32cd314bdeee1d69c0ccee59dc",
+      "size_bytes": 5716
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/f66ded5e65e232d314acb50878dfeef55b636f893ea1d982d1bafa171dc6dcf5.json": {
+      "sha256": "81f6d3b278edb832d17232553a92f047d315f790e97ffc5f6ea9071cdd573993",
+      "size_bytes": 5756
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/f6be86d84c75ff3e81163640519939a5e1a9fefb51a3a01911f55e6951ffe815.json": {
+      "sha256": "a0789e87d5ea3df7e64356b8eac80e547ebf3cb1322f879360fe2e90dabc6619",
+      "size_bytes": 5832
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/f86b561bf2c0e19b217c3d22f5ec67416cc6fd8622b517e8a45aa535119f0c81.json": {
+      "sha256": "845d05e191a4591372caf27ebd19a10b0696ed6969fb9b460517321304eb2252",
+      "size_bytes": 5782
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/f921ba7ec04d9b6b1499ed2a312f747c9445be74a2769acd63782b067df44906.json": {
+      "sha256": "b343b2d3db14244293a900a257b7bf24fd3aed5bdf2ee76c295f3e707c957571",
+      "size_bytes": 8113
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/fa618e75c5c8f1120706e8257c7b03679294007407dfedb69a09c39a497be279.json": {
+      "sha256": "18519b7735dba39227ee10ef991975aadc2de2489b05f9dfb19864be16796072",
+      "size_bytes": 5781
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/fb36654d142dfdbc573ed57b098969129948d87bcc52230279542d920d266d9c.json": {
+      "sha256": "fb2a58437594222b8149962c8f399c927014b7c6d6f87ff479e1b2d75b56de3d",
+      "size_bytes": 5829
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/fbe6d68a26f9922c8f3ee63c189775cb903e4d3d3eb472c2b078007e8d97c291.json": {
+      "sha256": "a9a5f71addbbd59e83f110a78c7f14f5825b50d810db62d6fba08d3d1a93369f",
+      "size_bytes": 5748
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/fcbf9db98f6ecc43d69d6215005517cf8009f055b46da49e1c428dad7228eca5.json": {
+      "sha256": "8e99ce62dd47eadca7e10c6d178c9f11003b781f0e2a48ce743eaeb10d505219",
+      "size_bytes": 5821
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/fd70a76e78cc15d2a8ba78d0f4f82e0065593b9eba49cf15eefd45c4210be32a.json": {
+      "sha256": "a49a52b0e8d7715f93aa246020aba82b1bcda068a7316276b2ad3075b5079baa",
+      "size_bytes": 5834
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ff3f09299a137bf29156e08da5170fc6025ae60ce7a833f6cb1b7b4cfe8e3fb1.json": {
+      "sha256": "30e2f4568047bee9c16de9a90c23aec6f2d7d739c449de956176f9b934577df0",
+      "size_bytes": 5815
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ffa5c9f0fdb59cdc52e00d1ef3a0d8ae4d683ddc0835a98212f74f314c0d1ba5.json": {
+      "sha256": "814f09c94fafbdd2b2cb803112c8d6e917281c231ba97b9139b14cf87a38602e",
+      "size_bytes": 5681
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ffbfe2fff0b7497e4ef290f02f3e667152e91c4e97d91472fdacca74c0df3415.json": {
+      "sha256": "25f88cd5d9d43c774cf3eadcb7490c62ab12f68b67eab9ae392d02e1775fef2a",
+      "size_bytes": 8916
+    },
+    "modern_baselines/comparison_aligned_grid/results/rnn_k1_100_missing/ffd467896df5d8a918c81bbce2d9eb0fc98f0b900b433b2ce2f51dc6b665e736.json": {
+      "sha256": "b19a37c90ce67dca838bdeac9396cabf82033685de556cfbdf3b4820d66679b9",
+      "size_bytes": 5763
+    },
+    "modern_baselines/comparison_aligned_grid/runner.py": {
+      "sha256": "a80bc2b85c6d73a92144fd2065ae9094d471672d997e3a271d76047852b27c3a",
+      "size_bytes": 17226
+    },
+    "modern_baselines/comparison_aligned_grid/test_aligned.py": {
+      "sha256": "0dcf5e4885def9e9492845b8d77f033f1be95cace608766f858c347cc1fb9690",
+      "size_bytes": 10345
+    }
+  },
+  "imported_candidate_records_copied_or_rewritten": 0,
+  "modified_preexisting_files": [],
+  "new_candidate_records": 400,
+  "self_hash": "Inventory lists itself; its self hash is intentionally excluded."
+}
