@@ -1,12 +1,7 @@
-%% Knowledge and Information Systems (KAIS) submission manuscript
-%% Adapted 2026-09-19 from the current Journal of Classification manuscript.
-%% KAIS currently recommends the Springer Nature LaTeX template (sn-jnl.cls).
-%% KAIS uses numbered citations in square brackets; sn-basic + Numbered selects
-%% the journal-recommended Springer Nature basic numbered reference style.
-%% Compile with the official Springer Nature template files, including
-%% sn-jnl.cls and bst/sn-basic.bst (or sn-basic.bst in the working directory).
-
-\documentclass[pdflatex,sn-basic,Numbered]{sn-jnl}
+%% Pattern Recognition review manuscript.
+%% elsarticle-num is provisional: verify the journal-specific Guide for Authors
+%% bibliography requirements before submission.
+\documentclass[review,12pt]{elsarticle}
 
 \usepackage{graphicx}
 \usepackage{multirow}
@@ -22,9 +17,27 @@
 \usepackage{algpseudocode}
 \usepackage{listings}
 \usepackage{bm}
+\usepackage{seqsplit}
+\usepackage{pdflscape}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdfauthor={Eraldo P. Marinho; Caetano Mazzoni Ranieri; Fabricio A. Breve}}
+\usepackage{setspace}
+% elsarticle 3.3 review uses a 1.5 multiplier; request true double spacing.
+\doublespacing
+\makeatletter
+\let\@blstr\baselinestretch
+% Keep the title page numbered, like the remaining review pages.
+\def\ps@pprintTitle{\ps@plain}
+\makeatother
+% The class otherwise explicitly single-spaces these front-matter boxes.
+\AddToHook{env/abstract/begin}{\doublespacing}
+\AddToHook{env/keyword/begin}{\doublespacing}
+% Modest fallback for line breaking in the review text block.
+\setlength{\emergencystretch}{3em}
+\journal{Pattern Recognition}
 
 % amsthm is loaded explicitly because the manuscript uses proof environments and \qedsymbol.
-% natbib is handled by sn-jnl; do not load natbib again.
+% natbib is handled by elsarticle; do not load natbib again.
 \newtheorem{theorem}{Theorem}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{example}{Example}
@@ -45,24 +58,28 @@
 \newcommand{\argmax}{\operatorname*{arg\,max}}
 \newcommand{\argmin}{\operatorname*{arg\,min}}
 
-% \renewcommand{\orcidlogo}{\textsuperscript{\scriptsize ORCID}}
-
 \renewcommand{\qedsymbol}{$\blacksquare$}
 \graphicspath{{./}}
 
 \begin{document}
 
-\title[Round-Trip KNN Clustering]{Round-Trip KNN Clustering: multiscale hierarchical cluster detection on directed nearest-neighbour graphs}
+\begin{frontmatter}
 
-\author*[1]{\fnm{Eraldo P.} \sur{Marinho}}\email{pereira.marinho@unesp.br}
-\author[1]{\fnm{Caetano Mazzoni} \sur{Ranieri}}\email{cm.ranieri@unesp.br}
-\author[1]{\fnm{Fabricio A.} \sur{Breve}}\email{fabricio.breve@unesp.br}
+\title{Round-Trip KNN Clustering: multiscale hierarchical cluster detection on directed nearest-neighbour graphs}
 
-\affil*[1]{\orgdiv{Department of Statistics, Applied Mathematics and Computing},
-\orgname{S\~ao Paulo State University (UNESP), Institute of Geosciences and Exact Sciences},
-\orgaddress{\street{Av. 24-A, 1515}, \city{Rio Claro}, \state{S\~ao Paulo}, \country{Brazil}}}
+\author[1]{Eraldo P. Marinho\corref{cor1}}
+\ead{pereira.marinho@unesp.br}
+\author[1]{Caetano Mazzoni Ranieri}
+\ead{cm.ranieri@unesp.br}
+\author[1]{Fabricio A. Breve}
+\ead{fabricio.breve@unesp.br}
+\cortext[cor1]{Corresponding author.}
 
-\abstract{
+\address[1]{Department of Statistics, Applied Mathematics and Computing,
+S\~ao Paulo State University (UNESP), Institute of Geosciences and Exact Sciences,
+Av. 24-A, 1515, Rio Claro, S\~ao Paulo, Brazil}
+
+\begin{abstract}
 We introduce Round-Trip KNN Clustering (RTKNNC), a graph-based method for
 finding cluster structure at several neighbourhood scales without requiring the
 number of clusters in advance. Unlike approaches that first make a
@@ -85,10 +102,12 @@ variable-density benchmark and from $0.8083$ to $0.9853$ on a sparse-bridge
 benchmark. Comparisons with eight external clustering methods show competitive
 performance under oracle parameter selection; cluster construction itself
 excludes reference labels.
-}
-\keywords{k-nearest-neighbour graph, graph-based clustering, reverse nearest neighbours, round-trip closure, structural refinement, multiscale clustering}
+\end{abstract}
+\begin{keyword}
+k-nearest-neighbour graph \sep graph-based clustering \sep reverse nearest neighbours \sep round-trip closure \sep structural refinement \sep multiscale clustering
+\end{keyword}
 
-\maketitle
+\end{frontmatter}
 
 \section{Introduction}\label{sec:introduction}
 
@@ -1212,7 +1231,7 @@ three density-based methods infer their reported cluster counts.
 RNN-DBSCAN \citep{BryantCios2018RNNDBSCAN} is evaluated using the maintained
 third-party \texttt{sklearn-ann} implementation \citep{SklearnAnnRNNDBSCAN},
 pinned to commit
-\texttt{c105475ab0bc6dfcdb2239a38273d6895c5fe281}.
+\texttt{\seqsplit{c105475ab0bc6dfcdb2239a38273d6895c5fe281}}.
 This source snapshot is not verified as originating from the paper's authors,
 and no numerical-fidelity claim to their implementation is made. This
 implementation has no $\epsilon$ parameter: \texttt{n\_neighbors}$=k$
@@ -1510,7 +1529,7 @@ for the sparse bridge selects $K=11$ by a marginal ARI advantage over $K=10$;
 the focused $K=6$ experiment remains useful because it isolates the earliest
 corrected three-component partition under the three vote kernels.
 
-The aligned third-party RNN-DBSCAN oracle selects $k=17,13,11,52,50,82$ for
+The aligned third-party RNN-DBSCAN oracle selects $k=17,\allowbreak 13,\allowbreak 11,\allowbreak 52,\allowbreak 50,\allowbreak 82$ for
 anisotropic blobs, equal-density blobs, variable-density blobs, the sparse
 bridge, circles, and two moons, respectively. Its corresponding ARI/NMI
 pairs are $0.9834/0.9680$, $0.9595/0.9404$, $0.9218/0.9127$,
@@ -1521,7 +1540,13 @@ RTKNNC therefore has higher ARI and NMI on five datasets and equal scores on
 circles compared with RNN-DBSCAN. These are descriptive results on six
 fixed datasets, without a statistical-significance claim.
 
+% Preserve the wide comparison table input at a legible review size.
+\begin{landscape}
+\begingroup
+\setlength{\textwidth}{\linewidth}
 \input{all_methods_table.tex}
+\endgroup
+\end{landscape}
 
 The comparison therefore supports competitiveness rather than universal
 superiority. RTKNNC matches the best ARI on four benchmark datasets. On the
@@ -1694,7 +1719,7 @@ alternative covariance models, label-free scale selection, and additional
 graph-based baselines.
 
 
-\bmhead{Statements and Declarations}
+\section*{Statements and Declarations}
 
 \noindent\textbf{Competing interests.}
 The authors declare no competing interests.
@@ -1708,8 +1733,9 @@ Not applicable.
 Not applicable.
 
 \medskip
-\bmhead{Data and code availability}
+\section*{Data and code availability}
 The synthetic datasets used in this study, including their reference labels, and the custom C and Python implementations are publicly available in the project repository at \url{https://github.com/epmarinho/rtknnc}.
 
+\bibliographystyle{elsarticle-num}
 \bibliography{references}
 \end{document}
