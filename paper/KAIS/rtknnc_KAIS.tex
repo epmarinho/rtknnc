@@ -1,0 +1,1969 @@
+%% Knowledge and Information Systems (KAIS) submission manuscript
+%% Active KAIS new-submission source; scientific protocol aligned with PATREC.
+%% Updated 2026-10-24; paper/KAIS_old remains archival.
+%% KAIS currently recommends the Springer Nature LaTeX template (sn-jnl.cls).
+%% KAIS uses numbered citations in square brackets; sn-basic + Numbered selects
+%% the journal-recommended Springer Nature basic numbered reference style.
+%% Compile with the official Springer Nature template files, including
+%% sn-jnl.cls and bst/sn-basic.bst (or sn-basic.bst in the working directory).
+
+\documentclass[pdflatex,sn-basic,Numbered]{sn-jnl}
+
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage[title]{appendix}
+\usepackage{xcolor}
+\usepackage{textcomp}
+\usepackage{booktabs}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage{listings}
+\usepackage{bm}
+\usepackage{seqsplit}
+
+% Unique PDF destination names avoid duplicate float anchors from the
+% class's hyperref/float loading order; numbering and content are unchanged.
+\hypersetup{hypertexnames=false}
+
+% amsthm is loaded explicitly because the manuscript uses proof environments and \qedsymbol.
+% natbib is handled by sn-jnl; do not load natbib again.
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{example}{Example}
+\newtheorem{remark}{Remark}
+\newtheorem{definition}{Definition}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\calG}{\mathcal{G}}
+\newcommand{\calN}{\mathcal{N}}
+\newcommand{\calP}{\mathcal{P}}
+\newcommand{\calR}{\mathcal{R}}
+\newcommand{\calT}{\mathcal{T}}
+\newcommand{\calV}{\mathcal{V}}
+\newcommand{\KNN}{\operatorname{KNN}}
+\newcommand{\RNN}{\operatorname{RNN}}
+\newcommand{\rdeg}{\operatorname{rdeg}}
+\newcommand{\argmax}{\operatorname*{arg\,max}}
+\newcommand{\argmin}{\operatorname*{arg\,min}}
+
+% \renewcommand{\orcidlogo}{\textsuperscript{\scriptsize ORCID}}
+
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\graphicspath{{./}}
+
+\begin{document}
+
+\title[Round-Trip KNN Clustering]{Round-Trip KNN Clustering: multiscale hierarchical cluster detection on directed nearest-neighbour graphs}
+
+\author*[1]{\fnm{Eraldo P.} \sur{Marinho}}\email{pereira.marinho@unesp.br}
+\author[1]{\fnm{Caetano Mazzoni} \sur{Ranieri}}\email{cm.ranieri@unesp.br}
+\author[1]{\fnm{Fabricio A.} \sur{Breve}}\email{fabricio.breve@unesp.br}
+
+\affil*[1]{\orgdiv{Department of Statistics, Applied Mathematics and Computing},
+\orgname{S\~ao Paulo State University (UNESP), Institute of Geosciences and Exact Sciences},
+\orgaddress{\street{Av. 24-A, 1515}, \city{Rio Claro}, \state{S\~ao Paulo}, \country{Brazil}}}
+
+\abstract{
+% We introduce Round-Trip KNN Clustering (RTKNNC), a graph-based method for
+% finding cluster structure at several neighbourhood scales without requiring the
+% number of clusters in advance. Source-budgeted reverse-neighbour voting
+% modulates local visibility in a directed $k$-nearest-neighbour (KNN) graph.
+% Once the visible arcs are fixed, closure is ordinary connected-component
+% extraction on the OR-symmetrised graph: an undirected edge is present when
+% either directed arc is visible. The contribution lies in the filtered graph
+% family and its controlled analysis, rather than in forward--backward traversal
+% as a connectivity principle. For the unpruned inverse-square model, positive
+% distances and nested deterministic neighbour choices imply that increasing $K$
+% can merge clusters but cannot split them. An optional label-free heuristic
+% refinement screens local mixture proposals, then regularises child assignments
+% for graph coherence and size; the final partition is not a global BIC optimum.
+% Across eight synthetic datasets and $K=2,\ldots,16$, independent C and Python
+% implementations produced identical unpruned inverse-square partitions in all 120
+% reference runs. Refinement increased adjusted Rand index from $0.7817$ to $0.9627$ on a
+% variable-density benchmark and from $0.8083$ to $0.9853$ on a sparse-bridge
+% benchmark. Comparisons with eight external clustering methods show competitive
+% performance on six fixed two-dimensional synthetic datasets under oracle
+% parameter selection;
+% cluster construction itself excludes reference labels.
+% A separate implementation-based SHADE comparison uses 120 fixed-setting fits
+% across six datasets, two preprocessing treatments, and ten seeds. SHADE is
+% essentially perfect on several controls but degrades on variable density and
+% the sparse bridge; the unequal evaluation protocols support descriptive comparison.
+
+We introduce Round-Trip KNN Clustering (RTKNNC), a method for identifying clusters from directed nearest-neighbour graphs without specifying their number in advance. Each point distributes votes among its neighbours, while the votes received influence which connections are retained. Clusters are then obtained from the connected components of the resulting graph. By varying the neighbourhood size, the method reveals how cluster structure changes with scale. For the original inverse-square voting rule, we prove that, under specified conditions and without refinement, increasing the neighbourhood size can merge clusters but cannot split them. We also introduce an optional refinement step to separate groups that were incorrectly joined by graph connectivity. On two challenging synthetic datasets, this improved the adjusted Rand index from 0.7817 to 0.9627 and from 0.8083 to 0.9853, respectively. Comparisons with eight other clustering methods and a separate evaluation of SHADE showed competitive results on the tested datasets, although the evaluation protocols differed. Further experiments are needed to assess the method's applicability to more diverse and higher-dimensional data.
+}
+\keywords{k-nearest-neighbour graph, graph-based clustering, reverse nearest neighbours, round-trip closure, structural refinement, multiscale clustering}
+
+\maketitle
+
+\section{Introduction}\label{sec:introduction}
+
+Nearest-neighbour relations provide a simple way to describe local structure in
+data. They are used in classification, density estimation, graph construction,
+manifold learning, outlier detection, and clustering
+\citep{CoverHart1967,LoftsgaardenQuesenberry1965,Bentley1975,FriedmanBentleyFinkel1977,VonLuxburg2007}.
+For clustering in particular, local neighbourhood information is attractive
+because it can reveal non-convex or unevenly populated groups that are poorly
+described by a centroid or by a single global distance threshold. Existing
+approaches exploit shared neighbours, mutual or reciprocal KNN graphs, reverse
+nearest neighbours, and density-based connectivity
+\citep{JarvisPatrick1973,Ertoz2003SNN,BritoChavezQuirozYukich1997,GowdaKrishna1978,ChowdhuryAmorim2018,XieLeeWangChenZhou2019}.
+
+A directed KNN graph contains two complementary views of every point. Its
+outgoing links tell us which points it regards as neighbours; its incoming
+links tell us which other points regard it as a neighbour. These views are not
+generally equivalent, and making the graph undirected at the outset discards
+that asymmetry. RTKNNC retains it during voting and source-specific filtering.
+Each outgoing KNN selection casts a vote from its source's common budget, and
+incoming votes define a local popularity score. This score modulates the source
+threshold used to decide which directed links are visible before symmetrisation.
+
+For a fixed value of $K$, the method can be described intuitively as an
+expansion process. Starting from a seed, RTKNNC follows visible links both
+forward, to selected neighbours, and backward, to points that selected the
+current point. Every newly reached point is explored in the same way, and the
+process stops when no additional points can be added. We call this a
+\emph{round trip}, and the final set a saturated round-trip closure. Clusters
+therefore arise from local graph connectivity rather than from a prescribed
+geometric shape. Once the visible directed edge set is fixed, this is ordinary
+connected-component extraction on its OR-symmetrisation: an edge is retained
+when either directed orientation is visible. Forward--backward traversal is a
+way to compute those components, not a distinct connectivity principle. The
+number of clusters is not supplied to the algorithm.
+
+The neighbourhood size $K$ also provides a natural notion of scale. Small
+values describe very local structure, whereas larger values allow information
+to propagate over broader neighbourhoods. Running the method independently for
+increasing $K$ produces a sequence of cluster layers that makes persistent
+groups and mergers directly visible. In this paper, \emph{hierarchical} refers
+to this organisation across neighbourhood scales, not to a conventional
+linkage-based agglomerative procedure. For the reference inverse-square voting
+rule, before the optional structural refinement is applied, positive distances
+and a fixed deterministic ordering that gives nested neighbour choices yield
+proper partitions with a merge-only property:
+as $K$ increases, a cluster may persist or merge with another one, but it does
+not split.
+
+Any clustering method based on connectivity faces a familiar difficulty: a
+small number of links can join groups that are otherwise well separated. A
+sparse chain of points may act as a bridge, or two populations of different
+densities may overlap in a narrow region. RTKNNC therefore includes an optional
+structural-refinement stage that is applied only after a connected component
+has already been formed. This heuristic stage uses BIC to select a local
+Gaussian-mixture proposal among finite numerical fits, asking whether two or
+three components improve on a single-component fit. A subsequent graph-coherence
+stage regularises the proposed child labels and checks their sizes. The final
+labels are not claimed to optimise BIC or a global partition objective.
+Reference labels are never used inside this refinement decision, and the KNN
+adjacency lists themselves are not rewritten.
+
+This separation is important. The round-trip graph determines how local
+evidence propagates and therefore produces the original cluster candidates; the
+optional refinement is a restricted heuristic for cases in which connectivity
+alone has joined populations supported by a local mixture proposal. It also lets us study two
+questions separately: how vote allocation changes the visible graph, and when a
+connected component needs an additional structural check.
+
+KNN graphs, shared-neighbour evidence, and reciprocal or reverse-neighbour
+relations are established ingredients
+\citep{JarvisPatrick1973,Ertoz2003SNN,BritoChavezQuirozYukich1997,ChowdhuryAmorim2018,XieLeeWangChenZhou2019}.
+The contribution of RTKNNC is the specific combination of source-budgeted
+reverse-neighbour voting and popularity-modulated visibility, the resulting
+filtered graph family, its conditional inverse-square coarsening property,
+and the controlled analysis of allocation and heuristic refinement. Recent
+KNNG-CS work also uses KNN graphs, but for coreset selection
+\citep{LiuEtAl2026KNNGCS}, whereas RTKNNC constructs a full-data partition.
+
+The main contributions of this paper are:
+\begin{enumerate}
+\item a filtered directed KNN graph family defined by source-budgeted
+reverse-neighbour voting and popularity-modulated visibility, followed by
+ordinary connected-component extraction on its OR-symmetrisation;
+\item a multiscale construction in which cluster structure is followed as $K$
+changes, together with a proof of merge-only coarsening for the unrefined
+reference inverse-square model under positive distances and nested
+deterministic neighbour choices;
+\item a controlled family of vote-allocation rules---uniform,
+inverse-distance, inverse-square, and sigmoid---that allows their effects to be
+compared under the same per-source vote budget;
+\item an optional label-free heuristic refinement that screens local mixture
+proposals for already formed components and regularises their labels using
+size and graph-coherence checks; and
+\item an experimental evaluation covering implementation agreement, vote-model
+ablations, multiscale behaviour, structural-refinement cases, and comparison
+with eight external clustering methods under oracle selection and a separate
+fixed-setting comparison with the ICDM 2024 method SHADE.
+\end{enumerate}
+
+The remainder of the paper is organised as follows. Section~\ref{sec:related}
+reviews related neighbour- and graph-based clustering approaches.
+Section~\ref{sec:preliminaries} introduces the notation needed to describe the
+directed KNN graph and the round-trip relation. Section~\ref{sec:method} presents
+the voting, visibility, expansion, refinement, and multiscale construction.
+Section~\ref{sec:experimental_protocol} describes the datasets, implementation
+checks, parameter sweeps, and comparison protocol. Section~\ref{sec:results}
+reports the results, Section~\ref{sec:discussion} discusses the behaviour and
+limitations of the method, and Section~\ref{sec:conclusion} summarises the main
+findings.
+
+\section{Related work}\label{sec:related}
+
+This section situates RTKNNC within the main clustering approaches that share its nearest-neighbour and graph-based foundations. We review shared-neighbour methods, mutual, reciprocal, and reverse nearest-neighbour constructions, and density-based and spectral graph clustering, highlighting the distinctions between these approaches and the visibility-filtered round-trip closure proposed here.
+
+\subsection{Shared-neighbour and Jarvis--Patrick clustering}
+
+Jarvis and Patrick introduced a clustering criterion based on shared near neighbours \citep{JarvisPatrick1973}. Later shared-nearest-neighbour (SNN) clustering methods used common neighbour counts to improve robustness to clusters of different shapes, sizes, and densities \citep{Ertoz2003SNN}. RTKNNC is related to this family because points sharing an outgoing neighbour belong to that neighbour's reverse-neighbour set. RTKNNC uses incoming votes to define popularity and source-specific visibility; it does not explicitly compute a pairwise shared-neighbour similarity. These scores are fixed before connected-component extraction at each scale.
+
+\subsection{Mutual, reciprocal, and reverse nearest-neighbour methods}
+
+Mutual KNN and reciprocal nearest-neighbour graphs have been used for clustering and outlier detection \citep{BritoChavezQuirozYukich1997,GowdaKrishna1978,SardanaBhatnagar2014}. Reverse nearest-neighbour methods use incoming KNN links as density or representativeness signals \citep{ChowdhuryAmorim2018}. RTKNNC uses reverse-neighbour sets both for backward traversal and to compute kernel-weighted popularity. Popularity then modulates the local visibility threshold for forward and backward transitions.
+
+RNN-DBSCAN uses reverse nearest-neighbour counts as density estimates for
+density-based clustering \citep{BryantCios2018RNNDBSCAN}. This differs from
+RTKNNC's kernel-weighted popularity and visibility-filtered recursive closure.
+The comparison below evaluates a maintained third-party implementation of
+RNN-DBSCAN, rather than a verified implementation from the original authors.
+
+Recent work continues to develop neighbour relations as clustering primitives.
+MGNR studies multi-granularity neighbour relationships
+\citep{XieEtAl2024MGNR}; weighted-KNN density-peaks methods estimate local
+density using weighted neighbours \citep{DingEtAl2024WeightedKNN}; and
+KNEG-CL uses an evolutionary KNN graph for clustering
+\citep{FeiEtAl2025KNEGCL}.
+
+KNNG-CS uses KNN graphs for coreset selection
+\citep{LiuEtAl2026KNNGCS}, rather than producing a full-data partition.
+RTKNNC uses incoming distance-weighted votes to modulate visibility before
+connected-component extraction and retains the geometry-dependent reference budget
+\[
+B_K(x_i)=\sum_{x_j\in\calN_K^+(x_i)}1/r_{ij}^2.
+\] This common budget recovers the inverse-square operator exactly and permits comparison of alternative allocation shapes.
+
+\subsection{Density-based and graph clustering}
+
+DBSCAN, OPTICS, and HDBSCAN define clusters through density connectivity and hierarchical density estimates \citep{Ester1996DBSCAN,Ankerst1999OPTICS,Campello2013HDBSCAN,CampelloMoulaviZimekSander2015}. Spectral clustering constructs a similarity graph and uses eigenvectors of the associated graph Laplacian to reveal cluster structure \citep{NgJordanWeiss2002,VonLuxburg2007}. The method proposed here is graph-based, but it is combinatorial and closure-driven: it does not require eigenvalue decomposition and it exposes a sequence of partitions as the neighbourhood size $K$ varies.
+The comparison also includes classical agglomerative clustering
+\citep{MurtaghContreras2012}, $k$-means \citep{Lloyd1982,MacQueen1967}, and
+Gaussian mixtures, using the scikit-learn implementations
+\citep{PedregosaEtAl2011}.
+
+Sieranoja and Fr\"anti \citep{SieranojaFranti2022Graph} adapt $k$-means-style
+local optimisation to weighted undirected graphs, including KNN graphs of
+numerical data. Their K-algorithm optimises a graph partition for a
+user-specified cluster count; the M-algorithm adds merge-and-split moves to
+explore other local optima. RTKNNC instead obtains the cluster count from
+the connected components of its visibility-filtered graph at each
+neighbourhood scale, with optional local refinement.
+
+Zhang et al.\ \citep{ZhangEtAl2024KernelIVAT} address unequal cluster densities
+by combining an Isolation-kernel dissimilarity with improved visual assessment
+of cluster tendency (iVAT) and adaptive extraction from the reordered
+dissimilarity image. This offers a complementary response to density
+heterogeneity: RTKNNC filters directed KNN links through voting and visibility,
+then optionally refines the resulting components. These graph-optimisation
+and iVAT methods provide methodological context; they are not among the
+experimental baselines evaluated here.
+
+SHADE learns an embedding that represents density-connected distances and
+infers the cluster count without receiving the reference count
+\citep{BeerEtAl2024SHADE}. This ICDM 2024 method provides a contemporary deep
+density-based comparison with RTKNNC's explicit graph filtering and heuristic
+structural refinement. We evaluate the maintained original author
+implementation under the declared protocol below, rather than claim exact
+reproduction of every printed loss formula.
+
+\section{Preliminaries}\label{sec:preliminaries}
+
+This section introduces the notation and graph-theoretic constructions used throughout the paper. We first state the round-trip mechanism for a general directed relation and then specialise it to directed KNN graphs and reverse neighbourhoods.
+
+\subsection{Relational basis of the round-trip operator}\label{sec:relational_origin}
+
+The primitive idea can be stated for an arbitrary directed binary relation on
+a common finite set.  Let
+\begin{equation}
+X=\{x_1,\ldots,x_N\}
+\end{equation}
+be a finite set and let
+\begin{equation}
+T\subseteq X\times X
+\end{equation}
+be a directed binary relation.  Its symmetrised forward--backward, or
+round-trip, relation is
+\begin{equation}
+R_T=T\cup T^{-1}\subseteq X\times X.
+\end{equation}
+For $x\in X$, the corresponding one-step round-trip neighbourhood is
+\begin{equation}
+R_T(x)=\{y\in X:(x,y)\in T\}\cup\{y\in X:(y,x)\in T\}.
+\label{eq:relational_roundtrip}
+\end{equation}
+Thus, one step retrieves both the objects selected directly by $x$ and the
+objects that select $x$.
+
+For a subset $S\subseteq X$, define
+\begin{equation}
+R_T(S)=\bigcup_{x\in S}R_T(x).
+\end{equation}
+The cumulative round-trip closure starts from
+\begin{equation}
+C_T^0(S)=S,
+\end{equation}
+and evolves according to
+\begin{equation}
+C_T^{t+1}(S)=C_T^t(S)\cup R_T(C_T^t(S)),\qquad t\geq 0.
+\label{eq:relational_iteration}
+\end{equation}
+The process saturates when
+\begin{equation}
+C_T^{s+1}(S)=C_T^s(S)
+\end{equation}
+for the first time.  The integer $s$ is the saturation depth.  Because $X$ is
+finite and the sequence is monotone, saturation is guaranteed; the saturated
+set is the union of the weakly connected components of $(X,T)$ that intersect
+$S$.
+
+This relational view exactly describes the forward--backward mechanism used by
+the proposed graph operator.  The algorithmic construction below instantiates
+$T$ as the visibility-filtered edge relation of a directed KNN graph.
+
+\subsection{Directed KNN graphs and reverse neighbourhoods}\label{sec:knn_graph}
+
+Let
+\begin{equation}
+X=\{x_1,\ldots,x_N\}\subset\R^d
+\end{equation}
+be a finite dataset with a metric $\delta:X\times X\to\R_{\geq 0}$.
+Assume $N\geq2$ and $1\leq K\leq N-1$. The experiments use Euclidean
+distance on the stated feature columns. For each point $x_i$, let
+\begin{equation}
+\calN_K^+(x_i)=\KNN_K(x_i)
+\end{equation}
+denote the set of its $K$ nearest proper neighbours, which excludes $x_i$ itself.
+The directed KNN graph is
+\begin{equation}
+\calG_K=(X,E_K),
+\end{equation}
+where
+\begin{equation}
+(x_i,x_j)\in E_K \quad\Longleftrightarrow\quad x_j\in\calN_K^+(x_i).
+\end{equation}
+Figure~\ref{fig:directed_knn_example} illustrates these directed neighbour
+choices before visibility filtering.
+The reverse-neighbour set of $x_j$ is
+\begin{equation}
+\calN_K^-(x_j)=\RNN_K(x_j)=\{x_i\in X:x_j\in\calN_K^+(x_i)\}.
+\label{eq:rnn}
+\end{equation}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=4.8in,height=6.8in,keepaspectratio]{fig_2018_knn_graph_black.png}
+\caption{Example of a directed KNN graph with $K=2$, used to illustrate the
+proposed mechanism. Arrows represent directed nearest-neighbour choices. The
+graph encodes neighbourhood connectivity, but its abstract layout does not
+reproduce the spatial morphology of the original point distribution. Metric
+distances are stored as edge attributes and are not represented by the drawn
+edge lengths. The same graph supports reverse-neighbour retrieval and
+visibility-filtered round-trip expansion.}
+\label{fig:directed_knn_example}
+\end{figure}
+
+\section{Proposed algorithm}\label{sec:method}
+\label{sec:proposed-algorithm}
+
+This section develops RTKNNC from the directed KNN representation introduced above. We define the vote-kernel popularity and visibility rules, the resulting recursive round-trip closure, the optional structural-pruning stage, and the multiscale cluster-layer representation used in the experiments.
+
+At a high level, for a fixed $K$, RTKNNC first builds a directed KNN graph.
+Incoming neighbour selections define a popularity score, which adjusts a local
+distance threshold and determines the visible directed edge set. Closure is
+then connected-component extraction on the OR-symmetrised visible graph;
+following admissible links in both directions computes those components.
+Repeating the graph construction independently for increasing values of $K$
+produces the multiscale cluster sequence. An optional heuristic stage then
+screens local mixture proposals and regularises child labels for graph coherence.
+
+\subsection{Vote-kernel popularity, visibility, and round-trip closure}\label{sec:visibility_closure}
+
+The reference formulation adopts a popularity-modulated, visibility-filtered round-trip expansion. A point need not propagate through all of its $K$ nearest-neighbour links: only links admitted by its local visibility threshold participate in the forward--backward closure. To reproduce the reference implementation exactly, linear and squared distances must be distinguished.
+
+\subsubsection{Linear and squared-distance representation}
+
+Let
+\begin{equation}
+r_{ij}=\delta(x_i,x_j),
+\qquad
+D_{ij}=r_{ij}^{2}.
+\label{eq:linear_squared_distance}
+\end{equation}
+The C implementation stores $D_{ij}$, rather than $r_{ij}$, in each KNN list. After the list is sorted, its stored radius is the largest retained squared distance,
+\begin{equation}
+R_K^{(2)}(x_i)=D_{i,(K)}
+=\max_{x_j\in\calN_K^+(x_i)}D_{ij}.
+\label{eq:squared_knn_radius}
+\end{equation}
+The corresponding linear scale is
+\begin{equation}
+R_K(x_i)=\sqrt{R_K^{(2)}(x_i)}=r_{i,(K)}.
+\label{eq:linear_knn_radius}
+\end{equation}
+
+\subsubsection{Vote kernels and reverse-neighbour popularity}
+
+For each source point $x_i$, define the dimensionless neighbour coordinate
+\begin{equation}
+u_{ij}=\frac{r_{ij}}{R_K(x_i)},
+\qquad x_j\in\calN_K^+(x_i),
+\label{eq:normalised_neighbour_distance}
+\end{equation}
+and compare the four allocation shapes
+\begin{equation}
+h(u)\in
+\left\{
+1,\frac{1}{u},\frac{1}{u^2},S_\alpha(u)
+\right\},
+\label{eq:vote_kernel_family}
+\end{equation}
+where
+\begin{equation}
+S_\alpha(u)=\frac{1}{1+\exp[\alpha(u-1)]}.
+\label{eq:sigmoid_vote}
+\end{equation}
+Here, $\alpha>0$ controls the slope, and $R_K(x_i)$ supplies the local distance scale for every shape.  Directly comparing the raw values $1$, $1/r$, $1/r^2$, and $S_\alpha(r_{ij}/R_K(x_i))$ would confound shape with units and arbitrary outgoing amplitude.  We therefore retain the reference inverse-square vote mass of source $i$ as the common budget
+\begin{equation}
+B_K(x_i)=\sum_{x_k\in\calN_K^+(x_i)}\frac{1}{r_{ik}^2},
+\label{eq:reference_source_budget}
+\end{equation}
+and redistribute that budget according to the selected shape:
+\begin{equation}
+g_{i,h}(x_j)=B_K(x_i)
+\frac{h(u_{ij})}
+{\displaystyle\sum_{x_k\in\calN_K^+(x_i)}h(u_{ik})}.
+\label{eq:budget_matched_vote}
+\end{equation}
+Thus
+$\sum_{x_j\in\calN_K^+(x_i)}g_{i,h}(x_j)=B_K(x_i)$
+for every model. For a fixed allocation shape $h$, let
+$g_h=\{g_{i,h}\}_{i=1}^{N}$ denote the resulting
+vote model; when the selected shape is clear, we write $g=g_h$.
+
+The term \emph{vote kernel} is used here to denote a non-negative local
+allocation rule; it is not a Mercer kernel, and neither symmetry nor
+positive semidefiniteness is assumed.
+
+The corresponding incoming popularity of $x_j$ is
+\begin{equation}
+P_{K,g}(x_j)=
+\sum_{x_i:\,x_j\in\calN_K^+(x_i)}g_{i,h}(x_j).
+\label{eq:reverse_popularity}
+\end{equation}
+Thus, $P_{K,g}(x_j)$ is a kernel-weighted in-degree: it accumulates the
+votes received by $x_j$ along its incoming KNN edges.
+For $h(u)=1/u^2$, Eq.~\eqref{eq:budget_matched_vote} reduces algebraically to the reference edge vote,
+\begin{equation}
+g_{i,\mathrm{inv}\_r2}(x_j)
+=B_K(x_i)\frac{(R_K(x_i)/r_{ij})^2}
+{\sum_{x_k\in\calN_K^+(x_i)}(R_K(x_i)/r_{ik})^2}
+=\frac{1}{r_{ij}^2}=\frac{1}{D_{ij}}.
+\label{eq:reference_inverse_square_vote}
+\end{equation}
+The implementation uses this final expression directly for the inverse-square branch, avoiding a normalise--denormalise round-off cycle. Exact duplicate observations are excluded because the shared reference budget is undefined at $r=0$.
+
+\subsubsection{RMS visibility in squared-distance units}
+
+The base, or unmodulated, visibility threshold depends only on the outgoing
+KNN distances of $x_i$ and is the RMS of the stored squared distances,
+\begin{equation}
+V_{K,0}^{(2)}(x_i)=
+\left(
+\frac{1}{K}
+\sum_{x_j\in\calN_K^+(x_i)}D_{ij}^{2}
+\right)^{1/2}.
+\label{eq:rms_visibility_base}
+\end{equation}
+Here, the subscript $0$ denotes the absence of popularity modulation, rather
+than an additional vote model, and the superscript $(2)$ indicates
+squared-distance units.
+Popularity then produces the effective threshold
+\begin{equation}
+V_{K,g}^{(2)}(x_i)=V_{K,0}^{(2)}(x_i)
+\left(1+\frac{P_{K,g}(x_i)R_K^{(2)}(x_i)}{N}\right).
+\label{eq:popularity_modulated_visibility}
+\end{equation}
+The subscript $g$ records that this effective threshold uses the popularity
+computed under vote model $g$.  Since $P_{K,g}(x_i)\geq0$, modulation cannot
+reduce the base threshold.
+Equations~\eqref{eq:reference_inverse_square_vote}--\eqref{eq:popularity_modulated_visibility} reproduce the reference inverse-square implementation exactly. The comparison models change only the within-source allocation in Eq.~\eqref{eq:budget_matched_vote}. For the unrefined graph construction, under uniform global coordinate rescaling
+$r\mapsto cr$ with positive $c$ and fixed $N$, the dimensionless
+allocation coordinates $u_{ij}$ and shapes $h(u_{ij})$ remain unchanged,
+whereas all four budget-matched edge votes $g_{i,h}(x_j)$ scale as
+$c^{-2}$ because $B_K\mapsto c^{-2}B_K$. Since
+$R_K^{(2)}\mapsto c^2R_K^{(2)}$, the popularity factor
+$P_{K,g}R_K^{(2)}$ is invariant for every model. Hence the unrefined visible
+arcs are unchanged, provided the neighbour ordering is preserved. This does not
+imply invariance under arbitrary feature-wise or affine transformations, or
+invariance of the refined pipeline. Feature-wise preprocessing can change the
+KNN graph and must therefore be specified and reused exactly.
+
+\subsubsection{Visible forward and backward steps}
+
+For a fixed vote model $g$, define the directed visible-edge set
+\begin{equation}
+E^{\mathrm{vis}}_{K,g}
+=
+\left\{(x_i,x_j)\in E_K:
+D_{ij}\leq V_{K,g}^{(2)}(x_i)
+\right\}.
+\label{eq:visible_edge_set}
+\end{equation}
+The corresponding undirected edge set obtained by disregarding orientation is
+\begin{equation}
+\overline E^{\mathrm{vis}}_{K,g}
+=
+\left\{
+\{x_i,x_j\}:
+(x_i,x_j)\in E^{\mathrm{vis}}_{K,g}
+\ \text{or}\
+(x_j,x_i)\in E^{\mathrm{vis}}_{K,g}
+\right\}.
+\label{eq:symmetrised_visible_edge_set}
+\end{equation}
+For any $C\subseteq X$, let
+\begin{equation}
+\overline E^{\mathrm{vis}}_{K,g}[C]
+=
+\left\{
+\{x_i,x_j\}\in\overline E^{\mathrm{vis}}_{K,g}:
+x_i,x_j\in C
+\right\}
+\label{eq:induced_visible_edge_set}
+\end{equation}
+denote the visible undirected edge set induced by $C$.
+
+For a fixed vote model $g$, we omit the subscript $g$ from the notation
+below whenever there is no ambiguity. The visible forward neighbourhood of $x_i$ is
+\begin{equation}
+\calV_K^+(x_i)=
+\left\{
+x_j\in\calN_K^+(x_i):
+D_{ij}\leq V_{K,g}^{(2)}(x_i)
+\right\}.
+\label{eq:visible_forward}
+\end{equation}
+The visible backward neighbourhood of $x_i$ is
+\begin{equation}
+\calV_K^-(x_i)=
+\left\{
+x_\ell\in\calN_K^-(x_i):
+D_{\ell i}\leq V_{K,g}^{(2)}(x_\ell)
+\right\}.
+\label{eq:visible_backward}
+\end{equation}
+The backward condition is evaluated from the viewpoint of the reverse
+neighbour $x_\ell$: a reverse-neighbour step is accepted only if
+$D_{\ell i}$ does not exceed the squared-distance visibility threshold of
+$x_\ell$. The one-step visibility-filtered round-trip neighbourhood is
+therefore
+\begin{equation}
+\calR_K^{\mathrm{vis}}(x_i)
+=
+\calV_K^+(x_i)\cup\calV_K^-(x_i).
+\label{eq:visible_roundtrip}
+\end{equation}
+
+
+\subsubsection{Recursive closure and singleton rejection}
+
+Starting from a seed point $x_i$, the recursive closure is
+\begin{equation}
+C_K^0(x_i)=\{x_i\},
+\end{equation}
+\begin{equation}
+C_K^{t+1}(x_i)
+=
+C_K^t(x_i)\cup
+\bigcup_{x_q\in C_K^t(x_i)}
+\calR_K^{\mathrm{vis}}(x_q).
+\label{eq:visibility_closure}
+\end{equation}
+The process saturates when
+\begin{equation}
+C_K^{t+1}(x_i)=C_K^t(x_i).
+\end{equation}
+The saturated closure is denoted
+\begin{equation}
+C_K^\infty(x_i)=C_K^s(x_i),
+\end{equation}
+where $s$ is the first saturation time.
+
+A saturated closure is accepted as a cluster only when it contains more than
+one point:
+\begin{equation}
+|C_K^\infty(x_i)|>1.
+\label{eq:singleton_rejection}
+\end{equation}
+This rule is retained as an implementation safeguard. Under the stated
+RMS visibility rule, however, every point has at least one visible proper
+neighbour. Indeed,
+\begin{equation}
+D_{i,(1)}\leq
+\left(\frac{1}{K}\sum_{j=1}^{K}D_{i,(j)}^2\right)^{1/2}
+=V_{K,0}^{(2)}(x_i)\leq V_{K,g}^{(2)}(x_i).
+\label{eq:nonempty_visible_neighbourhood}
+\end{equation}
+Consequently, no saturated closure is a singleton in the mathematical
+formulation. Together with Proposition~\ref{prop:closure_component}, this
+implies that the distinct closures form a partition of $X$. The empirical
+coverage and disjointness checks below therefore validate implementation
+agreement with this property.
+
+\begin{proposition}[Closure--component equivalence]
+\label{prop:closure_component}
+For fixed $K$ and vote model $g$, the unpruned saturated closure
+$C_K^\infty(x_i)$ is the vertex set of the connected component containing
+$x_i$ in the symmetrised visible graph
+$(X,\overline E^{\mathrm{vis}}_{K,g})$.
+\end{proposition}
+
+\begin{proof}
+A forward step from $x_q$ reaches exactly the endpoints of visible directed
+edges leaving $x_q$, whereas a backward step reaches exactly the initial
+vertices of visible directed edges entering $x_q$. Their union is therefore
+the set of vertices adjacent to $x_q$ in the graph obtained by disregarding
+the orientation of $E^{\mathrm{vis}}_{K,g}$.
+Equation~\eqref{eq:visibility_closure} repeatedly adds all such adjacent
+vertices. Iteration to saturation consequently reaches exactly the connected
+component containing the seed $x_i$.
+\end{proof}
+
+\begin{algorithm}[t]
+\caption{Visibility-filtered round-trip closure for one point}
+\label{alg:visibility_closure}
+\begin{algorithmic}[1]
+\Require directed KNN graph $\calG_K$, vote model $g$,
+visibility thresholds $V_{K,g}^{(2)}$, point $x_i$
+\State $C \gets \{x_i\}$
+\Repeat
+    \State $C_{\mathrm{old}}\gets C$
+    \ForAll{$x_q\in C_{\mathrm{old}}$}
+        \State $C\gets C\cup\calV_K^+(x_q)$
+        \State $C\gets C\cup\calV_K^-(x_q)$
+    \EndFor
+\Until{$C=C_{\mathrm{old}}$}
+\If{$|C|>1$}
+    \State \Return $C$
+\Else
+    \State \Return rejected singleton closure
+\EndIf
+\end{algorithmic}
+\end{algorithm}
+
+
+\subsubsection{Optional structural pruning of saturated closures}
+\label{sec:structural_pruning}
+
+Before structural refinement, one visible path is sufficient to place its
+endpoints in the same saturated closure. Structural pruning is an optional second stage,
+enabled in the native executable by \texttt{--structural-pruning}, that tests
+whether a large unpruned closure admits a local mixture subdivision under
+the specified heuristic criteria. It is disabled by default, so the reference inverse-square
+regression and the four-kernel ablation remain unchanged. The native selector
+\texttt{--vote-kernel} accepts \texttt{uniform}, \texttt{inv\_r},
+\texttt{inv\_r2}, or \texttt{sigmoid}; \texttt{inv\_r2} remains the default,
+and the sigmoid slope is controlled by \texttt{--sigmoid-alpha} (default $8$).
+The selected kernel supplies both the popularity-modulated visible graph and
+the popularity-ranked first mixture seed, while every subsequent pruning
+criterion is held fixed.
+
+Despite the term pruning, this stage does not rank or delete individual KNN
+edges. It proposes a subdivision of an already formed connected component and
+accepts a subdivision only after a BIC proposal screen and subsequent size
+and graph-coherence checks. The KNN adjacency lists themselves remain unchanged.
+
+Let $C$ be an unpruned saturated closure. It is considered for pruning only
+when
+\begin{equation}
+|C|\geq n_{\mathrm{parent}}
+=
+\max\{50,\lceil0.15N\rceil\}.
+\label{eq:pruning_parent_size}
+\end{equation}
+Each coordinate is standardised within $C$, and diagonal-covariance Gaussian
+mixtures with $m\in\{1,2,3,4\}$ components are fitted by
+expectation--maximisation \citep{DempsterLairdRubin1977}. For dimension $d$,
+the implementation compares
+\begin{equation}
+\operatorname{BIC}_m
+=
+-2\ell_m+p_m\log |C|,
+\qquad
+p_m=m(2d+1)-1,
+\label{eq:pruning_bic}
+\end{equation}
+where $\ell_m$ is the highest fitted log likelihood among the deterministic
+restarts and $p_m$ counts mixture
+weights, means, and diagonal variances \citep{Schwarz1978}. Models with
+$m>1$ use five deterministic restarts. In the first restart, the initial
+centre is the point of greatest reverse-neighbour popularity and subsequent
+centres are chosen by farthest-first traversal. The remaining restarts use
+deterministic seeds, fixing initialisation for a given executable and
+environment. Before EM, each restart applies up to 24 k-means
+assignment--update iterations to these initial centres, stopping when
+assignments stabilise. The resulting assignments initialise the mixture
+weights and diagonal variances. Each restart then
+uses at most 200 EM iterations and stops when the change in total log
+likelihood satisfies
+$|\ell^{(t)}-\ell^{(t-1)}|\leq10^{-6}(1+|\ell^{(t)}|)$.
+The variance updates add $10^{-6}$ in the standardised coordinates. These
+settings define a numerical fit; a global likelihood maximum is not assumed.
+
+Let $m^*$ denote the number of components in the local proposal selected by
+BIC among these finite numerical fits, that is,
+\begin{equation}
+m^*=\argmin_m\operatorname{BIC}_m.
+\end{equation}
+A candidate is retained only if
+\begin{equation}
+m^*\in\{2,3\},
+\qquad
+\operatorname{BIC}_1-\operatorname{BIC}_{m^*}\geq10,
+\label{eq:pruning_acceptance}
+\end{equation}
+and every proposed child contains at least
+\begin{equation}
+n_{\mathrm{child}}
+=
+\max\{20,\lceil0.05|C|\rceil\}
+\label{eq:pruning_child_size}
+\end{equation}
+points. Thus, a four-component best fitted candidate vetoes subdivision rather
+than prescribing a split of a curved or structurally complex closure. This is
+a heuristic restriction, not a guarantee of protection for such structures.
+
+Mixture membership alone does not determine the output. Each proposed child
+is decomposed into connected components in its induced symmetrised visible
+subgraph. The largest component is retained as the principal component; hereafter,
+we refer to any other connected component of that child as a \emph{fragment}.
+Any fragment containing fewer than $n_{\mathrm{child}}$ points is reassigned
+to whichever other proposed child has the greatest visible-arc support from
+that fragment. Support counts incoming and outgoing visible directed arcs;
+a reciprocal pair contributes twice. Ties prefer the more populous child,
+then the smaller child index. The native implementation updates assignments
+sequentially and recomputes the induced components over at most four passes.
+Acceptance requires a pass with no reassignment, so every final child is
+connected. The proposal is rejected if a non-principal component contains
+at least $n_{\mathrm{child}}$ points, a child becomes empty, no unchanged pass
+is reached within the limit, or a child violates the final size constraint.
+
+The BIC screen applies to the fitted mixture proposal before graph
+regularisation. The subsequent label changes are not followed by a new mixture
+fit or BIC selection. Thus, the final child labels are not claimed to be a global
+BIC optimum or a global partition optimum. For a regularised labelling $z_C$
+that passes the proposal screen and final size and graph-coherence checks,
+define the crossing set
+\begin{equation}
+E_C^{\mathrm{cut}}
+=
+\left\{
+\{x_i,x_j\}\in\overline E_{K,g}^{\mathrm{vis}}[C]:
+z_C(x_i)\neq z_C(x_j)
+\right\}.
+\label{eq:pruning_cut}
+\end{equation}
+The subdivision is accepted only when
+\begin{equation}
+|E_C^{\mathrm{cut}}|>0.
+\end{equation}
+For a connected parent and a nontrivial subdivision, this positivity
+condition follows automatically; it is an implementation consistency check,
+not an additional measure of separation. Its regularised children then
+replace $C$ in the final layer. The native
+implementation does not modify the KNN adjacency lists; instead, it rebuilds
+the cluster layer from the regularised child assignments. At the level of the
+resulting partition, this is equivalent to treating the crossing connections
+as cut. Reference labels play no role in proposal generation, local mixture
+selection, regularisation, or final reassignment. The oracle selection of the
+reported neighbourhood scale is a separate evaluation step.
+
+\subsection{Cluster layers and multiscale evolution}
+\label{sec:layers}
+
+For a fixed $K$, the distinct accepted saturated closures define the
+unpruned cluster layer
+\begin{equation}
+\calP_K=
+\{C_1^{(K)},\ldots,C_{m_K}^{(K)}\},
+\end{equation}
+where $m_K$ is the number of distinct accepted closures at scale $K$.
+Closures obtained from different seeds but corresponding to the same
+symmetrised visible connected component are therefore represented only once.
+
+When structural pruning is enabled, regularised accepted children replace
+their parent closures in the final pruned layer. Unless stated otherwise,
+the multiscale construction below refers to the unpruned layers. The
+monotone-coarsening result does not extend automatically to independently
+pruned layers, for which no nesting guarantee is claimed.
+
+By varying $K$ over a prescribed set of scales
+\begin{equation}
+K\in
+\{K_{\min},K_{\min}+1,\ldots,K_{\max}\},
+\end{equation}
+one obtains the unpruned multiscale sequence
+\begin{equation}
+\calP_{K_{\min}},
+\calP_{K_{\min}+1},
+\ldots,
+\calP_{K_{\max}}.
+\end{equation}
+
+Each reported layer is computed independently for its own value of $K$, so
+the KNN graph, popularity, and visibility are all defined at the same
+neighbourhood scale. The implementation convention used to enforce this in the
+experiments is described in Sect.~\ref{sec:experimental_protocol}.
+
+\begin{proposition}[Monotone coarsening under reference inverse-square voting]
+\label{prop:inverse_square_coarsening}
+Assume $r_{ij}>0$ for $i\neq j$ and a fixed deterministic tie-breaking rule
+such that
+\begin{equation}
+\calN_K^+(x_i)\subseteq\calN_{K+1}^+(x_i)
+\label{eq:nested_knn}
+\end{equation}
+for every $x_i$. Under the unpruned reference inverse-square vote, write
+\begin{equation}
+E_K^{\mathrm{vis}}
+=
+E_{K,\mathrm{inv\_r2}}^{\mathrm{vis}},
+\qquad
+P_K
+=
+P_{K,\mathrm{inv\_r2}},
+\qquad
+V_K^{(2)}
+=
+V_{K,\mathrm{inv\_r2}}^{(2)}.
+\label{eq:inverse_square_shorthand}
+\end{equation}
+Then
+\begin{equation}
+E_K^{\mathrm{vis}}
+\subseteq
+E_{K+1}^{\mathrm{vis}}.
+\label{eq:nested_visible_edges}
+\end{equation}
+Consequently, since the unpruned saturated closures form proper partitions of \(X\),
+\begin{equation}
+\calP_K\preceq\calP_{K+1},
+\label{eq:partition_refinement}
+\end{equation}
+where $\preceq$ denotes partition refinement in the sense that every cluster
+of $\calP_K$ is contained in a unique cluster of $\calP_{K+1}$. Thus,
+increasing $K$ can preserve or merge clusters but cannot split them.
+\end{proposition}
+
+\begin{proof}
+For a fixed source $x_i$, the nested neighbour ordering gives
+$D_{i,(1)}\leq\cdots\leq D_{i,(K)}\leq D_{i,(K+1)}$ and hence
+$R_{K+1}^{(2)}(x_i)\geq R_K^{(2)}(x_i)$ by
+Eq.~\eqref{eq:squared_knn_radius}. Since the new squared distance is at
+least every retained one, $D_{i,(K+1)}^2\geq[V_{K,0}^{(2)}(x_i)]^2$.
+The non-negative base RMS threshold is therefore non-decreasing:
+\[
+\begin{aligned}
+\left[V_{K+1,0}^{(2)}(x_i)\right]^2
+&=\frac{K\left[V_{K,0}^{(2)}(x_i)\right]^2+D_{i,(K+1)}^2}{K+1}\\
+&\geq\left[V_{K,0}^{(2)}(x_i)\right]^2.
+\end{aligned}
+\]
+
+Under reference inverse-square voting, each retained edge $x_\ell\to x_i$
+contributes the positive quantity $1/D_{\ell i}$ to incoming popularity,
+independently of $K$. Thus, Eq.~\eqref{eq:nested_knn} gives
+\[
+\calN_K^-(x_i)\subseteq\calN_{K+1}^-(x_i),
+\qquad P_{K+1}(x_i)\geq P_K(x_i).
+\]
+
+Both $P_K(x_i)$ and the squared radius $R_K^{(2)}(x_i)$ are non-negative and non-decreasing, so their product is non-decreasing. Together with base
+RMS monotonicity, Eq.~\eqref{eq:popularity_modulated_visibility} yields
+$V_{K+1}^{(2)}(x_i)\geq V_K^{(2)}(x_i)$.
+For $(x_i,x_j)\in E_K^{\mathrm{vis}}$, nested KNN sets give
+$x_j\in\calN_{K+1}^+(x_i)$, while
+\[
+D_{ij}\leq V_K^{(2)}(x_i)\leq V_{K+1}^{(2)}(x_i).
+\]
+Hence $(x_i,x_j)\in E_{K+1}^{\mathrm{vis}}$, proving visible-edge nesting.
+
+By Proposition~\ref{prop:closure_component}, the unpruned saturated closures
+are the connected components of the symmetrised visible graph, whose edges
+are retained whenever either directed orientation is visible. Adding edges
+can merge these components but cannot split them, proving the stated
+refinement relation between successive proper partitions.
+\end{proof}
+
+Taken together, the non-singleton guarantee in
+Eq.~\eqref{eq:nonempty_visible_neighbourhood} and
+Propositions~\ref{prop:closure_component}
+and~\ref{prop:inverse_square_coarsening} establish the hierarchical
+structure of the unpruned reference inverse-square RTKNNC.
+Proposition~\ref{prop:closure_component} identifies the saturated
+round-trip closures at each neighbourhood size \(K\) with the connected
+components of the symmetrised visible graph; under the non-singleton
+guarantee, the distinct closures form a proper partition of \(X\).
+Proposition~\ref{prop:inverse_square_coarsening} shows that these partitions
+are ordered by refinement as \(K\) increases: a layer may remain unchanged
+or become coarser through cluster mergers, but it cannot split.
+Thus, the sequence of cluster layers forms a hierarchy of nested partitions,
+rather than a collection of unrelated clustering results.
+The nesting guarantee requires positive distances and deterministically nested
+neighbourhoods; it is not claimed for independently refined layers or
+alternative vote kernels.
+
+\subsubsection{Inter-layer overlap and empirical nesting}
+
+The overlap between clusters in consecutive layers is
+\begin{equation}
+W_{ab}^{(K,K')}
+=
+|C_a^{(K)}\cap C_b^{(K')}|.
+\label{eq:overlap_count}
+\end{equation}
+Useful normalisations include
+\begin{equation}
+F_{ab}^{(K,K')}
+=
+\frac{
+|C_a^{(K)}\cap C_b^{(K')}|
+}{
+|C_a^{(K)}|
+},
+\label{eq:frac_from}
+\end{equation}
+and the Jaccard index
+\begin{equation}
+J_{ab}^{(K,K')}
+=
+\frac{
+|C_a^{(K)}\cap C_b^{(K')}|
+}{
+|C_a^{(K)}\cup C_b^{(K')}|
+}.
+\label{eq:jaccard}
+\end{equation}
+
+The overlap quantities above are general enough to detect preservation,
+absorption, merging, or splitting between consecutive layers. In all
+reported unpruned $K$-layer sequences, no partial split transition was
+observed. Every cluster at scale $K$ was
+either preserved or wholly contained in a unique cluster at scale $K+1$.
+Thus, the observed sequences formed successive merge-only coarsenings.
+
+For the reference inverse-square model, this nesting follows from
+Proposition~\ref{prop:inverse_square_coarsening} whenever the reported layers
+are proper partitions. For the other vote kernels, the same merge-only
+behaviour is an empirical observation rather than a guaranteed property.
+
+This inter-layer correspondence is distinct from intra-layer overlap, which
+would indicate that a given layer is not a proper partition.
+
+
+\subsubsection{Saturation scale}
+
+The $K$-layer construction also provides a label-free description of
+partition stability. We denote by $K_{\mathrm{sat}}$ the onset of a
+persistent layer over a prescribed stability window. This quantity
+identifies a stable connectivity regime; it does not by itself imply
+agreement with an external reference partition.
+
+Operationally, saturation can be detected by monitoring the overlap between
+consecutive layers. If each cluster in $\calP_K$ maps entirely to a unique
+cluster in $\calP_{K+1}$, and vice versa, the two layers are equivalent.
+More robustly, one may require the same equivalence to persist over a short
+stability window,
+\begin{equation}
+\calP_K
+\equiv
+\calP_{K+1}
+\equiv
+\cdots
+\equiv
+\calP_{K+h},
+\label{eq:partition_stability_window}
+\end{equation}
+where $h\geq1$ is a prescribed integer persistence parameter and
+$K+h\leq K_{\max}$. The saturation scale can
+then be defined as
+\begin{equation}
+K_{\mathrm{sat}}
+=
+\min
+\left\{
+K:
+\calP_K
+\equiv
+\calP_{K+1}
+\equiv
+\cdots
+\equiv
+\calP_{K+h}
+\right\}.
+\label{eq:ksat}
+\end{equation}
+The minimum is taken over tested scales satisfying
+$K_{\min}\leq K\leq K_{\max}-h$; if none satisfies the condition,
+$K_{\mathrm{sat}}$ is undefined for that window and tested range. A finite
+plateau does not preclude a later merger. Here, $\equiv$ denotes equality
+of cluster layers up to relabelling of cluster indices.
+
+% \subsubsection{Inter-layer overlap and empirical nesting}
+
+\subsection{Implementation agreement and partition diagnostic}\label{sec:partition_diagnostic}
+
+An important consistency check is whether each accepted layer $\calP_K$ is a true partition of the dataset. For each $K$, this can be verified by comparing the sum of accepted cluster cardinalities with the cardinality of the union of all accepted cluster members:
+\begin{equation}
+\sum_{a=1}^{m_K}|C_a^{(K)}|=\left|\bigcup_{a=1}^{m_K}C_a^{(K)}\right|.
+\label{eq:partition_check}
+\end{equation}
+When the equality in Eq.~\eqref{eq:partition_check} holds and the union contains all $N$ data points, the accepted layer is not merely a cover of the dataset, but a proper partition:
+\begin{equation}
+\bigcup_{a=1}^{m_K} C_a^{(K)}=X,
+\qquad
+C_a^{(K)}\cap C_b^{(K)}=\varnothing
+\quad\text{for }a\neq b.
+\end{equation}
+This property is important because the multiscale object produced by the algorithm is then a sequence of valid partitions, rather than a sequence of overlapping covers. Inter-layer overlap is still expected and informative, but intra-layer overlap would indicate an invalid layer representation. If singleton closures are rejected, the diagnostic also verifies whether any points were left outside the accepted layer.
+
+If the left-hand side of Eq.~\eqref{eq:partition_check} is larger than the right-hand side, at least one point belongs to more than one cluster in the same layer.
+
+Before comparing vote kernels, we verified the Python implementation against
+the unpruned inverse-square C implementation using identical feature columns,
+eight datasets, and independent runs at $K=2,\ldots,16$ with $K_0=K$.
+Across all 120 runs, the C and Python implementations assigned every point
+to the same cluster, up to permutation of cluster identifiers, including the
+unclustered masks. Six additional C--Python comparisons covered the three
+weighted kernels on the variable-density blobs at $K=8$ and the bridge at
+$K=6$; these unpruned partitions also assigned every point identically up to
+cluster-label permutation. Together, these tests establish unpruned
+implementation agreement under the experimental protocol used in this study.
+They do not establish equivalence between the native structural refinement
+and the older Python refinement, which uses a different mixture and split rule.
+
+Table~\ref{tab:partition_diagnostic} reports a representative subset for the variable-density blobs dataset. Since all $N=2000$ points are represented exactly once and the unclustered count is zero, these layers are proper partitions. ARI and NMI compare each partition with the known reference labels and are invariant under a permutation of cluster identifiers.
+
+\begin{table}[t]
+\caption{Unpruned inverse-square regression results for the variable-density blobs dataset. Each $K$ was run independently with $K_0=K$.}\label{tab:partition_diagnostic}
+\centering
+\begin{tabular}{rrrrr}
+\toprule
+$K$ & clusters & ARI & NMI & unclustered\\
+\midrule
+2 & 595 & 0.0116 & 0.3991 & 0\\
+3 & 277 & 0.0403 & 0.4491 & 0\\
+4 & 99  & 0.2809 & 0.5716 & 0\\
+5 & 18  & 0.6661 & 0.8017 & 0\\
+6 & 6   & 0.7774 & 0.8941 & 0\\
+7 & 5   & 0.7805 & 0.8981 & 0\\
+8 & 4   & 0.7817 & 0.9035 & 0\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This diagnostic is different from inter-layer overlap. Equation~
+\eqref{eq:partition_check} tests whether a single reported layer is a proper
+partition, whereas the inter-layer quantities in
+Eqs.~\eqref{eq:overlap_count}--\eqref{eq:jaccard} describe how clusters
+correspond across neighbourhood scales.
+
+For the reference inverse-square model, the merge-only character of
+successive proper unpruned layers follows from
+Proposition~\ref{prop:inverse_square_coarsening}.
+Figure~\ref{fig:multiscale_transition} illustrates this structure on the
+variable-density blobs. In the displayed $K=5,6,7,8$ sequence, every cluster
+at one scale is wholly contained in a unique cluster at the next scale, so
+the transition forest contains preservation and merger events but no split.
+
+The same pointwise audit shows that the unpruned partition at $K=8$ remains
+unchanged through $K=16$. Nevertheless, internal stability is not equivalent
+to external correctness. At $K=7$, the cluster count already equals the five
+reference classes, but ARI is only $0.7805$; at the tested-range saturation
+beginning at $K=8$, four components remain and ARI is $0.7817$. The structural
+pruning experiment in Sect.~\ref{sec:structural_pruning_results} addresses
+this specific stable merger without using the reference labels at execution
+time.
+
+\begin{figure}[p]
+\centering
+\includegraphics[width=4.72in,height=6.8in,keepaspectratio]{audits/KAIS-surgical-corrections-20261027/assets/Fig2_multiscale_transition_unclipped.pdf}
+\caption{Multiscale evolution of the unpruned reference inverse-square model
+on the variable-density blobs.  Every layer is generated independently with
+$K_0=K$.  (a) The cluster count decreases from 595 microclusters at $K=2$ to
+four components at $K=8$ and is plotted on a logarithmic scale; the dashed
+line is the reference count $C^*=5$, used only for evaluation.  (b) ARI and
+NMI against the withheld reference labels.  The shaded interval marks the
+exactly unchanged partition from $K=8$ through the largest tested value,
+$K=16$.  (c) The merge-only transition forest over $K=5,6,7,8$.  Node and
+ribbon thicknesses encode point population and overlap count
+$W_{ab}^{(K,K')}$, respectively.  Colours identify the four lineages ending
+at $K=8$ and do not encode reference labels.  The equality $m_7=C^*$ without
+high ARI and the stable $m_K=4$ plateau demonstrate that cluster-count or
+partition stability alone does not guarantee recovery of latent classes.}
+\label{fig:multiscale_transition}
+\end{figure}
+
+\subsection{Scale, popularity, visibility, and saturation}\label{sec:scale}
+
+The neighbourhood size $K$ controls the propagation scale of RTKNNC, while
+the reverse-neighbour popularity $P_{K,g}(x_i)$ and the local visibility
+threshold $V^{(2)}_{K,g}(x_i)$ regulate which KNN links are admissible.
+Small values of $K$ favour local selectivity but may fragment the graph,
+whereas larger values allow broader propagation. Popularity modulation never
+decreases the source visibility threshold. Depending on local geometry, some
+or all retained KNN arcs may therefore be admissible.
+
+The base RMS threshold in Eq.~\eqref{eq:rms_visibility_base} provides a local
+distance scale, while Eq.~\eqref{eq:popularity_modulated_visibility} enlarges
+it according to incoming popularity. The vote kernel therefore changes how
+incoming neighbour evidence affects visibility without changing the round-trip
+closure operator itself. Under Eq.~\eqref{eq:nonempty_visible_neighbourhood},
+singleton rejection is only an implementation safeguard and does not act as
+an outlier filter. Across increasing $K$, the resulting layers may evolve from
+local microfragmentation to stable larger-scale partitions; $K_{\mathrm{sat}}$
+summarises the onset of such persistence.
+
+\subsection{Computational cost}\label{sec:computational_cost}
+
+Let $d$ be the feature dimension and $E_v$ the number of visible directed
+arcs at a fixed $K$. Write $T_{\mathrm{KNN}}(N,d,K)$ for KNN-graph
+construction time: it depends on the exact-neighbour backend, the data and
+dimension, and is not assumed to be subquadratic. Storing coordinates and a
+sparse KNN graph requires $O(Nd+NK)$ space; neighbour-search workspace depends
+on the backend. With the graph available, source budgets, vote allocation,
+incoming popularity and visibility tests require $O(NK)$ time for a fixed
+number of kernels. Ordinary connected-component extraction on the
+OR-symmetrised visible graph takes $O(N+E_v)$ time with sparse adjacency and
+visited flags. These graph-algorithm bounds do not include every
+implementation-specific cost: native backward visibility checks can scan
+source lists, cluster storage has additional bookkeeping, and child
+regularisation can repeat component and fragment scans.
+Algorithm~\ref{alg:visibility_closure} specifies the cumulative closure;
+the linear traversal bound assumes a frontier queue and visited flags rather
+than rescanning the entire accumulated set on every saturation round.
+
+For the independently evaluated set of scales $\mathcal K$, total work is
+$\sum_{K\in\mathcal K}[T_{\mathrm{KNN}}(N,d,K)+T_{\mathrm{post}}(N,d,K)]$,
+where $T_{\mathrm{post}}$ includes voting, visibility, component extraction,
+implementation bookkeeping and any enabled refinement. The experiments share
+a graph across kernels at a given $K$, but rebuild it for each tested scale.
+Keeping all layer labels adds $O(N|\mathcal K|)$ storage; peak space otherwise
+includes the current graph and any backend or refinement workspace.
+
+For an eligible parent with $n_C$ points, standardisation costs $O(n_Cd)$.
+A diagonal-mixture fitting pass with $m$ components costs $O(n_Cmd)$ and uses
+$O(n_Cm+md)$ responsibility and parameter space. Across candidate orders,
+restarts and fitting passes, the fitting work is
+$O(n_Cd\sum_m R_m m T_m)$, where $R_m$ counts restarts and $T_m$ bounds
+initialisation and EM passes per restart. The stated caps on component order,
+restarts and iterations keep these factors bounded, with substantial
+implementation-dependent constants; they do not guarantee an optimum.
+Graph-coherence regularisation, repeated list scans, parent-index arrays and
+layer rebuilding add time and workspace beyond the mixture fits. No runtime
+or memory superiority, or empirical scalability, is inferred from these
+analytical costs or the stored timings.
+
+\section{Experimental protocol}\label{sec:experimental_protocol}
+
+The controlled benchmark reuses the eight synthetic datasets already distributed with the implementation:
+\begin{itemize}
+    \item Gaussian blobs with equal and variable densities;
+    \item two moons and concentric circles;
+    \item anisotropic Gaussian clusters;
+    \item a uniform point cloud;
+    \item two dense clusters connected by a sparse bridge;
+    \item a Swiss-roll embedding.
+\end{itemize}
+The label column is excluded from clustering features and fitting. It is used for external scoring, oracle parameter selection, and the reference-based diagnostics and visualisations specified below. The Swiss-roll labels are an artificial discretisation of a continuous manifold and its external scores are therefore interpreted descriptively. ARI and NMI are not reported for the uniform dataset because it has no nontrivial reference partition.
+
+For every dataset in the vote-kernel ablation, $K$ ranges from 2 through 16. Each $K$ is run independently with $K_0=K$. The KNN graph is constructed once for a dataset--$K$ pair and is reused unchanged by all four vote kernels. All models share the inverse-square source budget in Eq.~\eqref{eq:reference_source_budget} and therefore require strictly positive neighbour distances, so the input is checked for exact duplicate points before execution. Uniform, inverse-distance, inverse-square, and sigmoid refer to the four allocation shapes in Eq.~\eqref{eq:vote_kernel_family}; the sigmoid uses $\alpha=8$. RMS visibility and singleton rejection are enabled for every model. Structural pruning is disabled throughout this 840-run comparison, preserving a controlled ablation in which only the within-source allocation changes.
+
+The independent-run convention is important for reproducibility. In the raw
+interface, a run with $K_0<K_{\max}$ allocates the neighbour list at
+$K_{\max}$ before the internal loop, so a construction-time radius may remain
+tied to $K_{\max}$ at smaller intermediate layers. Running each reported scale
+with $K_0=K$ ensures that the graph, radius, popularity, and visibility all
+refer to the same stated neighbourhood scale.
+
+The bridge benchmark varies the retained fraction of the existing labelled
+bridge points over $\{0,0.10,0.25,0.50,0.75,1\}$. Core points are never
+subsampled. For $M$ bridge points in input order and retained fraction $f$,
+the implementation keeps $q=\operatorname{round}(fM)$ points at zero-based
+positions $\lfloor jM/q\rfloor$, $j=0,\ldots,q-1$, when $q>0$, and none
+when $q=0$. Rounding follows Python's nearest-integer, ties-to-even rule.
+The selected bridge points and all core points are restored to their original
+row order; no random resampling is used. Consequently, $N$ varies with the
+retained fraction, including the denominator in
+Eq.~\eqref{eq:popularity_modulated_visibility}. This is a deterministic
+sensitivity analysis of bridge retention, not a fixed-$N$ intervention.
+The two dense cores are considered merged when their dominant predicted
+cluster identifier is the same. This criterion is invariant to renaming
+clusters when each dominant identifier is unique. In a frequency tie, the
+recorded implementation selects the smaller numerical identifier, so this
+invariance is not asserted for tied dominant counts.
+
+The output is one long-format CSV. For each dataset, $K$, and vote model, it records:
+\begin{itemize}
+    \item the dataset name, $K$, vote model, and complete model parameters;
+    \item the number of clusters and unclustered points;
+    \item ARI and NMI when a nontrivial reference partition is available \citep{HubertArabie1985,VinhEppsBailey2010};
+    \item the mean number of visible neighbours and mean visibility in squared-distance units;
+    \item end-to-end runtime, including KNN-graph construction;
+    \item the bridge-merger indicator for the parameterised bridge rows.
+\end{itemize}
+The same measured graph-construction time is included in each of the four model runtimes for a given dataset--$K$ pair. This preserves end-to-end interpretation while ensuring that differences in graph construction cannot favour one vote kernel.
+
+Structural pruning is evaluated separately in the native C executable under
+the reference inverse-square vote.  Each case is run twice with identical
+coordinates and isolated $K$: once with the default unpruned closure and once
+with \texttt{--structural-pruning}.  The selected cases are variable-density
+blobs at $K=8$, the complete sparse bridge at $K\in\{6,10\}$, and three
+preservation controls---circles at $K=7$, two moons at $K=10$, and anisotropic
+blobs at $K=8$.  The fixed implementation constants are one through four
+diagonal mixture components, five restarts for $m>1$, a minimum BIC gain of
+10, the parent and child sizes in Eqs.~\eqref{eq:pruning_parent_size} and
+\eqref{eq:pruning_child_size}, and a four-component veto.  The executable is
+passed \texttt{--dim 2}; the label column is read only afterwards to compute
+ARI and NMI.  Complete native logs, layer files, input hashes, and a
+machine-readable parameter manifest accompany the figures.
+
+To test whether the two principal corrections depend on the reference allocation shape,
+the variable-density blobs at $K=8$ and the complete bridge at $K=6$ are also
+run natively with the three budget-matched shapes $1/u$, $1/u^2$, and
+$S_\alpha(u)$, with $\alpha=8$.  Uniform allocation remains in the broader
+unpruned ablation but is excluded from this focused weighted-kernel check.  For
+each kernel, the unpruned C result must first match the corresponding Python
+partition pointwise; the same native mixture, BIC, size, coherence, and pruning
+parameters are then applied without retuning.
+
+\subsection{External-method comparison protocol}\label{sec:external_comparison_protocol}
+
+The historical oracle comparison uses the six datasets having nontrivial discrete
+references and eight external methods: agglomerative clustering, $k$-means,
+Gaussian mixtures, DBSCAN, OPTICS, KNN-affinity spectral clustering, and
+HDBSCAN, together with RNN-DBSCAN. The uniform cloud has no reference partition, and the Swiss-roll
+bands are an artificial discretisation of a continuous manifold; both are
+therefore excluded from this table.  Every method receives the same raw feature columns, without
+method-specific input preprocessing. RTKNNC standardises coordinates locally
+inside each candidate parent only for its mixture-fitting stage, as described
+in Sect.~\ref{sec:structural_pruning}; its KNN graph uses the raw features.
+RTKNNC with structural refinement enabled uses the reference inverse-square vote and sweeps
+$K=2,\ldots,16$ in the native executable.  Agglomerative clustering evaluates
+Ward, complete, average, and single linkage, both without a connectivity
+constraint and with symmetric KNN connectivity at 5, 10, and 15 neighbours.
+$k$-means uses 20 initialisations; Gaussian mixtures use five initialisations
+under full, tied, diagonal, and spherical covariance models.  These three
+methods and spectral clustering receive the reference cluster count $C^*$.
+Spectral clustering uses KNN affinity with $k_g=2,\ldots,16$, ARPACK
+eigenvectors, and 20 label-assignment restarts at random seed zero.
+
+DBSCAN sweeps $m\in\{3,5,10,20\}$ for \texttt{min\_samples}.  For each $m$,
+let $d_i^{(m)}$ be the distance from $x_i$ to its $(m-1)$st proper neighbour,
+because DBSCAN counts the query point itself.  Its $\epsilon$ candidates are
+the 400 empirical quantiles of $\{d_i^{(m)}\}_{i=1}^N$ at
+$q=0.0025,0.005,\ldots,1$.  OPTICS combines the same four values of $m$ with
+$\xi\in\{0.01,0.025,0.05,0.1\}$ and minimum-cluster fractions
+$\{0.01,0.025,0.05\}$.  HDBSCAN combines minimum cluster sizes
+$\{5,10,20,50,100\}$, \texttt{min\_samples} in
+$\{\texttt{None},5,10,20\}$, and excess-of-mass or leaf selection.  These
+three density-based methods infer their reported cluster counts.
+
+RNN-DBSCAN \citep{BryantCios2018RNNDBSCAN} is evaluated using the maintained
+third-party \texttt{sklearn-ann} implementation \citep{SklearnAnnRNNDBSCAN},
+pinned to commit
+\texttt{\seqsplit{c105475ab0bc6dfcdb2239a38273d6895c5fe281}}.
+This source snapshot is not verified as originating from the paper's authors,
+and no numerical-fidelity claim to their implementation is made. This
+implementation has no $\epsilon$ parameter: \texttt{n\_neighbors}$=k$
+determines both the exact KNN graph and the reverse-neighbour core-density
+threshold. A point is core when its number of reverse neighbours, excluding
+itself, is at least $k$. We evaluate every integer $k=1,\ldots,100$, with
+\texttt{n\_jobs=1}, \texttt{input\_guarantee="none"}, and
+\texttt{keep\_knns=False}; RNN-DBSCAN does not receive $C^*$.
+The graph retains an explicit diagonal, which is subtracted for core-density
+estimation. The source/API and feature-only graph checks establish defined
+$k=1$ behaviour before candidate fitting.
+
+The aligned RNN-DBSCAN collection uses the exact input bytes and SHA-256 hashes
+recorded by the existing external and native comparison manifests, with
+feature columns 0 and 1, a separate integer truth column 2, the CSV header
+removed, original file row order, and no preprocessing. The inputs are
+\path{csv/synthetic/anisotropic.csv}, \path{csv/benchmarks/blobs.csv},
+\path{csv/synthetic/blobs_var_density.csv}, \path{csv/synthetic/bridge.csv},
+\path{csv/synthetic/circles.csv}, and \path{csv/synthetic/moons.csv}.
+Dataset names alone are not used to establish alignment. Two hundred
+previously executed blobs/bridge candidates are imported only after checking
+byte, parsed-feature, truth-label, row-order, parameter, environment, and
+provenance equality; their original execution identities and hashes are
+retained. The remaining 400 aligned candidates are executed sequentially.
+The pinned environment uses Python 3.12.3, \texttt{sklearn-ann}
+0.1.5.dev52+gc105475ab, scikit-learn 1.9.1, NumPy 2.5.4, and SciPy 1.18.1.
+\texttt{OMP\_NUM\_THREADS}, \texttt{OPENBLAS\_NUM\_THREADS},
+\texttt{MKL\_NUM\_THREADS}, and \texttt{NUMEXPR\_NUM\_THREADS} are each
+fixed to 1. Exact distance ties across the $k$th/$(k+1)$th non-self-neighbour
+boundary are checked without changing row order or predictions; none occurs
+in the 600 aligned configurations. Six selected configurations reproduce
+identical prediction vectors in fresh-process diagnostic runs; these
+diagnostics are excluded from candidate selection and counts.
+
+For each method--dataset pair, the table reports the candidate with maximum
+ARI, then maximum NMI. Remaining ties for the seven original external methods
+prefer fewer noise points and then the first candidate in the declared grid;
+RTKNNC ties prefer smaller $K$. For RNN-DBSCAN, remaining ties prefer fewer
+observations with any negative prediction, then smaller $k$. Selection occurs
+only after all 600 aligned RNN-DBSCAN candidates are complete. Thus, the
+result is an oracle, label-selected best-of-grid comparison measuring what
+each preset parameter grid can represent. The search budgets differ:
+RTKNNC uses $K=2,\ldots,16$, whereas RNN-DBSCAN uses $k=1,\ldots,100$;
+the reported optimum is restricted to the respective declared grid.
+Reference labels are excluded from fitting and used afterwards for external
+scoring and oracle selection, not as an unsupervised deployment rule. No
+label-free RNN-DBSCAN parameter-selection rule is implemented or
+approximated here.
+
+ARI and arithmetic-normalised NMI are computed over all observations. The
+original methods retain noise label $-1$ as a predicted category. For
+RNN-DBSCAN, every distinct negative label is likewise retained as a partition
+category for both metrics, counted separately, and excluded from the reported
+cluster count; unexpected negative labels are preserved and flagged, never
+recoded or discarded. No unexpected negative label occurs in this collection.
+The comparison comprises 10,944 external oracle configurations: the original 10,344 plus
+600 aligned RNN-DBSCAN configurations (200 provenance-linked imports and 400
+new executions). Together with 90 RTKNNC oracle candidates, the total is 11,034.
+These counts enumerate parameter configurations, not independent data
+realisations or replications. They do not measure statistical power, equal
+computational budgets, or contemporary methodological breadth.
+Complete sweeps, selected rows, prediction vectors, software versions,
+input hashes, and provenance-linked manifests accompany the article artefacts;
+the aligned RNN-DBSCAN evidence is in
+\path{modern_baselines/comparison_aligned_grid/}. Timings are retained for
+reproduction, without a cross-environment runtime-superiority claim.
+
+\subsection{Separate implementation-based SHADE protocol}\label{sec:shade_protocol}
+
+The SHADE comparison uses unchanged original \texttt{shade.SHADE} at author
+revision \texttt{\seqsplit{7ba199d029cc00fc1643ae75bc26e0a3bd52a3af}}
+\citep{BeerEtAl2024SHADE}. It adds 120 scientific fits, separately from the
+unchanged 11,034-candidate oracle ledger: six datasets, two prospectively frozen
+preprocessing treatments, and ten seeds $0,\ldots,9$ per dataset--treatment
+pair. Seeds are stochastic repetitions, not hyperparameter configurations.
+The exact source files, feature columns 0 and 1, and row order match the
+oracle comparison inputs above; each dataset has 2,000 observations.
+Featurewise z-score standardisation using population standard deviations is
+primary, consistent with the paper's tabular setup. Raw coordinates are a
+separately reported sensitivity treatment. Neither the treatment nor a best
+seed is selected using labels or scores.
+
+All fits use 100 clustering epochs, no pretraining, batch size 500, embedding
+size 10, \texttt{min\_points}$=5$, Adam learning rate $0.001$, and both native
+loss weights equal to one, retaining the implementation's initialisation and
+DC-tree defaults. For these two-dimensional inputs, the embedding expands
+the dimension rather than reducing it. The isolated CPU environment uses
+Python 3.10.12, PyTorch 2.5.1+cpu, ClustPy 0.0.2, NumPy 1.26.4, SciPy 1.13.1,
+and scikit-learn 1.5.2. Native float64 input/DC distances and float32 network
+arithmetic are retained. Each fresh-process fit is confined to one logical
+CPU with numerical-library thread controls set to one, a 4~GiB memory limit,
+no swap, and a 3,600~s wall-time limit. Workers receive features without
+reference labels. All 120 predictions are sealed before isolated scoring;
+ARI and arithmetic-normalised NMI include all observations and retain native
+$-1$ as a predicted partition category. All 120 fits completed; results are
+mean $\pm$ sample SD over all ten seeds. Four synthetic checks, one full-length
+label-free pilot, and twelve predetermined seed-zero replays are diagnostics,
+excluded from the scientific-fit count.
+
+This is an implementation-based comparison with two declared paper/code
+limitations. C01: although the underlying geometry remains Euclidean, the
+implementation uses squared Euclidean embedding distance inside the
+density-loss residual, whereas the paper specifies Euclidean distance.
+C02: reconstruction uses elementwise mean MSE rather than the printed
+sample-mean squared vector norm; it therefore scales that term by the inverse
+feature dimension (one half here), changing its relative weight. No square
+root, MSE-reduction change, or loss-weight compensation is introduced. The
+implementation is not algebraically identical to the printed objective.
+
+\section{Results}\label{sec:results}
+
+This section reports the empirical behaviour of RTKNNC under the experimental protocol described above. We first examine the controlled vote-kernel benchmark and then evaluate structural pruning, kernel sensitivity, and performance relative to the external clustering methods.
+
+\subsection{Vote-model benchmark results}\label{sec:vote_results}
+
+The complete sweep contains 840 benchmark runs: 480 runs from eight datasets, 15 values of $K$, and four kernels, plus 360 runs from six bridge fractions, 15 values of $K$, and four kernels. No benchmark run contained an unclustered point. Among the 210 matched dataset--$K$ comparisons across the two sweeps, the number of clusters differed across kernels in 60 combinations; ARI and NMI differed in 57 labelled combinations. The mean number of visible neighbours and the mean visibility both differed in all 210 combinations. The complete bridge occurs in both sweeps, so these totals include 15
+repeated dataset--$K$ configurations (60 kernel runs). After counting each
+configuration once, there are 195 configurations: cluster counts differ in
+56, ARI and NMI in 53 labelled configurations, and both visibility summaries
+in all 195. Thus, the allocation shape frequently changes the internal
+visibility dynamics, although the resulting external optimum can remain stable.
+
+Figure~\ref{fig:all_cluster_count_evolution} displays the complete cluster-count
+trajectory for each primary dataset.  Every case begins with substantial
+microfragmentation and then consolidates rapidly, but the macro-scale behaviour
+is dataset dependent.  Some labelled datasets reach the reference count only
+over a finite interval of $K$, whereas others stabilise at it or merge below it.
+This complements the external scores: agreement in cluster count identifies a
+candidate scale, but does not establish agreement with the reference partition.
+
+\begin{figure}[p]
+\centering
+\includegraphics[width=4.8in,height=6.8in,keepaspectratio]{audits/KAIS-R8-figure-typography/candidates/Fig3_all_cluster_counts_typography.pdf}
+\caption{Number of clusters as a function of $K$ for every primary dataset in
+the controlled, unpruned four-kernel benchmark. Each point is obtained from an
+independent execution with $K_0=K$, and the ordinate is logarithmic. Lines are
+evaluated at the integer $K$ values; markers have small horizontal offsets only
+to expose coincident counts from different kernels. Dashed lines show the
+reference count $C^*$ for evaluation only. The Swiss-roll reference comprises
+artificial bands, and the uniform cloud has no reference partition. Matching
+$C^*$ is therefore neither an execution-time selection rule nor evidence of
+pointwise partition correctness.}
+\label{fig:all_cluster_count_evolution}
+\end{figure}
+
+For anisotropic clusters, equal-density blobs, circles, and moons, every kernel attained ARI=NMI=1 within the tested $K$ range. In this unpruned ablation, all kernels also attained the same best result for variable-density blobs (ARI $0.7817$, NMI $0.9035$, $K=8$) and for the labelled bridge dataset (ARI $0.8083$, NMI $0.8182$, $K=6$). These are unpruned optima, not the final results of the structural-pruning enhancement reported in Sect.~\ref{sec:structural_pruning_results}. For the discretised Swiss roll, the best scores were low, as expected for an artificial banding of a continuous manifold.  All optima occurred at $K=4$: uniform, inverse-distance, inverse-square, and sigmoid allocation attained ARI/NMI $0.1559/0.5160$, $0.1544/0.5141$, $0.1528/0.5131$, and $0.1558/0.5153$, respectively.
+
+For the coloured comparison figures only, a common representative K is selected
+for each labelled dataset by maximising the mean ARI across the four kernels,
+with ties resolved in favour of the smaller K.  The same selected K is then
+used in every predicted panel, so the graphical comparison does not grant a
+different scale to each kernel.  This visualisation rule does not filter the
+long-format results, which retain all $K=2,\ldots,16$ observations.
+
+Figure~\ref{fig:moons_vote_models} provides a representative non-convex case in
+which all four kernels recover the reference partition exactly.  The more
+difficult variable-density case is reserved for the focused, pruned
+three-kernel mosaic in Fig.~\ref{fig:blobs_pruning_vote_kernels}.
+
+\begin{figure}[!tp]
+\centering
+\includegraphics[width=4.8in,height=6.8in,keepaspectratio]{audits/KAIS-R8-figure-typography/candidates/Fig4_moons_vote_models_typography.pdf}
+\caption{Reference labels and the four predicted partitions for the two-moons
+dataset at the common representative scale $K=10$: budget-matched uniform
+$h(u)=1$, inverse-distance $h(u)=1/u$, reference inverse-square
+$h(u)=1/u^2$, and local sigmoid $S_\alpha(u)$ with $\alpha=8$.  Every source
+casts the common budget in Eq.~\eqref{eq:reference_source_budget}; the panels
+differ only in its allocation among outgoing neighbours.  Every vote model recovers the two
+non-convex components exactly (ARI${}={}$NMI${}={}$1). Cluster colours are
+local to each panel and do not encode a cross-panel label correspondence.}
+\label{fig:moons_vote_models}
+\end{figure}
+
+
+\subsubsection{Bridge-fraction transition}
+
+Table~\ref{tab:bridge_transition} reports the first value of $K$ at which the two dense cores share a dominant predicted cluster. No kernel merged the disconnected cores when all bridge points were removed. At bridge fraction $0.10$, the reference inverse-square allocation merges one scale later than the other three; the boundaries coincide at the remaining tested fractions. This is direct evidence that the budget-matched shapes are not equivalent implementations.
+
+\begin{table}[t]
+\caption{First $K$ producing a merger of the two dense bridge cores for each of
+the four vote kernels. A value $>16$ means that no merger occurred in the
+tested range.}\label{tab:bridge_transition}
+\centering
+\begin{tabular}{rcccc}
+\toprule
+bridge fraction & $h(u)=1$ & $h(u)=1/u$ & $h(u)=1/u^2$ & $S_\alpha(u)$\\
+\midrule
+0.00 & $>16$ & $>16$ & $>16$ & $>16$\\
+0.10 & 5 & 5 & 6 & 5\\
+0.25 & 6 & 6 & 6 & 6\\
+0.50 & 6 & 6 & 6 & 6\\
+0.75 & 7 & 7 & 7 & 7\\
+1.00 & 7 & 7 & 7 & 7\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+For the complete bridge at $K=6$, the two reported components also do not
+correspond to the three reference labels.  One contains all 900 points of the
+left core, all 200 bridge points, and six peripheral points from the right
+core; the other contains the remaining 894 right-core points.  The bridge has
+therefore already been absorbed by the left component even though the two dense
+cores have not yet fully merged.
+
+\subsection{Native structural-pruning results}
+\label{sec:structural_pruning_results}
+
+Table~\ref{tab:native_structural_pruning} separates the native pruning
+experiment from the four-kernel sweep.  The variable-density case changes from
+four to five clusters at $K=8$, with ARI increasing from $0.7817$ to $0.9627$.
+The accepted subdivision has 12 crossing visible connections. The five
+inferred cluster sizes are $375$, $400$, $400$, $401$, and $424$; these sizes
+show that matching the reference cluster count does not imply exact label
+recovery.
+
+For the complete sparse bridge, pruning recovers three components at both
+tested scales.  At $K=6$, ARI increases from $0.8083$ to $0.9853$, and 10
+visible connections cross the accepted subdivision.  At $K=10$, the unpruned
+closure has already collapsed to one component, but an accepted three-child
+subdivision has 32 crossing connections and reaches ARI $0.9865$.  Circles,
+moons, and anisotropic blobs serve as preservation controls: no split is
+accepted, and their ARI remains exactly $1$.
+
+\begin{figure}[p]
+\centering
+\includegraphics[width=4.8in,height=6.8in,keepaspectratio]{audits/KAIS-R8-figure-typography/candidates/Fig5_bridge_pruning_typography.pdf}
+\caption{Native structural pruning of the complete sparse bridge at $K=6$
+under the three weighted allocation shapes.  The panels show budget-matched
+$h(u)=1/u$, reference $h(u)=1/u^2$, and budget-matched local sigmoid
+$S_\alpha(u)$ with $\alpha=8$, respectively.  Every model produces three
+clusters.  Inverse-square and sigmoid allocation coincide pointwise (ARI
+$0.98535$, NMI $0.96212$), while inverse-distance differs from them at four
+points after label alignment (ARI $0.98532$, NMI $0.96244$).  The accepted
+subdivisions have 6, 10, and 11 crossing visible connections, and their annotated native
+unpruned visible-edge counts are 6940, 6928, and 6972, respectively.
+The distinct unpruned visible graphs yield identical final partitions under
+inverse-square and sigmoid allocation. Reference labels are used only for
+external evaluation and colour alignment.}
+\label{fig:bridge_pruning_vote_kernels}
+\end{figure}
+
+\begin{table}[t]
+\caption{Native inverse-square results before and after structural pruning. $C^*$
+is the number of reference classes, $C_0$ and $C_p$ are the unpruned and pruned
+cluster counts, and $|E^{\mathrm{cut}}|$ is the number of crossing visible
+connections in the accepted subdivision (zero when no split is accepted).
+Labels are used only for the reported ARI and $C^*$.}
+\label{tab:native_structural_pruning}
+\centering
+\small
+\begin{tabular}{lrrrrrrr}
+\toprule
+dataset & $K$ & $C^*$ & $C_0$ & ARI$_0$ & $C_p$ & ARI$_p$ & $|E^{\mathrm{cut}}|$\\
+\midrule
+\input{native_structural_pruning_table_rows.tex}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Pruning sensitivity to the vote kernel}
+
+Figures~\ref{fig:bridge_pruning_vote_kernels} and
+\ref{fig:blobs_pruning_vote_kernels} address whether the successful split is
+specific to the reference inverse-square vote.  For the variable-density
+blobs, all three weighted allocation shapes start from four unpruned components and
+produce the same five-cluster partition after pruning: ARI $0.9627$, NMI
+$0.9614$.  Each accepted subdivision has 12 crossing visible connections.
+The three partitions are pointwise
+identical up to label permutation.  Their mean visible-neighbour counts are
+not identical ($4.7010$, $4.6825$, and $4.7350$, respectively), confirming
+that the kernels alter the visible graph.  In the companion Python edge audit,
+whose unpruned partitions agree pointwise with the native implementation, the inverse-square directed
+edge set differs from the inverse-distance and sigmoid sets by 89 and 269
+visible edges, respectively.  These changes remain inside the same connected
+components. The accepted pruning split also coincides empirically at this
+scale; component agreement alone does not imply equality of mixture fits or
+regularised subdivisions.
+
+For the fixed bridge dataset at the reported scale, each of the three weighted
+kernels tested starts from two components and returns three, with ARI between
+$0.98532$ and $0.98535$.  Inverse-square and sigmoid allocation induce the same
+partition, while inverse-distance differs by four peripheral assignments after
+optimal label alignment.  Their accepted subdivisions have 10, 11, and 6 crossing connections,
+respectively, when listed as inverse-square, sigmoid, and inverse-distance. In
+the companion Python edge audit, the inverse-square unpruned visible edge set
+differs by 56 and 190 directed edges from inverse-distance and sigmoid voting,
+respectively.  The equality of cluster counts is
+therefore supported by near-identical external partitions, not used as a
+substitute for them.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=4.8in,height=6.8in,keepaspectratio]{blobs_var_density_native_structural_pruning_vote_kernels_K8.pdf}
+\caption{Native structural pruning of the variable-density blobs at $K=8$
+under the three weighted allocation shapes.  The three panels show, from left
+to right, budget-matched $h(u)=1/u$, reference $h(u)=1/u^2$, and
+budget-matched local sigmoid $S_\alpha(u)$ with $\alpha=8$.  All produce the
+same pointwise five-cluster partition (ARI
+$0.96265$, NMI $0.96141$) after structural refinement; each accepted
+subdivision has 12 crossing visible connections.
+The panel annotations expose the distinct native unpruned graphs:
+$|E^{\mathrm{vis}}|=9402$, 9365, and 9470 directed edges, respectively.
+Reference labels are omitted from the mosaic and are used only for colour
+alignment and external scores; each unpruned C partition was first verified
+pointwise against its Python kernel definition.}
+\label{fig:blobs_pruning_vote_kernels}
+\end{figure}
+
+\subsection{Comparison with external clustering methods}
+\label{sec:baseline_comparison}
+
+Table~\ref{tab:all_methods_comparison} reports the label-selected best-of-grid
+comparison defined in Sect.~\ref{sec:external_comparison_protocol}. RTKNNC attains
+ARI${}={}$NMI${}={}$1 on anisotropic blobs, equal-density blobs, circles, and
+two moons.  Several external methods tie these results, but the controls also
+expose their inductive biases: the evaluated $k$-means and Gaussian-mixture
+candidates do not recover the circles and moons reference partitions, whereas
+several graph-, density-, and connectivity-constrained candidates do. As expected from its nearest-centroid
+geometry, $k$-means induces convex Voronoi cells; the evaluated fixed-count
+partitions do not follow the concentric rings or the curved, interleaving moons.  Consequently, it obtains ARI/NMI
+$-0.0004/0.0001$ on circles and $0.4800/0.3815$ on two moons.  This limitation
+persists even under the favourable protocol used here, in which $k$-means is
+given the reference cluster count $C^*=2$.
+
+The two connectivity-stress cases provide finer discrimination.  On the
+variable-density blobs, RTKNNC returns the intended five clusters with ARI
+$0.9627$ and NMI $0.9614$, narrowly below the full-covariance Gaussian-mixture
+result $0.9639/0.9636$.  Spectral clustering reaches $0.9569/0.9581$, while
+agglomerative clustering, $k$-means, OPTICS, and HDBSCAN obtain ARIs between
+$0.9052$ and $0.9306$.  DBSCAN reaches ARI $0.7916$ and NMI $0.8044$; its
+score-maximising candidate fragments the data into 15 clusters and marks 204
+points as noise.
+
+On the sparse bridge, RTKNNC attains the highest score,
+$0.9865/0.9632$, followed closely by the full-covariance Gaussian mixture at
+$0.9831/0.9552$.  Spectral clustering reaches $0.9487/0.8993$, and the other
+external ARIs range from $0.6723$ to $0.9342$. The best-of-grid RTKNNC result
+for the sparse bridge selects $K=11$ by a marginal ARI advantage over $K=10$;
+the focused $K=6$ experiment remains useful because it isolates the earliest
+corrected three-component partition under the three vote kernels.
+
+The aligned third-party RNN-DBSCAN oracle selects $k=17,\allowbreak 13,\allowbreak 11,\allowbreak 52,\allowbreak 50,\allowbreak 82$ for
+anisotropic blobs, equal-density blobs, variable-density blobs, the sparse
+bridge, circles, and two moons, respectively. Its corresponding ARI/NMI pairs
+are $0.9834/0.9680$, $0.9595/0.9404$, $0.9218/0.9127$,
+$0.8791/0.8057$, $1.0000/1.0000$, and $0.9900/0.9753$.
+It reports 3, 4, 5, 3, 2, and 2 clusters, respectively, with 22, 59, 49, 43,
+0, and 10 observations labelled $-1$. At the table's four-decimal precision,
+RTKNNC therefore has higher ARI and NMI on five datasets and equal scores on
+circles compared with RNN-DBSCAN. These are descriptive results on six fixed
+datasets, without a statistical-significance claim.
+
+\begin{table*}[t]
+\caption{Best label-selected grid result for RTKNNC with structural refinement enabled and
+external clustering methods. Each cell reports ARI/NMI; bold denotes the
+highest ARI in the column, including ties. Methods marked $\dagger$ receive the
+reference cluster count $C^*$; the others, including third-party RNN-DBSCAN, do not. Reference labels are used
+only for scoring and best-of-grid selection, never as clustering features.}
+\label{tab:all_methods_comparison}
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Method & Anisotropic & Equal-density blobs & Variable-density blobs \\
+\midrule
+$C^*$ & 3 & 4 & 5 \\
+\midrule
+RTKNNC & \textbf{1.0000/1.0000} & \textbf{1.0000/1.0000} & 0.9627/0.9614 \\
+Agglom.$^\dagger$ & \textbf{1.0000/1.0000} & \textbf{1.0000/1.0000} & 0.9306/0.9444 \\
+K-means$^\dagger$ & \textbf{1.0000/1.0000} & \textbf{1.0000/1.0000} & 0.9189/0.9338 \\
+GMM$^\dagger$ & \textbf{1.0000/1.0000} & \textbf{1.0000/1.0000} & \textbf{0.9639/0.9636} \\
+DBSCAN & \textbf{1.0000/1.0000} & \textbf{1.0000/1.0000} & 0.7916/0.8044 \\
+OPTICS & \textbf{1.0000/1.0000} & 0.9987/0.9977 & 0.9266/0.9262 \\
+Spectral$^\dagger$ & \textbf{1.0000/1.0000} & \textbf{1.0000/1.0000} & 0.9569/0.9581 \\
+HDBSCAN & \textbf{1.0000/1.0000} & 0.9940/0.9902 & 0.9052/0.9075 \\
+RNN-DBSCAN & 0.9834/0.9680 & 0.9595/0.9404 & 0.9218/0.9127 \\
+\bottomrule
+\end{tabular}
+\par\medskip
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Method & Sparse bridge & Circles & Two moons \\
+\midrule
+$C^*$ & 3 & 2 & 2 \\
+\midrule
+RTKNNC & \textbf{0.9865/0.9632} & \textbf{1.0000/1.0000} & \textbf{1.0000/1.0000} \\
+Agglom.$^\dagger$ & 0.9153/0.8580 & \textbf{1.0000/1.0000} & \textbf{1.0000/1.0000} \\
+K-means$^\dagger$ & 0.9342/0.8780 & -0.0004/0.0001 & 0.4800/0.3815 \\
+GMM$^\dagger$ & 0.9831/0.9552 & -0.0004/0.0001 & 0.5096/0.4080 \\
+DBSCAN & 0.8140/0.7422 & \textbf{1.0000/1.0000} & \textbf{1.0000/1.0000} \\
+OPTICS & 0.6723/0.6491 & \textbf{1.0000/1.0000} & 0.9990/0.9972 \\
+Spectral$^\dagger$ & 0.9487/0.8993 & \textbf{1.0000/1.0000} & \textbf{1.0000/1.0000} \\
+HDBSCAN & 0.8641/0.7828 & \textbf{1.0000/1.0000} & \textbf{1.0000/1.0000} \\
+RNN-DBSCAN & 0.8791/0.8057 & \textbf{1.0000/1.0000} & 0.9900/0.9753 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+The comparison supports competitiveness on these fixed datasets within the
+declared oracle grids, rather than general superiority. RTKNNC matches the best ARI on four benchmark datasets. On the
+variable-density dataset it obtains ARI $0.9627$, compared with $0.9639$ for
+the full-covariance GMM, while on the sparse bridge it obtains the highest ARI,
+$0.9865$, compared with $0.9831$ for the GMM. The fixed-count baselines have
+the advantage of receiving $C^*$, whereas RTKNNC, DBSCAN, OPTICS, HDBSCAN,
+and RNN-DBSCAN do not. Future work will
+extend the evaluation to repeated stochastic realisations, higher-dimensional
+data, and label-free scale selection.
+
+\subsection{Implementation-based SHADE results}\label{sec:shade_results}
+
+\input{shade_comparison_table.tex}
+
+Table~\ref{tab:shade_comparison} reports both frozen treatments separately.
+Primary SHADE and the RTKNNC oracle tie on anisotropic blobs and circles.
+SHADE is also essentially perfect on equal-density blobs and two moons.
+Using the unrounded archived scores and reporting differences to four
+decimals, RTKNNC's oracle ARI exceeds primary SHADE's mean ARI by $0.0029$ on
+equal-density blobs, $0.1580$ on variable-density blobs, $0.5579$ on the sparse
+bridge, and $0.0002$ on two moons. These differences compare the declared
+protocols, not equal tuning budgets.
+
+The bridge is also sensitive to preprocessing: raw SHADE reaches ARI
+$0.5765\pm0.0314$, compared with the primary z-score result
+$0.4286\pm0.1330$. The raw result remains a sensitivity analysis and does not
+replace the prospectively designated primary result. All ten seeds and all
+observations contribute to each entry, including points labelled $-1$.
+
+\section{Discussion}\label{sec:discussion}
+
+RTKNNC combines source-budgeted reverse-neighbour voting and
+popularity-modulated RMS visibility into a specific filtered graph family.
+Once its directed visible arcs are fixed, unpruned closure is ordinary
+connected-component extraction on the OR-symmetrised graph, not a novel
+connectivity principle. Direction matters in voting and filtering before this
+step. The conditional inverse-square merge-only result concerns this graph
+family under positive distances and nested deterministic neighbour choices.
+The optional popularity-seeded refinement is a subsequent heuristic: BIC
+selects a local mixture proposal among finite fits, then graph coherence
+regularises child labels. No global BIC or partition optimum is claimed.
+
+Before structural refinement, RTKNNC is defined by an algorithmic graph construction rather than by
+minimising an explicit objective function. Changing only the vote allocation
+altered the cluster count in 60 of 210 matched sweep comparisons and visibility in
+all 210, although several datasets had the same best external partition under
+all kernels. Vote allocation controls incoming evidence; the round-trip graph
+and its closure control how visible evidence propagates. We report structural
+pruning separately because its BIC criterion adds a local statistical model.
+
+The inverse-square model defines the common source budget and is recovered
+exactly by the budget-matched formulation.  A raw comparison against $1$,
+$1/r$, and a bounded sigmoid would, however, mix kernel shape with incompatible
+units and outgoing amplitudes; on these data, the raw sigmoid was consequently
+almost indistinguishable from uniform voting.  The source-budget-matched family
+removes that confound by conserving $B_K(x_i)$ for every source and changing
+only how that mass is distributed among its $K$ outgoing edges.  It also makes
+$P_{K,g}R_K^{(2)}$ invariant under uniform global coordinate rescaling for every model,
+not just inverse-square, with positive scale factor and fixed $N$. This property
+concerns the unrefined graph construction, not arbitrary feature-wise or affine
+transformations or the refined pipeline. In particular, diagonal mixture fits
+are axis-dependent. Preprocessing remains part of the method specification.
+
+On the two difficult datasets, the pruning result was not specific to
+inverse-square voting. This does not imply kernel equivalence. For the
+variable-density blobs, the three kernels
+produce pointwise-identical final partitions even though their native mean
+visible-neighbour counts differ and the companion audit finds hundreds of
+kernel-dependent directed edges.  Those edge changes occur within the same
+symmetrised connected components, and the mixture stage accepts the same
+geometric subdivision.  For the bridge, the stability is only approximate:
+inverse-distance voting changes four assignments relative to the pointwise-identical inverse-square and sigmoid results, a distinction hidden by
+three-decimal ARI and NMI. For the variable-density blobs, these results identify a range in which
+different visible graphs still lead to the same final partition, while the
+bridge shows that small kernel effects remain measurable. These stored
+experiments show agreement across the three weighted kernels on the two fixed
+cases at the reported scales; they do not establish general robustness or
+kernel invariance.
+
+The bridge-fraction experiment provides a local sensitivity check. At retained bridge
+fraction $0.10$, uniform, inverse-distance, and sigmoid allocation first merge
+the dense cores at $K=5$, whereas reference inverse-square first merges them
+at $K=6$.  This observed boundary difference confirms that equal results at
+the complete-bridge reference scale do not imply kernel equivalence.  A denser
+sweep over bridge geometry, noise, separation, and sigmoid slope may expose
+further transition differences.
+
+\subsection{Connectivity failure and structural correction}
+
+The observed failures follow directly from the topology of the closure
+operator. Recall the visible directed edge set
+$E^{\mathrm{vis}}_{K,g}$ from Eq.~\eqref{eq:visible_edge_set} and its
+symmetrised counterpart
+$\overline E^{\mathrm{vis}}_{K,g}$ from
+Eq.~\eqref{eq:symmetrised_visible_edge_set}.
+By Proposition~\ref{prop:closure_component}, and since
+Eq.~\eqref{eq:nonempty_visible_neighbourhood} ensures that no saturated
+closure is a singleton under the stated assumptions, the unpruned saturated
+closures are exactly the connected components of this symmetrised visible graph.
+Before structural refinement, RTKNNC
+can therefore recover a reference partition exactly only at a scale for
+which its classes occupy separate visible connected components.
+
+The enhanced method relaxes this connectivity restriction in a controlled
+way. Eqs.~\eqref{eq:pruning_acceptance}--\eqref{eq:pruning_cut} permit a
+large connected component to be subdivided only after a local mixture proposal
+passes the BIC screen and its regularised labels satisfy the size and
+visible-graph coherence criteria. The structural stage therefore does
+not alter the KNN construction or redefine visibility; it acts only after
+the unpruned closure has been formed.
+
+This condition explains why nonconvexity alone does not cause failure.
+Although moons and circles are nonconvex, at a suitable value of $K$ the
+low-density regions between their sampled components leave no visible path connecting them in the symmetrised visible KNN graph. The variable-density example
+is different: the compact and diffuse right-hand Gaussians overlap in the
+observed space. Points in the overlap create cross-class nearest-neighbour
+edges, and an admissible chain places the two latent classes inside the same
+unpruned saturated closure.
+
+For the reference inverse-square model,
+Proposition~\ref{prop:inverse_square_coarsening} further shows that increasing
+$K$ cannot remove an already visible edge. Thus, once those two populations
+belong to the same connected component at a given scale, increasing $K$ cannot
+separate them again in the unpruned layer. Reducing $K$ may break the
+connection, but in the variable-density experiment it produces
+microfragmentation before recovering the latent separation. At $K=8$, the
+structural stage instead detects two supported populations inside the merged
+closure: BIC favours a two-component subdivision, and both proposed children
+satisfy the visible-graph coherence requirements. This restores five clusters
+with ARI $0.9627$. The remaining disagreement may reflect overlap in the
+observed coordinates; these experiments do not establish that the particular
+misassignments are irreducible.
+
+The sparse bridge creates the analogous connectivity failure through a
+filament rather than direct overlap. At $K=6$, the bridge has already been
+absorbed into the left-core component, while most of the right core remains a
+second component. Because unpruned round-trip clustering operates through
+connected closure, one admissible cross-boundary path is sufficient to join
+all vertices reachable through that path. The structural stage splits the left-core--bridge component into two
+children while retaining the other component, yielding three final clusters
+at this scale. The accepted subdivision has 10 crossing visible connections
+and preserves the bridge as a third structure,
+raising ARI to $0.9853$. At $K=10$, even the unpruned partition has collapsed
+to one component, but the accepted three-child subdivision restores a
+three-cluster solution with ARI $0.9865$.
+
+The Swiss roll presents a complementary case. Its reference bands discretise
+one continuous manifold, so selective visibility yields many local connected
+components rather than the prescribed bands, whereas less selective scales
+eventually connect across them. The four-component veto and graph-coherence
+test are intended to protect such curved or extensively fragmented structures,
+but a systematic manifold study remains necessary.
+
+The unpruned accepted closures are therefore induced by visible KNN
+connectivity and form a partition under the stated assumptions, as
+confirmed by the unpruned implementation checks in the reported experiments.
+The enhanced output follows a restricted local mixture-proposal screen and
+subsequent heuristic graph regularisation of large unpruned components.
+
+The present experiments establish the behaviour of RTKNNC under controlled
+synthetic conditions and examine the effects of vote allocation, visible-graph
+connectivity, and structural pruning. The comparative evaluation uses six
+fixed two-dimensional synthetic datasets; it does not establish validity on
+real-world or higher-dimensional data. The experiments also do not establish
+generalisation across independent data realisations or sensitivity to all
+refinement thresholds. Further work may extend this analysis to
+repeated stochastic realisations, higher-dimensional datasets, additional
+graph-based baselines, alternative covariance models, and label-free
+strategies for selecting the neighbourhood scale. A broader parameter study
+of bridge geometry and sigmoid slope may also help characterise the transition
+boundaries of the different vote kernels.
+
+Higher-dimensional extensions also need to examine hubness, where some
+objects occur in many other objects' nearest-neighbour lists.
+Feldbauer and Flexer \citep{FeldbauerFlexer2019Hubness} compare methods for
+reducing this effect and evaluate their influence on nearest-neighbour
+classification. Since RTKNNC uses incoming neighbourhood evidence to define
+popularity, the interaction between hubness and visibility requires direct
+evaluation; the present experiments do not establish robustness to this
+phenomenon.
+
+The observed RTKNNC gains with refinement concern the complete refinement
+stage. The experiments do not isolate the contributions of mixture screening,
+graph regularisation, or size correction individually. SHADE's near-perfect
+control results and lower variable-density and sparse-bridge scores provide
+descriptive context under a different protocol; they do not identify the
+cause of the differences or establish that RTKNNC generally dominates SHADE.
+RTKNNC and the historical baselines report label-selected best-of-grid
+results, whereas SHADE reports a fixed-setting ten-seed distribution;
+tuning budgets are unequal. The seed SD describes training variability on
+each fixed input, not dataset-level uncertainty. Six fixed synthetic datasets
+do not support an independent-dataset significance claim. The declared
+C01/C02 limitations further restrict interpretation to the unchanged author
+implementation.
+
+\section{Conclusion}\label{sec:conclusion}
+
+We introduced Round-Trip KNN Clustering (RTKNNC), a method that uses directed nearest-neighbour relations and reverse-neighbour votes to identify clusters without specifying their number in advance. By varying the number of neighbours, the method also shows how the grouping changes with scale. For the original inverse-square voting rule, we proved that, under the stated conditions and without refinement, increasing the neighbourhood size can merge clusters but cannot split them.
+
+The experiments showed that RTKNNC identifies several non-convex structures, but also revealed a limitation: a few connections may join groups that should remain separate. We therefore added an optional refinement step. On the variable-density and sparse-bridge datasets, it substantially improved agreement with the reference groups while preserving three cases that were already correctly clustered. Comparisons with other clustering methods indicate competitive results on the tested datasets, although the evaluation protocols were not always the same.
+
+These findings support RTKNNC as a useful graph-based approach to clustering. Further experiments with independently generated datasets, higher-dimensional data and automatic selection of the neighbourhood size are needed to assess its broader applicability.
+
+% We presented Round-Trip KNN Clustering, a method that combines directed KNN
+% neighbourhoods, reverse-neighbour voting, and local visibility to identify
+% cluster structure across neighbourhood scales. Its unpruned closure extracts
+% ordinary connected components of the OR-symmetrised visible graph; the
+% contribution concerns the source-budgeted voting and visibility rules, their
+% filtered graph family, and its controlled analysis. Merge-only coarsening is
+% restricted to the unpruned inverse-square model with positive distances and
+% nested deterministic neighbour choices. We also introduced an optional
+% heuristic refinement that screens local mixture proposals and then regularises
+% child labels for graph coherence, without claiming a global BIC or partition
+% optimum. Across eight datasets and all
+% 15 tested values of $K$ from 2 to 16, the unpruned reference C implementation and its
+% Python counterpart produced identical inverse-square cluster partitions. The 840-run kernel
+% sweep then showed that vote allocation often changes visibility and sometimes
+% the induced partition.  The native enhancement then corrected the
+% central connectivity failures: variable-density blobs changed from four to
+% five clusters with ARI $0.7817\to0.9627$, and the bridge reached three clusters
+% with ARI $0.9853$ at $K=6$ and $0.9865$ at $K=10$.  It accepted no split on
+% three already correct controls, whose ARI remained $1$.  At the two difficult
+% reference scales, inverse-distance, inverse-square, and sigmoid voting all
+% preserved the corrected cluster counts with essentially identical scores, and
+% their six unpruned native partitions passed pointwise C--Python agreement.
+% A label-selected best-of-grid comparison comprising 11,034 oracle candidates
+% across RTKNNC and eight external methods showed that RTKNNC with structural
+% refinement enabled matches ARI $1$ on four benchmark datasets, obtains ARI
+% $0.9627$ on the variable-density dataset versus $0.9639$ for a full-covariance
+% GMM, and attains the highest sparse-bridge ARI, $0.9865$ versus $0.9831$ for
+% the GMM. These are descriptive best-of-grid results on fixed datasets; the
+% candidate count is not a count of independent replications or a measure of
+% statistical power or methodological breadth. Against the
+% publication-input-aligned third-party RNN-DBSCAN oracle,
+% RTKNNC has higher ARI and NMI on five datasets and equal scores on circles
+% at four-decimal precision. These results examine vote weighting, visible
+% connectivity, and heuristic refinement on the reported datasets and scales;
+% they do not establish general superiority or refined C--Python equivalence. Future work will examine
+% repeated stochastic realisations and higher-dimensional data, as well as
+% alternative covariance models, label-free scale selection, and additional
+% graph-based baselines.
+%
+% The separate 120-fit implementation-based SHADE comparison adds contemporary
+% evidence without changing the oracle ledger. Its near-perfect controls and
+% lower variable-density and bridge scores provide descriptive context for
+% the complete refinement stage, subject to unequal protocols and the disclosed
+% paper/code differences; they do not identify individual component effects.
+
+
+\section*{Statements and Declarations}
+
+\noindent\textbf{Funding.}
+No funding was received for conducting this study.
+
+\medskip
+\noindent\textbf{Competing interests.}
+The authors declare no competing interests.
+
+\medskip
+\noindent\textbf{Ethics approval and consent to participate.}
+Not applicable.
+
+\medskip
+\noindent\textbf{Consent for publication.}
+Not applicable.
+
+\medskip
+\noindent\textbf{Author contributions.}
+Eraldo P. Marinho: Conceptualization, Methodology, Formal analysis, Investigation, Software, Validation, Writing – original draft, Writing – review and editing. Caetano Mazzoni Ranieri: Writing – review and editing. Fabricio A. Breve: Writing – review and editing. All authors read and approved the final manuscript.
+
+\medskip
+\noindent\textbf{Data and code availability}
+The version-specific reproducibility artefact (version 1.0.0) is archived at
+\url{https://doi.org/10.5281/zenodo.23671448}.
+It includes the exact synthetic inputs, C and Python source, frozen
+protocols, source and environment identities, sealed SHADE predictions,
+per-run and aggregate results, and runtime, failure and validation
+records. Preprocessing, seeds, C01/C02 and file-scoped rights are
+documented in the artefact. The publisher's \texttt{sn-jnl.cls} is an
+external dependency for manuscript recompilation. The related project
+repository is \url{https://github.com/epmarinho/rtknnc}.
+
+\bibliography{references}
+\end{document}

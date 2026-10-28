@@ -1,0 +1,26 @@
+\begin{table}[t]
+\centering
+\caption{Separate implementation-based SHADE comparison: mean $\pm$ sample SD
+over all ten seeds for each fixed dataset and treatment. Z-score is primary;
+raw is sensitivity. ARI and arithmetic NMI include every observation, retaining
+predicted $-1$ as a partition category. No best-seed or best-treatment selection
+is used. This is not the oracle-grid protocol of
+Table~\ref{tab:all_methods_comparison}.}
+\label{tab:shade_comparison}
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+ & \multicolumn{2}{c}{Z-score (primary)} & \multicolumn{2}{c}{Raw (sensitivity)} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Dataset & ARI & NMI & ARI & NMI \\
+\midrule
+Anisotropic & $1.0000\pm0.0000$ & $1.0000\pm0.0000$ & $1.0000\pm0.0000$ & $1.0000\pm0.0000$ \\
+Equal-density blobs & $0.9971\pm0.0013$ & $0.9947\pm0.0025$ & $0.9973\pm0.0013$ & $0.9951\pm0.0025$ \\
+Variable-density blobs & $0.8047\pm0.0486$ & $0.9048\pm0.0031$ & $0.8047\pm0.0486$ & $0.9048\pm0.0031$ \\
+Sparse bridge & $0.4286\pm0.1330$ & $0.5224\pm0.0851$ & $0.5765\pm0.0314$ & $0.5954\pm0.0287$ \\
+Circles & $1.0000\pm0.0000$ & $1.0000\pm0.0000$ & $1.0000\pm0.0000$ & $1.0000\pm0.0000$ \\
+Two moons & $0.9998\pm0.0006$ & $0.9994\pm0.0018$ & $0.9998\pm0.0006$ & $0.9994\pm0.0018$ \\
+\botrule
+\end{tabular}
+\end{table}

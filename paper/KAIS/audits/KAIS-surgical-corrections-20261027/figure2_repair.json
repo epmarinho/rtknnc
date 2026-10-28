@@ -1,0 +1,22 @@
+{
+  "original": "paper/KAIS/audits/KAIS-R8-figure-typography/candidates/Fig2_multiscale_transition_typography.pdf",
+  "original_sha256": "40eb1824845f77401677b2c668a6e5edfef53e0afe22a3a6d5fe707744d42e9e",
+  "corrected": "paper/KAIS/audits/KAIS-surgical-corrections-20261027/assets/Fig2_multiscale_transition_unclipped.pdf",
+  "corrected_sha256": "e5980edc0df682cd8940042325674a787784efa4d95eb5be9172a0812a6a66cd",
+  "original_bytes_preserved_as_exact_prefix": true,
+  "only_active_object_override": 11,
+  "old_media_box": [
+    0,
+    0,
+    345.6,
+    442.8
+  ],
+  "new_media_box": [
+    0,
+    -12,
+    345.6,
+    442.8
+  ],
+  "all_graphics_text_font_and_data_streams_unchanged": true,
+  "reason": "Bottom x-axis label baseline at y=-5.824 points was below the old MediaBox."
+}
